@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d856cef02672412db7f33fda0dda80ce" Name="Diagram1">
+        <EntityTypeShape EntityType="masterModel.UserLinks" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="masterModel.Users" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="masterModel.MSreplication_options" Width="1.5" PointX="5.5" PointY="4.875" />
+        <EntityTypeShape EntityType="masterModel.spt_fallback_db" Width="1.5" PointX="0.5" PointY="6.875" />
+        <EntityTypeShape EntityType="masterModel.spt_fallback_dev" Width="1.5" PointX="2.5" PointY="6.875" />
+        <EntityTypeShape EntityType="masterModel.spt_fallback_usg" Width="1.5" PointX="7.5" PointY="0.875" />
+        <EntityTypeShape EntityType="masterModel.spt_monitor" Width="1.5" PointX="7.5" PointY="4.875" />
+        <EntityTypeShape EntityType="masterModel.Person" Width="1.5" PointX="0.625" PointY="0.5" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
