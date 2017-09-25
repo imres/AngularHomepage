@@ -5,7 +5,7 @@ using System.Web;
 using UserManager.Core;
 using UserManager.Core.Enums;
 using UserManager.Core.Interfaces;
-using UserManager.Core.Mappers.ToEntity;
+using UserManager.Core.Mappers;
 using UserManager.DTO;
 
 namespace UserManager.Core.Repositories
@@ -49,7 +49,7 @@ namespace UserManager.Core.Repositories
 
                 try
                 {
-                    return _personCryptography.GenerateSignature(personDTO, matchedPersonDTO);
+                    return _personCryptography.GenerateSignature(matchedPersonDTO);
                 }
                 catch (Exception)
                 {
@@ -61,6 +61,11 @@ namespace UserManager.Core.Repositories
         public override Person DtoToEntityMapping(PersonDTO personDTO)
         {
             return base.DtoToEntityMapping(personDTO);
+        }
+
+        public override PersonDTO EntityToDtoMapping(Person person)
+        {
+            return base.EntityToDtoMapping(person);
         }
 
     }

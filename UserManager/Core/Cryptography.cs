@@ -6,6 +6,7 @@ using System.Web;
 using UserManager.Core.Interfaces;
 using UserManager.DTO;
 using UserManager.Models;
+using UserManager.Core.Mappers;
 
 namespace UserManager.Core
 {
@@ -28,7 +29,7 @@ namespace UserManager.Core
             //medium.com/vandium-software/5-easy-steps-to-understanding-json-web-tokens-jwt-1164c0adfcec
 
             var header = new JwtHeader() { type = "JWT", algorithm = "HMACmd5" };
-            var payload = new JwtPayload() { Id = personDTO.Id, Email = personDTO.Email, PersonId = personDTO.PersonId };
+            var payload = new JwtPayload() { UserRights = personDTO.UserRights, Email = personDTO.Email, PersonId = personDTO.PersonId };
 
             var data = System.Text.Encoding.UTF8.GetBytes(header.ToString() + payload.ToString());
             //var signature
@@ -53,18 +54,15 @@ namespace UserManager.Core
         /// <param name="personDTO"></param>
         /// <param name="matchedPerson"></param>
         /// <returns></returns>
-        public PersonDTO GenerateSignature(PersonDTO personDTO, PersonDTO matchedPerson)
+        public PersonDTO GenerateSignature(PersonDTO personDTO)
         {
             //--Create JWT Components--
-            string baseId = Base64Encode(matchedPerson.Id.ToString());
-            string baseUsername = Base64Encode(matchedPerson.Email);
+            string userRights = Base64Encode(personDTO.UserRights.ToString());
+            string baseUsername = Base64Encode(personDTO.Email);
             string signature = SignatureEncode(personDTO);
-            //---
 
-            personDTO.Id = matchedPerson.Id;
-            personDTO.Email = matchedPerson.Email;
-            personDTO.PersonId = matchedPerson.PersonId;
-            personDTO.Token = string.Format("{0}.{1}.{2}", baseId, baseUsername, signature);
+            
+            personDTO.Token = string.Format("{0}.{1}.{2}", userRights, baseUsername, signature);
 
             return personDTO;
         }

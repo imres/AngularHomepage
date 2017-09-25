@@ -1,9 +1,14 @@
-﻿<!--Main Site-->
-<div class="col-xs-12 navbar-custom fixed-top">
-    <div class="align-content">
-        <span>{{currentUser.username}}</span>
-        <div class="pull-right">
-            <a [routerLink]="['/login']">Logout</a>
-        </div>
+﻿<nav class="navbar navbar-toggleable-md navbar-light bg-faded margin-sm-bottom">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">{{currentUser.FirstName}} {{currentUser.LastName}}</a>
+    
+    <div class="collapse navbar-collapse flex-row-reverse" id="navbarSupportedContent">
+        <button class="btn btn-outline-primary" [routerLink]="['/login']" role="button">Logga ut</button>
     </div>
-</div>
+</nav>
+
+<invite></invite>
+
+

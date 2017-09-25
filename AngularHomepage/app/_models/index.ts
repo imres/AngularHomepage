@@ -2,3 +2,4 @@
 export * from './image-link';
 export * from './user-link';
 export * from './person';
+export * from './invitation';

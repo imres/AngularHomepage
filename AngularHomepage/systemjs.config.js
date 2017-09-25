@@ -28,7 +28,8 @@
             '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
 
             // other libraries
-            'rxjs': 'npm:rxjs'
+            'rxjs': 'npm:rxjs',
+            'ng2-bootstrap-modal': 'npm:ng2-bootstrap-modal'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
@@ -37,6 +38,12 @@
                 defaultExtension: 'js'
             },
             rxjs: {
+                defaultExtension: 'js',
+                main: 'Rx.js'
+            },
+            // ng2-bootstrap
+            'ng2-bootstrap-modal': {
+                main: 'index.js',
                 defaultExtension: 'js'
             }
         }

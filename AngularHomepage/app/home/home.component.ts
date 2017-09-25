@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 
-import { User, ImageLink, UserLink } from '../_models/index';
+import { Person, Invitation } from '../_models/index';
 import { UserService } from '../_services/index';
 
 
@@ -11,13 +11,9 @@ import { UserService } from '../_services/index';
 })
 
 export class HomeComponent implements OnInit {
-    currentUser: User;
-    users: User[] = [];
-    //imageUrls: ImageLink[];
-    //newLink: any = {};
+    invitations: Invitation[];
+    currentUser: Person;
     showDialog = false;
-    //loadingImages: boolean;
-    //linkAdded: boolean;
     isClassActive: boolean;
 
     constructor(private userService: UserService) {
@@ -25,8 +21,7 @@ export class HomeComponent implements OnInit {
         this.isClassActive = false;
     }
 
-    ngOnInit() {
-    }
+    ngOnInit() { }
 
     /*private loadAllUsers() {
         this.loadingImages = true;

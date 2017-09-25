@@ -5,6 +5,7 @@ using Microsoft.Owin;
 using Owin;
 using AutoMapper;
 using UserManager.DTO;
+using System.IdentityModel.Tokens.Jwt;
 
 [assembly: OwinStartup(typeof(UserManager.Startup))]
 

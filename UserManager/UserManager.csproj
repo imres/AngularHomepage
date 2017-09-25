@@ -46,6 +46,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Auth0.AuthenticationApi, Version=3.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Auth0.AuthenticationApi.3.6.0\lib\net45\Auth0.AuthenticationApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Auth0.Core, Version=3.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Auth0.Core.3.6.0\lib\net45\Auth0.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Auth0.ManagementApi, Version=3.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Auth0.ManagementApi.3.6.0\lib\net45\Auth0.ManagementApi.dll</HintPath>
+    </Reference>
     <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
@@ -59,6 +68,12 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=1.1.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.1.1.4\lib\net451\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.1.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.5.1.4\lib\net451\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.ConnectorNET.Data.6.8.3.2\lib\net45\MySql.Data.dll</HintPath>
       <Private>True</Private>
@@ -70,6 +85,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.1.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.1.4\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
     <Reference Include="System.Security" />
     <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
@@ -229,15 +247,22 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Consignment.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\CRUD.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InvitationController.cs" />
     <Compile Include="Controllers\Scrape.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Core\Cryptography.cs" />
     <Compile Include="Core\Enums\PersonUserRights.cs" />
     <Compile Include="Core\Interfaces\ICryptography.cs" />
+    <Compile Include="Core\Interfaces\IInvitation.cs" />
     <Compile Include="Core\Interfaces\IPerson.cs" />
+    <Compile Include="Core\Mappers\InvitationMapper.cs" />
     <Compile Include="Core\Mappers\PersonMapper.cs" />
+    <Compile Include="Core\Repositories\InvitationRepository.cs" />
     <Compile Include="Core\Repositories\PersonRepository.cs" />
     <Compile Include="DBModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -254,11 +279,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DTO\InvitationDTO.cs" />
     <Compile Include="DTO\PersonDTO.cs" />
     <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="DTO\UserLinksDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Invitation.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -300,6 +329,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="DBModel.Context.tt">
@@ -315,8 +346,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
@@ -343,7 +372,17 @@
     <Content Include="DBModel.edmx.diagram">
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Content>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -379,9 +418,6 @@
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />

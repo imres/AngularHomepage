@@ -1,6 +1,6 @@
 ﻿import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { User, Person} from '../_models/index';
+import { User, Person } from '../_models/index';
 
 import { AlertService, UserService } from '../_services/index';
 
@@ -10,9 +10,7 @@ import { AlertService, UserService } from '../_services/index';
 })
 
 export class RegisterComponent {
-    model: Person = {
-        Id: null, Address: null, DisplayName: "", Email: null, FirstName: null, LastName: null,
-        Password: null, PersonId: 123213, RegisterDate: null, UserRights: null };
+    model: Person = new Person();
     loading = false;
 
     constructor(

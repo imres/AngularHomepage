@@ -1,12 +1,12 @@
 ﻿a {
     cursor: pointer;
 }
-body{
+body {
     background-size: cover;
     background-position: center center;
-    background-color: #131313 !important;
+    background-color: #f3f3f3;
     height: 100vh;
-    color: #ffffff !important;
+    color: #3e3e3e !important;
 }
 
 .help-block {
@@ -117,12 +117,12 @@ body{
     margin-bottom: 10px;
 }
 
-.btn-custom{
+/*.btn-custom{
     background-color: #33b799 !important;
     border-color: #33b799 !important;
     border-bottom-width: 3px !important;
     border-bottom-color: #0c886c !important;
-}
+}*/
 .color-custom{
     color: #33b799;
 }
@@ -141,18 +141,18 @@ body{
   display: flex !important;
   align-items: center !important;
 }
-form input[type=text], form input[type=password]{
+/*form input[type=text], form input[type=password]{
     background-color: #3c3c3c;
     border-color: #3c3c3c;
     color: #ffffff;
-}
-.input-group-addon{
-    background-color: #313131 !important;
-    border-color: #3c3c3c !important;
+}*/
+.input-group-addon {
+    background-color: #f3f3f3 !important;
+    border-color: #d2d2d2 !important;
 }
 .input-group-addon .fa {
     width: 18px;
-    color: #ffffff;
+    color: #8a8a8a;
 }
 svg path,
 svg rect{
@@ -204,8 +204,9 @@ svg rect{
    -webkit-transition: all .11s;
    transition: all .11s;
 }
+
 /*BTN*/
-.btn.btn-primary{
+/*.btn.btn-primary{
     border-color: #33b799 !important;
     background-color: #33b799 !important;
 }
@@ -215,4 +216,4 @@ svg rect{
 }
 btn.btn-primary:active, .btn-primary:focus{
     border-color: #33b799 !important;
-}
+}*/

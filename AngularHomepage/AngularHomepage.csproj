@@ -45,6 +45,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Auth0.AuthenticationApi, Version=3.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Auth0.AuthenticationApi.3.6.0\lib\net45\Auth0.AuthenticationApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Auth0.Core, Version=3.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Auth0.Core.3.6.0\lib\net45\Auth0.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Auth0.ManagementApi, Version=3.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Auth0.ManagementApi.3.6.0\lib\net45\Auth0.ManagementApi.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -149,6 +158,7 @@
     <Content Include="app\home\home.component.html" />
     <Content Include="app\home\home.component.js" />
     <Content Include="app\home\index.js" />
+    <Content Include="app\home\invitation\invitation.component.html" />
     <Content Include="app\img\noise.0e9cf16a17adb19690cd31312cdaa809.png" />
     <Content Include="app\img\preset-light.fce1a96aaadda47900f6fedf0a348ad1.png" />
     <Content Include="app\login\index.js" />
@@ -159,7 +169,7 @@
     <Content Include="app\register\register.component.html" />
     <Content Include="app\register\register.component.js" />
     <Content Include="app\_dialog\dialog.component.css" />
-    <Content Include="app\_dialog\dialog.component.html" />
+    <Content Include="app\_dialog\confirm.component.html" />
     <Content Include="app\_directives\alert.component.html" />
     <Content Include="app\_directives\alert.component.js" />
     <Content Include="app\_directives\index.js" />
@@ -11618,12 +11628,13 @@
     <TypeScriptCompile Include="app\frontpage\index.ts" />
     <TypeScriptCompile Include="app\home\home.component.ts" />
     <TypeScriptCompile Include="app\home\index.ts" />
+    <TypeScriptCompile Include="app\home\invitation\invitation.component.ts" />
     <TypeScriptCompile Include="app\login\index.ts" />
     <TypeScriptCompile Include="app\login\login.component.ts" />
     <TypeScriptCompile Include="app\main.ts" />
     <TypeScriptCompile Include="app\register\index.ts" />
     <TypeScriptCompile Include="app\register\register.component.ts" />
-    <TypeScriptCompile Include="app\_dialog\dialog.component.ts" />
+    <TypeScriptCompile Include="app\_dialog\confirm.component.ts" />
     <TypeScriptCompile Include="app\_directives\alert.component.ts" />
     <TypeScriptCompile Include="app\_directives\index.ts" />
     <TypeScriptCompile Include="app\_directives\loading.component.ts" />
@@ -11633,12 +11644,14 @@
     <TypeScriptCompile Include="app\_helpers\index.ts" />
     <TypeScriptCompile Include="app\_models\image-link.ts" />
     <TypeScriptCompile Include="app\_models\index.ts" />
+    <TypeScriptCompile Include="app\_models\invitation.ts" />
     <TypeScriptCompile Include="app\_models\person.ts" />
     <TypeScriptCompile Include="app\_models\user.ts" />
     <TypeScriptCompile Include="app\_models\user-link.ts" />
     <TypeScriptCompile Include="app\_services\alert.service.ts" />
     <TypeScriptCompile Include="app\_services\authentication.service.ts" />
     <TypeScriptCompile Include="app\_services\index.ts" />
+    <TypeScriptCompile Include="app\_services\invitation.service.ts" />
     <TypeScriptCompile Include="app\_services\user.service.ts" />
     <TypeScriptCompile Include="node_modules\%40angular\common\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40angular\common\src\common.d.ts" />

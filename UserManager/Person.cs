@@ -25,5 +25,8 @@ namespace UserManager
         public string Password { get; set; }
         public int UserRights { get; set; }
         public string Token { get; set; }
+        public string PhoneMobile { get; set; }
+        public string Alias { get; set; }
+        public Nullable<int> PostalCode { get; set; }
     }
 }

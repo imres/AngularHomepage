@@ -15,5 +15,8 @@ namespace UserManager.DTO
         public string Password { get; set; }
         public int UserRights { get; set; }
         public string Token { get; set; }
+        public string PhoneMobile { get; set; }
+        public string Alias { get; set; }
+        public int? PostalCode { get; set; }
     }
 }

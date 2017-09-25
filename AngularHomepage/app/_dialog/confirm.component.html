@@ -1,0 +1,49 @@
+﻿<div id="backgroundColorBlur">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form name="form" (ngSubmit)="f.form.valid && sendInvite()" #f="ngForm" novalidate>
+                <div class="modal-header">
+                    <button type="button" class="close" (click)="close()">&times;</button>
+                    <h4 class="modal-title">{{title || 'Confirm'}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="mr-sm-2" for="consignmentRoleSelect">Din roll</label>
+                        <select class="custom-select" name="roleDropdown" (change)="resetModel()" [(ngModel)]="selectedRole" id="consignmentRoleSelect">
+                            <option *ngFor="let x of roles" [value]="x.value" [selected]="selectedRole.Value == x.value">{{x.text}}</option>
+                        </select>
+                    </div><br />
+
+                    <!--Receiver personid-->
+                    <div class="form-group" *ngIf="selectedRole == 1" [ngClass]="{ 'has-error': f.submitted && !receiverPersonId.valid }">
+                        <label for="receiverPersonId">Mottagare</label>
+                        <input type="text" class="form-control" name="receiverPersonId" [(ngModel)]="model.ReceiverPersonId" #receiverPersonId="ngModel" />
+                        <div *ngIf="f.submitted && !receiverPersonId.valid" class="help-block">Fyll i giltigt personnummer</div>
+                    </div>
+
+                    <div class="form-group" *ngIf="selectedRole == 1" [ngClass]="{ 'has-error': f.submitted && !requestedDepositAmount.valid }">
+                        <label for="requestedDepositAmount">Begärd summa</label>
+                        <input type="text" class="form-control" name="requestedDepositAmount" [(ngModel)]="model.RequestedDepositAmount" #requestedDepositAmount="ngModel" />
+                        <div *ngIf="f.submitted && !requestedDepositAmount.valid" class="help-block">Fyll i giltigt personnummer</div>
+                    </div>
+
+                    <!--Sender personid-->
+                    <div class="form-group" *ngIf="selectedRole == 2" [ngClass]="{ 'has-error': f.submitted && !senderPersonId.valid }">
+                        <label for="senderPersonId">Avsändare</label>
+                        <input type="text" class="form-control" name="senderPersonId" [(ngModel)]="model.SenderPersonId" #senderPersonId="ngModel" />
+                        <div *ngIf="f.submitted && !senderPersonId.valid" class="help-block">Fyll i giltigt personnummer</div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" role="button" class="btn btn-primary">Skicka</button>
+                    <button type="button" class="btn btn-default" (click)="cancel()">Avbryt</button>
+                </div>
+                <pre>{{selectedRole | json}}</pre>
+                <pre>{{model | json}}</pre>
+            </form>
+        </div>
+    </div>
+</div>
+

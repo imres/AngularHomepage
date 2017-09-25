@@ -7,7 +7,7 @@ namespace UserManager.Models
 {
     public class JwtPayload
     {
-        public int Id { get; set; }
+        public int UserRights { get; set; }
         public string Email { get; set; }
         public int PersonId { get; set; }
     }

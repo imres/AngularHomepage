@@ -12,7 +12,7 @@ using System.Web.Http;
 using System.Security.Cryptography;
 using UserManager.DTO;
 using UserManager.Core.Enums;
-using UserManager.Core.Mappers.ToEntity;
+using UserManager.Core.Mappers;
 
 namespace UserManager.Controllers
 {
