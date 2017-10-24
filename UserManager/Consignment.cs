@@ -17,9 +17,9 @@ namespace UserManager
         public int Id { get; set; }
         public Nullable<int> DepositedAmount { get; set; }
         public string PackageId { get; set; }
-        public string ConsignmentId { get; set; }
-        public int SenderPersonId { get; set; }
-        public int ReceiverPersonId { get; set; }
+        public int ConsignmentId { get; set; }
+        public string SenderPersonId { get; set; }
+        public string ReceiverPersonId { get; set; }
         public int Status { get; set; }
         public int RequestedDepositAmount { get; set; }
         public int PaymentMethod { get; set; }

@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using UserManager.Core.Enums;
 using UserManager.Core.Interfaces;
 using UserManager.Core.Mappers;
 using UserManager.DTO;
 
 namespace UserManager.Core.Repositories
 {
-    public class InvitationRepository : InvitationMapper, IInvitation
+    public class InvitationRepository : Mapper, IInvitation
     {
         /// <summary>
         /// Add new invitation
@@ -16,7 +18,12 @@ namespace UserManager.Core.Repositories
         {
             using (masterEntities context = new masterEntities())
             {
-                var entity = DtoToEntityMapping(invitationDTO);
+                var maxId = GetMaxInteger<Invitation>(x => x.Id);
+
+                invitationDTO.Id = maxId;
+                invitationDTO.Status = ConsignmentStatus.InvitationCreated;
+
+                var entity = DtoToEntityMapping<InvitationDTO, Invitation>(invitationDTO);
 
                 context.Invitation.Add(entity);
                 context.SaveChanges();
@@ -37,9 +44,22 @@ namespace UserManager.Core.Repositories
         /// Get all invitations
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<InvitationDTO> GetInvitations()
+        public IEnumerable<InvitationDTO> GetInvitations(string personId)
         {
-            throw new NotImplementedException();
+            using (masterEntities context = new masterEntities())
+            {
+                //IEnumerable<Invitation> invitations = context.Invitation
+                //    .Where(x => x.ReceiverPersonId == personId ||
+                //    x.SenderPersonId == personId);
+
+                IEnumerable<Invitation> invitations = context.Invitation
+                    .Where(x => x.InvitationInitiatorPersonId != personId &&
+                    (x.ReceiverPersonId == personId || x.SenderPersonId == personId));
+
+                var invitationsDTO = EntityToDtoMappingCollection(invitations);
+
+                return invitationsDTO;
+            }
         }
     }
 }

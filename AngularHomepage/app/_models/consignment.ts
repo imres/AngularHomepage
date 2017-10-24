@@ -1,9 +1,10 @@
-﻿export class Invitation {
+﻿export class Consignment {
     public Id: number;
+    public PackageId: string;
+    public ConsignmentId: number;
     public SenderPersonId: string;
     public ReceiverPersonId: string;
     public Status: number;
-    public PaymentMethod: number;
     public RequestedDepositAmount: number;
-    public InvitationInitiatorPersonId: string;
+    public PaymentMethod: number;
 }

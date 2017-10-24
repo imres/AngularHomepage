@@ -10,29 +10,41 @@
                     <div class="form-group">
                         <label class="mr-sm-2" for="consignmentRoleSelect">Din roll</label>
                         <select class="custom-select" name="roleDropdown" (change)="resetModel()" [(ngModel)]="selectedRole" id="consignmentRoleSelect">
-                            <option *ngFor="let x of roles" [value]="x.value" [selected]="selectedRole.Value == x.value">{{x.text}}</option>
+                            <option *ngFor="let x of invitationRoles.roles" [value]="x.value" [selected]="selectedRole == x.value">{{x.text}}</option>
                         </select>
                     </div><br />
 
-                    <!--Receiver personid-->
-                    <div class="form-group" *ngIf="selectedRole == 1" [ngClass]="{ 'has-error': f.submitted && !receiverPersonId.valid }">
-                        <label for="receiverPersonId">Mottagare</label>
-                        <input type="text" class="form-control" name="receiverPersonId" [(ngModel)]="model.ReceiverPersonId" #receiverPersonId="ngModel" />
-                        <div *ngIf="f.submitted && !receiverPersonId.valid" class="help-block">Fyll i giltigt personnummer</div>
-                    </div>
-
-                    <div class="form-group" *ngIf="selectedRole == 1" [ngClass]="{ 'has-error': f.submitted && !requestedDepositAmount.valid }">
-                        <label for="requestedDepositAmount">Begärd summa</label>
-                        <input type="text" class="form-control" name="requestedDepositAmount" [(ngModel)]="model.RequestedDepositAmount" #requestedDepositAmount="ngModel" />
-                        <div *ngIf="f.submitted && !requestedDepositAmount.valid" class="help-block">Fyll i giltigt personnummer</div>
-                    </div>
-
                     <!--Sender personid-->
-                    <div class="form-group" *ngIf="selectedRole == 2" [ngClass]="{ 'has-error': f.submitted && !senderPersonId.valid }">
-                        <label for="senderPersonId">Avsändare</label>
-                        <input type="text" class="form-control" name="senderPersonId" [(ngModel)]="model.SenderPersonId" #senderPersonId="ngModel" />
-                        <div *ngIf="f.submitted && !senderPersonId.valid" class="help-block">Fyll i giltigt personnummer</div>
-                    </div>
+                    <ng-container *ngIf="selectedRole == 1">
+                        <div class="form-group"  [ngClass]="{ 'has-error': receiverPersonId.dirty && !receiverPersonId.valid }">
+                            <label for="receiverPersonId">Mottagare</label>
+                            <input type="text" class="form-control" name="receiverPersonId" placeholder="Personnummer/namn"
+                                   [(ngModel)]="model.ReceiverPersonId" #receiverPersonId="ngModel" required />
+                            <div *ngIf="receiverPersonId.dirty && !receiverPersonId.valid" class="help-block">Fyll i personnummer</div>
+                        </div>
+                        <div class="form-group" [ngClass]="{ 'has-error': paymentMethod.dirty && !paymentMethod.valid }">
+                            <label>Utbetalningsmetod</label>
+                            <select class="custom-select w-100" name="paymentMethod" [(ngModel)]="selectedPaymentMethod" id="paymentMethod" #paymentMethod="ngModel">
+                                <option *ngFor="let x of payment.methods" [value]="x.value" [selected]="selectedPaymentMethod == x.value">{{x.text}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !requestedDepositAmount.valid }">
+                            <label for="requestedDepositAmount">Begärd summa (kronor)</label>
+                            <input type="text" class="form-control" name="requestedDepositAmount"
+                                   [(ngModel)]="model.RequestedDepositAmount" #requestedDepositAmount="ngModel" />
+                            <div *ngIf="f.submitted && !requestedDepositAmount.valid" class="help-block">Fyll i giltigt personnummer</div>
+                        </div>
+                    </ng-container>
+
+                    <!--Receiver personid-->
+                    <ng-container *ngIf="selectedRole == 2" >
+                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !senderPersonId.valid }">
+                            <label for="senderPersonId">Avsändare</label>
+                            <input type="text" class="form-control" name="senderPersonId" placeholder="Personnummer/namn"
+                                   [(ngModel)]="model.SenderPersonId" #senderPersonId="ngModel" />
+                            <div *ngIf="f.submitted && !senderPersonId.valid" class="help-block">Fyll i giltigt personnummer</div>
+                        </div>
+                    </ng-container>
 
                 </div>
                 <div class="modal-footer">
@@ -40,8 +52,6 @@
                     <button type="button" class="btn btn-default" (click)="cancel()">Avbryt</button>
                 </div>
 
-                <p>test</p>
-                <p>test</p>
                 <!--<pre>{{selectedRole | json}}</pre>
                 <pre>{{model | json}}</pre>-->
             </form>

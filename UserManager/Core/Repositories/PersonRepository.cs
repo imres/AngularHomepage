@@ -22,8 +22,11 @@ namespace UserManager.Core.Repositories
         {
             using (masterEntities context = new masterEntities())
             {
+                var maxId = context.Person.Any() ? context.Person.Max(x => x.Id) + 1 : 0;
+                personDTO.Id = maxId;
+
                 personDTO.RegisterDate = DateTime.Now;
-                personDTO.UserRights = personDTO.PersonId == 0 ? PersonUserRights.Read : PersonUserRights.Write;
+                personDTO.UserRights = personDTO.PersonId?.Length > 4 ? PersonUserRights.Write : PersonUserRights.Read;
 
                 var entity = DtoToEntityMapping(personDTO);
 

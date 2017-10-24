@@ -10,7 +10,7 @@ import { UserService } from '../_services/index';
     templateUrl: 'home.component.html'
 })
 
-export class HomeComponent implements OnInit {
+export class HomeComponent {
     invitations: Invitation[];
     currentUser: Person;
     showDialog = false;
@@ -21,7 +21,6 @@ export class HomeComponent implements OnInit {
         this.isClassActive = false;
     }
 
-    ngOnInit() { }
 
     /*private loadAllUsers() {
         this.loadingImages = true;

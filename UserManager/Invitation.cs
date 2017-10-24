@@ -15,10 +15,11 @@ namespace UserManager
     public partial class Invitation
     {
         public int Id { get; set; }
-        public int SenderPersonId { get; set; }
-        public int ReceiverPersonId { get; set; }
+        public string SenderPersonId { get; set; }
+        public string ReceiverPersonId { get; set; }
         public int Status { get; set; }
         public Nullable<int> PaymentMethod { get; set; }
         public Nullable<int> RequestedDepositAmount { get; set; }
+        public string InvitationInitiatorPersonId { get; set; }
     }
 }

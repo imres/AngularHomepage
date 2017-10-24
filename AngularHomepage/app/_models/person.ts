@@ -4,7 +4,7 @@
     public FirstName: string;
     public LastName: string;
     public Email: string;
-    public PersonId: number;
+    public PersonId: string;
     public RegisterDate: Date;
     public Address: string;
     public Password: string;

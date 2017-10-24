@@ -12,7 +12,7 @@ namespace UserManager.Core.Interfaces
 
         InvitationDTO GetInvitation(int Id);
 
-        IEnumerable<InvitationDTO> GetInvitations();
+        IEnumerable<InvitationDTO> GetInvitations(string personId);
 
     }
 }

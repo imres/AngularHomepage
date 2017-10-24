@@ -32,8 +32,8 @@ namespace UserManager
         public virtual DbSet<spt_fallback_dev> spt_fallback_dev { get; set; }
         public virtual DbSet<spt_fallback_usg> spt_fallback_usg { get; set; }
         public virtual DbSet<spt_monitor> spt_monitor { get; set; }
-        public virtual DbSet<Consignment> Consignment { get; set; }
-        public virtual DbSet<Invitation> Invitation { get; set; }
         public virtual DbSet<Person> Person { get; set; }
+        public virtual DbSet<Invitation> Invitation { get; set; }
+        public virtual DbSet<Consignment> Consignment { get; set; }
     }
 }

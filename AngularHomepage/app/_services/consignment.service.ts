@@ -6,9 +6,7 @@ import { Person, Invitation } from '../_models/index';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class InvitationService {
-    private inviteSource = new BehaviorSubject<Invitation>(null);
-    currentInvite = this.inviteSource.asObservable();
+export class ConsignmentService {
 
     constructor(private http: Http) { }
 
@@ -16,12 +14,8 @@ export class InvitationService {
         'Content-Type': 'application/json'
     });
 
-    changeInviteData(invite: Invitation) {
-        this.inviteSource.next(invite);
-    }
-
-    sendInvite(invitation: Invitation) {
-        return this.http.post('http://localhost:65192/api/Invitation/Invite',
+    acceptInvite(invitation: Invitation) {
+        return this.http.post('http://localhost:65192/api/Consignment/AddConsignment',
             JSON.stringify(invitation),
             { headers: this.headers })
             .map((response: Response) =>

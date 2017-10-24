@@ -21,6 +21,7 @@ import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 import { FrontComponent } from './frontpage/index';
 import { ConfirmComponent } from './_dialog/confirm.component';
+import { InviteResponseComponent } from './_dialog/invite-response.component';
 import { LoadingComponent } from './_directives/loading.component';
 import { InvitationComponent } from './home/invitation/invitation.component';
 
@@ -35,14 +36,15 @@ import { InvitationComponent } from './home/invitation/invitation.component';
     ],
     declarations: [
         AppComponent,
+        InvitationComponent,
         AlertComponent,
         HomeComponent,
         LoginComponent,
         RegisterComponent,
         FrontComponent,
         ConfirmComponent,
-        LoadingComponent,
-        InvitationComponent
+        InviteResponseComponent,
+        LoadingComponent
     ],
     providers: [
         AuthGuard,
@@ -57,7 +59,8 @@ import { InvitationComponent } from './home/invitation/invitation.component';
         //BaseRequestOptions
     ],
     entryComponents: [
-        ConfirmComponent
+        ConfirmComponent,
+        InviteResponseComponent
     ],
     bootstrap: [AppComponent]
 })

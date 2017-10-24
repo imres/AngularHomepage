@@ -9,6 +9,6 @@ namespace UserManager.Models
     {
         public int UserRights { get; set; }
         public string Email { get; set; }
-        public int PersonId { get; set; }
+        public string PersonId { get; set; }
     }
 }

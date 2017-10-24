@@ -170,6 +170,7 @@
     <Content Include="app\register\register.component.js" />
     <Content Include="app\_dialog\dialog.component.css" />
     <Content Include="app\_dialog\confirm.component.html" />
+    <Content Include="app\_dialog\invite-response.component.html" />
     <Content Include="app\_directives\alert.component.html" />
     <Content Include="app\_directives\alert.component.js" />
     <Content Include="app\_directives\index.js" />
@@ -11626,15 +11627,29 @@
     <TypeScriptCompile Include="app\app.routing.ts" />
     <TypeScriptCompile Include="app\frontpage\front.component.ts" />
     <TypeScriptCompile Include="app\frontpage\index.ts" />
-    <TypeScriptCompile Include="app\home\home.component.ts" />
+    <TypeScriptCompile Include="app\home\home.component.ts">
+      <DependentUpon>home.component.html</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="app\home\index.ts" />
-    <TypeScriptCompile Include="app\home\invitation\invitation.component.ts" />
+    <TypeScriptCompile Include="app\home\invitation\invitation.component.ts">
+      <DependentUpon>invitation.component.html</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="app\login\index.ts" />
-    <TypeScriptCompile Include="app\login\login.component.ts" />
+    <TypeScriptCompile Include="app\login\login.component.ts">
+      <DependentUpon>login.component.html</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="app\main.ts" />
     <TypeScriptCompile Include="app\register\index.ts" />
-    <TypeScriptCompile Include="app\register\register.component.ts" />
-    <TypeScriptCompile Include="app\_dialog\confirm.component.ts" />
+    <TypeScriptCompile Include="app\register\register.component.ts">
+      <DependentUpon>register.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="app\_dialog\confirm.component.ts">
+      <DependentUpon>confirm.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="app\_dialog\invite-response.component.ts">
+      <SubType>Code</SubType>
+      <DependentUpon>invite-response.component.html</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="app\_directives\alert.component.ts" />
     <TypeScriptCompile Include="app\_directives\index.ts" />
     <TypeScriptCompile Include="app\_directives\loading.component.ts" />
@@ -11642,14 +11657,19 @@
     <TypeScriptCompile Include="app\_guards\index.ts" />
     <TypeScriptCompile Include="app\_helpers\fake-backend.ts" />
     <TypeScriptCompile Include="app\_helpers\index.ts" />
+    <TypeScriptCompile Include="app\_models\consignment.ts" />
     <TypeScriptCompile Include="app\_models\image-link.ts" />
     <TypeScriptCompile Include="app\_models\index.ts" />
+    <TypeScriptCompile Include="app\_models\invitation-models\invitation-role.ts" />
+    <TypeScriptCompile Include="app\_models\invitation-models\payment-method.ts" />
     <TypeScriptCompile Include="app\_models\invitation.ts" />
+    <TypeScriptCompile Include="app\_models\common-object.ts" />
     <TypeScriptCompile Include="app\_models\person.ts" />
     <TypeScriptCompile Include="app\_models\user.ts" />
     <TypeScriptCompile Include="app\_models\user-link.ts" />
     <TypeScriptCompile Include="app\_services\alert.service.ts" />
     <TypeScriptCompile Include="app\_services\authentication.service.ts" />
+    <TypeScriptCompile Include="app\_services\consignment.service.ts" />
     <TypeScriptCompile Include="app\_services\index.ts" />
     <TypeScriptCompile Include="app\_services\invitation.service.ts" />
     <TypeScriptCompile Include="app\_services\user.service.ts" />

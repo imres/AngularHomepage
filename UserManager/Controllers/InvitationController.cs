@@ -48,5 +48,17 @@ namespace UserManager.Controllers
             }
         }
 
+        // GET: api/User
+        [ActionName("GetInvitations")]
+        [HttpGet]
+        public HttpResponseMessage GetInvitations(string Id)
+        {
+            IEnumerable<InvitationDTO> invitations = _invitationRepository.GetInvitations(Id);
+
+            return Request.CreateResponse(HttpStatusCode.OK, invitations);
+
+        }
+
     }
 }
+ 

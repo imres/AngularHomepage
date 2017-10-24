@@ -1,0 +1,63 @@
+﻿<div id="backgroundColorBlur">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form name="form" (ngSubmit)="f.form.valid && sendInvite()" #f="ngForm" novalidate>
+                <div class="modal-header">
+                    <button type="button" class="close" (click)="close()">&times;</button>
+                    <h4 class="modal-title">{{title || 'Confirm'}}</h4>
+                </div>
+                <div class="modal-body">
+                    {{isReceiver}}
+                    <!--Send Role-->
+                    <ng-container *ngIf="!HasReceiverRole(currentInvite)" >
+                        <div class="alert alert-info alert-dismissable" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="alert-heading">Acceptera inbjudan</h4>
+                            <p>Du har fått en inbjudan, för att gå vidare till nästa steg måste du ange den summa du begär för paketet.</p>
+                            <p class="mb-0">Att acceptera denna inbjudan är inte bindande, du har valet att avbryta innan du skickar iväg paketet.</p>
+                        </div>
+                        <div class="form-group" [ngClass]="{ 'has-error': requestedDepositAmount.dirty && !requestedDepositAmount.valid }">
+                            <label for="requestedDepositAmount">Efterfrågad summa (kronor)</label>
+                            <input type="text" class="form-control" name="requestedDepositAmount" placeholder="Pris för paket"
+                                   [(ngModel)]="model.RequestedDepositAmount" #requestedDepositAmount="ngModel" required />
+                            <div *ngIf="requestedDepositAmount.dirty && !requestedDepositAmount.valid" class="help-block">Fyll i priset för ditt paket</div>
+                        </div>
+                    </ng-container>
+
+                    <!--Receiver Role-->
+                    <ng-container *ngIf="HasReceiverRole(currentInvite)">
+                        <div class="alert alert-info alert-dismissable" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="alert-heading">Acceptera inbjudan</h4>
+                            <p>Du har fått en inbjudan, för att gå vidare till nästa steg måste du ange en av de tillgängliga betalningsmetoderna</p>
+                            <p class="mb-0">Att acceptera denna inbjudan är inte bindande, du har valet att avbryta innan du sätter in summan.</p>
+                        </div>
+                        <h3>
+                            <small class="text-muted">Avsändare: </small>
+                            {{currentInvite.SenderPersonId}}<span></span>
+                        </h3><hr />
+                        <h3>
+                            <small class="text-muted">Pris: </small>
+                            {{currentInvite.RequestedDepositAmount}}<span>:-</span>
+                        </h3>
+                    </ng-container>
+                    
+
+                    <!--<pre>{{currentInvite | json}}</pre>-->
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" role="button" class="btn btn-primary" (click)="confirm()">Acceptera</button>
+                    <button type="button" class="btn btn-default" (click)="cancel()">Avbryt</button>
+                </div>
+
+                <!--<pre>{{selectedRole | json}}</pre>
+                <pre>{{model | json}}</pre>-->
+            </form>
+        </div>
+    </div>
+</div>
+

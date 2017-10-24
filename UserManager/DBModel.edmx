@@ -12,9 +12,9 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="DepositedAmount" Type="int" />
           <Property Name="PackageId" Type="nvarchar(max)" />
-          <Property Name="ConsignmentId" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="SenderPersonId" Type="int" Nullable="false" />
-          <Property Name="ReceiverPersonId" Type="int" Nullable="false" />
+          <Property Name="ConsignmentId" Type="int" Nullable="false" />
+          <Property Name="SenderPersonId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReceiverPersonId" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
           <Property Name="RequestedDepositAmount" Type="int" Nullable="false" />
           <Property Name="PaymentMethod" Type="int" Nullable="false" />
@@ -24,11 +24,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="SenderPersonId" Type="int" Nullable="false" />
-          <Property Name="ReceiverPersonId" Type="int" Nullable="false" />
+          <Property Name="SenderPersonId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReceiverPersonId" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
           <Property Name="PaymentMethod" Type="int" />
           <Property Name="RequestedDepositAmount" Type="int" />
+          <Property Name="InvitationInitiatorPersonId" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'master.dbo.MSreplication_options' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -57,7 +58,7 @@ warning 6002: The table/view 'master.dbo.MSreplication_options' does not have a 
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
-          <Property Name="PersonId" Type="int" Nullable="false" />
+          <Property Name="PersonId" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="RegisterDate" Type="datetime" Nullable="false" />
           <Property Name="Address" Type="nvarchar" MaxLength="50" />
           <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
@@ -266,9 +267,9 @@ warning 6002: The table/view 'master.dbo.spt_monitor' does not have a primary ke
           <EntitySet Name="spt_fallback_dev" EntityType="masterModel.spt_fallback_dev" />
           <EntitySet Name="spt_fallback_usg" EntityType="masterModel.spt_fallback_usg" />
           <EntitySet Name="spt_monitor" EntityType="masterModel.spt_monitor" />
-          <EntitySet Name="Consignment" EntityType="masterModel.Consignment" />
-          <EntitySet Name="Invitation" EntityType="masterModel.Invitation" />
           <EntitySet Name="Person" EntityType="masterModel.Person" />
+          <EntitySet Name="Invitation" EntityType="masterModel.Invitation" />
+          <EntitySet Name="Consignment" EntityType="masterModel.Consignment" />
         </EntityContainer>
         <EntityType Name="UserLinks">
           <Key>
@@ -394,31 +395,6 @@ warning 6002: The table/view 'master.dbo.spt_monitor' does not have a primary ke
           <Property Name="total_write" Type="Int32" Nullable="false" />
           <Property Name="total_errors" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="Consignment">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="DepositedAmount" Type="Int32" />
-          <Property Name="PackageId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ConsignmentId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SenderPersonId" Type="Int32" Nullable="false" />
-          <Property Name="ReceiverPersonId" Type="Int32" Nullable="false" />
-          <Property Name="Status" Type="Int32" Nullable="false" />
-          <Property Name="RequestedDepositAmount" Type="Int32" Nullable="false" />
-          <Property Name="PaymentMethod" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Invitation">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="SenderPersonId" Type="Int32" Nullable="false" />
-          <Property Name="ReceiverPersonId" Type="Int32" Nullable="false" />
-          <Property Name="Status" Type="Int32" Nullable="false" />
-          <Property Name="PaymentMethod" Type="Int32" />
-          <Property Name="RequestedDepositAmount" Type="Int32" />
-        </EntityType>
         <EntityType Name="Person">
           <Key>
             <PropertyRef Name="Id" />
@@ -428,7 +404,7 @@ warning 6002: The table/view 'master.dbo.spt_monitor' does not have a primary ke
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PersonId" Type="Int32" Nullable="false" />
+          <Property Name="PersonId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -437,6 +413,32 @@ warning 6002: The table/view 'master.dbo.spt_monitor' does not have a primary ke
           <Property Name="PhoneMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Alias" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PostalCode" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Invitation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="SenderPersonId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReceiverPersonId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="PaymentMethod" Type="Int32" />
+          <Property Name="RequestedDepositAmount" Type="Int32" />
+          <Property Name="InvitationInitiatorPersonId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Consignment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="DepositedAmount" Type="Int32" />
+          <Property Name="PackageId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ConsignmentId" Type="Int32" Nullable="false" />
+          <Property Name="SenderPersonId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReceiverPersonId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="RequestedDepositAmount" Type="Int32" Nullable="false" />
+          <Property Name="PaymentMethod" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -540,33 +542,6 @@ warning 6002: The table/view 'master.dbo.spt_monitor' does not have a primary ke
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Consignment">
-            <EntityTypeMapping TypeName="masterModel.Consignment">
-              <MappingFragment StoreEntitySet="Consignment">
-                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
-                <ScalarProperty Name="RequestedDepositAmount" ColumnName="RequestedDepositAmount" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="ReceiverPersonId" ColumnName="ReceiverPersonId" />
-                <ScalarProperty Name="SenderPersonId" ColumnName="SenderPersonId" />
-                <ScalarProperty Name="ConsignmentId" ColumnName="ConsignmentId" />
-                <ScalarProperty Name="PackageId" ColumnName="PackageId" />
-                <ScalarProperty Name="DepositedAmount" ColumnName="DepositedAmount" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Invitation">
-            <EntityTypeMapping TypeName="masterModel.Invitation">
-              <MappingFragment StoreEntitySet="Invitation">
-                <ScalarProperty Name="RequestedDepositAmount" ColumnName="RequestedDepositAmount" />
-                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="ReceiverPersonId" ColumnName="ReceiverPersonId" />
-                <ScalarProperty Name="SenderPersonId" ColumnName="SenderPersonId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Person">
             <EntityTypeMapping TypeName="masterModel.Person">
               <MappingFragment StoreEntitySet="Person">
@@ -583,6 +558,34 @@ warning 6002: The table/view 'master.dbo.spt_monitor' does not have a primary ke
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invitation">
+            <EntityTypeMapping TypeName="masterModel.Invitation">
+              <MappingFragment StoreEntitySet="Invitation">
+                <ScalarProperty Name="InvitationInitiatorPersonId" ColumnName="InvitationInitiatorPersonId" />
+                <ScalarProperty Name="RequestedDepositAmount" ColumnName="RequestedDepositAmount" />
+                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ReceiverPersonId" ColumnName="ReceiverPersonId" />
+                <ScalarProperty Name="SenderPersonId" ColumnName="SenderPersonId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Consignment">
+            <EntityTypeMapping TypeName="masterModel.Consignment">
+              <MappingFragment StoreEntitySet="Consignment">
+                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+                <ScalarProperty Name="RequestedDepositAmount" ColumnName="RequestedDepositAmount" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ReceiverPersonId" ColumnName="ReceiverPersonId" />
+                <ScalarProperty Name="SenderPersonId" ColumnName="SenderPersonId" />
+                <ScalarProperty Name="ConsignmentId" ColumnName="ConsignmentId" />
+                <ScalarProperty Name="PackageId" ColumnName="PackageId" />
+                <ScalarProperty Name="DepositedAmount" ColumnName="DepositedAmount" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

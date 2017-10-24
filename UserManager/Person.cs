@@ -19,7 +19,7 @@ namespace UserManager
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        public int PersonId { get; set; }
+        public string PersonId { get; set; }
         public System.DateTime RegisterDate { get; set; }
         public string Address { get; set; }
         public string Password { get; set; }

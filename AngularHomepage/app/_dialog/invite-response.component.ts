@@ -10,38 +10,29 @@ export interface ConfirmModel {
 }
 
 @Component({
-    selector: 'confirm',
-    templateUrl: './app/_dialog/confirm.component.html',
-    styles: [`#backgroundColorBlur {
+    selector: 'invite-response',
+    templateUrl: './app/_dialog/invite-response.component.html',
+    styles: [`#backgroundColorBlur { 
                 background-color: rgba(0, 0, 0, 0.27);
                 position: fixed;
                 height: 100%;
                 width: 100%; }`]
 })
 
-export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> implements ConfirmModel {
-    title:string;
-    message:string;
+export class InviteResponseComponent extends DialogComponent<ConfirmModel, boolean> implements ConfirmModel {
+    title: string;
+    message: string;
     model: Invitation = new Invitation();
-    invitationRoles = new InvitationRole();
-    selectedRole = 0;
-    payment = new PaymentMethod();
-    selectedPaymentMethod = 0;
+    currentInvite: Invitation;
+
+
     currentUser: Person;
+    isReceiver: boolean = null;
 
     constructor(dialogService: DialogService, private invitationService: InvitationService) {
         super(dialogService);
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    }
-
-    public sendInvite() {
-        this.setPersonId();
-
-        this.invitationService.sendInvite(this.model)
-            .subscribe(res => {
-                console.log(res);
-                this.cancel();
-        });
+        this.invitationService.currentInvite.subscribe(invite => this.currentInvite = invite);
     }
 
     private setPersonId() {
@@ -53,6 +44,17 @@ export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> imp
         }
 
         this.model.InvitationInitiatorPersonId = this.currentUser.PersonId;
+    }
+
+    HasReceiverRole(invite: Invitation): boolean {
+        console.log("triggered");
+        if (invite.ReceiverPersonId == this.currentUser.PersonId) {
+            //this.isReceiver = true;
+            return true;
+        } else {
+            //this.isReceiver = false;
+            return false;
+        }
     }
 
     resetModel() {
