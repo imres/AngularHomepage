@@ -1,0 +1,59 @@
+﻿<nav class="navbar navbar-toggleable-sm fixed-top" id="nav-main">
+    <button class="navbar-toggler navbar-toggler-right " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" id="logotype" href="#">Logotype</a>
+
+    <div class="navbar-nav ml-sm-auto mt-2 mt-lg-0 pull-sm-right" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item mx-1">
+                <a class="nav-link" href="">Spåra paket</a>
+            </li>
+
+            <li class="nav-item dropdown mx-1">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Skapa Försändelse</a>
+                <div class="dropdown-menu">
+                    <a href="" class="dropdown-item">Köpa paket</a>
+                    <a href="" class="dropdown-item">Sälja paket</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Lär dig mer</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/login']">Logga In</a>
+            </li>
+            <li class="nav-item dropdown mx-1">
+
+                <!--<button class="dropdown-toggle btn btn-outline-primary" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Logga in</button>-->
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Logga in</a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <div class="width-25 m-3">
+                        <h5 class="mb-2">Logga In</h5>
+                        <login></login>
+                    </div>
+                    
+                    <!--<form class="px-4 py-3">
+                        <div class="form-group">
+                            <label for="exampleDropdownFormEmail1">Användarnamn</label>
+                            <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="Exempel227">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleDropdownFormPassword1">Lösenord</label>
+                            <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Lösenord">
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input">
+                                Kom ihåg mig
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Logga in</button>
+                    </form>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Har du ingen användare? Registrera dig</a>
+                    <a class="dropdown-item" href="#">Glömt ditt lösenord?</a>-->
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

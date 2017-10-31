@@ -24,6 +24,8 @@ import { ConfirmComponent } from './_dialog/confirm.component';
 import { InviteResponseComponent } from './_dialog/invite-response.component';
 import { LoadingComponent } from './_directives/loading.component';
 import { InvitationComponent } from './home/invitation/invitation.component';
+import { NavbarComponent } from './commonComponents/navbar.component';
+import { LoginSiteComponent } from './login/loginsite.component';
 
 @NgModule({
     imports: [
@@ -44,7 +46,9 @@ import { InvitationComponent } from './home/invitation/invitation.component';
         FrontComponent,
         ConfirmComponent,
         InviteResponseComponent,
-        LoadingComponent
+        LoadingComponent,
+        NavbarComponent,
+        LoginSiteComponent,
     ],
     providers: [
         AuthGuard,
