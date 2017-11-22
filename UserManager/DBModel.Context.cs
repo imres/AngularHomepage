@@ -25,6 +25,7 @@ namespace UserManager
             throw new UnintentionalCodeFirstException();
         }
     
+<<<<<<< Updated upstream
         public virtual DbSet<UserLinks> UserLinks { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<MSreplication_options> MSreplication_options { get; set; }
@@ -35,5 +36,10 @@ namespace UserManager
         public virtual DbSet<Person> Person { get; set; }
         public virtual DbSet<Consignment> Consignment { get; set; }
         public virtual DbSet<Invitation> Invitation { get; set; }
+=======
+        public virtual DbSet<Consignment> Consignment { get; set; }
+        public virtual DbSet<Invitation> Invitation { get; set; }
+        public virtual DbSet<Person> Person { get; set; }
+>>>>>>> Stashed changes
     }
 }

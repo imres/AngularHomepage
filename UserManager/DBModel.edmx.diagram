@@ -4,6 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
+<<<<<<< Updated upstream
       <Diagram DiagramId="d856cef02672412db7f33fda0dda80ce" Name="Diagram1">
         <EntityTypeShape EntityType="masterModel.UserLinks" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="masterModel.Users" Width="1.5" PointX="2.75" PointY="3.75" />
@@ -15,6 +16,12 @@
         <EntityTypeShape EntityType="masterModel.Person" Width="1.5" PointX="0.5" PointY="0.625" />
         <EntityTypeShape EntityType="masterModel.Consignment" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="masterModel.Invitation" Width="1.5" PointX="7.375" PointY="0.75" />
+=======
+      <Diagram DiagramId="c8d2a9ee62594df08ba1b8edd415fcad" Name="Diagram1">
+        <EntityTypeShape EntityType="masterModel.Consignment" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.Invitation" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.Person" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+>>>>>>> Stashed changes
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

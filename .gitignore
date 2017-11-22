@@ -259,3 +259,9 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+AngularHomepage.sln
+AngularHomepage.sln
+.gitattributes
+UserManager/Web.config
+AngularHomepage/packages.config
+AngularHomepage/Web.config

@@ -21,71 +21,71 @@ namespace UserManager.Controllers
         public PersonMapper _DtoToPerson = new PersonMapper();
 
         //Remove Link By Id
-        public void RemoveLinkById(int Id)
-        {
-            using (masterEntities context = new masterEntities())
-            {
-                var linkToRemove = context.UserLinks.Where(x => x.Id == Id).FirstOrDefault();
+        //public void RemoveLinkById(int Id)
+        //{
+        //    using (masterEntities context = new masterEntities())
+        //    {
+        //        var linkToRemove = context.UserLinks.Where(x => x.Id == Id).FirstOrDefault();
 
-                if(linkToRemove != null)
-                {
-                    context.UserLinks.Remove(linkToRemove);
-                    context.SaveChanges();
-                }
-            }
-        }
+        //        if(linkToRemove != null)
+        //        {
+        //            context.UserLinks.Remove(linkToRemove);
+        //            context.SaveChanges();
+        //        }
+        //    }
+        //}
         //---
 
-        public List<UserLinks> GetUserLinks(int Id)
-        {
-            var allLinks = new List<UserLinks>();
-            using (masterEntities context = new masterEntities())
-            {
-                var links = context.UserLinks.Where(x => x.UserId == Id);
+        //public List<UserLinks> GetUserLinks(int Id)
+        //{
+        //    var allLinks = new List<UserLinks>();
+        //    using (masterEntities context = new masterEntities())
+        //    {
+        //        var links = context.UserLinks.Where(x => x.UserId == Id);
 
-                foreach (var link in links)
-                {
-                    allLinks.Add(link);
-                }
+        //        foreach (var link in links)
+        //        {
+        //            allLinks.Add(link);
+        //        }
 
-                return allLinks;
-            }
-        }
+        //        return allLinks;
+        //    }
+        //}
 
-        public List<Users> GetAllUsers()
-        {
-            List<Users> allUsers = new List<Users>();
+        //public List<Users> GetAllUsers()
+        //{
+        //    List<Users> allUsers = new List<Users>();
 
-            using (masterEntities context = new masterEntities())
-            {
-                var users = context.Users;
+        //    using (masterEntities context = new masterEntities())
+        //    {
+        //        var users = context.Users;
 
-                foreach (var user in users)
-                {
-                    allUsers.Add(user);
-                }
+        //        foreach (var user in users)
+        //        {
+        //            allUsers.Add(user);
+        //        }
 
-                return allUsers;
-            }
-        }
+        //        return allUsers;
+        //    }
+        //}
             
 
-        public void addNewLink(UserLinksDTO UserLink)
-        {
-            using (masterEntities context = new masterEntities())
-            {
-                var newLink = context.UserLinks.Add(new UserLinks
-                {
-                    Id = context.UserLinks.DefaultIfEmpty().Max(x => x == null ? 0 : x.Id + 1),
-                    Link = UserLink.Link,
-                    CachedImage = null,
-                    UserId = UserLink.UserId,
-                    Title = UserLink.Title
-                });
+        //public void addNewLink(UserLinksDTO UserLink)
+        //{
+        //    using (masterEntities context = new masterEntities())
+        //    {
+        //        var newLink = context.UserLinks.Add(new UserLinks
+        //        {
+        //            Id = context.UserLinks.DefaultIfEmpty().Max(x => x == null ? 0 : x.Id + 1),
+        //            Link = UserLink.Link,
+        //            CachedImage = null,
+        //            UserId = UserLink.UserId,
+        //            Title = UserLink.Title
+        //        });
 
-                context.SaveChanges();
-            }
-        }
+        //        context.SaveChanges();
+        //    }
+        //}
         
         /*public string CacheImage(int Id, string ImageLink)
         {
