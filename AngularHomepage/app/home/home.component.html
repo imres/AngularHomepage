@@ -11,18 +11,14 @@
 
 <!-- Navbar -->
     
-<nav class="navbar navbar-toggleable-sm fixed-top" id="nav-main">
+<nav class="navbar navbar-toggleable-sm navbar-light bg-faded fixed-top nav-main">
     <button class="navbar-toggler navbar-toggler-right " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" href="#">{{currentUser.FirstName}} {{currentUser.LastName}}</a>
 
-    <div class="navbar-nav ml-sm-auto mt-2 mt-lg-0 pull-sm-right" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
+    <div class="collapse navbar-collapse flex-row-reverse" id="navbarSupportedContent">
                 <button class="btn btn-outline-primary" [routerLink]="['/front']" role="button">Logga ut</button>
-            </li>
-        </ul>
     </div>
 </nav>
 <hr>

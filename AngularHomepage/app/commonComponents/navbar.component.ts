@@ -3,7 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@a
 
 import { Person, Invitation } from '../_models/index';
 import { UserService } from '../_services/index';
-
+import { Directive, HostListener } from "@angular/core";
 
 @Component({
     moduleId: module.id,
@@ -20,4 +20,16 @@ export class NavbarComponent{
 
 
 
+}
+
+
+
+@Directive({
+    selector: "[click-stop-propagation]"
+})
+export class ClickStopPropagation {
+    @HostListener("click", ["$event"])
+    public onClick(event: any): void {
+        event.stopPropagation();
+    }
 }

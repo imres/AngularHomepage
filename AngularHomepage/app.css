@@ -230,24 +230,19 @@ btn.btn-primary:active, .btn-primary:focus{
 
 /* Navbar */
 
-#nav-main {
+.nav-main {
     background: white;
-    color: black;
 }
 
-.nav-link {
-    color: black;
+.nav-main a {
+    color:black;
 }
 
-.navbar-toggler {
-    background-color: #0AF;
-}
-
-a.nav-link:hover {
+.nav-main a.nav-link:hover {
     color: #0AF;
 }
 
-a.dropdown-item:hover {
+.nav-main a.dropdown-item:hover {
     color: #0AF;
     background-color: white;
 }
@@ -255,6 +250,7 @@ a.dropdown-item:hover {
 .dropdown h5 {
     text-align: center;
 }
+
 
 
 /* Cover */
