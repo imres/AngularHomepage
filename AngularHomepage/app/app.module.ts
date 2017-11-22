@@ -26,6 +26,8 @@ import { InviteResponseComponent } from './_dialog/invite-response.component';
 import { LoadingComponent } from './_directives/loading.component';
 import { InvitationComponent } from './home/invitation/invitation.component';
 import { ConsignmentComponent } from './home/consignment/consignment.component';
+import { NavbarComponent } from './commonComponents/navbar.component';
+import { LoginSiteComponent } from './login/loginsite.component';
 
 @NgModule({
     imports: [
@@ -45,10 +47,12 @@ import { ConsignmentComponent } from './home/consignment/consignment.component';
         HomeComponent,
         LoginComponent,
         RegisterComponent,
+        LoadingComponent,
         FrontComponent,
         ConfirmComponent,
         InviteResponseComponent,
-        LoadingComponent
+        NavbarComponent,
+        LoginSiteComponent,
     ],
     providers: [
         AuthGuard,

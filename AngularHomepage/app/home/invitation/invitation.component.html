@@ -16,7 +16,7 @@
 </div><br />
 
 <div class="container-fluid">
-    <!--<h3>{{invitations.length}}</h3>-->
+    <h3 class="text-center" *ngIf="invitations?.length > 0">Du har {{invitations?.length}} nya inbjudningar</h3>
     <div class="row"> <!--[ngClass]="(invitations.length > 2)?'row':'row justify-content-center align-items-center'"-->
         <ng-container *ngFor="let inv of invitations">
             <div class="offset-md-2 col-md-8 offset-lg-3 col-lg-6" *ngIf="inv?.EndDate == null">
