@@ -1,0 +1,14 @@
+﻿<div class="offset-md-2 col-md-8 offset-lg-3 col-lg-6">
+    <h3>Försändelser</h3>
+
+    <div *ngFor="let item of consignments">
+        <!--[ngClass]="(invitations.length > 2)?'offset-md-2 col-md-8 offset-lg-3 col-lg-6':'col-md-2'"-->
+        <div class="card">
+            <div class="card-block">
+                <h4 class="card-title">Titel</h4>
+                <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId"> Ditt paket är påväg till {{item.ReceiverPersonId}}</p>
+                <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId">Ett paket från {{item.SenderPersonId}} är påväg</p>
+            </div>
+        </div>
+    </div>
+</div>

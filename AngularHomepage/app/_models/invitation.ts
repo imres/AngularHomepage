@@ -6,4 +6,6 @@
     public PaymentMethod: number;
     public RequestedDepositAmount: number;
     public InvitationInitiatorPersonId: string;
+    public StartDate: Date;
+    public EndDate: Date;
 }

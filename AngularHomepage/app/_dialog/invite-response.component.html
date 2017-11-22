@@ -1,7 +1,7 @@
 ﻿<div id="backgroundColorBlur">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form name="form" (ngSubmit)="f.form.valid && sendInvite()" #f="ngForm" novalidate>
+            <form name="form" (ngSubmit)="f.form.valid && acceptInvitation(currentInvite)" #f="ngForm" novalidate>
                 <div class="modal-header">
                     <button type="button" class="close" (click)="close()">&times;</button>
                     <h4 class="modal-title">{{title || 'Confirm'}}</h4>
@@ -21,7 +21,7 @@
                         <div class="form-group" [ngClass]="{ 'has-error': requestedDepositAmount.dirty && !requestedDepositAmount.valid }">
                             <label for="requestedDepositAmount">Efterfrågad summa (kronor)</label>
                             <input type="text" class="form-control" name="requestedDepositAmount" placeholder="Pris för paket"
-                                   [(ngModel)]="model.RequestedDepositAmount" #requestedDepositAmount="ngModel" required />
+                                   [(ngModel)]="currentInvite.RequestedDepositAmount" #requestedDepositAmount="ngModel" required />
                             <div *ngIf="requestedDepositAmount.dirty && !requestedDepositAmount.valid" class="help-block">Fyll i priset för ditt paket</div>
                         </div>
                     </ng-container>
@@ -50,7 +50,7 @@
                     <!--<pre>{{currentInvite | json}}</pre>-->
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" role="button" class="btn btn-primary" (click)="confirm()">Acceptera</button>
+                    <button type="submit" role="button" class="btn btn-primary">Acceptera</button>
                     <button type="button" class="btn btn-default" (click)="cancel()">Avbryt</button>
                 </div>
 

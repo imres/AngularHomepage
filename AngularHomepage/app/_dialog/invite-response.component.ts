@@ -1,7 +1,7 @@
 ﻿import { Component } from '@angular/core';
 import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
 import { Person, Invitation } from '../_models/index';
-import { UserService, InvitationService } from '../_services/index';
+import { UserService, InvitationService, ConsignmentService } from '../_services/index';
 import { InvitationRole, CommonObject, PaymentMethod } from '../_models/index';
 
 export interface ConfirmModel {
@@ -29,7 +29,7 @@ export class InviteResponseComponent extends DialogComponent<ConfirmModel, boole
     currentUser: Person;
     isReceiver: boolean = null;
 
-    constructor(dialogService: DialogService, private invitationService: InvitationService) {
+    constructor(dialogService: DialogService, private invitationService: InvitationService, private consignmentService: ConsignmentService) {
         super(dialogService);
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.invitationService.currentInvite.subscribe(invite => this.currentInvite = invite);
@@ -47,7 +47,6 @@ export class InviteResponseComponent extends DialogComponent<ConfirmModel, boole
     }
 
     HasReceiverRole(invite: Invitation): boolean {
-        console.log("triggered");
         if (invite.ReceiverPersonId == this.currentUser.PersonId) {
             //this.isReceiver = true;
             return true;
@@ -61,9 +60,15 @@ export class InviteResponseComponent extends DialogComponent<ConfirmModel, boole
         this.model = new Invitation();
     }
 
-    confirm() {
+    acceptInvitation(invite: Invitation) {
         // on click on confirm button we set dialog result as true,
         // ten we can get dialog result from caller code
+
+        this.consignmentService.acceptInvite(invite)
+            .subscribe(res => {
+                console.log(res);
+        });
+
         this.result = true;
         this.close();
     }

@@ -29,18 +29,16 @@ namespace UserManager.Core.Repositories
                     ReceiverPersonId = invitationDTO.ReceiverPersonId,
                     SenderPersonId = invitationDTO.SenderPersonId,
                     RequestedDepositAmount = invitationDTO.RequestedDepositAmount.GetValueOrDefault(),
-                    Status = ConsignmentStatus.ConsignmentCreated
+                    Status = ConsignmentStatus.ConsignmentCreated,
+                    StartDate = DateTime.Now
                 };
 
                 context.Consignment.Add(consignment);
-                context.SaveChanges();
 
-                //var test = GetMaxInteger<Consignment>(x => x.ConsignmentId);
+                context.SaveChanges();
             };
         }
-
         
-
         //public int GenericRepository<T>(Expression<Func<T, object>> p)
         //{
         //    using (var context = new masterEntities())
@@ -75,7 +73,15 @@ namespace UserManager.Core.Repositories
         /// <returns></returns>
         public IEnumerable<ConsignmentDTO> GetConsignments(string PersonId)
         {
-            throw new NotImplementedException();
+            using (masterEntities context = new masterEntities())
+            {
+                IEnumerable<Consignment> consignments = context.Consignment
+                    .Where(x => x.ReceiverPersonId == PersonId || x.SenderPersonId == PersonId);
+
+                var consignmentsDTO = EntityToDtoMappingCollection<Consignment, ConsignmentDTO>(consignments);
+
+                return consignmentsDTO;
+            }
         }
     }
 }

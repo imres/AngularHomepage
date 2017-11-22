@@ -22,12 +22,27 @@ namespace UserManager.Core.Repositories
 
                 invitationDTO.Id = maxId;
                 invitationDTO.Status = ConsignmentStatus.InvitationCreated;
+                invitationDTO.StartDate = DateTime.Now;
 
                 var entity = DtoToEntityMapping<InvitationDTO, Invitation>(invitationDTO);
 
                 context.Invitation.Add(entity);
                 context.SaveChanges();
             };
+        }
+
+        public void EndInvitation(InvitationDTO invitationDTO)
+        {
+            using (var context = new masterEntities())
+            {
+                var DtoId = invitationDTO.Id;
+
+                var invitationToEdit = context.Invitation.Where(x => x.Id == DtoId).First();
+
+                invitationToEdit.EndDate = DateTime.Now;
+
+                context.SaveChanges();
+            }
         }
 
         /// <summary>
@@ -56,7 +71,7 @@ namespace UserManager.Core.Repositories
                     .Where(x => x.InvitationInitiatorPersonId != personId &&
                     (x.ReceiverPersonId == personId || x.SenderPersonId == personId));
 
-                var invitationsDTO = EntityToDtoMappingCollection(invitations);
+                var invitationsDTO = EntityToDtoMappingCollection<Invitation, InvitationDTO>(invitations);
 
                 return invitationsDTO;
             }

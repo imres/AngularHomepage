@@ -23,8 +23,8 @@ export class ConsignmentService {
             );
     }
 
-    getInvitations(personId: string) {
-        return this.http.get('http://localhost:65192/api/Invitation/GetInvitations/' + personId)
+    getConsignments(personId: string) {
+        return this.http.get('http://localhost:65192/api/Consignment/GetConsignments/' + personId)
             .map((response: Response) =>
                 response.json()
             );

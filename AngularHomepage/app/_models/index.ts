@@ -6,3 +6,4 @@ export * from './invitation';
 export * from './common-object';
 export * from './invitation-models/invitation-role';
 export * from './invitation-models/payment-method';
+export * from './consignment';

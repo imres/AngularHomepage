@@ -13,8 +13,8 @@
         <EntityTypeShape EntityType="masterModel.spt_fallback_usg" Width="1.5" PointX="10.375" PointY="1.75" />
         <EntityTypeShape EntityType="masterModel.spt_monitor" Width="1.5" PointX="7.5" PointY="4.875" />
         <EntityTypeShape EntityType="masterModel.Person" Width="1.5" PointX="0.5" PointY="0.625" />
+        <EntityTypeShape EntityType="masterModel.Consignment" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="masterModel.Invitation" Width="1.5" PointX="7.375" PointY="0.75" />
-        <EntityTypeShape EntityType="masterModel.Consignment" Width="1.5" PointX="4.875" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
