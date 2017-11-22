@@ -17,9 +17,9 @@ namespace UserManager.Controllers
 {
     public class InvitationController : ApiController
     {
-        private IInvitation _invitationRepository; 
+        private IInvitation _invitationRepository;
 
-        InvitationController() 
+        InvitationController()
             : this(new InvitationRepository())
         {
         }

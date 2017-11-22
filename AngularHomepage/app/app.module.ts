@@ -11,11 +11,12 @@ import { MockBackend, MockConnection } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
 
 import { AppComponent }  from './app.component';
-import { routing }        from './app.routing';
+import { routing } from './app.routing';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 import { AlertComponent } from './_directives/index';
 import { AuthGuard } from './_guards/index';
-import { AlertService, AuthenticationService, UserService, InvitationService } from './_services/index';
+import { AlertService, AuthenticationService, UserService, InvitationService, ConsignmentService } from './_services/index';
 import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
@@ -24,6 +25,7 @@ import { ConfirmComponent } from './_dialog/confirm.component';
 import { InviteResponseComponent } from './_dialog/invite-response.component';
 import { LoadingComponent } from './_directives/loading.component';
 import { InvitationComponent } from './home/invitation/invitation.component';
+import { ConsignmentComponent } from './home/consignment/consignment.component';
 import { NavbarComponent } from './commonComponents/navbar.component';
 import { LoginSiteComponent } from './login/loginsite.component';
 
@@ -34,19 +36,21 @@ import { LoginSiteComponent } from './login/loginsite.component';
         FormsModule,
         HttpModule,
         routing,
-        BootstrapModalModule
+        BootstrapModalModule,
+        ToastModule.forRoot()
     ],
     declarations: [
         AppComponent,
         InvitationComponent,
+        ConsignmentComponent,
         AlertComponent,
         HomeComponent,
         LoginComponent,
         RegisterComponent,
+        LoadingComponent,
         FrontComponent,
         ConfirmComponent,
         InviteResponseComponent,
-        LoadingComponent,
         NavbarComponent,
         LoginSiteComponent,
     ],
@@ -56,6 +60,7 @@ import { LoginSiteComponent } from './login/loginsite.component';
         AuthenticationService,
         UserService,
         InvitationService,
+        ConsignmentService,
 
         // providers used to create fake backend
         //fakeBackendProvider,

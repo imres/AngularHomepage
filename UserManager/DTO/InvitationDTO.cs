@@ -11,5 +11,7 @@ namespace UserManager.DTO
         public int? PaymentMethod { get; set; }
         public int? RequestedDepositAmount { get; set; }
         public string InvitationInitiatorPersonId { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
     }
 }

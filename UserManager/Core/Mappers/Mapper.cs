@@ -40,14 +40,14 @@ namespace UserManager.Core.Mappers
             return mapper.Map<T2, T1>(entity);
         }
 
-        public IEnumerable<InvitationDTO> EntityToDtoMappingCollection(IEnumerable<Invitation> invitation)
+        public IEnumerable<T2> EntityToDtoMappingCollection<T1, T2>(IEnumerable<T1> entity)
         {
             var config = new MapperConfiguration(cfg => {
-                cfg.CreateMap<Invitation, InvitationDTO>();
+                cfg.CreateMap<T1, T2>();
             });
             IMapper mapper = config.CreateMapper();
 
-            return mapper.Map<IEnumerable<Invitation>, IEnumerable<InvitationDTO>>(invitation);
+            return mapper.Map<IEnumerable<T1>, IEnumerable<T2>>(entity);
         }
 
         public int GetMaxInteger<TEntity>(Func<TEntity, int> condition) where TEntity : class

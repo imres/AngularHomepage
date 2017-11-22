@@ -1,4 +1,6 @@
-﻿namespace UserManager.DTO
+﻿using System;
+
+namespace UserManager.DTO
 {
     public class ConsignmentDTO
     {
@@ -11,5 +13,7 @@
         public int Status { get; set; }
         public int RequestedDepositAmount { get; set; }
         public int PaymentMethod { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
     }
 }

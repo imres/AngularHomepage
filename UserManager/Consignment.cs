@@ -23,5 +23,7 @@ namespace UserManager
         public int Status { get; set; }
         public int RequestedDepositAmount { get; set; }
         public int PaymentMethod { get; set; }
+        public System.DateTime StartDate { get; set; }
+        public Nullable<System.DateTime> EndDate { get; set; }
     }
 }

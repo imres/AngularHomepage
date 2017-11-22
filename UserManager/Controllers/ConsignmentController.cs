@@ -17,17 +17,25 @@ namespace UserManager.Controllers
 {
     public class ConsignmentController: ApiController
     {
-        private IInvitation _invitationRepository;
         private IConsigment _consignmentRepository;
+        private IInvitation _invitationRepository;
+
+        ConsignmentController()
+            : this(
+                  new ConsignmentRepository(),
+                  new InvitationRepository()
+                  )
+        {
+        }
 
         public ConsignmentController
             (
-            IInvitation invitationRepository,
-            IConsigment consignmentRepository
+            IConsigment consignmentRepository,
+            IInvitation invitationRepository
             )
         {
-            _invitationRepository = invitationRepository;
             _consignmentRepository = consignmentRepository;
+            _invitationRepository = invitationRepository;
         }
 
         [ActionName("AddConsignment")]
@@ -44,6 +52,7 @@ namespace UserManager.Controllers
                 }
 
                 _consignmentRepository.AddConsignment(invitation);
+                _invitationRepository.EndInvitation(invitation);
 
                 return Request.CreateResponse(HttpStatusCode.OK); //: Request.CreateResponse(HttpStatusCode.Forbidden, invitation);
             }
@@ -52,10 +61,10 @@ namespace UserManager.Controllers
         // GET: api/User
         [ActionName("GetConsignments")]
         [HttpGet]
-        public HttpResponseMessage GetConsignments(string PersonId)
+        public HttpResponseMessage GetConsignments(string Id)
         {
             //IEnumerable<InvitationDTO> invitations = _invitationRepository.GetInvitations(Id);
-            IEnumerable<ConsignmentDTO> consignments = _consignmentRepository.GetConsignments(PersonId);
+            IEnumerable<ConsignmentDTO> consignments = _consignmentRepository.GetConsignments(Id);
 
             return Request.CreateResponse(HttpStatusCode.OK, consignments);
 

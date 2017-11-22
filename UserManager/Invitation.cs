@@ -21,5 +21,7 @@ namespace UserManager
         public Nullable<int> PaymentMethod { get; set; }
         public Nullable<int> RequestedDepositAmount { get; set; }
         public string InvitationInitiatorPersonId { get; set; }
+        public System.DateTime StartDate { get; set; }
+        public Nullable<System.DateTime> EndDate { get; set; }
     }
 }

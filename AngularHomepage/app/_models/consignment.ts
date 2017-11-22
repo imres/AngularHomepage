@@ -7,4 +7,6 @@
     public Status: number;
     public RequestedDepositAmount: number;
     public PaymentMethod: number;
+    public StartDate: Date;
+    public EndDate: Date;
 }
