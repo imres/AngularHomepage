@@ -54,7 +54,7 @@ export class InvitationComponent implements OnInit {
         .subscribe((isConfirmed) => {
             //Get dialog result
             this.confirmResult = isConfirmed;
-            this.toastr.success('Din inbjudan skickades', 'Lyckades!');
+
         });
     }
     

@@ -265,3 +265,10 @@ AngularHomepage.sln
 UserManager/Web.config
 AngularHomepage/packages.config
 AngularHomepage/Web.config
+UserManager/Web.config
+UserManager/Web.config
+
+UserManager/DBModel.Context.cs
+UserManager/DBModel.Designer.cs
+UserManager/DBModel.edmx
+UserManager/DBModel.edmx.diagram
