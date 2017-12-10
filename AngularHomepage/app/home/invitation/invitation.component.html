@@ -1,38 +1,19 @@
-﻿<div class="container-fluid">
+﻿<div class="width-30 m-2">
     <div class="row">
-        <div class="offset-md-2 col-md-8 offset-lg-3 col-lg-6">
-            <div class="card text-center">
+        <h5 class="ml-4">Notifications</h5>
+        <div *ngFor="let inv of invitations" class="col-sm-12 col-md-12 col-lg-12">
+            <div class="card mb-3">
                 <div class="card-block">
-                    <h3 class="card-title">Inga aktiva försändelser</h3>
-                    <p class="card-text">
-                        Du har inga aktiva försändelser, läs mer hur du kommer igång på några minuter
-                        eller skicka en inbjudan
-                    </p>
-                    <a href="#" class="btn btn-primary" (click)=showConfirm($event)>Skicka inbjudan</a>
+                    <h5 class="card-title">Du har fått en inbjudan</h5>
+                    <p class="lead notification-text" *ngIf="currentUser.PersonId == inv.SenderPersonId">{{inv.ReceiverPersonId}} vill <b>köpa</b> ett paket av dig!</p>
+                    <p class="lead notification-text" *ngIf="currentUser.PersonId == inv.ReceiverPersonId">{{inv.SenderPersonId}} vill <b>skicka</b> ett paket till dig!</p>
+                    <a href="#" class="btn-sm btn-primary" (click)="showInviteResponseDialog(inv)">Svara</a>
                 </div>
             </div>
         </div>
     </div>
-</div><br />
-
-<div class="container-fluid">
-    <h3 class="text-center" *ngIf="invitations?.length > 0">Du har {{invitations?.length}} nya inbjudningar</h3>
-    <div class="row"> <!--[ngClass]="(invitations.length > 2)?'row':'row justify-content-center align-items-center'"-->
-        <ng-container *ngFor="let inv of invitations">
-            <div class="offset-md-2 col-md-8 offset-lg-3 col-lg-6" *ngIf="inv?.EndDate == null">
-                <!--[ngClass]="(invitations.length > 2)?'offset-md-2 col-md-8 offset-lg-3 col-lg-6':'col-md-2'"-->
-                <div class="card">
-                    <div class="card-block">
-                        <h4 class="card-title">Du har fått en inbjudan</h4>
-                        <p class="card-text" *ngIf="currentUser.PersonId == inv.SenderPersonId">{{inv.ReceiverPersonId}} vill <b>köpa</b> ett paket av dig! Vänligen ge återkoppling</p>
-                        <p class="card-text" *ngIf="currentUser.PersonId == inv.ReceiverPersonId">{{inv.SenderPersonId}} vill <b>skicka</b> ett paket till dig! Vänligen ge återkoppling</p>
-                        <a href="#" class="btn btn-primary" (click)="showInviteResponseDialog(inv)">Svara</a>
-                    </div>
-                </div>
-            </div>
-        </ng-container>
-    </div>
 </div>
+
 
 
 <!--<div class="counter">

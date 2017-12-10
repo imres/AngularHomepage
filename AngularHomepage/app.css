@@ -383,3 +383,9 @@ a.cover-btn:hover {
 .margin-xl-top {
     margin-top: 5rem;
 }
+
+/* Notificationcenter */
+
+.notification-text {
+    font-size: 1rem;
+}
