@@ -44,3 +44,15 @@
         </div>
     </div>
 </div>
+
+<div *ngIf="consignments?.length > 0">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="offset-md-2 col-md-8 offset-lg-3 col-lg-6">
+                <div class="text-center">
+                        <a href="#" class="btn btn-primary" (click)=showConfirm($event)>Skicka inbjudan till en ny försändelse</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-﻿<div class="width-30 m-2">
+﻿<div class="width-20 m-2">
     <div class="row">
         <h5 class="ml-4">Notifications</h5>
         <div *ngFor="let inv of invitations" class="col-sm-12 col-md-12 col-lg-12">
@@ -7,7 +7,9 @@
                     <h5 class="card-title">Du har fått en inbjudan</h5>
                     <p class="lead notification-text" *ngIf="currentUser.PersonId == inv.SenderPersonId">{{inv.ReceiverPersonId}} vill <b>köpa</b> ett paket av dig!</p>
                     <p class="lead notification-text" *ngIf="currentUser.PersonId == inv.ReceiverPersonId">{{inv.SenderPersonId}} vill <b>skicka</b> ett paket till dig!</p>
-                    <a href="#" class="btn-sm btn-primary" (click)="showInviteResponseDialog(inv)">Svara</a>
+                    <div class="text-right">
+                        <a href="#" class="btn-sm btn-primary" (click)="showInviteResponseDialog(inv)">Svara</a>
+                    </div>
                 </div>
             </div>
         </div>
