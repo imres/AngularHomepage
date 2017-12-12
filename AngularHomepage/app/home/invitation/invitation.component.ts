@@ -46,19 +46,6 @@ export class InvitationComponent implements OnInit {
         });
     }
 
-    showConfirm(event) {
-        this.dialogService.addDialog(ConfirmComponent, {
-            title: 'Skicka inbjudan',
-            message: 'Bla bla confirm some action?'
-        })
-        .subscribe((isConfirmed) => {
-            //Get dialog result
-            this.confirmResult = isConfirmed;
-
-        });
-    }
-    
-
     showInviteResponseDialog(invite: Invitation) {
         this.dialogService.addDialog(InviteResponseComponent, {
             title: this.HasReceiverRole(invite) ? "Mottagare" : "Avsändare",

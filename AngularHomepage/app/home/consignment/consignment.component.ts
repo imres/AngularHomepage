@@ -42,4 +42,16 @@ export class ConsignmentComponent implements OnInit {
     showInvite(invite: Invitation) {
         console.log(invite);
     }
+
+    showConfirm(event) {
+        this.dialogService.addDialog(ConfirmComponent, {
+            title: 'Skicka inbjudan',
+            message: 'Bla bla confirm some action?'
+        })
+            .subscribe((isConfirmed) => {
+                //Get dialog result
+                this.confirmResult = isConfirmed;
+
+            });
+    }
 }
