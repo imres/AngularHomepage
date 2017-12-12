@@ -263,12 +263,14 @@
     <Compile Include="Core\Interfaces\IConsigment.cs" />
     <Compile Include="Core\Interfaces\ICryptography.cs" />
     <Compile Include="Core\Interfaces\IInvitation.cs" />
+    <Compile Include="Core\Interfaces\IInvitationService.cs" />
     <Compile Include="Core\Interfaces\IPerson.cs" />
     <Compile Include="Core\Mappers\Mapper.cs" />
     <Compile Include="Core\Mappers\PersonMapper.cs" />
     <Compile Include="Core\Repositories\ConsignmentRepository.cs" />
     <Compile Include="Core\Repositories\InvitationRepository.cs" />
     <Compile Include="Core\Repositories\PersonRepository.cs" />
+    <Compile Include="Core\Services\InvitationService.cs" />
     <Compile Include="DBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

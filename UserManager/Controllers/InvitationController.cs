@@ -9,6 +9,7 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using UserManager.Core.Interfaces;
 using UserManager.Core.Repositories;
+using UserManager.Core.Services;
 using UserManager.DTO;
 using UserManager.Models;
 using Http = System.Net.WebRequestMethods.Http;
@@ -17,15 +18,17 @@ namespace UserManager.Controllers
 {
     public class InvitationController : ApiController
     {
+        private IInvitationService _invitationService;
         private IInvitation _invitationRepository;
 
         InvitationController()
-            : this(new InvitationRepository())
+            : this(new InvitationService(), new InvitationRepository())
         {
         }
 
-        public InvitationController(IInvitation invitationRepository)
+        public InvitationController(IInvitationService invitationService, IInvitation invitationRepository)
         {
+            _invitationService = invitationService;
             _invitationRepository = invitationRepository;
         }
 
@@ -33,6 +36,7 @@ namespace UserManager.Controllers
         [HttpPost]
         public HttpResponseMessage Invitation(InvitationDTO invitation)
         {
+
             using (HttpClient http = new HttpClient())
             {
                 this.Request.RequestUri = new Uri("http://localhost:65192");
@@ -42,9 +46,12 @@ namespace UserManager.Controllers
                     this.Request.Content = null;
                 }
 
-                _invitationRepository.AddInvitation(invitation);
+                var validInvitation = _invitationService.AddInvitation(invitation);
 
-                return Request.CreateResponse(HttpStatusCode.OK, invitation); //: Request.CreateResponse(HttpStatusCode.Forbidden, invitation);
+                if (!validInvitation)
+                    return Request.CreateResponse(HttpStatusCode.Forbidden, invitation);
+
+                return Request.CreateResponse(HttpStatusCode.OK, invitation);
             }
         }
 
