@@ -69,7 +69,8 @@ namespace UserManager.Core.Repositories
 
                 IEnumerable<Invitation> invitations = context.Invitation
                     .Where(x => x.InvitationInitiatorPersonId != personId &&
-                    (x.ReceiverPersonId == personId || x.SenderPersonId == personId));
+                    (x.ReceiverPersonId == personId || x.SenderPersonId == personId)
+                    && x.EndDate == null);
 
                 var invitationsDTO = EntityToDtoMappingCollection<Invitation, InvitationDTO>(invitations);
 
