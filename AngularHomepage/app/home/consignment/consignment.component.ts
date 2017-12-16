@@ -43,7 +43,7 @@ export class ConsignmentComponent implements OnInit {
         console.log(invite);
     }
 
-    showConfirm(event) {
+    showConfirm(event: any) {
         this.dialogService.addDialog(ConfirmComponent, {
             title: 'Skicka inbjudan',
             message: 'Bla bla confirm some action?'

@@ -27,63 +27,100 @@
     </section>
 
 <!-- Cards -->
+<section id="guide" class="py-2">
+    <div class="col-sm-8 offset-sm-2">
+        <div class="margin-sm-top">
+            <ul class="nav nav-pills justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#sender-tab" role="tab">Avsändare</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#receiver-tab" role="tab">Mottagare</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body tab-content margin-md-top margin-md-bottom">
+            <div class="tab-pane fade show active" id="sender-tab" role="tabpanel">
+                    <div class="section-content">
+                        <div class="container">
+                            <p class="lead">ProjektNamn är ett tryggt och snabbt sätt att betala för privatpaket där båda parter kan känna sig trygga.</p>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card-deck">
+                                        <div class="col-sm-3">
+                                            <!--<img src="img/accepted.jpg" alt="Accepterat">-->
+                                            <div class="card-block">
 
-<section id="instruktion">
-    <div class="section-content">
-        <div class="container">
-            <h2>Såhär fungerar ProjektNamn</h2>
-            <p class="lead">ProjektNamn är ett tryggt och snabbt sätt att betala för privatpaket där båda parter kan känna sig trygga.</p>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card-group">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Båda parter godkänner försändelsen</h4>
-                                <h6 class="card-subtitle"></h6>
-                            </div>
-                            <img src="img/accepted.jpg" alt="Accepterat">
-                            <div class="card-block">
-                                <p class="card-text">Mottagaren eller avsändaren skickar en förfrågan om en försändelse som motparten accepterar.</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Mottagaren lägger in pengar</h4>
-                                <h6 class="card-subtitle"></h6>
-                            </div>
-                            <img src="img/pengar.jpg" alt="Pengar">
-                            <div class="card-block">
-                                <p class="card-text"> Mottagaren lägger in pengarna som lagras på sidan. Då ser avsändaren att pengarna är inlagda.</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Avsändaren skickar paketet</h4>
-                                <h6 class="card-subtitle"></h6>
-                            </div>
-                            <img src="img/paket-2.jpg" alt="Paket">
-                            <div class="card-block">
-                                <p class="card-text">Avsändaren skickar paketet när hen ser att pengarna är inlagda och matar sedan in Kolli-id från försändelsen. Skulle avsändaren inte mata in Kolli-id inom 48h så avbryts försändelsen och pengarna går tillbaka till mottagaren.</p>
+                                                <h4 class="card-title">Inbjudan</h4>
+                                                <p class="card-text">Avsändaren skickar eller accepterar en inbjudan.</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <!--<img src="img/pengar.jpg" alt="Pengar">-->
+                                            <div class="card-block">
+                                                <h4 class="card-title">Skicka</h4>
+                                                <p class="card-text">När mottagaren har lagt in pengarna i försändelsen har du som avsändare 24 timmar på dig att skicka paketet.</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <!--<img src="img/paket-2.jpg" alt="Paket">-->
+                                            <div class="card-block">
+                                                <h4 class="card-title">Kolli-id</h4>
+                                                <p class="card-text">Direkt du skickat paketet så matar du in ditt kolli-id i försändelsen.</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <!--<img src="img/paket-2.jpg" alt="Paket">-->
+                                            <div class="card-block">
+                                                <h4 class="card-title">Pengarna</h4>
+                                                <p class="card-text">När mottagaren har hämtat ut paketet får du pengarna efter 24 timmar.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button role="button" class="btn btn-primary btn-lg btn-block margin-md-top">Registrera dig här för att komma igång!</button>
+                                </div>
                             </div>
                         </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Mottagaren hämtar ut paketet</h4>
-                                <h6 class="card-subtitle"></h6>
-                            </div>
-                            <img src="img/paket-2.jpg" alt="Paket">
-                            <div class="card-block">
-                                <p class="card-text">Mottagaren hämtar ut paketet.</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Mottagaren kollar paketets innehåll</h4>
-                                <h6 class="card-subtitle"></h6>
-                            </div>
-                            <img src="img/pengar.jpg" alt="Pengar">
-                            <div class="card-block">
-                                <p class="card-text">Efter att paketet hämtats ut så har mottagaren 24h på sig att anmäla något fel på försändelsen. Vid eventuella fel på varan (ej fraktskador) så får mottagaren en chans att felanmäla och returnera paketet för att få pengarna tillbaka. Om mottagaren inte felanmält försändelsen inom 24h så förs pengarna över till avsändaren.</p>
+                    </div>
+            </div>
+            <div class="tab-pane fade" id="receiver-tab" role="tabpanel">
+                <div class="section-content">
+                    <div class="container">
+                        <p class="lead">ProjektNamn är ett tryggt och snabbt sätt att betala för privatpaket där båda parter kan känna sig trygga.</p>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card-deck">
+                                    <div class="col-sm-3">
+                                        <!--<img src="img/accepted.jpg" alt="Accepterat">-->
+                                        <div class="card-block">
+
+                                            <h4 class="card-title">Inbjudan</h4>
+                                            <p class="card-text">Avsändaren skickar eller accepterar en inbjudan.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <!--<img src="img/pengar.jpg" alt="Pengar">-->
+                                        <div class="card-block">
+                                            <h4 class="card-title">Skicka</h4>
+                                            <p class="card-text">När mottagaren har lagt in pengarna i försändelsen har du som avsändare 24 timmar på dig att skicka paketet.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <!--<img src="img/paket-2.jpg" alt="Paket">-->
+                                        <div class="card-block">
+                                            <h4 class="card-title">Kolli-id</h4>
+                                            <p class="card-text">Direkt du skickat paketet så matar du in ditt kolli-id i försändelsen.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <!--<img src="img/paket-2.jpg" alt="Paket">-->
+                                        <div class="card-block">
+                                            <h4 class="card-title">Pengarna</h4>
+                                            <p class="card-text">När mottagaren har hämtat ut paketet får du pengarna efter 24 timmar.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button role="button" class="btn btn-primary btn-lg btn-block margin-md-top">Registrera dig här för att komma igång!</button>
                             </div>
                         </div>
                     </div>
@@ -92,5 +129,6 @@
         </div>
     </div>
 </section>
+<br/><br/>
 
 

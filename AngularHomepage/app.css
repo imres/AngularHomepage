@@ -4,7 +4,7 @@
 body {
     background-size: cover;
     background-position: center center;
-    background-color: #f3f3f3;
+    background-color: white;
     height: 100vh;
     color: #3e3e3e !important;
 }
@@ -119,6 +119,9 @@ img {
 }
 .margin-sm-bottom{
     margin-bottom: 10px;
+}
+.margin-md-bottom{
+    margin-bottom: 15px;
 }
 
 /*.btn-custom{
@@ -296,10 +299,6 @@ a.cover-btn:hover {
 
 /* Cards */
 
-.section-content {
-    padding: 5rem 0;
-}
-
 @media (max-width: 1199px) {
     .card-header h4 {
         font-size: 18px;
@@ -319,6 +318,10 @@ a.cover-btn:hover {
     .card-header {
         height: 100px;
     }
+}
+
+#guide {
+    background-color: #f7f9fa;
 }
 
 /* Egna klasser */
@@ -389,3 +392,4 @@ a.cover-btn:hover {
 .notification-text {
     font-size: 1rem;
 }
+
