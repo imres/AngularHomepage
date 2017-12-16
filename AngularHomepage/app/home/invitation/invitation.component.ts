@@ -5,7 +5,7 @@ import { DialogService } from "ng2-bootstrap-modal";
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { Person, Invitation } from '../../_models/index';
-import { UserService, InvitationService, AlertService} from '../../_services/index';
+import { UserService, InvitationService, AlertService, ToastrService} from '../../_services/index';
 import { ConfirmComponent } from '../../_dialog/confirm.component';
 import { InviteResponseComponent } from '../../_dialog/invite-response.component';
 
@@ -29,10 +29,10 @@ export class InvitationComponent implements OnInit {
     constructor(private cd: ChangeDetectorRef,
                 private dialogService: DialogService,
                 private invitationService: InvitationService,
-                private alertService: AlertService,
-                public toastr: ToastsManager, vcr: ViewContainerRef)
+                private toastr: ToastsManager,
+                private toastrService: ToastrService
+                )
     {
-        this.toastr.setRootViewContainerRef(vcr);
     }
 
     ngOnInit() {
@@ -54,22 +54,22 @@ export class InvitationComponent implements OnInit {
         .subscribe((isConfirmed) => {
             //Get dialog result
             this.confirmResult = isConfirmed;
-            });
+
+            this.toastrService.ShowToastr(isConfirmed, false, "Inbjudan accepterad, försändelse skapad");
+        });
 
         this.invitationService.changeInviteData(invite);
         this.HasReceiverRole(invite);
+        
         //this.invitationService.currentInvite.subscribe(invite => this.currentInvite = invite);
     }
+    
 
-    HasReceiverRole(invite: Invitation): boolean {
+    private HasReceiverRole(invite: Invitation): boolean {
         if (invite.ReceiverPersonId == this.currentUser.PersonId) {
             return true;
         } else {
             return false;
         }
-    }
-
-    showInvite(invite: Invitation) {
-        console.log(invite);
     }
 }

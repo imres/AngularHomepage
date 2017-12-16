@@ -1,7 +1,9 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, ViewContainerRef } from '@angular/core';
 import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+
 import { Person, Invitation } from '../_models/index';
-import { UserService, InvitationService, ConsignmentService } from '../_services/index';
+import { UserService, InvitationService, ConsignmentService, AlertService } from '../_services/index';
 import { InvitationRole, CommonObject, PaymentMethod } from '../_models/index';
 
 export interface ConfirmModel {
@@ -29,8 +31,12 @@ export class InviteResponseComponent extends DialogComponent<ConfirmModel, boole
     currentUser: Person;
     isReceiver: boolean = null;
 
-    constructor(dialogService: DialogService, private invitationService: InvitationService, private consignmentService: ConsignmentService) {
+    constructor(dialogService: DialogService, private invitationService: InvitationService, private consignmentService: ConsignmentService,
+        private alertService: AlertService,
+        public toastr: ToastsManager, vcr: ViewContainerRef) {
+
         super(dialogService);
+
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.invitationService.currentInvite.subscribe(invite => this.currentInvite = invite);
     }
@@ -73,6 +79,14 @@ export class InviteResponseComponent extends DialogComponent<ConfirmModel, boole
         this.close();
     }
     cancel() {
+        //Skicka till service och ta bort invite, kalla på toastr på success
+
+        this.invitationService.endInvite(this.currentInvite.Id).subscribe(
+            res => console.log(res),
+            err => console.log(err)
+        );
+
+        this.result = false;
         this.close();
     }
 }

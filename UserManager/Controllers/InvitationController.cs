@@ -55,6 +55,28 @@ namespace UserManager.Controllers
             }
         }
 
+        [ActionName("EndInvitation")]
+        [HttpGet]
+        public HttpResponseMessage EndInvitation(int Id)
+        {
+            using (HttpClient http = new HttpClient())
+            {
+                this.Request.RequestUri = new Uri("http://localhost:65192");
+
+                if (this.Request.Method == HttpMethod.Get)
+                {
+                    this.Request.Content = null;
+                }
+                
+                var invitationEnded = _invitationService.DeclineInvitation(Id);
+
+                if(!invitationEnded)
+                    return Request.CreateResponse(HttpStatusCode.Forbidden);
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+        }
+
         // GET: api/User
         [ActionName("GetInvitations")]
         [HttpGet]

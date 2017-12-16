@@ -39,8 +39,7 @@ export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> imp
 
         this.invitationService.sendInvite(this.model)
             .subscribe(res => {
-                console.log(res);
-                this.cancel();
+                this.confirm();
         });
     }
 
@@ -66,6 +65,7 @@ export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> imp
         this.close();
     }
     cancel() {
+        this.result = false;
         this.close();
     }
 }

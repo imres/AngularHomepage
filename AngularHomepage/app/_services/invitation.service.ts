@@ -26,6 +26,17 @@ export class InvitationService {
             { headers: this.headers })
             .map((response: Response) =>
                 response.json()
+            ).catch(error => 
+                Observable.throw(false)
+            );
+    }
+
+    endInvite(id: number) {
+        return this.http.get('http://localhost:65192/api/Invitation/EndInvitation/' + id)
+            .map((response: Response) => 
+                response.text()
+            ).catch(error => 
+                Observable.throw(false)
             );
     }
 
@@ -33,6 +44,8 @@ export class InvitationService {
         return this.http.get('http://localhost:65192/api/Invitation/GetInvitations/' + personId)
             .map((response: Response) =>
                 response.json()
+            ).catch(error => 
+                Observable.throw(false)
             );
     }
     /*getById(id: number) {

@@ -52,7 +52,7 @@ namespace UserManager.Controllers
                 }
 
                 _consignmentRepository.AddConsignment(invitation);
-                _invitationRepository.EndInvitation(invitation);
+                _invitationRepository.EndInvitation(invitation.Id);
 
                 return Request.CreateResponse(HttpStatusCode.OK); //: Request.CreateResponse(HttpStatusCode.Forbidden, invitation);
             }

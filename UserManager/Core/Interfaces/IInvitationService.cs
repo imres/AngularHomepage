@@ -9,6 +9,7 @@ namespace UserManager.Core.Interfaces
     public interface IInvitationService
     {
         bool AddInvitation(InvitationDTO invitation);
+        bool DeclineInvitation(int Id);
         bool ValidateInvitation(InvitationDTO invitationToValidate);
     }
 }

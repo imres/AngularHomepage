@@ -16,7 +16,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 import { AlertComponent } from './_directives/index';
 import { AuthGuard } from './_guards/index';
-import { AlertService, AuthenticationService, UserService, InvitationService, ConsignmentService } from './_services/index';
+import { AlertService, AuthenticationService, UserService, InvitationService, ConsignmentService, ToastrService} from './_services/index';
 import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
@@ -61,6 +61,7 @@ import { LoginSiteComponent } from './login/loginsite.component';
         UserService,
         InvitationService,
         ConsignmentService,
+        ToastrService,
 
         // providers used to create fake backend
         //fakeBackendProvider,

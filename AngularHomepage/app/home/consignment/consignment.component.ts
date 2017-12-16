@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Rx';
 import { DialogService } from "ng2-bootstrap-modal";
 
 import { Person, Invitation, Consignment } from '../../_models/index';
-import { UserService, InvitationService, ConsignmentService } from '../../_services/index';
+import { UserService, InvitationService, ConsignmentService, ToastrService } from '../../_services/index';
 import { ConfirmComponent } from '../../_dialog/confirm.component';
 import { InviteResponseComponent } from '../../_dialog/invite-response.component';
 
@@ -25,7 +25,12 @@ export class ConsignmentComponent implements OnInit {
     confirmResult: boolean = null;
     consignments: Consignment[];
 
-    constructor(private cd: ChangeDetectorRef, private dialogService: DialogService, private consignmentService: ConsignmentService) {
+    constructor(private cd: ChangeDetectorRef,
+        private dialogService: DialogService,
+        private consignmentService: ConsignmentService,
+        private toastrService: ToastrService
+
+    ) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.getConsignments();
     }
@@ -51,6 +56,8 @@ export class ConsignmentComponent implements OnInit {
             .subscribe((isConfirmed) => {
                 //Get dialog result
                 this.confirmResult = isConfirmed;
+
+                this.toastrService.ShowToastr(isConfirmed, false, "Inbjudan skickades");
 
             });
     }

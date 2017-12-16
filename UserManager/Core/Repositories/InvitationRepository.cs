@@ -31,13 +31,12 @@ namespace UserManager.Core.Repositories
             };
         }
 
-        public void EndInvitation(InvitationDTO invitationDTO)
+        public void EndInvitation(int Id)
         {
             using (var context = new masterEntities())
             {
-                var DtoId = invitationDTO.Id;
 
-                var invitationToEdit = context.Invitation.Where(x => x.Id == DtoId).First();
+                var invitationToEdit = context.Invitation.Where(x => x.Id == Id).First();
 
                 invitationToEdit.EndDate = DateTime.Now;
 
