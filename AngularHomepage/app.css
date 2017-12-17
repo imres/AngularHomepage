@@ -384,7 +384,7 @@ a.cover-btn:hover {
 }
 
 .margin-xl-top {
-    margin-top: 5rem;
+    margin-top: 50px;
 }
 
 .pt-250{
@@ -397,3 +397,15 @@ a.cover-btn:hover {
     font-size: 1rem;
 }
 
+.badge {
+    padding: .50em .7em;
+}
+
+ /* Consignments */ 
+.consignment-img {
+    width: 125px;
+    height: 125px;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}
