@@ -13,7 +13,7 @@
 </div>-->
 
 <div *ngIf="consignments?.length == 0">
-    <div class="container-fluid">
+    <div class="container-fluid mt-2">
         <div class="row">
             <div class="offset-md-2 col-md-8 offset-lg-3 col-lg-6">
                 <div class="card text-center">
@@ -32,13 +32,19 @@
 </div><br>
 
 <div class="container-fluid offset-md-2 col-md-8 offset-lg-3 col-lg-6">
-    <h3 class="text-center" *ngIf="consignments?.length > 0">Du har {{consignments?.length}} aktiva försändelser</h3>
+    <h3 class="text-center mb-3" *ngIf="consignments?.length > 0">Du har {{consignments?.length}} aktiva försändelser</h3>
     <div class="row">
-        <div *ngFor="let item of consignments" [ngClass]="{'col-md-6 col-lg-6' : (consignments.length > 5), 'col-sm-12 col-md-12 col-lg-12' : (5 >= consignments.length > 0)}">
+        <div *ngFor="let item of consignments" [ngClass]="{'col-md-6 col-lg-6' : (consignments.length > 3), 'col-sm-12 col-md-12 col-lg-12' : (3 >= consignments.length > 0)}">
             <div class="card mb-3">
                 <div class="card-block">
                     <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId"> Ditt paket är påväg till {{item.ReceiverPersonId}}</p>
                     <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId">Ett paket från {{item.SenderPersonId}} är påväg</p>
+                    <p class="card-text">Paketet befinner sig just nu i Stockholm</p>
+                    <p class="card-text">Paketet är beräknat till 
+                        <i *ngIf="consignments.length < 4">Måndag den 23 Augusti 2018</i>
+                        <i *ngIf="consignments.length >= 4">23 Aug 2018</i>
+                    </p>
+                    <img src="img/karta.png" class="consignment-img" *ngIf="consignments.length < 4"/>
                 </div>
             </div>
         </div>
@@ -46,11 +52,11 @@
 </div>
 
 <div *ngIf="consignments?.length > 0">
-    <div class="container-fluid">
+    <div class="container-fluid mt-2">
         <div class="row">
             <div class="offset-md-2 col-md-8 offset-lg-3 col-lg-6">
                 <div class="text-center">
-                        <a href="#" class="btn btn-primary" (click)=showConfirm($event)>Skicka inbjudan till en ny försändelse</a>
+                        <a href="#" class="btn btn-block btn-primary" (click)=showConfirm($event)>Skicka inbjudan till en ny försändelse</a>
                 </div>
             </div>
         </div>
