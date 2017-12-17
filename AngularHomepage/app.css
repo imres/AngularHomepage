@@ -387,6 +387,10 @@ a.cover-btn:hover {
     margin-top: 5rem;
 }
 
+.pt-250{
+    padding-top: 250px;
+}
+
 /* Notificationcenter */
 
 .notification-text {
