@@ -20,7 +20,7 @@
             <li class="nav-item">
                 <a class="navbar-brand" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{currentUser.FirstName}} {{currentUser.LastName}}</a>
                 <div class="dropdown-menu dropdown-menu-right width-15">
-                    <a href="#" class="dropdown-item">Försändelsehistorik</a>
+                    <a href="#" [routerLink]="['/userprofile']" role="button" class="dropdown-item">Min profil</a>
                     <a href="#" class="dropdown-item">Kontoinställningar</a>
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item" [routerLink]="['/front']" role="button">Logga ut</a>

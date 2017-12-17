@@ -1,18 +1,4 @@
-﻿<!--<div class="offset-md-2 col-md-8 offset-lg-3 col-lg-6 pt-4">
-    <h3 class="text-center">Försändelser</h3>
-
-    <div *ngFor="let item of consignments">
-        <div class="card">
-            <div class="card-block">
-                <h4 class="card-title">Titel</h4>
-                <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId"> Ditt paket är påväg till {{item.ReceiverPersonId}}</p>
-                <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId">Ett paket från {{item.SenderPersonId}} är påväg</p>
-            </div>
-        </div>
-    </div>
-</div>-->
-
-<div *ngIf="consignments?.length == 0">
+﻿<div *ngIf="consignments?.length == 0">
     <div class="container-fluid mt-2">
         <div class="row">
             <div class="offset-md-2 col-md-8 offset-lg-3 col-lg-6">
@@ -34,17 +20,17 @@
 <div class="container-fluid offset-md-2 col-md-8 offset-lg-3 col-lg-6">
     <h3 class="text-center mb-3" *ngIf="consignments?.length > 0">Du har {{consignments?.length}} aktiva försändelser</h3>
     <div class="row">
-        <div *ngFor="let item of consignments" [ngClass]="{'col-md-6 col-lg-6' : (consignments.length > 3), 'col-sm-12 col-md-12 col-lg-12' : (3 >= consignments.length > 0)}">
+        <div *ngFor="let item of consignments" [ngClass]="{'col-md-6 col-lg-6' : (consignments.length > 4), 'col-sm-12 col-md-12 col-lg-12' : (4 >= consignments.length > 0)}">
             <div class="card mb-3">
                 <div class="card-block">
-                    <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId"> Ditt paket är påväg till {{item.ReceiverPersonId}}</p>
+                    <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId">Ditt paket är påväg till {{item.ReceiverPersonId}}</p>
                     <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId">Ett paket från {{item.SenderPersonId}} är påväg</p>
                     <p class="card-text">Paketet befinner sig just nu i Stockholm</p>
                     <p class="card-text">Paketet är beräknat till 
-                        <i *ngIf="consignments.length < 4">Måndag den 23 Augusti 2018</i>
-                        <i *ngIf="consignments.length >= 4">23 Aug 2018</i>
+                        <i *ngIf="consignments.length < 5">Måndag den 23 Augusti 2018</i>
+                        <i *ngIf="consignments.length >= 5">23 Aug 2018</i>
                     </p>
-                    <img src="img/karta.png" class="consignment-img" *ngIf="consignments.length < 4"/>
+                    <img src="img/karta.png" class="consignment-img" *ngIf="consignments.length < 5"/>
                 </div>
             </div>
         </div>
