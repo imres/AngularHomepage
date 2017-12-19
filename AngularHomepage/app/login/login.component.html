@@ -2,34 +2,58 @@
 <navbar-front></navbar-front>
 
 <!-- Inloggningsformulär -->
-<div class="container">
-    <div class="row">
-        <div class="col-sm-4 offset-sm-4 margin-5xl-top">
-            <h2 class="text-center">ProjektNamn</h2>
-            <form name="form" class="px-4 py-3" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
-                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
-                    <label for="DropdownFormEmail">Användarnamn</label>
-                    <input id="DropdownFormEmail" type="text" class="form-control" placeholder="Användarnamn" name="email" [(ngModel)]="model.Email" #email="ngModel" required />
-                    <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
-                </div>
-                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-                    <label for="DropdownFormPassword">Lösenord</label>
-                    <input id="DropdownFormPassword" type="password" class="form-control" placeholder="Lösenord" name="password" [(ngModel)]="model.Password" #password="ngModel" required />
-                    <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
-                </div>
+<section id="loginform" class="py-2">
+            <div class="col-sm-4 offset-sm-4 margin-5xl-top">
+                <ul class="nav nav-pills justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#username" role="tab">Användarnamn</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#bankid" role="tab">BankID</a>
+                    </li>
+                </ul>
+                <div class="tab-content margin-md-top margin-md-bottom">
+                    <div class="tab-pane fade show active" id="username" role="tabpanel">
+                        <div class="section-content">
+                            <div class="container">
+                                <div class="row">
+                                    <form name="form" class="px-4 py-3" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+                                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+                                            <label for="DropdownFormEmail">Användarnamn</label>
+                                            <input id="DropdownFormEmail" type="text" class="form-control" placeholder="Användarnamn" name="email" [(ngModel)]="model.Email" #email="ngModel" required />
+                                            <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
+                                        </div>
+                                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                                            <label for="DropdownFormPassword">Lösenord</label>
+                                            <input id="DropdownFormPassword" type="password" class="form-control" placeholder="Lösenord" name="password" [(ngModel)]="model.Password" #password="ngModel" required />
+                                            <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+                                        </div>
 
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input">
-                        Kom ihåg mig
-                    </label>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input">
+                                                Kom ihåg mig
+                                            </label>
+                                        </div>
+                                        <button [disabled]="loading" class="btn btn-primary" role="button">Logga in</button>
+                                        <loading-spinner *ngIf="loading"></loading-spinner>
+                                    </form>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item nav-link" href="" [routerLink]="['/register']" role="button">Har du ingen användare? Registrera dig här</a>
+                                    <a class="dropdown-item nav-link" href="#">Glömt ditt lösenord?</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show" id="bankid" role="tabpanel">
+                        <div class="section-content">
+                            <div class="container">
+                                <div class="row">
+                                    <h1>BankID</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <button [disabled]="loading" class="btn btn-primary" role="button">Logga in</button>
-                <loading-spinner *ngIf="loading"></loading-spinner>
-            </form>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item nav-link" href="" [routerLink]="['/register']" role="button">Har du ingen användare? Registrera dig här</a>
-            <a class="dropdown-item nav-link" href="#">Glömt ditt lösenord?</a>
-        </div>
-    </div>
-</div>
+            </div>
+</section>
