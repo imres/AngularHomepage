@@ -102,6 +102,7 @@ img {
     padding: 0 !important;
 }
 
+/*Egna Margin-klasser*/
 .margin-xs-top{
     margin-top: 5px;
 }
@@ -114,6 +115,18 @@ img {
 .margin-lg-top{
     margin-top: 25px;
 }
+.margin-xl-top {
+    margin-top: 50px;
+}
+.margin-xxl-top {
+    margin-top: 100px;
+}
+.margin-xxxl-top{
+    margin-top: 150px;
+} 
+.margin-5xl-top {
+    margin-top: 250px;
+}
 .margin-xs-bottom{
     margin-bottom: 5px;
 }
@@ -123,14 +136,13 @@ img {
 .margin-md-bottom{
     margin-bottom: 15px;
 }
-
 /*.btn-custom{
     background-color: #33b799 !important;
     border-color: #33b799 !important;
     border-bottom-width: 3px !important;
     border-bottom-color: #0c886c !important;
 }*/
-.color-custom{
+.color-custom {
     color: #33b799;
 }
 
@@ -324,7 +336,7 @@ a.cover-btn:hover {
     background-color: #f7f9fa;
 }
 
-/* Egna klasser */
+/* Egna height och width-klasser */
 
 .height-15 {
     height: 15rem;
@@ -389,10 +401,6 @@ a.cover-btn:hover {
 
 .width-25 {
     width: 25rem;
-}
-
-.margin-xl-top {
-    margin-top: 50px;
 }
 
 .pt-250{

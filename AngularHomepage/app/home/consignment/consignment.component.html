@@ -1,7 +1,8 @@
-﻿<div *ngIf="consignments?.length == 0">
-    <div class="container-fluid mt-2">
+﻿<!-- Om inga försändelser finns så visas den här rutan med länk att skicka invites -->
+<div *ngIf="consignments?.length == 0">
+    <div class="container-fluid ">
         <div class="row">
-            <div class="offset-md-2 col-md-8 offset-lg-3 col-lg-6">
+            <div class="margin-5xl-top offset-md-2 col-md-8 offset-lg-3 col-lg-6">
                 <div class="card text-center">
                     <div class="card-block">
                         <h3 class="card-title">Inga aktiva försändelser</h3>
@@ -17,6 +18,7 @@
     </div>
 </div><br>
 
+<!-- Om försändelser finns så visas dom här komponenterna -->
 <div class="container-fluid offset-md-2 col-md-8 offset-lg-3 col-lg-6">
     <h3 class="text-center mb-3" *ngIf="consignments?.length > 0">Du har {{consignments?.length}} aktiva försändelser</h3>
     <div class="row">

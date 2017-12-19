@@ -1,42 +1,49 @@
-﻿<div class="col-md-6 col-md-offset-3">
-    <h2>Register</h2>
-    <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
-            <label for="firstName">Förnamn</label>
-            <input type="text" class="form-control" name="firstName" [(ngModel)]="model.FirstName" #firstName="ngModel" required />
-            <div *ngIf="f.submitted && !firstName.valid" class="help-block">Fyll i förnamn</div>
+﻿<!-- Navbar -->
+<navbar-front></navbar-front>
+
+<!-- Registreringsformulär -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 offset-sm-2 margin-xxl-top">
+            <h2 class="text-center">ProjektNamn</h2>
+            <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
+                    <label for="firstName">Förnamn</label>
+                    <input type="text" class="form-control" name="firstName" [(ngModel)]="model.FirstName" #firstName="ngModel" required />
+                    <div *ngIf="f.submitted && !firstName.valid" class="help-block">Fyll i förnamn</div>
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastName.valid }">
+                    <label for="lastName">Efternamn</label>
+                    <input type="text" class="form-control" name="lastName" [(ngModel)]="model.LastName" #lastName="ngModel" required />
+                    <div *ngIf="f.submitted && !lastName.valid" class="help-block">Fyll i giltigt personnummer</div>
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !personId.valid }">
+                    <label for="personId">Personnummer</label>
+                    <input type="text" class="form-control" name="personId" [(ngModel)]="model.PersonId" #personId="ngModel" required />
+                    <div *ngIf="f.submitted && !personId.valid" class="help-block">Fyll i giltigt personnummer</div>
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+                    <label for="email">E-post</label>
+                    <input type="text" class="form-control" name="email" [(ngModel)]="model.Email" #email="ngModel" />
+                    <div *ngIf="f.submitted && !email.valid" class="help-block">Fyll i giltig e-post</div>
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" name="password" [(ngModel)]="model.Password" #password="ngModel" required />
+                    <div *ngIf="f.submitted && !password.valid" class="help-block">Fyll i lösenord</div>
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !address.valid }">
+                    <label for="address">Gatuadress</label>
+                    <input type="text" class="form-control" name="address" [(ngModel)]="model.Address" #address="ngModel" />
+                    <div *ngIf="f.submitted && !address.valid" class="help-block">Fyll i giltigt personnummer</div>
+                </div>
+                <!--<pre>{{model | json}}</pre>-->
+                <div class="form-group">
+                    <button [disabled]="loading" class="btn btn-primary">Register</button>
+                    <loading-spinner *ngIf="loading"></loading-spinner>
+                    <a [routerLink]="['/login']" class="btn btn-outline-primary">Cancel</a>
+                </div>
+            </form>
         </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastName.valid }">
-            <label for="lastName">Efternamn</label>
-            <input type="text" class="form-control" name="lastName" [(ngModel)]="model.LastName" #lastName="ngModel" required />
-            <div *ngIf="f.submitted && !lastName.valid" class="help-block">Fyll i giltigt personnummer</div>
-        </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !personId.valid }">
-            <label for="personId">Personnummer</label>
-            <input type="text" class="form-control" name="personId" [(ngModel)]="model.PersonId" #personId="ngModel" required />
-            <div *ngIf="f.submitted && !personId.valid" class="help-block">Fyll i giltigt personnummer</div>
-        </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" [(ngModel)]="model.Password" #password="ngModel" required />
-            <div *ngIf="f.submitted && !password.valid" class="help-block">Fyll i lösenord</div>
-        </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
-            <label for="email">E-post</label>
-            <input type="text" class="form-control" name="email" [(ngModel)]="model.Email" #email="ngModel" />
-            <div *ngIf="f.submitted && !email.valid" class="help-block">Fyll i giltig e-post</div>
-        </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !address.valid }">
-            <label for="address">Gatuadress</label>
-            <input type="text" class="form-control" name="address" [(ngModel)]="model.Address" #address="ngModel" />
-            <div *ngIf="f.submitted && !address.valid" class="help-block">Fyll i giltigt personnummer</div>
-        </div>
-        <pre>{{model | json}}</pre>
-        <div class="form-group">
-            <button [disabled]="loading" class="btn btn-primary">Register</button>
-            <loading-spinner *ngIf="loading"></loading-spinner>
-            <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
-        </div>
-    </form>
-    <p>Test git</p>
+    </div>
 </div>
