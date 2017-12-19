@@ -27,7 +27,9 @@ import { LoadingComponent } from './_directives/loading.component';
 import { InvitationComponent } from './home/invitation/invitation.component';
 import { ConsignmentComponent } from './home/consignment/consignment.component';
 import { NavbarComponent } from './commonComponents/navbar.component';
+import { ClickStopPropagation } from './commonComponents/navbar.component';
 import { LoginSiteComponent } from './login/loginsite.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
     imports: [
@@ -52,7 +54,9 @@ import { LoginSiteComponent } from './login/loginsite.component';
         ConfirmComponent,
         InviteResponseComponent,
         NavbarComponent,
+        ClickStopPropagation,
         LoginSiteComponent,
+        UserProfileComponent,
     ],
     providers: [
         AuthGuard,
