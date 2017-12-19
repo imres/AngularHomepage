@@ -173,6 +173,7 @@
     <Content Include="app\login\login.component.js" />
     <Content Include="app\login\loginsite.component.html" />
     <Content Include="app\main.js" />
+    <Content Include="app\user-profile\user-profile.component.html" />
     <Content Include="app\register\index.js" />
     <Content Include="app\register\register.component.html" />
     <Content Include="app\register\register.component.js" />
@@ -11653,6 +11654,7 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="app\login\loginsite.component.ts" />
     <TypeScriptCompile Include="app\main.ts" />
+    <TypeScriptCompile Include="app\user-profile\user-profile.component.ts" />
     <TypeScriptCompile Include="app\register\index.ts" />
     <TypeScriptCompile Include="app\register\register.component.ts">
       <DependentUpon>register.component.html</DependentUpon>

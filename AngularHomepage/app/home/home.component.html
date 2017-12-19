@@ -12,15 +12,12 @@
 <!-- Navbar -->
     
 <nav class="navbar navbar-light bg-faded fixed-top nav-main">
-    <!--<button class="navbar-toggler navbar-toggler-right " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>-->
     <div class="flex-row-reverse">
         <ul class="nav justify-content-end">
             <li class="nav-item">
                 <a class="navbar-brand" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{currentUser.FirstName}} {{currentUser.LastName}}</a>
                 <div class="dropdown-menu dropdown-menu-right width-15">
-                    <a href="#" [routerLink]="['/userprofile']" role="button" class="dropdown-item">Min profil</a>
+                    <a href="#" class="dropdown-item" [routerLink]="['/profile']" role="button">Min profil</a>
                     <a href="#" class="dropdown-item">Kontoinställningar</a>
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item" [routerLink]="['/front']" role="button">Logga ut</a>
@@ -42,4 +39,3 @@
 <div class="margin-xl-top">
     <consignment></consignment>
 </div>
-

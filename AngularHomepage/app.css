@@ -355,6 +355,14 @@ a.cover-btn:hover {
     width: 21rem;
 }
 
+.width-10 {
+    width: 10rem;
+}
+
+.width-9 {
+    width: 9rem;
+}
+
 .width-5 {
     width: 5rem;
 }
@@ -391,6 +399,14 @@ a.cover-btn:hover {
     padding-top: 250px;
 }
 
+.width-335px {
+    width: 335px;
+}
+
+.width-575px {
+    width: 575px;
+}
+
 /* Notificationcenter */
 
 .notification-text {
@@ -408,4 +424,16 @@ a.cover-btn:hover {
     position: absolute;
     right: 1rem;
     top: 1rem;
+}
+
+/* Userprofile */
+
+.profile-btn {
+    font-size: 0.85rem;
+}
+
+.ad-img {
+    width: 600px;
+    height: 200px;
+    background: blue;
 }
