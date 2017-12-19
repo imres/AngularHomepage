@@ -27,6 +27,7 @@ import { LoadingComponent } from './_directives/loading.component';
 import { InvitationComponent } from './home/invitation/invitation.component';
 import { ConsignmentComponent } from './home/consignment/consignment.component';
 import { NavbarComponent } from './commonComponents/navbar.component';
+import { NavbarHomeComponent } from './commonComponents/navbar-home.component';
 import { ClickStopPropagation } from './commonComponents/navbar.component';
 import { LoginSiteComponent } from './login/loginsite.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
@@ -57,6 +58,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
         ClickStopPropagation,
         LoginSiteComponent,
         UserProfileComponent,
+        NavbarHomeComponent,
     ],
     providers: [
         AuthGuard,

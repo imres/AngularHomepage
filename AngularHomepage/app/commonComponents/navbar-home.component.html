@@ -1,0 +1,23 @@
+﻿<nav class="navbar navbar-light bg-faded fixed-top nav-main">
+    <div class="flex-row-reverse">
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a class="navbar-brand" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{currentUser.FirstName}} {{currentUser.LastName}}</a>
+                <div class="dropdown-menu dropdown-menu-right width-15">
+                    <a href="#" class="dropdown-item" [routerLink]="['/profile']" role="button">Min profil</a>
+                    <a href="#" class="dropdown-item">Kontoinställningar</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item" [routerLink]="['/front']" role="button">Logga ut</a>
+                </div>
+            </li>
+            <li class="nav-item" *ngIf="invitations?.length > 0">
+                <a class="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="badge badge-pill badge-primary">{{invitations?.length}}</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <invite></invite>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

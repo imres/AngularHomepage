@@ -159,6 +159,7 @@
     <Content Include="app\app.component.js" />
     <Content Include="app\app.module.js" />
     <Content Include="app\app.routing.js" />
+    <Content Include="app\commonComponents\navbar-home.component.html" />
     <Content Include="app\commonComponents\navbar.component.html" />
     <Content Include="app\frontpage\front.component.html" />
     <Content Include="app\home\consignment\consignment.component.html" />
@@ -11634,6 +11635,7 @@
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\app.routing.ts" />
+    <TypeScriptCompile Include="app\commonComponents\navbar-home.component.ts" />
     <TypeScriptCompile Include="app\commonComponents\navbar.component.ts" />
     <TypeScriptCompile Include="app\frontpage\front.component.ts" />
     <TypeScriptCompile Include="app\frontpage\index.ts" />
