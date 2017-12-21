@@ -1,17 +1,9 @@
-﻿<div class="width-20 m-2">
-    <div class="row">
-        <h5 class="ml-4">Händelser</h5>
-        <div *ngFor="let inv of invitations" class="col-sm-12 col-md-12 col-lg-12">
-            <div class="card mb-3">
-                <div class="card-block">
-                    <h5 class="card-title">Du har fått en inbjudan</h5>
-                    <p class="lead notification-text" *ngIf="currentUser.PersonId == inv.SenderPersonId">{{inv.ReceiverPersonId}} vill <b>köpa</b> ett paket av dig!</p>
-                    <p class="lead notification-text" *ngIf="currentUser.PersonId == inv.ReceiverPersonId">{{inv.SenderPersonId}} vill <b>skicka</b> ett paket till dig!</p>
-                    <div class="text-right">
-                        <button href="#" class="btn btn-primary" (click)="showInviteResponseDialog(inv)">Svara</button>
-                    </div>
-                </div>
-            </div>
+﻿<div class="width-20 p-3">
+    <div class="row no-padding">
+        <h5 class="card-title">Du har {{invitations?.length}} händelser.</h5>
+        <div *ngFor="let inv of invitations" class="col-sm-12 col-md-12 col-lg-12 notification no-padding" (click)="showInviteResponseDialog(inv)" href="#" role="button">
+                <p class="text-center mt-3" *ngIf="currentUser.PersonId == inv.SenderPersonId">{{inv.ReceiverPersonId}} vill <b>köpa</b> ett paket av dig!</p>
+                <p class="text-center mt-3" *ngIf="currentUser.PersonId == inv.ReceiverPersonId">{{inv.SenderPersonId}} vill <b>skicka</b> ett paket till dig!</p>
         </div>
     </div>
 </div>

@@ -21,6 +21,7 @@ import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 import { FrontComponent } from './frontpage/index';
+import { UserGuideComponent } from './commonComponents/user-guide.component';
 import { ConfirmComponent } from './_dialog/confirm.component';
 import { InviteResponseComponent } from './_dialog/invite-response.component';
 import { LoadingComponent } from './_directives/loading.component';
@@ -59,6 +60,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
         LoginSiteComponent,
         UserProfileComponent,
         NavbarHomeComponent,
+        UserGuideComponent,
     ],
     providers: [
         AuthGuard,
