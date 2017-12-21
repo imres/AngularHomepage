@@ -16,7 +16,7 @@
                     <span class="badge badge-pill badge-primary">{{invitations?.length}}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <invite></invite>
+                    <invite [invitations]="invitations" (invitationsChanged)="newInvitationList($event)"></invite><!--Update child component with array, and receive event from child on change-->
                 </div>
             </li>
         </ul>

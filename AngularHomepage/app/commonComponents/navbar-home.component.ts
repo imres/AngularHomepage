@@ -27,10 +27,36 @@ export class NavbarHomeComponent implements OnInit {
         this.getInvitations();
     }
 
+    newInvitationList(event: number) {
+        //Method is connected to child method in order to receive event changes
+        //filter current invitation list since id from event is non-existing
+        this.invitations = this.invitations.filter(x => x.Id != event);
+    }
+
     getInvitations() {
         this.invitationService.getInvitations(this.currentUser.PersonId).subscribe(res => {
+            console.log("Hämtade invites från API");
+
             this.invitations = res;
-        });
+
+            //Update invitationService for all using components
+            this.updateInvitationService(this.invitations);
+
+        }, err => { console.log("Error: {0}", err) });
+    }
+
+
+    private getStoredInvitations(){
+        this.invitationService.invitationList.subscribe(invitations => {
+            console.log("Hämtade invites från service");
+            this.invitations = invitations;
+        }, err => console.log("Error {0}", err));
+        
+    }
+
+    private updateInvitationService(invitations: Invitation[]) {
+        console.log("Uppdaterade invites i service");
+        this.invitationService.updateInvitations(invitations);
     }
 
 

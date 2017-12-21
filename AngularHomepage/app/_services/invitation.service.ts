@@ -1,4 +1,4 @@
-﻿import { Injectable } from '@angular/core';
+﻿import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -7,8 +7,11 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class InvitationService {
-    private inviteSource = new BehaviorSubject<Invitation>(null);
-    currentInvite = this.inviteSource.asObservable();
+    private currentInviteSource = new BehaviorSubject<Invitation>(null);
+    private invitationListSource = new BehaviorSubject<Invitation[]>(null);
+
+    invitationList = this.invitationListSource.asObservable();
+    currentInvite = this.currentInviteSource.asObservable();
 
     constructor(private http: Http) { }
 
@@ -16,8 +19,14 @@ export class InvitationService {
         'Content-Type': 'application/json'
     });
 
+    //Update active invitation used in dialog
     changeInviteData(invite: Invitation) {
-        this.inviteSource.next(invite);
+        this.currentInviteSource.next(invite);
+    }
+
+    //Update invitation list with fresh data
+    updateInvitations(invitations: Invitation[]) {
+        this.invitationListSource.next(invitations);
     }
 
     sendInvite(invitation: Invitation) {

@@ -1,4 +1,7 @@
-﻿import { Component, OnInit, Input, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges, ViewContainerRef } from '@angular/core';
+﻿import {
+    Component, OnInit, Input, Output, EventEmitter, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA,
+    ChangeDetectionStrategy, ChangeDetectorRef, OnChanges, ViewContainerRef
+} from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
 import { DialogService } from "ng2-bootstrap-modal";
@@ -20,11 +23,12 @@ import { InviteResponseComponent } from '../../_dialog/invite-response.component
 
 
 export class InvitationComponent implements OnInit {
-    //@Input() public invitationStream: Invitation[];
-    //invitation: Invitation = new Invitation();
+    @Input() invitations: Invitation[]; //Array data received from parent
+    @Output() invitationsChanged: EventEmitter<number> = new EventEmitter<number>(); //Push change once emit is called on this object
+
     currentUser: Person;
     confirmResult: boolean = null;
-    invitations: Invitation[];
+    //invitations: Invitation[];
 
     constructor(private cd: ChangeDetectorRef,
                 private dialogService: DialogService,
@@ -37,15 +41,17 @@ export class InvitationComponent implements OnInit {
 
     ngOnInit() {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        this.getInvitations();
+
+        //this.getStoredInvitations();
     }
 
-    getInvitations() {
-        this.invitationService.getInvitations(this.currentUser.PersonId).subscribe(res => {
-            this.invitations = res;
+    setInvitations() {
+        //Get the last invitation interaction and emit the id to parent
+        this.invitationService.currentInvite.subscribe(res => {
+            this.invitationsChanged.emit(res.Id);
         });
     }
-
+    
     showInviteResponseDialog(invite: Invitation) {
         this.dialogService.addDialog(InviteResponseComponent, {
             title: this.HasReceiverRole(invite) ? "Mottagare" : "Avsändare",
@@ -56,6 +62,8 @@ export class InvitationComponent implements OnInit {
             this.confirmResult = isConfirmed;
 
             this.toastrService.ShowToastr(isConfirmed, false, "Inbjudan accepterad, försändelse skapad");
+
+            this.setInvitations();
         });
 
         this.invitationService.changeInviteData(invite);
@@ -63,7 +71,13 @@ export class InvitationComponent implements OnInit {
         
         //this.invitationService.currentInvite.subscribe(invite => this.currentInvite = invite);
     }
-    
+
+    private getStoredInvitations() {
+        this.invitationService.invitationList.subscribe(invitations => {
+            console.log("Hämtade invites från service");
+            this.invitations = invitations;
+        });
+    }
 
     private HasReceiverRole(invite: Invitation): boolean {
         if (invite.ReceiverPersonId == this.currentUser.PersonId) {
