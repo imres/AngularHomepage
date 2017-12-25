@@ -136,6 +136,15 @@ img {
 .margin-md-bottom{
     margin-bottom: 15px;
 }
+.margin-lg-bottom {
+    margin-bottom: 25px;
+}
+.ml-6 {
+    margin-left: 4rem !important;
+}
+.ml-7 {
+    margin-left: 5rem !important;
+}
 /*.btn-custom{
     background-color: #33b799 !important;
     border-color: #33b799 !important;
@@ -423,11 +432,41 @@ a.cover-btn:hover {
 }
 
 .notification:hover {
+    color: #0AF;
     background: #f7f9fa;
 }
 
 .badge {
     padding: .50em .7em;
+}
+
+.notification-dropdown {
+    padding: 0 0;
+    border-radius: 0;
+}
+
+.notification-bell {
+    height: 35px;
+    width: 40px;
+}
+
+#bell {
+    height: 35px;
+    width: 40px;
+    position: absolute;
+    z-index: -1;
+}
+
+.notification-counter {
+    position: absolute;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-left: 30px;
+    color: #0AF;
+}
+
+.dropdown-menu .btn{
+    color: white;
 }
 
  /* Consignments */ 
