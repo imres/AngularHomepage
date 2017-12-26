@@ -28,7 +28,7 @@ export class ConsignmentComponent implements OnInit {
     constructor(private cd: ChangeDetectorRef,
         private dialogService: DialogService,
         private consignmentService: ConsignmentService,
-        private toastrService: ToastrService
+        private toastrService: ToastrService,
 
     ) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
