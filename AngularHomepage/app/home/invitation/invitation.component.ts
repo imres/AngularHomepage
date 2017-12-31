@@ -60,10 +60,13 @@ export class InvitationComponent implements OnInit {
         .subscribe((isConfirmed) => {
             //Get dialog result
             this.confirmResult = isConfirmed;
+            
+            if (isConfirmed == null) return;
 
             this.toastrService.ShowToastr(isConfirmed, false, "Inbjudan accepterad, försändelse skapad");
 
             this.setInvitations();
+            
         });
 
         this.invitationService.changeInviteData(invite);

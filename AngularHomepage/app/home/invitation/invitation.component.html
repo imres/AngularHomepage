@@ -1,7 +1,7 @@
 ﻿<div class="width-20 p-3">
     <div class="row no-padding">
         <h5 class="card-title">Du har {{invitations?.length}} händelser.</h5>
-        <div *ngFor="let inv of invitations" class="col-sm-12 col-md-12 col-lg-12 notification no-padding" (click)="showInviteResponseDialog(inv)" href="#" role="button">
+        <div *ngFor="let inv of invitations" class="col-md-12 notification no-padding" (click)="showInviteResponseDialog(inv)" href="#" role="button">
                 <p class="text-center mt-3" *ngIf="currentUser.PersonId == inv.SenderPersonId">{{inv.ReceiverPersonId}} vill <b>köpa</b> ett paket av dig!</p>
                 <p class="text-center mt-3" *ngIf="currentUser.PersonId == inv.ReceiverPersonId">{{inv.SenderPersonId}} vill <b>skicka</b> ett paket till dig!</p>
         </div>
