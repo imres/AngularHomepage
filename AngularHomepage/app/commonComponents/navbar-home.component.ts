@@ -1,8 +1,12 @@
-﻿import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+﻿import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges  } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
+import { Observable } from 'rxjs/Rx';
+import { DialogService } from "ng2-bootstrap-modal";
 
 import { Person, Invitation } from '../_models/index';
-import { UserService, InvitationService } from '../_services/index';
+import { UserService, InvitationService, ToastrService, ConsignmentService } from '../_services/index';
+import { ConfirmComponent } from '../_dialog/confirm.component';
+import { InviteResponseComponent } from '../_dialog/invite-response.component';
 
 
 @Component({
@@ -18,7 +22,11 @@ export class NavbarHomeComponent implements OnInit {
     isClassActive: boolean;
 
     constructor(private userService: UserService,
-        private invitationService: InvitationService) {
+        private invitationService: InvitationService,
+        private cd: ChangeDetectorRef,
+        private dialogService: DialogService,
+        private consignmentService: ConsignmentService,
+        private toastrService: ToastrService,) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.isClassActive = false;
     }
@@ -59,5 +67,21 @@ export class NavbarHomeComponent implements OnInit {
         this.invitationService.updateInvitations(invitations);
     }
 
+    showInvite(invite: Invitation) {
+        console.log(invite);
+    }
 
+    showConfirm(event: any) {
+        this.dialogService.addDialog(ConfirmComponent, {
+            title: 'Skicka inbjudan',
+            message: 'Bla bla confirm some action?'
+        })
+            .subscribe((isConfirmed) => {
+                //Get dialog result
+                this.confirmResult = isConfirmed;
+
+                this.toastrService.ShowToastr(isConfirmed, false, "Inbjudan skickades");
+
+            });
+    }
 }
