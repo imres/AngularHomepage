@@ -2,16 +2,14 @@
 <div *ngIf="consignments?.length == 0">
     <div class="container-fluid ">
         <div class="row">
-            <div class="margin-xl-top">
-                <div class="card text-center">
-                    <div class="card-block">
-                        <h3 class="card-title">Inga aktiva försändelser</h3>
-                        <p class="card-text">
-                            Du har inga aktiva försändelser, läs mer hur du kommer igång på några minuter
-                            eller skicka en inbjudan.
-                        </p>
-                        <a href="#" class="btn btn-primary" (click)=showConfirm($event)>Skicka inbjudan</a>
-                    </div>
+            <div class="margin-xl-top card text-center">
+                <div class="card-block">
+                    <h3 class="card-title">Inga aktiva försändelser</h3>
+                    <p class="card-text">
+                        Du har inga aktiva försändelser, läs mer hur du kommer igång på några minuter
+                        eller skicka en inbjudan.
+                    </p>
+                    <a href="#" class="btn btn-primary" (click)=showConfirm($event)>Skicka inbjudan</a>
                 </div>
             </div>
         </div>
@@ -19,7 +17,7 @@
 </div><br>
 
 <!-- Guide -->
-<div class="my-5 py-2" *ngIf="consignments?.length == 0">
+<div class="my-5 py-2 container section-content" *ngIf="consignments?.length == 0">
     <guide></guide>
 </div>
 
@@ -28,11 +26,11 @@
     <h3 class="text-center mb-3" *ngIf="consignments?.length > 1">Du har {{consignments?.length}} aktiva försändelser</h3>
     <h3 class="text-center mb-3" *ngIf="consignments?.length == 1">Du har {{consignments?.length}} aktiv försändelse</h3>
     <div class="row">
-        <div *ngFor="let item of consignments" [ngClass]="{'col-md-6 col-lg-6' : (consignments.length > 4), 'col-sm-12 col-md-12 col-lg-12' : (4 >= consignments.length > 0)}">
+        <div *ngFor="let item of consignments" [ngClass]="{'col-md-6' : (consignments.length > 4), 'col-sm-12' : (4 >= consignments.length > 0)}">
             <div class="card mb-3">
                 <div class="card-block">
                     <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId">Ditt paket är påväg till {{item.ReceiverPersonId}}</p>
-                    <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId">Ett paket från {{item.SenderPersonId}} är påväg</p>
+                    <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId">Ett paket från {{item.SenderPersonId}} är påväg till dig</p>
                     <p class="card-text">Paketet befinner sig just nu i Stockholm</p>
                     <p class="card-text">
                         Paketet är beräknat till
