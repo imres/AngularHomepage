@@ -29,6 +29,6 @@ export class HomeComponent implements OnInit{
     private getInvitations() {
         this.invitationService.invitationList.subscribe(invitations => {
             this.invitations = invitations;
-        });
+        })
     }
 }

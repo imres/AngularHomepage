@@ -11,7 +11,6 @@ import { Person, Invitation } from '../_models/index';
 export class ToastrService {
 
     constructor(public toastr: ToastsManager) {
-
     }
 
     /**
@@ -26,11 +25,13 @@ export class ToastrService {
         Message to display on error (if enabled)
      * @param errorMessage
      *///ShowToastr documentation
-    public ShowToastr(isConfirmed: boolean, errorMessageEnabled: boolean = true,
+    public ShowToastr(isConfirmed: boolean, errorMessageEnabled: boolean = true, closeButtonEnabled: boolean = false,
         successMessage: string = "Lyckades", errorMessage: string = "Kunde inte genomföra frågan") {
 
         if (isConfirmed) {
-            this.toastr.success(successMessage);
+            this.toastr.success(successMessage, "", {
+                showCloseButton: closeButtonEnabled
+            });
         } else if (!isConfirmed && errorMessageEnabled){
             this.toastr.error(errorMessage);
         }

@@ -87,7 +87,15 @@ namespace UserManager.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, invitations);
 
         }
+        
+        [ActionName("GetUnrespondedInvitations")]
+        [HttpGet]
+        public HttpResponseMessage GetUnrespondedInvitations(string Id)
+        {
+            IEnumerable<InvitationDTO> unrespondedInvitations = _invitationRepository.GetUnrespondedInvitations(Id);
 
+            return Request.CreateResponse(HttpStatusCode.OK, unrespondedInvitations);
+        }
     }
 }
  

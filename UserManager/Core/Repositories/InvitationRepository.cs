@@ -76,5 +76,18 @@ namespace UserManager.Core.Repositories
                 return invitationsDTO;
             }
         }
+
+        public IEnumerable<InvitationDTO> GetUnrespondedInvitations(string personId)
+        {
+            using (masterEntities context = new masterEntities())
+            {
+                IEnumerable<Invitation> unrespondedInvitations = context.Invitation.Where(x => x.Status <= 3 &&
+                (x.ReceiverPersonId == personId || x.SenderPersonId == personId));
+
+                var unrespondedInvitationsDTO = EntityToDtoMappingCollection<Invitation, InvitationDTO>(unrespondedInvitations);
+
+                return unrespondedInvitationsDTO;
+            }
+        }
     }
 }

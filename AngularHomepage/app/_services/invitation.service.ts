@@ -57,6 +57,15 @@ export class InvitationService {
                 Observable.throw(false)
             );
     }
+
+    getUnrespondedInvitations(personId: string) {
+        return this.http.get('http://localhost:65192/api/Invitation/GetUnrespondedInvitations/' + personId)
+            .map((response: Response) =>
+                response.json()
+            ).catch(error =>
+                Observable.throw(false)
+            );
+    }
     /*getById(id: number) {
         return this.http.get('/api/users/' + id, this.jwt())
             .map((response: Response) =>

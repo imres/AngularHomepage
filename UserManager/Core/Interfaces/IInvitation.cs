@@ -14,7 +14,10 @@ namespace UserManager.Core.Interfaces
 
         IEnumerable<InvitationDTO> GetInvitations(string personId);
 
+        IEnumerable<InvitationDTO> GetUnrespondedInvitations(string personId);
+
         void EndInvitation(int Id);
+        
 
     }
 }

@@ -16,7 +16,7 @@ import { InviteResponseComponent } from '../../_dialog/invite-response.component
 
 @Component({
     moduleId: module.id,
-    selector: 'invite',
+    selector: 'invite-notifications',
     templateUrl: 'invitation.component.html'
     //changeDetection: ChangeDetectionStrategy.OnPush
 })
