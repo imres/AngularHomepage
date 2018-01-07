@@ -6,7 +6,7 @@
                 <a class="nav-link" href="#" (click)=showConfirm($event)>Skapa försändelse</a>
             </li>-->
             <li class="nav-item">
-                <a class="navbar-brand" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{currentUser.FirstName}} {{currentUser.LastName}}</a>
+                <a class="navbar-brand" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{currentUser.FirstName}} {{currentUser.LastName}} <i class="fa fa-angle-double-down" aria-hidden="true"></i></a>
                 <div class="dropdown-menu dropdown-menu-right width-15">
                     <a href="#" class="dropdown-item" [routerLink]="['/profile']"><i class="fa fa-user-circle-o fa-fw" aria-hidden="true"></i> Min profil</a>
                     <a href="#" class="dropdown-item"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> Kontoinställningar</a>
@@ -26,7 +26,6 @@
                         </div>
                         <invite-notifications *ngIf="invitations?.length > 0" [invitations]="invitations" (invitationsChanged)="newInvitationList($event)"></invite-notifications><!--Update child component with array, and receive event from child on change-->
                     </div>
-                
             </li>
         </ul>
     </div>

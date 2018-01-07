@@ -1,3 +1,21 @@
-﻿<div *ngFor="let item of unrespondedInvitations">
-    <p>{{item.SenderPersonId}}</p>
+﻿<!--Navbar-->
+<navbar-home></navbar-home>
+
+<!--Invites-->
+<div class="margin-1xl-top offset-md-2 col-md-8 offset-lg-3 col-lg-6">
+    <h3 class="text-center mb-3" *ngIf="unrespondedInvitations?.length > 1">Du har {{unrespondedInvitations?.length}} aktiva inbjudningar</h3>
+    <h3 class="text-center mb-3" *ngIf="unrespondedInvitations?.length == 1">Du har {{unrespondedInvitations?.length}} aktiv inbjudan</h3>
+    <div class="row">
+        <div *ngFor="let item of unrespondedInvitations" class="col-md-6" [ngClass]="{'col-md-6' : (unrespondedInvitations.length > 4), 'col-sm-12' : (4 >= unrespondedInvitations.length > 0)}">
+            <div class="card mb-3">
+                <div class="card-block">
+                    <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId"><strong>Avsändare:</strong> {{item.SenderPersonId}}</p>
+                    <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId"><strong>Mottagare:</strong> {{item.ReceiverPersonId}}</p>
+                    <p class="card-text">Status: {{item.Status}}</p> <!-- Ska sen stå tex: Väntar på att Mottagaren ska lägga in pengar. -->
+                    <p class="card-text" *ngIf="item.RequestedDepositAmount != null">Begärd summa: {{item.RequestedDepositAmount}}</p>
+                    <p class="card-text">Inbjudan skickad: {{item.StartDate}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
