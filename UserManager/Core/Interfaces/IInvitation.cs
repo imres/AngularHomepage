@@ -10,6 +10,8 @@ namespace UserManager.Core.Interfaces
     {
         void AddInvitation(InvitationDTO invitationDTO);
 
+        void AcceptInvitation(InvitationDTO invitationDTO);
+
         InvitationDTO GetInvitation(int Id);
 
         IEnumerable<InvitationDTO> GetInvitations(string personId);

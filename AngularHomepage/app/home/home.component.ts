@@ -2,7 +2,8 @@
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 
 import { Person, Invitation } from '../_models/index';
-import { UserService, InvitationService} from '../_services/index';
+import { UserService, InvitationService } from '../_services/index';
+import { InvitationStatusEnum } from '../_models/enums/index';
 
 
 @Component({
@@ -12,9 +13,12 @@ import { UserService, InvitationService} from '../_services/index';
 
 export class HomeComponent implements OnInit{
     invitations: Invitation[];
+    activeInvitations: Invitation[];
+
     currentUser: Person;
     showDialog = false;
     isClassActive: boolean;
+    invitationStatus: InvitationStatusEnum = new InvitationStatusEnum;
 
     constructor(private userService: UserService,
                 private invitationService: InvitationService) {
@@ -28,7 +32,11 @@ export class HomeComponent implements OnInit{
 
     private getInvitations() {
         this.invitationService.invitationList.subscribe(invitations => {
+            if (!invitations) return;
+
             this.invitations = invitations;
-        })
+            this.activeInvitations = this.invitations.filter(x => x.Status >= this.invitationStatus.Accepted);
+            //this.invitationNotifications = this.invitations.filter(x => x.Status == this.invitationStatus.Created);
+        });
     }
 }

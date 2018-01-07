@@ -29,7 +29,7 @@ namespace UserManager.Core.Repositories
                     ReceiverPersonId = invitationDTO.ReceiverPersonId,
                     SenderPersonId = invitationDTO.SenderPersonId,
                     RequestedDepositAmount = invitationDTO.RequestedDepositAmount.GetValueOrDefault(),
-                    Status = ConsignmentStatus.ConsignmentActive,
+                    Status = ConsignmentStatus.Active,
                     StartDate = DateTime.Now
                 };
 

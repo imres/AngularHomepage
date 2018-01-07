@@ -7,6 +7,7 @@ import { Person, Invitation } from '../_models/index';
 import { UserService, InvitationService, ToastrService, ConsignmentService } from '../_services/index';
 import { ConfirmComponent } from '../_dialog/confirm.component';
 import { InviteResponseComponent } from '../_dialog/invite-response.component';
+import { InvitationStatusEnum } from '../_models/enums/index';
 
 
 @Component({
@@ -17,16 +18,19 @@ import { InviteResponseComponent } from '../_dialog/invite-response.component';
 
 export class NavbarHomeComponent implements OnInit {
     invitations: Invitation[];
+    invitationNotifications: Invitation[];
     currentUser: Person;
     showDialog = false;
     isClassActive: boolean;
+    invitationStatus: InvitationStatusEnum = new InvitationStatusEnum;
 
     constructor(private userService: UserService,
         private invitationService: InvitationService,
         private cd: ChangeDetectorRef,
         private dialogService: DialogService,
         private consignmentService: ConsignmentService,
-        private toastrService: ToastrService,) {
+        private toastrService: ToastrService, )
+    {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.isClassActive = false;
     }
@@ -38,14 +42,16 @@ export class NavbarHomeComponent implements OnInit {
     newInvitationList(event: number) {
         //Method is connected to child method in order to receive event changes
         //filter current invitation list since id from event is non-existing
-        this.invitations = this.invitations.filter(x => x.Id != event);
+        this.invitationNotifications = this.invitationNotifications.filter(x => x.Id != event);
     }
 
+    //Get invitations with all statuses, but fill seperate variables with filtered data
     getInvitations() {
         this.invitationService.getInvitations(this.currentUser.PersonId).subscribe(res => {
             console.log("Hämtade invites från API");
 
             this.invitations = res;
+            this.invitationNotifications = this.invitations.filter(x => x.Status == this.invitationStatus.Created);
 
             //Update invitationService for all using components
             this.updateInvitationService(this.invitations);

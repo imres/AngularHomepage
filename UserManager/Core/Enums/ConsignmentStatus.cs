@@ -7,11 +7,9 @@ namespace UserManager.Core.Enums
 {
     public static class ConsignmentStatus
     {
-        public const int InvitationCreated = 1;
-        public const int InvitationAccepted = 2;
-        public const int AmountDeposited = 3;
-        public const int ConsignmentActive = 4;
-        public const int ConsignmentCompleted = 5;
-        public const int ConsignmentError = 10;
+        public const int Active = 1;
+        public const int Completed = 10;
+        public const int Delay = 202;
+        public const int Error = 404;
     }
 }

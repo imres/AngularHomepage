@@ -11637,7 +11637,9 @@
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\app.routing.ts" />
-    <TypeScriptCompile Include="app\commonComponents\navbar-home.component.ts" />
+    <TypeScriptCompile Include="app\commonComponents\navbar-home.component.ts">
+      <DependentUpon>navbar-home.component.html</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="app\commonComponents\navbar.component.ts" />
     <TypeScriptCompile Include="app\commonComponents\user-guide.component.ts" />
     <TypeScriptCompile Include="app\frontpage\front.component.ts" />
@@ -11682,6 +11684,8 @@
     <TypeScriptCompile Include="app\_helpers\fake-backend.ts" />
     <TypeScriptCompile Include="app\_helpers\index.ts" />
     <TypeScriptCompile Include="app\_models\consignment.ts" />
+    <TypeScriptCompile Include="app\_models\enums\index.ts" />
+    <TypeScriptCompile Include="app\_models\enums\invitation-status.enum.ts" />
     <TypeScriptCompile Include="app\_models\image-link.ts" />
     <TypeScriptCompile Include="app\_models\index.ts" />
     <TypeScriptCompile Include="app\_models\invitation-models\invitation-role.ts" />

@@ -10,6 +10,7 @@ namespace UserManager.Core.Repositories
 {
     public class InvitationRepository : Mapper, IInvitation
     {
+        
         /// <summary>
         /// Add new invitation
         /// </summary>
@@ -21,7 +22,7 @@ namespace UserManager.Core.Repositories
                 var maxId = GetMaxInteger<Invitation>(x => x.Id);
 
                 invitationDTO.Id = maxId;
-                invitationDTO.Status = ConsignmentStatus.InvitationCreated;
+                invitationDTO.Status = InvitationStatus.Created;
                 invitationDTO.StartDate = DateTime.Now;
 
                 var entity = DtoToEntityMapping<InvitationDTO, Invitation>(invitationDTO);
@@ -29,6 +30,22 @@ namespace UserManager.Core.Repositories
                 context.Invitation.Add(entity);
                 context.SaveChanges();
             };
+        }
+
+        /// <summary>
+        /// Accept received invitation and set status
+        /// </summary>
+        /// <param name="Id">Invitation Id</param>
+        public void AcceptInvitation(InvitationDTO invitationDTO)
+        {
+            using (var context = new masterEntities())
+            {
+                var invitationToAccept = context.Invitation.Where(x => x.Id == invitationDTO.Id).First();
+
+                invitationToAccept.Status = InvitationStatus.Accepted;
+
+                context.SaveChanges();
+            }
         }
 
         public void EndInvitation(int Id)
@@ -68,8 +85,8 @@ namespace UserManager.Core.Repositories
 
                 IEnumerable<Invitation> invitations = context.Invitation
                     .Where(x => x.InvitationInitiatorPersonId != personId &&
-                    (x.ReceiverPersonId == personId || x.SenderPersonId == personId)
-                    && x.EndDate == null);
+                    (x.ReceiverPersonId == personId || x.SenderPersonId == personId) &&
+                    (x.Status != InvitationStatus.ConsignmentActive && x.EndDate == null));
 
                 var invitationsDTO = EntityToDtoMappingCollection<Invitation, InvitationDTO>(invitations);
 
@@ -81,7 +98,7 @@ namespace UserManager.Core.Repositories
         {
             using (masterEntities context = new masterEntities())
             {
-                IEnumerable<Invitation> unrespondedInvitations = context.Invitation.Where(x => x.Status <= 3 &&
+                IEnumerable<Invitation> unrespondedInvitations = context.Invitation.Where(x => x.EndDate == null &&
                 (x.ReceiverPersonId == personId || x.SenderPersonId == personId));
 
                 var unrespondedInvitationsDTO = EntityToDtoMappingCollection<Invitation, InvitationDTO>(unrespondedInvitations);

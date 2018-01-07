@@ -22,6 +22,20 @@ namespace UserManager.Core.Services
             _invitationRepository = invitationRepository;
         }
 
+        public bool AcceptInvitation(InvitationDTO invitation)
+        {
+            try
+            {
+                _invitationRepository.AcceptInvitation(invitation);
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public bool AddInvitation(InvitationDTO invitation)
         {
             if (!ValidateInvitation(invitation))

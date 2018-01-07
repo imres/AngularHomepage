@@ -11,8 +11,7 @@ import { Person, Invitation } from '../../_models/index';
 import { UserService, InvitationService, AlertService, ToastrService} from '../../_services/index';
 import { ConfirmComponent } from '../../_dialog/confirm.component';
 import { InviteResponseComponent } from '../../_dialog/invite-response.component';
-
-
+import { InvitationStatusEnum } from '../../_models/enums/index';
 
 @Component({
     moduleId: module.id,
@@ -41,7 +40,6 @@ export class InvitationComponent implements OnInit {
 
     ngOnInit() {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-
         //this.getStoredInvitations();
     }
 
@@ -73,13 +71,6 @@ export class InvitationComponent implements OnInit {
         this.HasReceiverRole(invite);
         
         //this.invitationService.currentInvite.subscribe(invite => this.currentInvite = invite);
-    }
-
-    private getStoredInvitations() {
-        this.invitationService.invitationList.subscribe(invitations => {
-            console.log("Hämtade invites från service");
-            this.invitations = invitations;
-        });
     }
 
     private HasReceiverRole(invite: Invitation): boolean {

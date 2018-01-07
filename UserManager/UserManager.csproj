@@ -259,6 +259,7 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Core\Cryptography.cs" />
     <Compile Include="Core\Enums\ConsignmentStatus.cs" />
+    <Compile Include="Core\Enums\InvitationStatus.cs" />
     <Compile Include="Core\Enums\PersonUserRights.cs" />
     <Compile Include="Core\Interfaces\IConsigment.cs" />
     <Compile Include="Core\Interfaces\ICryptography.cs" />

@@ -40,6 +40,17 @@ export class InvitationService {
             );
     }
 
+    acceptInvite(invitation: Invitation) {
+        return this.http.post('http://localhost:65192/api/Invitation/AcceptInvitation',
+            JSON.stringify(invitation),
+            { headers: this.headers })
+            .map((response: Response) =>
+                response.json()
+            ).catch(error =>
+                Observable.throw(false)
+            );
+    }
+
     endInvite(id: number) {
         return this.http.get('http://localhost:65192/api/Invitation/EndInvitation/' + id)
             .map((response: Response) => 

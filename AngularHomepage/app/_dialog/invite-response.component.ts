@@ -68,11 +68,10 @@ export class InviteResponseComponent extends DialogComponent<ConfirmModel, boole
 
     acceptInvitation(invite: Invitation) {
         // on click on confirm button we set dialog result as true,
-        // ten we can get dialog result from caller code
+        // then we can get dialog result from caller code
 
-        this.consignmentService.acceptInvite(invite)
-            .subscribe(res => {
-                console.log(res);
+        this.invitationService.acceptInvite(invite).subscribe(res => {
+            console.log(res);
         });
 
         this.result = true;

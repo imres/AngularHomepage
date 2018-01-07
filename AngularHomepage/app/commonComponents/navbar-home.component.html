@@ -16,15 +16,15 @@
             </li>
             <li class="nav-item">
                     <div data-toggle="dropdown" class="notification-bell" role="button" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-bell-o fa-2x" aria-hidden="true" id="bell"></i>
-                        <h6 *ngIf="invitations?.length > 0" class="notification-counter">{{invitations?.length}}</h6>
+                        <i class="fa fa-bell-o fa-lg" aria-hidden="true" id="bell"></i>
+                        <h6 *ngIf="invitationNotifications?.length > 0" class="notification-counter">{{invitationNotifications?.length}}</h6>
                     </div>
                     <div class="dropdown-menu dropdown-menu-right notification-dropdown">
-                        <div class="width-20 text-center py-4" *ngIf="invitations?.length == 0">
+                        <div class="width-20 text-center py-4" *ngIf="invitationNotifications?.length == 0">
                             <h4 class="card-title">Du har inga händelser</h4>
                             <a href="#" class="btn btn-primary" (click)=showConfirm($event)>Skicka inbjudan till en ny försändelse</a>
                         </div>
-                        <invite-notifications *ngIf="invitations?.length > 0" [invitations]="invitations" (invitationsChanged)="newInvitationList($event)"></invite-notifications><!--Update child component with array, and receive event from child on change-->
+                        <invite-notifications *ngIf="invitationNotifications?.length > 0" [invitations]="invitationNotifications" (invitationsChanged)="newInvitationList($event)"></invite-notifications><!--Update child component with array, and receive event from child on change-->
                     </div>
                 
             </li>

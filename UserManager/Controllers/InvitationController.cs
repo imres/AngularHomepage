@@ -55,6 +55,28 @@ namespace UserManager.Controllers
             }
         }
 
+        [ActionName("AcceptInvitation")]
+        [HttpPost]
+        public HttpResponseMessage AcceptInvitation(InvitationDTO invitation)
+        {
+            using (HttpClient http = new HttpClient())
+            {
+                this.Request.RequestUri = new Uri("http://localhost:65192");
+
+                if (this.Request.Method == HttpMethod.Get)
+                {
+                    this.Request.Content = null;
+                }
+
+                var invitationAccepted = _invitationService.AcceptInvitation(invitation);
+
+                if (!invitationAccepted)
+                    return Request.CreateResponse(HttpStatusCode.Conflict);
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+        }
+
         [ActionName("EndInvitation")]
         [HttpGet]
         public HttpResponseMessage EndInvitation(int Id)
