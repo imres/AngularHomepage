@@ -20,9 +20,9 @@
                         </div>
                         <div class="form-group" [ngClass]="{ 'has-error': requestedDepositAmount.dirty && !requestedDepositAmount.valid }">
                             <label for="requestedDepositAmount">Efterfrågad summa (kronor)</label>
-                            <input type="text" class="form-control" name="requestedDepositAmount" placeholder="Pris för paket"
+                            <input type="text" class="form-control" name="requestedDepositAmount" placeholder="Pris för paket" pattern="\d{1,10}"
                                    [(ngModel)]="currentInvite.RequestedDepositAmount" #requestedDepositAmount="ngModel" required />
-                            <div *ngIf="requestedDepositAmount.dirty && !requestedDepositAmount.valid" class="help-block">Fyll i priset för ditt paket</div>
+                            <div *ngIf="requestedDepositAmount.dirty && !requestedDepositAmount.valid" class="help-block">Fyll i priset för ditt paket (endast siffror)</div>
                         </div>
                     </ng-container>
 
