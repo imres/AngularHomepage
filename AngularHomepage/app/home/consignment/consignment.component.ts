@@ -24,6 +24,7 @@ export class ConsignmentComponent implements OnInit {
     currentUser: Person;
     confirmResult: boolean = null;
     consignments: Consignment[];
+    maxSliceValue = 2;
 
     constructor(private cd: ChangeDetectorRef,
         private dialogService: DialogService,
@@ -60,5 +61,13 @@ export class ConsignmentComponent implements OnInit {
                 this.toastrService.ShowToastr(isConfirmed, false, "Inbjudan skickades");
 
             });
+    }
+
+    incrementSliceValue() {
+        this.maxSliceValue += 100;
+    }
+
+    decrementSliceValue() {
+        this.maxSliceValue = 2;
     }
 }

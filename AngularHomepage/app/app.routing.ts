@@ -6,7 +6,6 @@ import { RegisterComponent } from './register/index';
 import { AuthGuard } from './_guards/index';
 import { FrontComponent } from './frontpage/index';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { UnrespondedInvitesComponent } from './home/invitation/unresponded-invites.component';
 
 
 const appRoutes: Routes = [
@@ -16,7 +15,6 @@ const appRoutes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'front', component: FrontComponent },
     { path: 'profile', component: UserProfileComponent },
-    { path: 'invites', component: UnrespondedInvitesComponent },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }

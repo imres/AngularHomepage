@@ -24,6 +24,7 @@ export class UnrespondedInvitesComponent implements OnInit {
 
     currentUser: Person;
     unrespondedInvitations: Invitation[];
+    maxSliceValue = 4;
 
     constructor(private cd: ChangeDetectorRef,
         private dialogService: DialogService,
@@ -43,6 +44,14 @@ export class UnrespondedInvitesComponent implements OnInit {
         this.invitationService.getUnrespondedInvitations(this.currentUser.PersonId).subscribe(res => {
             this.unrespondedInvitations = res;
         });
+    }
+
+    incrementSliceValue() {
+        this.maxSliceValue += 100;
+    }
+
+    decrementSliceValue() {
+        this.maxSliceValue = 4;
     }
 
 

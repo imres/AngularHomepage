@@ -1,8 +1,8 @@
 ﻿import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 
-import { Person, Invitation } from '../_models/index';
-import { UserService, InvitationService} from '../_services/index';
+import { Person, Invitation, Consignment } from '../_models/index';
+import { UserService, InvitationService, ConsignmentService } from '../_services/index';
 
 
 @Component({
@@ -11,24 +11,33 @@ import { UserService, InvitationService} from '../_services/index';
 })
 
 export class HomeComponent implements OnInit{
-    invitations: Invitation[];
+    activeInvitations: Invitation[];
+    consignments: Consignment[];
     currentUser: Person;
     showDialog = false;
     isClassActive: boolean;
 
     constructor(private userService: UserService,
-                private invitationService: InvitationService) {
+                private invitationService: InvitationService,
+                private consignmentService: ConsignmentService,) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.isClassActive = false;
     }
 
     ngOnInit() {
-        this.getInvitations();
+        this.getUnrespondedInvitations();
+        this.getConsignments();
     }
 
-    private getInvitations() {
-        this.invitationService.invitationList.subscribe(invitations => {
-            this.invitations = invitations;
-        })
+    private getUnrespondedInvitations() {
+        this.invitationService.getUnrespondedInvitations(this.currentUser.PersonId).subscribe(res => {
+            this.activeInvitations = res;
+        });
+    }
+
+    getConsignments() {
+        this.consignmentService.getConsignments(this.currentUser.PersonId).subscribe(res => {
+            this.consignments = res;
+        });
     }
 }
