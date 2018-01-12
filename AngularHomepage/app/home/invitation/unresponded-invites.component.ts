@@ -25,6 +25,7 @@ export class UnrespondedInvitesComponent implements OnInit {
     currentUser: Person;
     unrespondedInvitations: Invitation[];
     maxSliceValue = 4;
+    minSliceValue = 0;
 
     constructor(private cd: ChangeDetectorRef,
         private dialogService: DialogService,
@@ -47,12 +48,55 @@ export class UnrespondedInvitesComponent implements OnInit {
     }
 
     incrementSliceValue() {
-        this.maxSliceValue += 100;
+        if(this.maxSliceValue >= this.unrespondedInvitations.length){
+            this.maxSliceValue += 0;
+            this.minSliceValue += 0;
+        }
+        else {
+            this.maxSliceValue += 4;
+            this.minSliceValue += 4;
+        }
     }
 
     decrementSliceValue() {
-        this.maxSliceValue = 4;
+        if (this.minSliceValue >= 4){
+            this.maxSliceValue -= 4;
+            this.minSliceValue -= 4;
+        }
     }
 
+    //multiplySliceValue() {
+    //    this.maxSliceValue = this.paginationNumber * 10;
+    //}
 
+    zeroSliceValue() {
+        this.maxSliceValue = 4;
+        this.minSliceValue = 0;
+    }
+
+    showLess() {
+        this.maxSliceValue = 4;
+        this.minSliceValue = 0;
+    }
+
+    showAll() {
+        this.maxSliceValue = this.unrespondedInvitations.length + 1;
+        this.minSliceValue = 0;
+    }
+
+    maximizeSliceValue() {
+        if (this.unrespondedInvitations.length % 4 > 0){
+            this.maxSliceValue = this.unrespondedInvitations.length + (4 - (this.unrespondedInvitations.length % 4));
+            this.minSliceValue = this.maxSliceValue - 4;
+        }
+        else {
+            this.maxSliceValue = this.unrespondedInvitations.length;
+            this.minSliceValue = this.maxSliceValue - 4;
+        }
+    }
+
+    minimizeSliceValue() {
+        this.maxSliceValue = 4;
+        this.minSliceValue = 0;
+    }
 }

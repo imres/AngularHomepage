@@ -3,42 +3,36 @@
 <h3 class="text-center mb-3" *ngIf="unrespondedInvitations?.length == 1">Du har {{unrespondedInvitations?.length}} aktiv inbjudan</h3>
 
 <div class="row">
-    <div *ngFor="let item of unrespondedInvitations | slice:0:maxSliceValue; let i=index" class="col-md-6">
+    <div *ngFor="let item of unrespondedInvitations | slice:minSliceValue:maxSliceValue; let i=index" class="col-md-6">
         <div class="card mb-3">
             <div class="card-block">
                 <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId"><strong>Avsändare:</strong> {{item.SenderPersonId}}</p>
                 <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId"><strong>Mottagare:</strong> {{item.ReceiverPersonId}}</p>
                 <p class="card-text">Status: {{item.Status}}</p> <!-- Ska sen stå tex: Väntar på att Mottagaren ska lägga in pengar. -->
-                <p class="card-text" *ngIf="item.RequestedDepositAmount != null">Begärd summa: {{item.RequestedDepositAmount}}</p>
+                <p class="card-text">Begärd summa: {{item.RequestedDepositAmount}}</p>
                 <p class="card-text">Inbjudan skickad: {{item.StartDate}}</p>
             </div>
         </div>
     </div>
     <div class="col-md-12 text-right" *ngIf="unrespondedInvitations?.length > 0">
-        <!--<button *ngIf="unrespondedInvitations?.length > 4" class="btn btn-outline-primary" type="button" role="button" data-toggle="collapse" data-target="#collapsedInvites" aria-expanded="false" aria-controls="collapsedInvites">
-            Visa alla <i class="fa fa-angle-double-down" aria-hidden="true"></i>
-        </button>-->
-        
+        <nav aria-label="Page navigation for active invitations" *ngIf="maxSliceValue <= unrespondedInvitations?.length  && unrespondedInvitations?.length > 4">
+            <ul class="pagination justify-content-center">
+                <li class="firstANDlast page-item text-center" [ngClass]="{'disabled' : (minSliceValue < 4)}"><a class="page-link" (click)="minimizeSliceValue()">Första</a></li>
 
-        <button *ngIf="maxSliceValue == 4" class="btn btn-outline-primary" type="button" role="button" (click)="incrementSliceValue()">
-            Visa alla <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                <li class="page-item" [ngClass]="{'disabled' : (minSliceValue < 4)}"><a class="page-link" (click)="decrementSliceValue()"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>
+                <li class="page-item disabled paginationNumber text-center"><a class="page-link">{{maxSliceValue / 4}}</a></li>
+                <li class="page-item" [ngClass]="{'disabled' : (maxSliceValue == unrespondedInvitations?.length)}"><a class="page-link" (click)="incrementSliceValue()"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+
+                <li  class="firstANDlast page-item text-center" [ngClass]="{'disabled' : (maxSliceValue == unrespondedInvitations?.length)}"><a class="page-link" (click)="maximizeSliceValue()">Sista</a></li>
+            </ul>
+        </nav>
+
+        <button *ngIf="maxSliceValue >= 4 && maxSliceValue !== unrespondedInvitations?.length + 1" class="btn btn-outline-primary" type="button" role="button" (click)="showAll()">
+            Visa alla <i class="fa fa-angle-down" aria-hidden="true"></i>
         </button>
-        <button *ngIf="maxSliceValue > 4" class="btn btn-outline-primary" type="button" role="button" (click)="decrementSliceValue()">
-            Visa färre <i class="fa fa-chevron-up" aria-hidden="true"></i>
+        <button *ngIf="maxSliceValue == unrespondedInvitations?.length + 1" class="btn btn-outline-primary" type="button" role="button" (click)="showLess()">
+            Visa färre <i class="fa fa-angle-up" aria-hidden="true"></i>
         </button>
     </div>
-    <!--<div class="collapse col-md-12 no-padding" id="collapsedInvites">
-        <div class="col-md-6" *ngFor="let item of unrespondedInvitations | slice:4:100; let i=index">
-            <div class="card mt-3 mb-3">
-                <div class="card-block">
-                    <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId"><strong>Avsändare:</strong> {{item.SenderPersonId}}</p>
-                    <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId"><strong>Mottagare:</strong> {{item.ReceiverPersonId}}</p>
-                    <p class="card-text">Status: {{item.Status}}</p> Ska sen stå tex: Väntar på att Mottagaren ska lägga in pengar. 
-                    <p class="card-text" *ngIf="item.RequestedDepositAmount != null">Begärd summa: {{item.RequestedDepositAmount}}</p>
-                    <p class="card-text">Inbjudan skickad: {{item.StartDate}}</p>
-                </div>
-            </div>
-        </div>
-    </div>-->
 </div>
 

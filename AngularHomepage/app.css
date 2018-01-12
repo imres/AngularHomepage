@@ -459,8 +459,15 @@ a.cover-btn:hover {
     top: 1rem;
 }
 
-/* Userprofile */
+.firstANDlast {
+    min-width: 4rem !important;
+}
 
+.paginationNumber {
+    min-width: 1rem;
+}
+
+/* Userprofile */
 .profile-btn {
     font-size: 0.85rem;
 }
