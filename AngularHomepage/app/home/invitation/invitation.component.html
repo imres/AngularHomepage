@@ -3,8 +3,11 @@
         <h5 *ngIf="invitations?.length == 1" class="card-title ml-7 mt-2">Du har {{invitations?.length}} händelse</h5>
         <h5 *ngIf="invitations?.length > 1" class="card-title ml-7 mt-2">Du har {{invitations?.length}} händelser</h5>
         <div *ngFor="let inv of invitations" class="col-sm-12 col-md-12 col-lg-12 notification no-padding" (click)="showInviteResponseDialog(inv)" href="#" role="button">
-                <p class="text-center mt-3" *ngIf="currentUser.PersonId == inv.SenderPersonId">{{inv.ReceiverPersonId}} vill <b>köpa</b> ett paket av dig!</p>
-                <p class="text-center mt-3" *ngIf="currentUser.PersonId == inv.ReceiverPersonId">{{inv.SenderPersonId}} vill <b>skicka</b> ett paket till dig!</p>
+            <button type="button" class="close" (click)="cancel()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <p class="text-center mt-3" *ngIf="currentUser.PersonId == inv.SenderPersonId">{{inv.ReceiverPersonId}} vill <b>köpa</b> ett paket av dig!</p>
+            <p class="text-center mt-3" *ngIf="currentUser.PersonId == inv.ReceiverPersonId">{{inv.SenderPersonId}} vill <b>skicka</b> ett paket till dig!</p>
         </div>
     </div>
 </div>

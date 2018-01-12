@@ -1,10 +1,14 @@
 ﻿<!-- Navbar -->
 <navbar-home></navbar-home>
 
-<!-- Consignments -->
-<div class="my-5 offset-md-2 col-md-8 offset-lg-3 col-lg-6">
-    <div *ngFor="let invite of activeInvitations">
-        {{invite.SenderPersonId}}
+<div class="container-fluid margin-1xl-top mb-3">
+    <div class="row">
+        <div class="col-md-2 col-lg-3">
+            <!-- Någon länkmeny av något slag -->
+        </div>
+        <div class="col-md-8 col-lg-6">
+            <unresponded-invites></unresponded-invites>
+            <consignment></consignment>
+        </div>
     </div>
-    <consignment></consignment>
 </div>

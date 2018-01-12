@@ -24,12 +24,15 @@ export class UnrespondedInvitesComponent implements OnInit {
 
     currentUser: Person;
     unrespondedInvitations: Invitation[];
+    maxSliceValue = 4;
+    minSliceValue = 0;
+    showAllInvitationsEnabled = false;
 
     constructor(private cd: ChangeDetectorRef,
         private dialogService: DialogService,
         private invitationService: InvitationService,
         private toastr: ToastsManager,
-        private toastrService: ToastrService
+        private toastrService: ToastrService,
     ) {
     }
 
@@ -45,5 +48,47 @@ export class UnrespondedInvitesComponent implements OnInit {
         });
     }
 
+    incrementSliceValue() {
+        if (this.maxSliceValue >= this.unrespondedInvitations.length)
+            return;
 
+        this.maxSliceValue += 4;
+        this.minSliceValue += 4;
+    }
+
+    decrementSliceValue() {
+        if (this.minSliceValue >= 4){
+            this.maxSliceValue -= 4;
+            this.minSliceValue -= 4;
+        }
+    }
+
+    //multiplySliceValue() {
+    //    this.maxSliceValue = this.paginationNumber * 10;
+    //}
+
+    showAllInvitations() {
+        this.maxSliceValue = this.unrespondedInvitations.length;
+        this.minSliceValue = 0;
+
+        this.showAllInvitationsEnabled = true;
+    }
+
+    maximizeSliceValue() {
+        if (this.unrespondedInvitations.length % 4 > 0){
+            this.maxSliceValue = this.unrespondedInvitations.length + (4 - (this.unrespondedInvitations.length % 4)); //Om antalet invitations inte är delbart på 4, ska den ändå visa rätt invites på sista sidan
+            this.minSliceValue = this.maxSliceValue - 4;
+        }
+        else {
+            this.maxSliceValue = this.unrespondedInvitations.length;
+            this.minSliceValue = this.maxSliceValue - 4;
+        }
+    }
+
+    resetSliceValue() {
+        this.maxSliceValue = 4;
+        this.minSliceValue = 0;
+
+        this.showAllInvitationsEnabled = false;
+    }
 }

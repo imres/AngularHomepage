@@ -321,28 +321,6 @@ a.cover-btn:hover {
 }*/
 
 
-/* Cards */
-
-@media (max-width: 1199px) {
-    .card-header h4 {
-        font-size: 18px;
-    }
-
-    .card-header h6 {
-        font-size: 12px;
-        font-weight: 400;
-    }
-
-    .card-header {
-        height: 80px;
-    }
-}
-
-@media (min-width: 1200px) {
-    .card-header {
-        height: 100px;
-    }
-}
 
 #guide {
     background-color: white;
@@ -481,8 +459,15 @@ a.cover-btn:hover {
     top: 1rem;
 }
 
-/* Userprofile */
+.firstANDlast {
+    min-width: 4rem !important;
+}
 
+.paginationNumber {
+    min-width: 1rem;
+}
+
+/* Userprofile */
 .profile-btn {
     font-size: 0.85rem;
 }
