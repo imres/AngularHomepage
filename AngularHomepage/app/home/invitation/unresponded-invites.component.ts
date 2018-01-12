@@ -26,12 +26,13 @@ export class UnrespondedInvitesComponent implements OnInit {
     unrespondedInvitations: Invitation[];
     maxSliceValue = 4;
     minSliceValue = 0;
+    showAllInvitationsEnabled = false;
 
     constructor(private cd: ChangeDetectorRef,
         private dialogService: DialogService,
         private invitationService: InvitationService,
         private toastr: ToastsManager,
-        private toastrService: ToastrService
+        private toastrService: ToastrService,
     ) {
     }
 
@@ -48,14 +49,11 @@ export class UnrespondedInvitesComponent implements OnInit {
     }
 
     incrementSliceValue() {
-        if(this.maxSliceValue >= this.unrespondedInvitations.length){
-            this.maxSliceValue += 0;
-            this.minSliceValue += 0;
-        }
-        else {
-            this.maxSliceValue += 4;
-            this.minSliceValue += 4;
-        }
+        if (this.maxSliceValue >= this.unrespondedInvitations.length)
+            return;
+
+        this.maxSliceValue += 4;
+        this.minSliceValue += 4;
     }
 
     decrementSliceValue() {
@@ -69,24 +67,16 @@ export class UnrespondedInvitesComponent implements OnInit {
     //    this.maxSliceValue = this.paginationNumber * 10;
     //}
 
-    zeroSliceValue() {
-        this.maxSliceValue = 4;
+    showAllInvitations() {
+        this.maxSliceValue = this.unrespondedInvitations.length;
         this.minSliceValue = 0;
-    }
 
-    showLess() {
-        this.maxSliceValue = 4;
-        this.minSliceValue = 0;
-    }
-
-    showAll() {
-        this.maxSliceValue = this.unrespondedInvitations.length + 1;
-        this.minSliceValue = 0;
+        this.showAllInvitationsEnabled = true;
     }
 
     maximizeSliceValue() {
         if (this.unrespondedInvitations.length % 4 > 0){
-            this.maxSliceValue = this.unrespondedInvitations.length + (4 - (this.unrespondedInvitations.length % 4));
+            this.maxSliceValue = this.unrespondedInvitations.length + (4 - (this.unrespondedInvitations.length % 4)); //Om antalet invitations inte är delbart på 4, ska den ändå visa rätt invites på sista sidan
             this.minSliceValue = this.maxSliceValue - 4;
         }
         else {
@@ -95,8 +85,10 @@ export class UnrespondedInvitesComponent implements OnInit {
         }
     }
 
-    minimizeSliceValue() {
+    resetSliceValue() {
         this.maxSliceValue = 4;
         this.minSliceValue = 0;
+
+        this.showAllInvitationsEnabled = false;
     }
 }

@@ -15,24 +15,29 @@
         </div>
     </div>
     <div class="col-md-12 text-right" *ngIf="unrespondedInvitations?.length > 0">
-        <nav aria-label="Page navigation for active invitations" *ngIf="maxSliceValue <= unrespondedInvitations?.length  && unrespondedInvitations?.length > 4">
-            <ul class="pagination justify-content-center">
-                <li class="firstANDlast page-item text-center" [ngClass]="{'disabled' : (minSliceValue < 4)}"><a class="page-link" (click)="minimizeSliceValue()">Första</a></li>
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <nav aria-label="Page navigation for active invitations" *ngIf="unrespondedInvitations?.length > 4 && !showAllInvitationsEnabled">
+                    <ul class="pagination">
+                        <li class="firstANDlast page-item text-center" [ngClass]="{'disabled' : (minSliceValue < 4)}"><a class="page-link" (click)="resetSliceValue()">Första</a></li>
 
-                <li class="page-item" [ngClass]="{'disabled' : (minSliceValue < 4)}"><a class="page-link" (click)="decrementSliceValue()"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>
-                <li class="page-item disabled paginationNumber text-center"><a class="page-link">{{maxSliceValue / 4}}</a></li>
-                <li class="page-item" [ngClass]="{'disabled' : (maxSliceValue == unrespondedInvitations?.length)}"><a class="page-link" (click)="incrementSliceValue()"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+                        <li class="page-item" [ngClass]="{'disabled' : (minSliceValue < 4)}"><a class="page-link" (click)="decrementSliceValue()"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>
+                        <li class="page-item disabled paginationNumber text-center"><a class="page-link">{{maxSliceValue / 4}}</a></li>
+                        <li class="page-item" [ngClass]="{'disabled' : (maxSliceValue == unrespondedInvitations?.length)}"><a class="page-link" (click)="incrementSliceValue()"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
 
-                <li  class="firstANDlast page-item text-center" [ngClass]="{'disabled' : (maxSliceValue == unrespondedInvitations?.length)}"><a class="page-link" (click)="maximizeSliceValue()">Sista</a></li>
-            </ul>
-        </nav>
-
-        <button *ngIf="maxSliceValue >= 4 && maxSliceValue !== unrespondedInvitations?.length + 1" class="btn btn-outline-primary" type="button" role="button" (click)="showAll()">
-            Visa alla <i class="fa fa-angle-down" aria-hidden="true"></i>
-        </button>
-        <button *ngIf="maxSliceValue == unrespondedInvitations?.length + 1" class="btn btn-outline-primary" type="button" role="button" (click)="showLess()">
-            Visa färre <i class="fa fa-angle-up" aria-hidden="true"></i>
-        </button>
+                        <li class="firstANDlast page-item text-center" [ngClass]="{'disabled' : (maxSliceValue == unrespondedInvitations?.length)}"><a class="page-link" (click)="maximizeSliceValue()">Sista</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-md-4">
+                <button *ngIf="maxSliceValue >= 4 && !showAllInvitationsEnabled" class="btn btn-outline-primary" type="button" role="button" (click)="showAllInvitations()">
+                    Visa alla <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </button>
+                <button *ngIf="showAllInvitationsEnabled" class="btn btn-outline-primary" type="button" role="button" (click)="resetSliceValue()">
+                    Visa färre <i class="fa fa-angle-up" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 
