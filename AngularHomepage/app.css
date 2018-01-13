@@ -471,6 +471,11 @@ a.cover-btn:hover {
     background: #f7f9fa !important;
 }
 
+.hide-link {
+    color: #0AF !important;
+    padding-top: 7px;
+}
+
 /* Userprofile */
 .profile-btn {
     font-size: 0.85rem;

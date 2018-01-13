@@ -27,6 +27,7 @@ export class UnrespondedInvitesComponent implements OnInit {
     maxSliceValue = 4;
     minSliceValue = 0;
     showAllInvitationsEnabled = false;
+    showInvitations = true;
 
     constructor(private cd: ChangeDetectorRef,
         private dialogService: DialogService,
@@ -102,6 +103,13 @@ export class UnrespondedInvitesComponent implements OnInit {
         this.showAllInvitationsEnabled = false;
     }
 
+    hideInvites() {
+        this.showInvitations = false;
+    }
+
+    showInvites() {
+        this.showInvitations = true;
+    }
     //multiplySliceValue(pageNumber) {
     //    this.maxSliceValue = pageNumber * 4;
     //}

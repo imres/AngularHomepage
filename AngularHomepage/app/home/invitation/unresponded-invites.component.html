@@ -1,9 +1,16 @@
 ﻿<!--Invites-->
-<h3 class="text-center mb-3" *ngIf="unrespondedInvitations?.length > 1">Du har {{unrespondedInvitations?.length}} aktiva inbjudningar</h3>
-<h3 class="text-center mb-3" *ngIf="unrespondedInvitations?.length == 1">Du har {{unrespondedInvitations?.length}} aktiv inbjudan</h3>
-
-<div class="row">
-    <div *ngFor="let item of unrespondedInvitations | slice:minSliceValue:maxSliceValue; let i=index" class="col-md-6">
+<div *ngIf="unrespondedInvitations?.length > 0" class="row">
+    <h3 class="mb-3 col-sm-9" *ngIf="unrespondedInvitations?.length > 1">Du har {{unrespondedInvitations?.length}} aktiva inbjudningar</h3>
+    <h3 class="mb-3 col-sm-9" *ngIf="unrespondedInvitations?.length == 1">Du har {{unrespondedInvitations?.length}} aktiv inbjudan</h3>
+    <a *ngIf="showInvitations" class="col-sm-3 text-right hide-link" (click)="hideInvites()">
+        Dölj inbjudningar <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </a>
+    <a *ngIf="!showInvitations" class="col-sm-3 text-right hide-link" (click)="showInvites()">
+        Visa inbjudningar <i class="fa fa-angle-down" aria-hidden="true"></i>
+    </a>
+</div>
+<div *ngIf="showInvitations" class="row">
+    <div *ngFor="let item of unrespondedInvitations | slice:minSliceValue:maxSliceValue; let i=index" class="col-sm-6">
         <div class="card mb-3">
             <div class="card-block">
                 <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId"><strong>Avsändare:</strong> {{item.SenderPersonId}}</p>
@@ -16,7 +23,7 @@
     </div>
     <div class="col-md-12 text-right" *ngIf="unrespondedInvitations?.length > 0">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-sm-8">
                 <nav aria-label="Page navigation for active invitations" *ngIf="unrespondedInvitations?.length > 4 && !showAllInvitationsEnabled">
                     <ul class="pagination">
                         <li class="firstAndLast page-item text-center" [ngClass]="{'disabled' : (minSliceValue < 4)}"><a class="page-link" (click)="resetSliceValue()">Första</a></li>
@@ -33,7 +40,7 @@
                     </ul>
                 </nav>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4">
                 <button *ngIf="maxSliceValue >= 4 && !showAllInvitationsEnabled && unrespondedInvitations?.length > 4" class="btn btn-outline-primary" type="button" role="button" (click)="showAllInvitations()">
                     Visa alla <i class="fa fa-angle-down" aria-hidden="true"></i>
                 </button>
@@ -44,4 +51,3 @@
         </div>
     </div>
 </div>
-

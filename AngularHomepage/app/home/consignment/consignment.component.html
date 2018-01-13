@@ -1,4 +1,4 @@
-﻿<!-- Om inga försändelser finns så visas den här rutan med länk att skicka invites -->
+﻿<!-- Om inga försändelser finns så visas den här rutan med länk till att skicka invites och guide för att förstå hur man gör -->
 <div *ngIf="consignments?.length == 0">
     <div class="container-fluid ">
         <div class="row">
@@ -16,17 +16,24 @@
     </div>
 </div><br>
 
-<!-- Guide -->
 <div class="my-5 py-2 container section-content" *ngIf="consignments?.length == 0">
     <guide></guide>
 </div>
 
 <!-- Om försändelser finns så visas dom här komponenterna -->
-<h3 class="text-center mb-3" *ngIf="consignments?.length > 1">Du har {{consignments?.length}} aktiva försändelser</h3>
-<h3 class="text-center mb-3" *ngIf="consignments?.length == 1">Du har {{consignments?.length}} aktiv försändelse</h3>
-
 <div class="row">
-    <div *ngFor="let item of consignments | slice:minSliceValue:maxSliceValue; let i=index" [ngClass]="{'col-md-6' : (consignments?.length > 3), 'col-sm-12' : (consignments?.length < 4)}">
+    <h3 class="mb-3 col-sm-9" *ngIf="consignments?.length > 1">Du har {{consignments?.length}} aktiva försändelser</h3>
+    <h3 class="mb-3 col-sm-9" *ngIf="consignments?.length == 1">Du har {{consignments?.length}} aktiv försändelse</h3>
+    <a *ngIf="showConsignments" class="col-sm-3 text-right hide-link" (click)="hideConsignments()">
+        Dölj försändelser <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </a>
+    <a *ngIf="!showConsignments" class="col-sm-3 text-right hide-link" (click)="showConsignmentsEnable()">
+        Visa försändelser <i class="fa fa-angle-down" aria-hidden="true"></i>
+    </a>
+</div>
+
+<div *ngIf="showConsignments && consignments?.length > 0" class="row">
+    <div *ngFor="let item of consignments | slice:minSliceValue:maxSliceValue; let i=index" [ngClass]="{'col-sm-6' : (consignments?.length > 3), 'col-sm-12' : (consignments?.length < 4)}">
         <div class="card mb-3">
             <div class="card-block">
                 <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId">Ditt paket är påväg till {{item.ReceiverPersonId}}</p>
@@ -41,9 +48,9 @@
             </div>
         </div>
     </div>
-    <div class="col-md-12 text-right" *ngIf="consignments?.length > 0">
+    <div class="col-md-12" *ngIf="consignments?.length > 0">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-sm-8">  
                 <nav aria-label="Page navigation for active invitations" *ngIf="consignments?.length > 4 && !showAllConsignmentsEnabled">
                     <ul class="pagination">
                         <li class="firstAndLast page-item text-center" [ngClass]="{'disabled' : (minSliceValue < 4)}"><a class="page-link" (click)="resetSliceValue()">Första</a></li>
@@ -60,7 +67,7 @@
                     </ul>
                 </nav>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4 text-right">
                 <button *ngIf="maxSliceValue >= 4 && !showAllConsignmentsEnabled && consignments?.length > 4" class="btn btn-outline-primary" type="button" role="button" (click)="showAllConsignments()">
                     Visa alla <i class="fa fa-angle-down" aria-hidden="true"></i>
                 </button>
