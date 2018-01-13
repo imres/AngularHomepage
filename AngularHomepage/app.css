@@ -459,12 +459,16 @@ a.cover-btn:hover {
     top: 1rem;
 }
 
-.firstANDlast {
+.firstAndLast {
     min-width: 4rem !important;
 }
 
 .paginationNumber {
     min-width: 1rem;
+}
+
+.activePage {
+    background: #f7f9fa !important;
 }
 
 /* Userprofile */

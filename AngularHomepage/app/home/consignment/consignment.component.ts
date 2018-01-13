@@ -24,7 +24,9 @@ export class ConsignmentComponent implements OnInit {
     currentUser: Person;
     confirmResult: boolean = null;
     consignments: Consignment[];
-    maxSliceValue = 2;
+    maxSliceValue = 4;
+    minSliceValue = 0;
+    showAllConsignmentsEnabled = false;
 
     constructor(private cd: ChangeDetectorRef,
         private dialogService: DialogService,
@@ -64,10 +66,60 @@ export class ConsignmentComponent implements OnInit {
     }
 
     incrementSliceValue() {
-        this.maxSliceValue += 100;
+        if (this.maxSliceValue >= this.consignments.length)
+            return;
+
+        this.maxSliceValue += 4;
+        this.minSliceValue += 4;
+    }
+
+    incrementSliceValueTwice() {
+        this.maxSliceValue += 8;
+        this.minSliceValue += 8;
     }
 
     decrementSliceValue() {
-        this.maxSliceValue = 2;
+        if (this.minSliceValue >= 4) {
+            this.maxSliceValue -= 4;
+            this.minSliceValue -= 4;
+        }
     }
+
+    decrementSliceValueTwice() {
+        this.maxSliceValue -= 8;
+        this.minSliceValue -= 8;
+    }
+
+    //multiplySliceValue() {
+    //    this.maxSliceValue = this.paginationNumber * 10;
+    //}
+
+    showAllConsignments() {
+        this.maxSliceValue = this.consignments.length;
+        this.minSliceValue = 0;
+
+        this.showAllConsignmentsEnabled = true;
+    }
+
+    maximizeSliceValue() {
+        if (this.consignments.length % 4 > 0) {
+            this.maxSliceValue = this.consignments.length + (4 - (this.consignments.length % 4)); //Om antalet invitations inte är delbart på 4, ska den ändå visa rätt invites på sista sidan
+            this.minSliceValue = this.maxSliceValue - 4;
+        }
+        else {
+            this.maxSliceValue = this.consignments.length;
+            this.minSliceValue = this.maxSliceValue - 4;
+        }
+    }
+
+    resetSliceValue() {
+        this.maxSliceValue = 4;
+        this.minSliceValue = 0;
+
+        this.showAllConsignmentsEnabled = false;
+    }
+
+    //multiplySliceValue(pageNumber) {
+    //    this.maxSliceValue = pageNumber * 4;
+    //}
 }

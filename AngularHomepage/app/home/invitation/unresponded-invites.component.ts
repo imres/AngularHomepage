@@ -56,11 +56,21 @@ export class UnrespondedInvitesComponent implements OnInit {
         this.minSliceValue += 4;
     }
 
+    incrementSliceValueTwice() {
+        this.maxSliceValue += 8;
+        this.minSliceValue += 8;
+    }
+
     decrementSliceValue() {
         if (this.minSliceValue >= 4){
             this.maxSliceValue -= 4;
             this.minSliceValue -= 4;
         }
+    }
+
+    decrementSliceValueTwice() {
+        this.maxSliceValue -= 8;
+        this.minSliceValue -= 8;
     }
 
     //multiplySliceValue() {
@@ -91,4 +101,8 @@ export class UnrespondedInvitesComponent implements OnInit {
 
         this.showAllInvitationsEnabled = false;
     }
+
+    //multiplySliceValue(pageNumber) {
+    //    this.maxSliceValue = pageNumber * 4;
+    //}
 }
