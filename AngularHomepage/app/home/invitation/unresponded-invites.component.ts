@@ -30,6 +30,7 @@ export class UnrespondedInvitesComponent implements OnInit {
     minSliceValue = 0;
     showAllInvitationsEnabled = false;
     invitationStatus: InvitationStatusEnum = new InvitationStatusEnum;
+    showInvitations = true;
 
     constructor(private cd: ChangeDetectorRef,
         private dialogService: DialogService,
@@ -41,52 +42,7 @@ export class UnrespondedInvitesComponent implements OnInit {
     }
 
     ngOnInit() {
-
-        //this.getStoredInvitations();
     }
-
-    //private getStoredInvitations() {
-    //    this.invitationService.invitationList.subscribe(invitations => {
-    //        console.log("Hämtade invites från service");
-
-    //        if (invitations == null) {
-    //            this.getInvitations();
-    //            return;
-    //        }
-
-    //        this.unrespondedInvitations = invitations.filter(x => x.Status == this.invitationStatus.Created);
-
-    //    }, err => console.log("Error {0}", err));
-
-    //}
-
-    //private updateInvitationService(invitations: Invitation[]) {
-    //    console.log("Uppdaterade invites i service");
-    //    this.invitationService.updateInvitations(invitations);
-    //}
-
-    //getInvitations() {
-    //    this.invitationService.getInvitations(this.currentUser.PersonId).subscribe(res => {
-    //        console.log("Hämtade invites från API");
-
-    //        if (!res) return;
-
-    //        this.unrespondedInvitations = res.filter(x => x.Status >= this.invitationStatus.Created);
-
-    //        //Update invitationService for all using components
-    //        this.updateInvitationService(this.invitations);
-
-    //    }, err => { console.log("Error: {0}", err) });
-    //}
-
-
-
-    //getUnrespondedInvitations() {
-    //    this.invitationService.getUnrespondedInvitations(this.currentUser.PersonId).subscribe(res => {
-    //        //this.unrespondedInvitations = res;
-    //        this.invitations = res.filter(x => x.Status >= this.invitationStatus.Accepted);
-    //    });
-    //}
 
     incrementSliceValue() {
         if (this.maxSliceValue >= this.unrespondedInvitations.length)
@@ -96,11 +52,21 @@ export class UnrespondedInvitesComponent implements OnInit {
         this.minSliceValue += 4;
     }
 
+    incrementSliceValueTwice() {
+        this.maxSliceValue += 8;
+        this.minSliceValue += 8;
+    }
+
     decrementSliceValue() {
         if (this.minSliceValue >= 4){
             this.maxSliceValue -= 4;
             this.minSliceValue -= 4;
         }
+    }
+
+    decrementSliceValueTwice() {
+        this.maxSliceValue -= 8;
+        this.minSliceValue -= 8;
     }
 
     //multiplySliceValue() {
@@ -131,4 +97,15 @@ export class UnrespondedInvitesComponent implements OnInit {
 
         this.showAllInvitationsEnabled = false;
     }
+
+    hideInvites() {
+        this.showInvitations = false;
+    }
+
+    showInvites() {
+        this.showInvitations = true;
+    }
+    //multiplySliceValue(pageNumber) {
+    //    this.maxSliceValue = pageNumber * 4;
+    //}
 }

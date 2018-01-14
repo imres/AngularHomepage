@@ -1,4 +1,4 @@
-﻿<!-- Om inga försändelser finns så visas den här rutan med länk att skicka invites -->
+﻿<!-- Om inga försändelser finns så visas den här rutan med länk till att skicka invites och guide för att förstå hur man gör -->
 <div *ngIf="consignments?.length == 0">
     <div class="container-fluid ">
         <div class="row">
@@ -16,49 +16,66 @@
     </div>
 </div><br>
 
-<!-- Guide -->
 <div class="my-5 py-2 container section-content" *ngIf="consignments?.length == 0">
     <guide></guide>
 </div>
 
 <!-- Om försändelser finns så visas dom här komponenterna -->
-<div class="container-fluid">
-    <h3 class="text-center mb-3" *ngIf="consignments?.length > 1">Du har {{consignments?.length}} aktiva försändelser</h3>
-    <h3 class="text-center mb-3" *ngIf="consignments?.length == 1">Du har {{consignments?.length}} aktiv försändelse</h3>
-    <div class="row">
-        <div *ngFor="let item of consignments | slice:0:maxSliceValue; let i=index" [ngClass]="{'col-md-6' : (maxSliceValue > 6), 'col-sm-12' : (6 >= maxSliceValue > 0)}">
-            <div class="card mb-3">
-                <div class="card-block">
-                    <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId">Ditt paket är påväg till {{item.ReceiverPersonId}}</p>
-                    <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId">Ett paket från {{item.SenderPersonId}} är påväg till dig</p>
-                    <p class="card-text">Paketet befinner sig just nu i Stockholm</p>
-                    <p class="card-text">
-                        Paketet är beräknat till
-                        <i>Måndag den 23 Augusti 2018</i>
-                    </p>
-                    <img src="img/karta.png" class="consignment-img" *ngIf="maxSliceValue <= 6"/>
-                </div>
+<div class="row">
+    <h3 class="mb-3 col-sm-9" *ngIf="consignments?.length > 1">Du har {{consignments?.length}} aktiva försändelser</h3>
+    <h3 class="mb-3 col-sm-9" *ngIf="consignments?.length == 1">Du har {{consignments?.length}} aktiv försändelse</h3>
+    <a *ngIf="showConsignments" class="col-sm-3 text-right hide-link" (click)="hideConsignments()">
+        Dölj försändelser <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </a>
+    <a *ngIf="!showConsignments" class="col-sm-3 text-right hide-link" (click)="showConsignmentsEnable()">
+        Visa försändelser <i class="fa fa-angle-down" aria-hidden="true"></i>
+    </a>
+</div>
+
+<div *ngIf="showConsignments && consignments?.length > 0" class="row">
+    <div *ngFor="let item of consignments | slice:minSliceValue:maxSliceValue; let i=index" [ngClass]="{'col-sm-6' : (consignments?.length > 3), 'col-sm-12' : (consignments?.length < 4)}">
+        <div class="card mb-3">
+            <div class="card-block">
+                <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId">Ditt paket är påväg till {{item.ReceiverPersonId}}</p>
+                <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId">Ett paket från {{item.SenderPersonId}} är påväg till dig</p>
+                <p class="card-text">Paketet befinner sig just nu i Stockholm</p>
+                <p class="card-text">
+                    Paketet är beräknat till
+                    <i *ngIf="consignments?.length < 4">Måndag den 23 Augusti 2018</i>
+                    <i *ngIf="consignments?.length > 3">23 Aug 2018</i>
+                </p>
+                <img src="img/karta.png" class="consignment-img" *ngIf="consignments?.length < 4" />
             </div>
         </div>
     </div>
-    <div class="col-md-12 text-right" *ngIf="consignments?.length > 0">
-        <button *ngIf="maxSliceValue == 2" class="btn btn-outline-primary" type="button" role="button" (click)="incrementSliceValue()">
-            Visa alla <i class="fa fa-angle-down" aria-hidden="true"></i>
-        </button>
-        <button *ngIf="maxSliceValue > 2" class="btn btn-outline-primary" type="button" role="button" (click)="decrementSliceValue()">
-            Visa färre <i class="fa fa-angle-up" aria-hidden="true"></i>
-        </button>
+    <div class="col-md-12" *ngIf="consignments?.length > 0">
+        <div class="row">
+            <div class="col-sm-8">  
+                <nav aria-label="Page navigation for active invitations" *ngIf="consignments?.length > 4 && !showAllConsignmentsEnabled">
+                    <ul class="pagination">
+                        <li class="firstAndLast page-item text-center" [ngClass]="{'disabled' : (minSliceValue < 4)}"><a class="page-link" (click)="resetSliceValue()">Första</a></li>
+
+                        <li class="page-item" [ngClass]="{'disabled' : (minSliceValue < 4)}"><a class="page-link" (click)="decrementSliceValue()"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>
+                        <li *ngIf="maxSliceValue >= consignments?.length && consignments?.length > 8" class="page-item paginationNumber text-center" (click)="decrementSliceValueTwice()"><a class="page-link">{{(maxSliceValue / 4) - 2}}</a></li>
+                        <li *ngIf="maxSliceValue > 4" class="page-item paginationNumber text-center" (click)="decrementSliceValue()"><a class="page-link">{{(maxSliceValue / 4) - 1}}</a></li>
+                        <li class="page-item disabled paginationNumber text-center"><a class="page-link activePage">{{maxSliceValue / 4}}</a></li>
+                        <li *ngIf="maxSliceValue < consignments?.length" class="page-item paginationNumber text-center"><a class="page-link" (click)="incrementSliceValue()">{{(maxSliceValue / 4) + 1}}</a></li>
+                        <li *ngIf="maxSliceValue == 4 && consignments?.length > 8" class="page-item paginationNumber text-center" (click)="incrementSliceValueTwice()"><a class="page-link">{{(maxSliceValue / 4) + 2}}</a></li>
+                        <li class="page-item" [ngClass]="{'disabled' : (maxSliceValue == unrespondedInvitations?.length)}"><a class="page-link" (click)="incrementSliceValue()"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+
+                        <li class="firstAndLast page-item text-center" [ngClass]="{'disabled' : (maxSliceValue == consignments?.length)}"><a class="page-link" (click)="maximizeSliceValue()">Sista</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-sm-4 text-right">
+                <button *ngIf="maxSliceValue >= 4 && !showAllConsignmentsEnabled && consignments?.length > 4" class="btn btn-outline-primary" type="button" role="button" (click)="showAllConsignments()">
+                    Visa alla <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </button>
+                <button *ngIf="showAllConsignmentsEnabled" class="btn btn-outline-primary" type="button" role="button" (click)="resetSliceValue()">
+                    Visa färre <i class="fa fa-angle-up" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 
-<div *ngIf="consignments?.length > 0">
-    <div class="container-fluid mt-2">
-        <div class="row">
-            <div class="offset-md-2 col-md-8 offset-lg-3 col-lg-6">
-                <div class="text-center">
-                    <a href="#" class="btn btn-block btn-primary" (click)=showConfirm($event)>Skicka inbjudan till en ny försändelse</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
