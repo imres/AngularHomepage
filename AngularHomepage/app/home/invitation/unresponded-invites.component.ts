@@ -11,6 +11,7 @@ import { Person, Invitation } from '../../_models/index';
 import { UserService, InvitationService, AlertService, ToastrService } from '../../_services/index';
 import { ConfirmComponent } from '../../_dialog/confirm.component';
 import { InviteResponseComponent } from '../../_dialog/invite-response.component';
+import { InvitationStatusEnum } from '../../_models/enums/index';
 
 
 
@@ -21,12 +22,14 @@ import { InviteResponseComponent } from '../../_dialog/invite-response.component
 })
 
 export class UnrespondedInvitesComponent implements OnInit {
-
+    @Input() unrespondedInvitations: Invitation[];
+    
     currentUser: Person;
-    unrespondedInvitations: Invitation[];
+    //unrespondedInvitations: Invitation[];
     maxSliceValue = 4;
     minSliceValue = 0;
     showAllInvitationsEnabled = false;
+    invitationStatus: InvitationStatusEnum = new InvitationStatusEnum;
 
     constructor(private cd: ChangeDetectorRef,
         private dialogService: DialogService,
@@ -34,19 +37,56 @@ export class UnrespondedInvitesComponent implements OnInit {
         private toastr: ToastsManager,
         private toastrService: ToastrService,
     ) {
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
     ngOnInit() {
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
-        this.getUnrespondedInvitations();
+        //this.getStoredInvitations();
     }
 
-    getUnrespondedInvitations() {
-        this.invitationService.getUnrespondedInvitations(this.currentUser.PersonId).subscribe(res => {
-            this.unrespondedInvitations = res;
-        });
-    }
+    //private getStoredInvitations() {
+    //    this.invitationService.invitationList.subscribe(invitations => {
+    //        console.log("Hämtade invites från service");
+
+    //        if (invitations == null) {
+    //            this.getInvitations();
+    //            return;
+    //        }
+
+    //        this.unrespondedInvitations = invitations.filter(x => x.Status == this.invitationStatus.Created);
+
+    //    }, err => console.log("Error {0}", err));
+
+    //}
+
+    //private updateInvitationService(invitations: Invitation[]) {
+    //    console.log("Uppdaterade invites i service");
+    //    this.invitationService.updateInvitations(invitations);
+    //}
+
+    //getInvitations() {
+    //    this.invitationService.getInvitations(this.currentUser.PersonId).subscribe(res => {
+    //        console.log("Hämtade invites från API");
+
+    //        if (!res) return;
+
+    //        this.unrespondedInvitations = res.filter(x => x.Status >= this.invitationStatus.Created);
+
+    //        //Update invitationService for all using components
+    //        this.updateInvitationService(this.invitations);
+
+    //    }, err => { console.log("Error: {0}", err) });
+    //}
+
+
+
+    //getUnrespondedInvitations() {
+    //    this.invitationService.getUnrespondedInvitations(this.currentUser.PersonId).subscribe(res => {
+    //        //this.unrespondedInvitations = res;
+    //        this.invitations = res.filter(x => x.Status >= this.invitationStatus.Accepted);
+    //    });
+    //}
 
     incrementSliceValue() {
         if (this.maxSliceValue >= this.unrespondedInvitations.length)

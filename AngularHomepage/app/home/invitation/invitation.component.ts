@@ -23,10 +23,11 @@ import { InvitationStatusEnum } from '../../_models/enums/index';
 
 export class InvitationComponent implements OnInit {
     @Input() invitations: Invitation[]; //Array data received from parent
-    @Output() invitationsChanged: EventEmitter<number> = new EventEmitter<number>(); //Push change once emit is called on this object
+    @Output() invitationsChanged: EventEmitter<any> = new EventEmitter<any>(); //Push change once emit is called on this object
 
     currentUser: Person;
     confirmResult: boolean = null;
+    invitationStatus = new InvitationStatusEnum;
     //invitations: Invitation[];
 
     constructor(private cd: ChangeDetectorRef,
@@ -43,10 +44,14 @@ export class InvitationComponent implements OnInit {
         //this.getStoredInvitations();
     }
 
-    setInvitations() {
+    setInvitations(inviteAccepted: boolean) {
         //Get the last invitation interaction and emit the id to parent
-        this.invitationService.currentInvite.subscribe(res => {
-            this.invitationsChanged.emit(res.Id);
+        //Update status from created to accepted
+        //Update currentInvite with new status
+        this.invitationService.currentInvite.subscribe(invite => {
+            invite.Status = this.invitationStatus.Accepted;
+
+            this.invitationsChanged.emit({ invite, inviteAccepted });
         });
     }
     
@@ -63,7 +68,7 @@ export class InvitationComponent implements OnInit {
 
             this.toastrService.ShowToastr(isConfirmed, false, "Inbjudan accepterad, försändelse skapad");
 
-            this.setInvitations();
+            this.setInvitations(isConfirmed);
             
         });
 

@@ -79,14 +79,13 @@ namespace UserManager.Core.Repositories
         {
             using (masterEntities context = new masterEntities())
             {
-                //IEnumerable<Invitation> invitations = context.Invitation
-                //    .Where(x => x.ReceiverPersonId == personId ||
-                //    x.SenderPersonId == personId);
-
+                //Where personId exists and is active invitation OR if invitation is status created and personid doesnt match initiator
                 IEnumerable<Invitation> invitations = context.Invitation
-                    .Where(x => x.InvitationInitiatorPersonId != personId &&
-                    (x.ReceiverPersonId == personId || x.SenderPersonId == personId) &&
-                    (x.Status != InvitationStatus.ConsignmentActive && x.EndDate == null));
+                    .Where(x => (x.EndDate == null && (x.ReceiverPersonId == personId || x.SenderPersonId == personId)) &&
+                    
+                    ((x.Status > InvitationStatus.Created && x.Status < InvitationStatus.ConsignmentActive) ||
+                    (x.Status == InvitationStatus.Created && x.InvitationInitiatorPersonId != personId))
+                );
 
                 var invitationsDTO = EntityToDtoMappingCollection<Invitation, InvitationDTO>(invitations);
 

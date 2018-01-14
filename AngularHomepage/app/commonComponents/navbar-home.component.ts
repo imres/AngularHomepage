@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges  } from '@angular/core';
+﻿import { Component, Input, Output, EventEmitter, OnInit, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges  } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
 import { DialogService } from "ng2-bootstrap-modal";
@@ -17,8 +17,11 @@ import { InvitationStatusEnum } from '../_models/enums/index';
 })
 
 export class NavbarHomeComponent implements OnInit {
-    invitations: Invitation[];
-    invitationNotifications: Invitation[];
+    @Input() invitationNotifications: Invitation[];
+    @Output() invitationsChanged: EventEmitter<any> = new EventEmitter<any>(); //Push change once emit is called on this object
+
+    //invitations: Invitation[];
+    //invitationNotifications: Invitation[];
     currentUser: Person;
     showDialog = false;
     isClassActive: boolean;
@@ -36,13 +39,24 @@ export class NavbarHomeComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getInvitations();
+        //this.getInvitations();
+        //this.getStoredInvitations();
+
     }
 
-    newInvitationList(event: number) {
+    newInvitationList(event: any) {
         //Method is connected to child method in order to receive event changes
         //filter current invitation list since id from event is non-existing
-        this.invitationNotifications = this.invitationNotifications.filter(x => x.Id != event);
+        this.invitationNotifications = this.invitationNotifications.filter(x => x.Id != event.invite.Id);
+
+        if (!event.inviteAccepted) return;
+
+        this.setInvitations(event);
+    }
+
+    setInvitations(invite: Invitation) {
+        //Get the last invitation interaction and emit the id to parent
+        this.invitationsChanged.emit(invite);
     }
 
     //Get invitations with all statuses, but fill seperate variables with filtered data
@@ -58,12 +72,13 @@ export class NavbarHomeComponent implements OnInit {
 
         }, err => { console.log("Error: {0}", err) });
     }
-
-
+    
     private getStoredInvitations(){
         this.invitationService.invitationList.subscribe(invitations => {
             console.log("Hämtade invites från service");
+
             this.invitations = invitations;
+            this.invitationNotifications = this.invitations.filter(x => x.Status == this.invitationStatus.Created);
         }, err => console.log("Error {0}", err));
         
     }

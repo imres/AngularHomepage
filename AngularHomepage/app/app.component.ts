@@ -1,5 +1,5 @@
 ﻿import { Component, ViewContainerRef } from '@angular/core';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr';
 
 @Component({
     moduleId: module.id,
@@ -9,9 +9,10 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 export class AppComponent {
 
-    constructor(private vcr: ViewContainerRef, private toastr: ToastsManager) {
+    constructor(private vcr: ViewContainerRef, private toastrManager: ToastsManager, private toastOptions: ToastOptions) {
 
-        this.toastr.setRootViewContainerRef(vcr);
+        this.toastrManager.setRootViewContainerRef(vcr);
+        this.toastOptions.positionClass = "toast-bottom-right";
     }
 
 }

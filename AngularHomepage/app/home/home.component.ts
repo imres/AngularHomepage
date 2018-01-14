@@ -14,6 +14,7 @@ import { InvitationStatusEnum } from '../_models/enums/index';
 export class HomeComponent implements OnInit{
     invitations: Invitation[];
     activeInvitations: Invitation[];
+    inactiveInvitations: Invitation[];
 
     currentUser: Person;
     showDialog = false;
@@ -27,16 +28,35 @@ export class HomeComponent implements OnInit{
     }
 
     ngOnInit() {
+
         this.getInvitations();
     }
 
-    private getInvitations() {
-        this.invitationService.invitationList.subscribe(invitations => {
-            if (!invitations) return;
-
-            this.invitations = invitations;
-            this.activeInvitations = this.invitations.filter(x => x.Status >= this.invitationStatus.Accepted);
-            //this.invitationNotifications = this.invitations.filter(x => x.Status == this.invitationStatus.Created);
-        });
+    newInvitationList(event: any) {
+        //Method is connected to child method in order to receive event changes
+        //filter current invitation list since id from event is non-existing
+        this.activeInvitations = this.activeInvitations.concat(event.invite);
     }
+
+    getInvitations() {
+        this.invitationService.getInvitations(this.currentUser.PersonId).subscribe(res => {
+            console.log("Hämtade invites från API");
+
+            if (res == null) return;
+
+            this.invitations = res;
+            this.activeInvitations = res.filter(x => x.Status > this.invitationStatus.Created);
+            this.inactiveInvitations = res.filter(x => x.Status == this.invitationStatus.Created);
+
+            //Update invitationService for all using components
+            this.updateInvitationService(res);
+
+        }, err => { console.log("Error: {0}", err) });
+    }
+
+    private updateInvitationService(invitations: Invitation[]) {
+        console.log("Uppdaterade invites i service");
+        this.invitationService.updateInvitations(invitations);
+    }
+    
 }
