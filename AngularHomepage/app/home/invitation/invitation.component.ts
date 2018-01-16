@@ -28,6 +28,7 @@ export class InvitationComponent implements OnInit {
     currentUser: Person;
     confirmResult: boolean = null;
     invitationStatus = new InvitationStatusEnum;
+    currentInvitation: Invitation;
     //invitations: Invitation[];
 
     constructor(private cd: ChangeDetectorRef,
@@ -44,21 +45,28 @@ export class InvitationComponent implements OnInit {
         //this.getStoredInvitations();
     }
 
-    setInvitations(inviteAccepted: boolean) {
+    updateActiveInvitationList(inviteAccepted: boolean) {
         //Get the last invitation interaction and emit the id to parent
         //Update status from created to accepted
         //Update currentInvite with new status
-        this.invitationService.currentInvite.subscribe(invite => {
-            invite.Status = this.invitationStatus.Accepted;
 
-            this.invitationsChanged.emit({ invite, inviteAccepted });
-        });
+        var invite = this.currentInvitation;
+
+        if (!inviteAccepted) return;
+
+        invite.Status = this.invitationStatus.Accepted;
+
+        this.invitationsChanged.emit({ invite, inviteAccepted });
+
     }
     
     showInviteResponseDialog(invite: Invitation) {
+        this.currentInvitation = invite;
+
         this.dialogService.addDialog(InviteResponseComponent, {
             title: this.HasReceiverRole(invite) ? "Mottagare" : "Avsändare",
-            message: 'Bla bla confirm some action?'
+            message: 'Bla bla confirm some action?',
+            currentInvite: invite
         })
         .subscribe((isConfirmed) => {
             //Get dialog result
@@ -68,14 +76,9 @@ export class InvitationComponent implements OnInit {
 
             this.toastrService.ShowToastr(isConfirmed, false, "Inbjudan accepterad, försändelse skapad");
 
-            this.setInvitations(isConfirmed);
+            this.updateActiveInvitationList(isConfirmed);
             
         });
-
-        this.invitationService.changeInviteData(invite);
-        this.HasReceiverRole(invite);
-        
-        //this.invitationService.currentInvite.subscribe(invite => this.currentInvite = invite);
     }
 
     private HasReceiverRole(invite: Invitation): boolean {

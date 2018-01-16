@@ -39,9 +39,6 @@ export class NavbarHomeComponent implements OnInit {
     }
 
     ngOnInit() {
-        //this.getInvitations();
-        //this.getStoredInvitations();
-
     }
 
     newInvitationList(event: any) {
@@ -49,47 +46,12 @@ export class NavbarHomeComponent implements OnInit {
         //filter current invitation list since id from event is non-existing
         this.invitationNotifications = this.invitationNotifications.filter(x => x.Id != event.invite.Id);
 
-        if (!event.inviteAccepted) return;
-
-        this.setInvitations(event);
+        this.updateActiveInvitationList(event);
     }
 
-    setInvitations(invite: Invitation) {
+    updateActiveInvitationList(invite: Invitation) {
         //Get the last invitation interaction and emit the id to parent
         this.invitationsChanged.emit(invite);
-    }
-
-    //Get invitations with all statuses, but fill seperate variables with filtered data
-    getInvitations() {
-        this.invitationService.getInvitations(this.currentUser.PersonId).subscribe(res => {
-            console.log("Hämtade invites från API");
-
-            this.invitations = res;
-            this.invitationNotifications = this.invitations.filter(x => x.Status == this.invitationStatus.Created);
-
-            //Update invitationService for all using components
-            this.updateInvitationService(this.invitations);
-
-        }, err => { console.log("Error: {0}", err) });
-    }
-    
-    private getStoredInvitations(){
-        this.invitationService.invitationList.subscribe(invitations => {
-            console.log("Hämtade invites från service");
-
-            this.invitations = invitations;
-            this.invitationNotifications = this.invitations.filter(x => x.Status == this.invitationStatus.Created);
-        }, err => console.log("Error {0}", err));
-        
-    }
-
-    private updateInvitationService(invitations: Invitation[]) {
-        console.log("Uppdaterade invites i service");
-        this.invitationService.updateInvitations(invitations);
-    }
-
-    showInvite(invite: Invitation) {
-        console.log(invite);
     }
 
     showConfirm(event: any) {
