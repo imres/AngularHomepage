@@ -21,7 +21,7 @@
 </div>
 
 <!-- Om försändelser finns så visas dom här komponenterna -->
-<div class="row">
+<div *ngIf="consignments?.length > 0" class="row">
     <h3 class="mb-3 col-sm-9" *ngIf="consignments?.length > 1">Du har {{consignments?.length}} aktiva försändelser</h3>
     <h3 class="mb-3 col-sm-9" *ngIf="consignments?.length == 1">Du har {{consignments?.length}} aktiv försändelse</h3>
     <a *ngIf="showConsignments" class="col-sm-3 text-right hide-link" (click)="hideConsignments()">
