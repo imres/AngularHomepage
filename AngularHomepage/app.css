@@ -1,13 +1,24 @@
 ﻿a {
     cursor: pointer;
 }
+*:not(i) {
+    /*font-family: 'Raleway', sans-serif !important;*/
+    /*font-family: "Source Sans Pro", Helvetica, sans-serif;*/
+    font-family: 'Roboto', sans-serif;
+}
+
+html {
+   
+}
 body {
     background-size: cover;
     background-position: center center;
     background-color: white;
     height: 100vh;
     color: #3e3e3e !important;
+    
 }
+
 
 img {
     max-width: 100%;
@@ -280,23 +291,34 @@ btn.btn-primary:active, .btn-primary:focus{
 
 
 
+.center-flex {
+    justify-content: center;
+    align-items: center;
+}
+
 /* Cover */
 
-#cover {
-    background: #222 url('img/paket.jpg') center center no-repeat;
-    background-size: cover;
+.primary-gradient {
+    background: #56CCF2; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2F80ED, #56CCF2); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2F80ED, #56CCF2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.cover {
+    /*background: #222 url('img/paket.jpg') center center no-repeat;
+    background-size: cover;*/
     color: black;
-    height: 100vh;
+    height: 80vh;
     text-align: center;
     display: flex;
 }
 
-    #cover h1 {
+    .cover h1 {
         margin-top: 5rem;
         font-size: 5rem;
     }
 
-    #cover p {
+    .cover p {
         font-size: 2rem;
         font-weight: 100;
     }
@@ -518,3 +540,7 @@ a.cover-btn:hover {
     flex-direction: column;
     background-color: #fff;
 }
+
+/*.btn {
+    font-family: 'Raleway', sans-serif;
+}*/

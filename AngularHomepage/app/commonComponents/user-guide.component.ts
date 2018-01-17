@@ -11,7 +11,6 @@ import { UserService, InvitationService } from '../_services/index';
 })
 
 export class UserGuideComponent implements OnInit {
-    invitations: Invitation[];
     currentUser: Person;
     showDialog = false;
     isClassActive: boolean;
@@ -23,12 +22,6 @@ export class UserGuideComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getInvitations();
     }
-
-    getInvitations() {
-        this.invitationService.getInvitations(this.currentUser.PersonId).subscribe(res => {
-            this.invitations = res;
-        });
-    }
+    
 }
