@@ -26,6 +26,7 @@ export class InvitationComponent implements OnInit {
     @Output() invitationsChanged: EventEmitter<any> = new EventEmitter<any>(); //Push change once emit is called on this object
 
     currentUser: Person;
+    currentInvite: Invitation;
     confirmResult: boolean = null;
     invitationStatus = new InvitationStatusEnum;
     //invitations: Invitation[];
@@ -84,5 +85,19 @@ export class InvitationComponent implements OnInit {
         } else {
             return false;
         }
+    }
+
+    cancel(invite: Invitation) {
+        //Skicka till service och ta bort invite, kalla på toastr på success
+
+        this.invitationService.endInvite(invite.Id).subscribe(
+            res => {
+                console.log(res)
+            },
+            err => console.log(err)
+        );
+
+        this.result = false;
+        this.close();
     }
 }
