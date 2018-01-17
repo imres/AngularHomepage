@@ -38,7 +38,6 @@ export class InviteResponseComponent extends DialogComponent<ConfirmModel, boole
         super(dialogService);
 
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        //this.invitationService.currentInvite.subscribe(invite => this.currentInvitation = invite);
     }
 
     private setPersonId() {
@@ -54,10 +53,8 @@ export class InviteResponseComponent extends DialogComponent<ConfirmModel, boole
 
     HasReceiverRole(invite: Invitation): boolean {
         if (invite.ReceiverPersonId == this.currentUser.PersonId) {
-            //this.isReceiver = true;
             return true;
         } else {
-            //this.isReceiver = false;
             return false;
         }
     }
@@ -77,9 +74,8 @@ export class InviteResponseComponent extends DialogComponent<ConfirmModel, boole
         this.result = true;
         this.close();
     }
-    cancel() {
-        //Skicka till service och ta bort invite, kalla på toastr på success
 
+    cancel() {
         this.invitationService.endInvite(this.currentInvitation.Id).subscribe(
             res => console.log(res),
             err => console.log(err)

@@ -46,6 +46,8 @@ export class NavbarHomeComponent implements OnInit {
         //filter current invitation list since id from event is non-existing
         this.invitationNotifications = this.invitationNotifications.filter(x => x.Id != event.invite.Id);
 
+        if (!event.inviteAccepted) return;
+
         this.updateActiveInvitationList(event);
     }
 

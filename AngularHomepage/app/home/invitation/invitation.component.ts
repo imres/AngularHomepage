@@ -52,13 +52,11 @@ export class InvitationComponent implements OnInit {
         //Update currentInvite with new status
 
         var invite = this.currentInvitation;
-
-        if (!inviteAccepted) return;
-
-        invite.Status = this.invitationStatus.Accepted;
+        
+        if (inviteAccepted)
+            invite.Status = this.invitationStatus.Accepted;
 
         this.invitationsChanged.emit({ invite, inviteAccepted });
-
     }
     
     showInviteResponseDialog(invite: Invitation) {
@@ -67,7 +65,7 @@ export class InvitationComponent implements OnInit {
         this.dialogService.addDialog(InviteResponseComponent, {
             title: this.HasReceiverRole(invite) ? "Mottagare" : "Avsändare",
             message: 'Bla bla confirm some action?',
-            currentInvite: invite
+            currentInvitation: invite
         })
         .subscribe((isConfirmed) => {
             //Get dialog result
@@ -92,10 +90,11 @@ export class InvitationComponent implements OnInit {
 
     cancel(invite: Invitation) {
         //Skicka till service och ta bort invite, kalla på toastr på success
+        var inviteAccepted = false;
 
         this.invitationService.endInvite(invite.Id).subscribe(
             res => {
-                console.log(res)
+                this.invitationsChanged.emit({ invite, inviteAccepted });
             },
             err => console.log(err)
         );
