@@ -490,3 +490,31 @@ a.cover-btn:hover {
     height: 200px;
     background: blue;
 }
+
+.noborder{
+    border: 0;
+}
+
+.white-bg {
+    background: #ffffff;
+}
+
+.card-header-custom {
+    padding: .75rem 0;
+    margin-bottom: 0;
+    background-color: #ffffff;
+}
+
+.card-custom {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    background-color: #fff;
+}

@@ -9,6 +9,7 @@ import { InvitationRole, CommonObject, PaymentMethod } from '../_models/index';
 export interface ConfirmModel {
     title: string;
     message: string;
+    currentInvitation: Invitation;
 }
 
 @Component({
@@ -25,8 +26,7 @@ export class InviteResponseComponent extends DialogComponent<ConfirmModel, boole
     title: string;
     message: string;
     model: Invitation = new Invitation();
-    currentInvite: Invitation;
-
+    currentInvitation: Invitation;
 
     currentUser: Person;
     isReceiver: boolean = null;
@@ -38,7 +38,7 @@ export class InviteResponseComponent extends DialogComponent<ConfirmModel, boole
         super(dialogService);
 
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        this.invitationService.currentInvite.subscribe(invite => this.currentInvite = invite);
+        //this.invitationService.currentInvite.subscribe(invite => this.currentInvitation = invite);
     }
 
     private setPersonId() {
@@ -80,7 +80,7 @@ export class InviteResponseComponent extends DialogComponent<ConfirmModel, boole
     cancel() {
         //Skicka till service och ta bort invite, kalla på toastr på success
 
-        this.invitationService.endInvite(this.currentInvite.Id).subscribe(
+        this.invitationService.endInvite(this.currentInvitation.Id).subscribe(
             res => console.log(res),
             err => console.log(err)
         );
