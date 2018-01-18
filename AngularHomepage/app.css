@@ -387,6 +387,10 @@ a.cover-btn:hover {
     width: 22rem;
 }
 
+.width-23 {
+    width: 23rem;
+}
+
 .width-10 {
     width: 10rem;
 }
@@ -437,7 +441,6 @@ a.cover-btn:hover {
 
 /* Notificationcenter */
 .notification {
-    height: 4rem;
     border-bottom: 1px solid rgba(0,0,0,.15);
     border-top: 1px solid rgba(0,0,0,.15);
 }
@@ -480,7 +483,11 @@ a.cover-btn:hover {
     color: white;
 }
 
- /* Consignments */ 
+.close-notification {
+    font-size: 1.3rem;
+}
+
+/* Consignments */
 .consignment-img {
     width: 125px;
     height: 125px;
