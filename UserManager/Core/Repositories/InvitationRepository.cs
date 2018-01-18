@@ -43,6 +43,7 @@ namespace UserManager.Core.Repositories
                 var invitationToAccept = context.Invitation.Where(x => x.Id == invitationDTO.Id).First();
 
                 invitationToAccept.Status = InvitationStatus.Accepted;
+                invitationToAccept.RequestedDepositAmount = invitationDTO.RequestedDepositAmount;
 
                 context.SaveChanges();
             }
