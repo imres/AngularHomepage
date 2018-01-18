@@ -168,7 +168,7 @@
     <Content Include="app\home\home.component.js" />
     <Content Include="app\home\index.js" />
     <Content Include="app\home\invitation\invitation.component.html" />
-    <Content Include="app\home\invitation\unresponded-invites.component.html" />
+    <Content Include="app\home\invitation\active-invitation.component.html" />
     <Content Include="app\img\noise.0e9cf16a17adb19690cd31312cdaa809.png" />
     <Content Include="app\img\preset-light.fce1a96aaadda47900f6fedf0a348ad1.png" />
     <Content Include="app\login\index.js" />
@@ -11652,11 +11652,11 @@
       <DependentUpon>home.component.html</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="app\home\index.ts" />
+    <TypeScriptCompile Include="app\home\invitation\active-invitation.component.ts">
+      <DependentUpon>active-invitation.component.html</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="app\home\invitation\invitation.component.ts">
       <DependentUpon>invitation.component.html</DependentUpon>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="app\home\invitation\unresponded-invites.component.ts">
-      <DependentUpon>unresponded-invites.component.html</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="app\login\index.ts" />
     <TypeScriptCompile Include="app\login\login.component.ts">

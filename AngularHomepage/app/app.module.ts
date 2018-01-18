@@ -32,7 +32,7 @@ import { NavbarHomeComponent } from './commonComponents/navbar-home.component';
 import { ClickStopPropagation } from './commonComponents/navbar.component';
 import { LoginSiteComponent } from './login/loginsite.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { UnrespondedInvitesComponent } from './home/invitation/unresponded-invites.component';
+import { ActiveInvitationComponent } from './home/invitation/active-invitation.component';
 
 @NgModule({
     imports: [
@@ -62,7 +62,7 @@ import { UnrespondedInvitesComponent } from './home/invitation/unresponded-invit
         UserProfileComponent,
         NavbarHomeComponent,
         UserGuideComponent,
-        UnrespondedInvitesComponent,
+        ActiveInvitationComponent,
     ],
     providers: [
         AuthGuard,

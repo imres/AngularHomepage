@@ -6,9 +6,9 @@
 <div id="accordion" role="tablist">
     <div class="card-custom">
         <div class="card-header-custom" role="tab" id="headingOne">
-            <div *ngIf="unrespondedInvitations?.length > 0" class="row">
-                <h3 class="m-0 col-md-9" *ngIf="unrespondedInvitations?.length > 1">Du har {{unrespondedInvitations?.length}} aktiva inbjudningar</h3>
-                <h3 class="m-0 col-md-9" *ngIf="unrespondedInvitations?.length == 1">Du har {{unrespondedInvitations?.length}} aktiv inbjudan</h3>
+            <div *ngIf="activeInvitations?.length > 0" class="row">
+                <h3 class="m-0 col-md-9" *ngIf="activeInvitations?.length > 1">Du har {{activeInvitations?.length}} aktiva inbjudningar</h3>
+                <h3 class="m-0 col-md-9" *ngIf="activeInvitations?.length == 1">Du har {{activeInvitations?.length}} aktiv inbjudan</h3>
 
                 <p class="col-md-3 m-0 text-md-right">
                     <a *ngIf="!showInvitations" (click)="showInvites()" class="btn btn-outline-primary"
@@ -27,7 +27,7 @@
         <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
                 <div class="row">
-                    <div *ngFor="let item of unrespondedInvitations | slice:minSliceValue:maxSliceValue; let i=index" class="col-sm-6">
+                    <div *ngFor="let item of activeInvitations | slice:minSliceValue:maxSliceValue; let i=index" class="col-sm-6">
                         <div class="card mb-3">
                             <div class="card-block">
                                 <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId"><strong>Avsändare:</strong> {{item.SenderPersonId}}</p>
@@ -38,27 +38,27 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12 text-right" *ngIf="unrespondedInvitations?.length > 0">
+                    <div class="col-md-12 text-right" *ngIf="activeInvitations?.length > 0">
                         <div class="row">
                             <div class="col-sm-8">
-                                <nav aria-label="Page navigation for active invitations" *ngIf="unrespondedInvitations?.length > 4 && !showAllInvitationsEnabled">
+                                <nav aria-label="Page navigation for active invitations" *ngIf="activeInvitations?.length > 4 && !showAllInvitationsEnabled">
                                     <ul class="pagination">
                                         <li class="firstAndLast page-item text-center" [ngClass]="{'disabled' : (minSliceValue < 4)}"><a class="page-link" (click)="resetSliceValue()">Första</a></li>
 
                                         <li class="page-item" [ngClass]="{'disabled' : (minSliceValue < 4)}"><a class="page-link" (click)="decrementSliceValue()"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>
-                                        <li *ngIf="maxSliceValue >= unrespondedInvitations?.length && unrespondedInvitations?.length > 8" class="page-item paginationNumber text-center" (click)="decrementSliceValueTwice()"><a class="page-link">{{(maxSliceValue / 4) - 2}}</a></li>
+                                        <li *ngIf="maxSliceValue >= activeInvitations?.length && activeInvitations?.length > 8" class="page-item paginationNumber text-center" (click)="decrementSliceValueTwice()"><a class="page-link">{{(maxSliceValue / 4) - 2}}</a></li>
                                         <li *ngIf="maxSliceValue > 4" class="page-item paginationNumber text-center" (click)="decrementSliceValue()"><a class="page-link">{{(maxSliceValue / 4) - 1}}</a></li>
                                         <li class="page-item disabled paginationNumber text-center"><a class="page-link activePage">{{maxSliceValue / 4}}</a></li>
-                                        <li *ngIf="maxSliceValue < unrespondedInvitations?.length" class="page-item paginationNumber text-center"><a class="page-link" (click)="incrementSliceValue()">{{(maxSliceValue / 4) + 1}}</a></li>
-                                        <li *ngIf="maxSliceValue == 4 && unrespondedInvitations?.length > 8" class="page-item paginationNumber text-center" (click)="incrementSliceValueTwice()"><a class="page-link">{{(maxSliceValue / 4) + 2}}</a></li>
-                                        <li class="page-item" [ngClass]="{'disabled' : (maxSliceValue == unrespondedInvitations?.length)}"><a class="page-link" (click)="incrementSliceValue()"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+                                        <li *ngIf="maxSliceValue < activeInvitations?.length" class="page-item paginationNumber text-center"><a class="page-link" (click)="incrementSliceValue()">{{(maxSliceValue / 4) + 1}}</a></li>
+                                        <li *ngIf="maxSliceValue == 4 && activeInvitations?.length > 8" class="page-item paginationNumber text-center" (click)="incrementSliceValueTwice()"><a class="page-link">{{(maxSliceValue / 4) + 2}}</a></li>
+                                        <li class="page-item" [ngClass]="{'disabled' : (maxSliceValue == activeInvitations?.length)}"><a class="page-link" (click)="incrementSliceValue()"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
 
-                                        <li class="firstAndLast page-item text-center" [ngClass]="{'disabled' : (maxSliceValue == unrespondedInvitations?.length)}"><a class="page-link" (click)="maximizeSliceValue()">Sista</a></li>
+                                        <li class="firstAndLast page-item text-center" [ngClass]="{'disabled' : (maxSliceValue == activeInvitations?.length)}"><a class="page-link" (click)="maximizeSliceValue()">Sista</a></li>
                                     </ul>
                                 </nav>
                             </div>
                             <div class="col-sm-4">
-                                <button *ngIf="maxSliceValue >= 4 && !showAllInvitationsEnabled && unrespondedInvitations?.length > 4" class="btn btn-outline-primary" type="button" role="button" (click)="showAllInvitations()">
+                                <button *ngIf="maxSliceValue >= 4 && !showAllInvitationsEnabled && activeInvitations?.length > 4" class="btn btn-outline-primary" type="button" role="button" (click)="showAllInvitations()">
                                     Visa alla <i class="fa fa-angle-down" aria-hidden="true"></i>
                                 </button>
                                 <button *ngIf="showAllInvitationsEnabled" class="btn btn-outline-primary" type="button" role="button" (click)="resetSliceValue()">

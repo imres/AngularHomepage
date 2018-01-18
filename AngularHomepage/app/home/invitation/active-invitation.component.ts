@@ -17,12 +17,12 @@ import { InvitationStatusEnum } from '../../_models/enums/index';
 
 @Component({
     moduleId: module.id,
-    selector: 'unresponded-invites',
-    templateUrl: 'unresponded-invites.component.html'
+    selector: 'active-invitation',
+    templateUrl: 'active-invitation.component.html'
 })
 
-export class UnrespondedInvitesComponent implements OnInit {
-    @Input() unrespondedInvitations: Invitation[];
+export class ActiveInvitationComponent implements OnInit {
+    @Input() activeInvitations: Invitation[];
     
     currentUser: Person;
     //unrespondedInvitations: Invitation[];
@@ -45,7 +45,7 @@ export class UnrespondedInvitesComponent implements OnInit {
     }
 
     incrementSliceValue() {
-        if (this.maxSliceValue >= this.unrespondedInvitations.length)
+        if (this.maxSliceValue >= this.activeInvitations.length)
             return;
 
         this.maxSliceValue += 4;
@@ -74,19 +74,19 @@ export class UnrespondedInvitesComponent implements OnInit {
     //}
 
     showAllInvitations() {
-        this.maxSliceValue = this.unrespondedInvitations.length;
+        this.maxSliceValue = this.activeInvitations.length;
         this.minSliceValue = 0;
 
         this.showAllInvitationsEnabled = true;
     }
 
     maximizeSliceValue() {
-        if (this.unrespondedInvitations.length % 4 > 0){
-            this.maxSliceValue = this.unrespondedInvitations.length + (4 - (this.unrespondedInvitations.length % 4)); //Om antalet invitations inte är delbart på 4, ska den ändå visa rätt invites på sista sidan
+        if (this.activeInvitations.length % 4 > 0){
+            this.maxSliceValue = this.activeInvitations.length + (4 - (this.activeInvitations.length % 4)); //Om antalet invitations inte är delbart på 4, ska den ändå visa rätt invites på sista sidan
             this.minSliceValue = this.maxSliceValue - 4;
         }
         else {
-            this.maxSliceValue = this.unrespondedInvitations.length;
+            this.maxSliceValue = this.activeInvitations.length;
             this.minSliceValue = this.maxSliceValue - 4;
         }
     }
