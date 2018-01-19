@@ -16,10 +16,8 @@
                         Dölj inbjudningar <i class="fa fa-angle-up" aria-hidden="true"></i>
                     </a>
                 </p>
-            </div>
-            
+            </div> 
         </div>
-
         <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
                 <div class="row">
@@ -47,33 +45,32 @@
                         </div>
                     </div>
                 </div>
-                    <div class="col-md-12 text-right" *ngIf="activeInvitations?.length > 0">
-                        <div class="row">
-                            <div class="col-sm-8">
-                                <nav aria-label="Page navigation for active invitations" *ngIf="activeInvitations?.length > 4 && !showAllInvitationsEnabled">
-                                    <ul class="pagination">
-                                        <li class="firstAndLast page-item text-center" [ngClass]="{'disabled' : (minSliceValue < 4)}"><a class="page-link" (click)="resetSliceValue()">Första</a></li>
+                <div class="col-md-12 text-right" *ngIf="activeInvitations?.length > 0">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <nav aria-label="Page navigation for active invitations" *ngIf="activeInvitations?.length > 4 && !showAllInvitationsEnabled">
+                                <ul class="pagination">
+                                    <li class="firstAndLast page-item text-center" [ngClass]="{'disabled' : (minSliceValue < 4)}"><a class="page-link" (click)="resetSliceValue()">Första</a></li>
 
-                                        <li class="page-item" [ngClass]="{'disabled' : (minSliceValue < 4)}"><a class="page-link" (click)="decrementSliceValue()"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>
-                                        <li *ngIf="maxSliceValue >= activeInvitations?.length && activeInvitations?.length > 8" class="page-item paginationNumber text-center" (click)="decrementSliceValueTwice()"><a class="page-link">{{(maxSliceValue / 4) - 2}}</a></li>
-                                        <li *ngIf="maxSliceValue > 4" class="page-item paginationNumber text-center" (click)="decrementSliceValue()"><a class="page-link">{{(maxSliceValue / 4) - 1}}</a></li>
-                                        <li class="page-item disabled paginationNumber text-center"><a class="page-link activePage">{{maxSliceValue / 4}}</a></li>
-                                        <li *ngIf="maxSliceValue < activeInvitations?.length" class="page-item paginationNumber text-center"><a class="page-link" (click)="incrementSliceValue()">{{(maxSliceValue / 4) + 1}}</a></li>
-                                        <li *ngIf="maxSliceValue == 4 && activeInvitations?.length > 8" class="page-item paginationNumber text-center" (click)="incrementSliceValueTwice()"><a class="page-link">{{(maxSliceValue / 4) + 2}}</a></li>
-                                        <li class="page-item" [ngClass]="{'disabled' : (maxSliceValue == activeInvitations?.length)}"><a class="page-link" (click)="incrementSliceValue()"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+                                    <li class="page-item" [ngClass]="{'disabled' : (minSliceValue < 4)}"><a class="page-link" (click)="decrementSliceValue()"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>
+                                    <li *ngIf="maxSliceValue >= activeInvitations?.length && activeInvitations?.length > 8" class="page-item paginationNumber text-center" (click)="decrementSliceValueTwice()"><a class="page-link">{{(maxSliceValue / 4) - 2}}</a></li>
+                                    <li *ngIf="maxSliceValue > 4" class="page-item paginationNumber text-center" (click)="decrementSliceValue()"><a class="page-link">{{(maxSliceValue / 4) - 1}}</a></li>
+                                    <li class="page-item disabled paginationNumber text-center"><a class="page-link activePage">{{maxSliceValue / 4}}</a></li>
+                                    <li *ngIf="maxSliceValue < activeInvitations?.length" class="page-item paginationNumber text-center"><a class="page-link" (click)="incrementSliceValue()">{{(maxSliceValue / 4) + 1}}</a></li>
+                                    <li *ngIf="maxSliceValue == 4 && activeInvitations?.length > 8" class="page-item paginationNumber text-center" (click)="incrementSliceValueTwice()"><a class="page-link">{{(maxSliceValue / 4) + 2}}</a></li>
+                                    <li class="page-item" [ngClass]="{'disabled' : (maxSliceValue == activeInvitations?.length)}"><a class="page-link" (click)="incrementSliceValue()"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
 
-                                        <li class="firstAndLast page-item text-center" [ngClass]="{'disabled' : (maxSliceValue == activeInvitations?.length)}"><a class="page-link" (click)="maximizeSliceValue()">Sista</a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                            <div class="col-sm-4">
-                                <button *ngIf="maxSliceValue >= 4 && !showAllInvitationsEnabled && activeInvitations?.length > 4" class="btn btn-outline-primary" type="button" role="button" (click)="showAllInvitations()">
-                                    Visa alla <i class="fa fa-angle-down" aria-hidden="true"></i>
-                                </button>
-                                <button *ngIf="showAllInvitationsEnabled" class="btn btn-outline-primary" type="button" role="button" (click)="resetSliceValue()">
-                                    Visa färre <i class="fa fa-angle-up" aria-hidden="true"></i>
-                                </button>
-                            </div>
+                                    <li class="firstAndLast page-item text-center" [ngClass]="{'disabled' : (maxSliceValue == activeInvitations?.length)}"><a class="page-link" (click)="maximizeSliceValue()">Sista</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="col-sm-4">
+                            <button *ngIf="maxSliceValue >= 4 && !showAllInvitationsEnabled && activeInvitations?.length > 4" class="btn btn-outline-primary" type="button" role="button" (click)="showAllInvitations()">
+                                Visa alla <i class="fa fa-angle-down" aria-hidden="true"></i>
+                            </button>
+                            <button *ngIf="showAllInvitationsEnabled" class="btn btn-outline-primary" type="button" role="button" (click)="resetSliceValue()">
+                                Visa färre <i class="fa fa-angle-up" aria-hidden="true"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
