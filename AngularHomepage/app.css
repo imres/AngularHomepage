@@ -382,17 +382,26 @@ a.cover-btn:hover {
     color: white;
 }*/
 
-
+/*Guide*/
 
 #guide {
     background-color: white;
 }
 
-/* Egna height och width-klasser */
-
-.height-15 {
-    height: 15rem;
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #0AF;
+    border: none;
+    border-bottom: 3px #0AF solid;
 }
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link {
+    color: #3e3e3e;
+    border: none;
+}
+    /* Egna height och width-klasser */
+    .height-15 {
+        height: 15rem;
+    }
 
 .height-20 {
     height: 20rem;

@@ -55,8 +55,15 @@ export class ActiveInvitationComponent implements OnInit {
     }
 
 
-    translateInvitationStatus(invite: Invitation) {
-        return "test";
+    translateInvitationStatus(invite: Invitation){
+        if (this.currentUser.PersonId == invite.SenderPersonId && invite.Status == 2)
+            return "Väntar på betalning från mottagaren.";
+        if (this.currentUser.PersonId == invite.SenderPersonId && invite.Status == 3)
+            return "Mata in kolli-id!";
+        if (this.currentUser.PersonId == invite.ReceiverPersonId && invite.Status == 2)
+            return "Betala!"
+        if (this.currentUser.PersonId == invite.ReceiverPersonId && invite.Status == 3)
+            return "Väntar på att avsändaren ska skicka paketet."
     }
 
     
