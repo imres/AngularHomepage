@@ -29,19 +29,19 @@
                                 <p class="card-text">Status: {{item.Status}}</p> <!-- Ska sen stå tex: Väntar på att Mottagaren ska lägga in pengar. -->
                                 <p class="card-text">Begärd summa: {{item.RequestedDepositAmount}}</p>
                                 <p class="card-text">Inbjudan skickad: {{item.StartDate}}</p>
+
+                                <div *ngIf="currentUser.PersonId == item.SenderPersonId && showPackageIdForm">
+                                    <form name="packageIdForm" (ngSubmit)="f.form.valid && showPackageIdForm=false" #f="ngForm" novalidate>
+                                        <input type="text" class="form-control" name="packageId" placeholder="Kolli-id"
+                                               [(ngModel)]="invitationWithPackageId.PackageId" #packageId="ngModel" required />
+
+                                        <button type="submit" role="button" class="btn btn-primary mt-2">Spara</button>
+                                    </form>
+                                </div>
+
+                                <a *ngIf="currentUser.PersonId == item.SenderPersonId && !showPackageIdForm" href="#" class="btn btn-primary col-md-9 col-lg-6" (click)="showPackageIdForm=true">Ange kolli-id</a>
+                                <a *ngIf="currentUser.PersonId == item.ReceiverPersonId" href="#" class="btn btn-primary col-md-9 col-lg-6">Betala</a>
                             </div>
-
-                            <div *ngIf="currentUser.PersonId == item.SenderPersonId && showPackageIdForm">
-                                <form name="packageIdForm" (ngSubmit)="f.form.valid && showPackageIdForm=false" #f="ngForm" novalidate>
-                                    <input type="text" class="form-control" name="packageId" placeholder="Kolli-id"
-                                            [(ngModel)]="invitationWithPackageId.PackageId" #packageId="ngModel" required />
-
-                                    <button type="submit" role="button" class="btn btn-primary mt-2">Spara</button>
-                                </form>
-                            </div>
-
-                            <a *ngIf="currentUser.PersonId == item.SenderPersonId && !showPackageIdForm" href="#" class="btn btn-primary col-md-9 col-lg-6" (click)="showPackageIdForm=true">Ange kolli-id</a>
-                            <a *ngIf="currentUser.PersonId == item.ReceiverPersonId" href="#" class="btn btn-primary col-md-9 col-lg-6">Betala</a>
                         </div>
                     </div>
                 </div>
