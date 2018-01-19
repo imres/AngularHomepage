@@ -47,17 +47,15 @@ namespace UserManager.Core.Repositories
             {
                 //Users nullUser = null;
                 IEnumerable<Person> findPerson = context.Person.Where(x => x.Email == personDTO.Email && x.Password == personDTO.Password);
+
                 var matchedPerson = findPerson != null && findPerson.Count() > 0 ? findPerson.FirstOrDefault() : null;
+
                 var matchedPersonDTO = EntityToDtoMapping(matchedPerson);
 
-                try
-                {
-                    return _personCryptography.GenerateSignature(matchedPersonDTO);
-                }
-                catch (Exception)
-                {
-                    return null;
-                }
+                if (matchedPerson == null)
+                    throw new ArgumentException("InvalidCredentials");
+
+                return _personCryptography.GenerateSignature(matchedPersonDTO);
             }
         }
 

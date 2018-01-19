@@ -55,9 +55,16 @@ namespace UserManager.Controllers
                     this.Request.Content = null;
                 }
 
-                User = _PersonRepository.Authenticate(User);
+                try
+                {
+                    User = _PersonRepository.Authenticate(User);
+                }
+                catch (ArgumentException arg)
+                {
+                    return Request.CreateResponse(HttpStatusCode.Forbidden, arg.Message);
+                }
 
-                return User?.Token != null ? Request.CreateResponse(HttpStatusCode.OK, User) : Request.CreateResponse(HttpStatusCode.Forbidden, User);
+                return Request.CreateResponse(HttpStatusCode.OK, User);
             }
         }
 

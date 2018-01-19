@@ -3,6 +3,8 @@ import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
+import { HttpStatusCode } from '../_models/enums/index';
+
 @Injectable()
 export class AuthenticationService {
     constructor(private http: Http) { }
@@ -23,6 +25,12 @@ export class AuthenticationService {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
                 }
+            }).catch(err => {
+
+                if (err.status == HttpStatusCode.FORBIDDEN)
+                    return Observable.throw("Invalid login credentials");
+
+                return Observable.throw("Could not send request");
             });
     }
 

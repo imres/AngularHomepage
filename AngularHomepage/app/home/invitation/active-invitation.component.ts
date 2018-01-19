@@ -28,9 +28,15 @@ export class ActiveInvitationComponent implements OnInit {
     //unrespondedInvitations: Invitation[];
     maxSliceValue = 4;
     minSliceValue = 0;
-    showAllInvitationsEnabled = false;
     invitationStatus: InvitationStatusEnum = new InvitationStatusEnum;
     showInvitations = true;
+    showAllInvitationsEnabled = false;
+    showPackageIdForm = false;
+
+    invitationWithPackageId = {
+        Invitation: new Invitation,
+        PackageId: ""
+    };
 
     constructor(private cd: ChangeDetectorRef,
         private dialogService: DialogService,
@@ -44,6 +50,11 @@ export class ActiveInvitationComponent implements OnInit {
     ngOnInit() {
     }
 
+    setPackageId(invitation: Invitation, packageId: string) {
+
+    }
+
+    
     incrementSliceValue() {
         if (this.maxSliceValue >= this.activeInvitations.length)
             return;
@@ -68,10 +79,7 @@ export class ActiveInvitationComponent implements OnInit {
         this.maxSliceValue -= 8;
         this.minSliceValue -= 8;
     }
-
-    //multiplySliceValue() {
-    //    this.maxSliceValue = this.paginationNumber * 10;
-    //}
+    
 
     showAllInvitations() {
         this.maxSliceValue = this.activeInvitations.length;
@@ -97,15 +105,4 @@ export class ActiveInvitationComponent implements OnInit {
 
         this.showAllInvitationsEnabled = false;
     }
-
-    hideInvites() {
-        this.showInvitations = false;
-    }
-
-    showInvites() {
-        this.showInvitations = true;
-    }
-    //multiplySliceValue(pageNumber) {
-    //    this.maxSliceValue = pageNumber * 4;
-    //}
 }

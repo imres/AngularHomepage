@@ -11684,6 +11684,7 @@
     <TypeScriptCompile Include="app\_helpers\fake-backend.ts" />
     <TypeScriptCompile Include="app\_helpers\index.ts" />
     <TypeScriptCompile Include="app\_models\consignment.ts" />
+    <TypeScriptCompile Include="app\_models\enums\http-status-code.enum.ts" />
     <TypeScriptCompile Include="app\_models\enums\index.ts" />
     <TypeScriptCompile Include="app\_models\enums\invitation-status.enum.ts" />
     <TypeScriptCompile Include="app\_models\image-link.ts" />

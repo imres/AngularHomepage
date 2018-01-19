@@ -1,8 +1,4 @@
 ﻿<!--Invites-->
-
-
-
-
 <div id="accordion" role="tablist">
     <div class="card-custom">
         <div class="card-header-custom" role="tab" id="headingOne">
@@ -11,11 +7,11 @@
                 <h3 class="m-0 col-md-9" *ngIf="activeInvitations?.length == 1">Du har {{activeInvitations?.length}} aktiv inbjudan</h3>
 
                 <p class="col-md-3 m-0 text-md-right">
-                    <a *ngIf="!showInvitations" (click)="showInvites()" class="btn btn-outline-primary"
+                    <a *ngIf="!showInvitations" (click)="showInvitations=true" class="btn btn-outline-primary"
                        data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="true" aria-controls="collapseOne">
                         Visa inbjudningar <i class="fa fa-angle-down" aria-hidden="true"></i>
                     </a>
-                    <a *ngIf="showInvitations" class="btn btn-outline-primary" (click)="hideInvites()"
+                    <a *ngIf="showInvitations" class="btn btn-outline-primary" (click)="showInvitations=false"
                        data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="true" aria-controls="collapseOne">
                         Dölj inbjudningar <i class="fa fa-angle-up" aria-hidden="true"></i>
                     </a>
@@ -28,16 +24,29 @@
             <div class="card-body">
                 <div class="row">
                     <div *ngFor="let item of activeInvitations | slice:minSliceValue:maxSliceValue; let i=index" class="col-sm-6">
-                        <div class="card mb-3">
+                        <div class="card mb-3 h-100">
                             <div class="card-block">
-                                <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId"><strong>Avsändare:</strong> {{item.SenderPersonId}}</p>
+                                <p class="card-title" *ngIf="currentUser.PersonId == item.ReceiverPersonId"><strong>Avsändare:</strong> {{item.SenderPersonId}}</p>
                                 <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId"><strong>Mottagare:</strong> {{item.ReceiverPersonId}}</p>
                                 <p class="card-text">Status: {{item.Status}}</p> <!-- Ska sen stå tex: Väntar på att Mottagaren ska lägga in pengar. -->
                                 <p class="card-text">Begärd summa: {{item.RequestedDepositAmount}}</p>
                                 <p class="card-text">Inbjudan skickad: {{item.StartDate}}</p>
                             </div>
+
+                            <div *ngIf="currentUser.PersonId == item.SenderPersonId && showPackageIdForm">
+                                <form name="packageIdForm" (ngSubmit)="f.form.valid && showPackageIdForm=false" #f="ngForm" novalidate>
+                                    <input type="text" class="form-control" name="packageId" placeholder="Kolli-id"
+                                            [(ngModel)]="invitationWithPackageId.PackageId" #packageId="ngModel" required />
+
+                                    <button type="submit" role="button" class="btn btn-primary mt-2">Spara</button>
+                                </form>
+                            </div>
+
+                            <a *ngIf="currentUser.PersonId == item.SenderPersonId && !showPackageIdForm" href="#" class="btn btn-primary col-md-9 col-lg-6" (click)="showPackageIdForm=true">Ange kolli-id</a>
+                            <a *ngIf="currentUser.PersonId == item.ReceiverPersonId" href="#" class="btn btn-primary col-md-9 col-lg-6">Betala</a>
                         </div>
                     </div>
+                </div>
                     <div class="col-md-12 text-right" *ngIf="activeInvitations?.length > 0">
                         <div class="row">
                             <div class="col-sm-8">
