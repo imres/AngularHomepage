@@ -5,12 +5,12 @@
 
 <div id="accordion" role="tablist">
     <div class="card-custom">
-        <div class="card-header-custom" role="tab" id="headingOne">
-            <div *ngIf="activeInvitations?.length > 0" class="row">
-                <h3 class="m-0 col-md-9" *ngIf="activeInvitations?.length > 1">Du har {{activeInvitations?.length}} aktiva inbjudningar</h3>
-                <h3 class="m-0 col-md-9" *ngIf="activeInvitations?.length == 1">Du har {{activeInvitations?.length}} aktiv inbjudan</h3>
+        <div class="card-header-custom col-12" role="tab" id="headingOne">
+            <div *ngIf="activeInvitations?.length > 0" class="row align-items-center">
+                <h4 class="m-0 col-sm-7" *ngIf="activeInvitations?.length > 1">Du har {{activeInvitations?.length}} aktiva inbjudningar</h4>
+                <h4 class="m-0 col-sm-7" *ngIf="activeInvitations?.length == 1">Du har {{activeInvitations?.length}} aktiv inbjudan</h4>
 
-                <p class="col-md-3 m-0 text-md-right">
+                <p class="col-sm-5 m-0 text-sm-right">
                     <a *ngIf="!showInvitations" (click)="showInvites()" class="btn btn-outline-primary"
                        data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="true" aria-controls="collapseOne">
                         Visa inbjudningar <i class="fa fa-angle-down" aria-hidden="true"></i>
