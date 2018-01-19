@@ -1,4 +1,40 @@
-﻿a {
+﻿@media screen and (max-device-width: 500px) {
+    #cover-caption .container .display-3 {
+        font-size: 3.5rem;
+    }
+
+    login .primary-gradient{
+        background: #ffffff;
+    }
+}
+
+.card-border-sender {
+    border-top: 3px #0AF solid;
+    
+}
+
+.card-border-receiver {
+    border-top: 3px #ff8100 solid;
+}
+
+.receiver-color {
+    color: #ff8100;
+}
+
+.sender-color {
+    color: #0AF;
+}
+
+.card-block .title-border {
+    padding-bottom: 5px;
+    border-bottom: 1px #ddd dashed;
+}
+
+.navbar {
+    border-bottom: 1px solid #ddd;
+}
+
+a {
     cursor: pointer;
 }
 *:not(i) {
@@ -551,7 +587,3 @@ a.cover-btn:hover {
     flex-direction: column;
     background-color: #fff;
 }
-
-/*.btn {
-    font-family: 'Raleway', sans-serif;
-}*/

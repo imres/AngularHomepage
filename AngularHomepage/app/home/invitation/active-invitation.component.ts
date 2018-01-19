@@ -54,6 +54,11 @@ export class ActiveInvitationComponent implements OnInit {
 
     }
 
+
+    translateInvitationStatus(invite: Invitation) {
+        return "test";
+    }
+
     
     incrementSliceValue() {
         if (this.maxSliceValue >= this.activeInvitations.length)

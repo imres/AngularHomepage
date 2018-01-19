@@ -23,10 +23,10 @@
                 <div class="row">
                     <div *ngFor="let item of activeInvitations | slice:minSliceValue:maxSliceValue; let i=index" class="col-sm-6 my-2">
                         <div class="card mb-3 h-100">
-                            <div class="card-block">
-                                <p class="card-title" *ngIf="currentUser.PersonId == item.ReceiverPersonId"><strong>Avsändare:</strong> {{item.SenderPersonId}}</p>
-                                <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId"><strong>Mottagare:</strong> {{item.ReceiverPersonId}}</p>
-                                <p class="card-text">Status: {{item.Status}}</p> <!-- Ska sen stå tex: Väntar på att Mottagaren ska lägga in pengar. -->
+                            <div class="card-block" [ngClass]="{'card-border-receiver' : (currentUser.PersonId == item.ReceiverPersonId), 'card-border-sender' : (currentUser.PersonId == item.SenderPersonId)}">
+                                <p class="card-title title-border" *ngIf="currentUser.PersonId == item.ReceiverPersonId"><strong class="receiver-color">Avsändare:</strong> {{item.SenderPersonId}}</p>
+                                <p class="card-title title-border" *ngIf="currentUser.PersonId == item.SenderPersonId"><strong class="sender-color">Mottagare:</strong> {{item.ReceiverPersonId}}</p>
+                                <p class="card-text">Status: {{translateInvitationStatus(item)}}</p>
                                 <p class="card-text">Begärd summa: {{item.RequestedDepositAmount}}</p>
                                 <p class="card-text">Inbjudan skickad: {{item.StartDate}}</p>
 
