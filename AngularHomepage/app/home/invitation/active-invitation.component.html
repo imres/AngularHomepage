@@ -1,24 +1,24 @@
 ﻿<!--Invites-->
-<div id="accordion" role="tablist">
+<div id="activeInvites" role="tablist">
     <div class="card-custom">
         <div class="card-header-custom col-12" role="tab" id="headingOne">
-            <div *ngIf="activeInvitations?.length > 0" class="row align-items-center">
+            <div *ngIf="activeInvitations?.length > 0" class="row align-items-between">
                 <h4 class="m-0 col-sm-7" *ngIf="activeInvitations?.length > 1">Du har {{activeInvitations?.length}} aktiva inbjudningar</h4>
                 <h4 class="m-0 col-sm-7" *ngIf="activeInvitations?.length == 1">Du har {{activeInvitations?.length}} aktiv inbjudan</h4>
 
                 <p class="col-sm-5 m-0 text-sm-right">
-                    <a *ngIf="!showInvitations" (click)="showInvitations=true" class="btn btn-outline-primary"
+                    <a *ngIf="!showInvitations" (click)="showInvitations=true" class="btn btn-outline-primary showActiveInvitesBtn"
                        data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="true" aria-controls="collapseOne">
                         Visa inbjudningar <i class="fa fa-angle-down" aria-hidden="true"></i>
                     </a>
-                    <a *ngIf="showInvitations" class="btn btn-outline-primary" (click)="showInvitations=false"
+                    <a *ngIf="showInvitations" (click)="showInvitations=false" class="btn btn-outline-primary showActiveInvitesBtn" 
                        data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="true" aria-controls="collapseOne">
                         Dölj inbjudningar <i class="fa fa-angle-up" aria-hidden="true"></i>
                     </a>
                 </p>
             </div> 
         </div>
-        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#activeInvites">
             <div class="card-body">
                 <div class="row">
                     <div *ngFor="let item of activeInvitations | slice:minSliceValue:maxSliceValue; let i=index" class="col-sm-6 my-2">

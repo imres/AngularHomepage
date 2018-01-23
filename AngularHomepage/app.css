@@ -1,10 +1,14 @@
-﻿@media screen and (max-device-width: 500px) {
+﻿@media screen and (max-device-width: 575px) {
     #cover-caption .container .display-3 {
         font-size: 3.5rem;
     }
 
     login .primary-gradient{
         background: #ffffff;
+    }
+
+    #activeInvites .showActiveInvitesBtn {
+        margin-top: 1rem;
     }
 }
 
@@ -52,7 +56,6 @@ body {
     background-color: white;
     height: 100vh;
     color: #3e3e3e !important;
-    
 }
 
 app{
@@ -329,6 +332,9 @@ btn.btn-primary:active, .btn-primary:focus{
     text-align: center;
 }
 
+nav .show {
+    margin-bottom: -0.5rem;
+}
 
 
 .center-flex {
@@ -382,10 +388,15 @@ a.cover-btn:hover {
     color: white;
 }*/
 
-/*Guide*/
+/*User Guide*/
 
 #guide {
     background-color: white;
+}
+
+.guideImg {
+    border: 0;
+    margin-bottom: 1rem;
 }
 
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
@@ -397,6 +408,10 @@ a.cover-btn:hover {
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link {
     color: #3e3e3e;
     border: none;
+}
+
+.card-deck i {
+    opacity: 0.1;
 }
     /* Egna height och width-klasser */
     .height-15 {
