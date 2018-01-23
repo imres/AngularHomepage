@@ -55,14 +55,16 @@ export class ActiveInvitationComponent implements OnInit {
     }
 
 
+
+
     translateInvitationStatus(invite: Invitation){
-        if (this.currentUser.PersonId == invite.SenderPersonId && invite.Status == 2)
+        if (this.currentUser.PersonId == invite.SenderPersonId && invite.Status == this.invitationStatus.Accepted)
             return "Väntar på betalning från mottagaren.";
-        if (this.currentUser.PersonId == invite.SenderPersonId && invite.Status == 3)
+        else if (this.currentUser.PersonId == invite.SenderPersonId && invite.Status == this.invitationStatus.AmountDeposited)
             return "Mata in kolli-id!";
-        if (this.currentUser.PersonId == invite.ReceiverPersonId && invite.Status == 2)
+        else if (this.currentUser.PersonId == invite.ReceiverPersonId && invite.Status == this.invitationStatus.Accepted)
             return "Betala!"
-        if (this.currentUser.PersonId == invite.ReceiverPersonId && invite.Status == 3)
+        else if (this.currentUser.PersonId == invite.ReceiverPersonId && invite.Status == this.invitationStatus.AmountDeposited)
             return "Väntar på att avsändaren ska skicka paketet."
     }
 
