@@ -53,11 +53,11 @@
                                     <li class="firstAndLast page-item text-center" [ngClass]="{'disabled' : (minSliceValue < 4)}"><a class="page-link" (click)="resetSliceValue()">Första</a></li>
 
                                     <li class="page-item" [ngClass]="{'disabled' : (minSliceValue < 4)}"><a class="page-link" (click)="decrementSliceValue()"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>
-                                    <li *ngIf="maxSliceValue >= activeInvitations?.length && activeInvitations?.length > 8" class="page-item paginationNumber text-center" (click)="decrementSliceValueTwice()"><a class="page-link">{{(maxSliceValue / 4) - 2}}</a></li>
-                                    <li *ngIf="maxSliceValue > 4" class="page-item paginationNumber text-center" (click)="decrementSliceValue()"><a class="page-link">{{(maxSliceValue / 4) - 1}}</a></li>
+                                    <li *ngIf="maxSliceValue >= activeInvitations?.length && activeInvitations?.length > 8" class="page-item paginationNumber text-center hidden-md-down" (click)="decrementSliceValueTwice()"><a class="page-link">{{(maxSliceValue / 4) - 2}}</a></li>
+                                    <li *ngIf="maxSliceValue > 4" class="page-item paginationNumber text-center hidden-md-down" (click)="decrementSliceValue()"><a class="page-link">{{(maxSliceValue / 4) - 1}}</a></li>
                                     <li class="page-item disabled paginationNumber text-center"><a class="page-link activePage">{{maxSliceValue / 4}}</a></li>
-                                    <li *ngIf="maxSliceValue < activeInvitations?.length" class="page-item paginationNumber text-center"><a class="page-link" (click)="incrementSliceValue()">{{(maxSliceValue / 4) + 1}}</a></li>
-                                    <li *ngIf="maxSliceValue == 4 && activeInvitations?.length > 8" class="page-item paginationNumber text-center" (click)="incrementSliceValueTwice()"><a class="page-link">{{(maxSliceValue / 4) + 2}}</a></li>
+                                    <li *ngIf="maxSliceValue < activeInvitations?.length" class="page-item paginationNumber text-center hidden-md-down"><a class="page-link" (click)="incrementSliceValue()">{{(maxSliceValue / 4) + 1}}</a></li>
+                                    <li *ngIf="maxSliceValue == 4 && activeInvitations?.length > 8" class="page-item paginationNumber text-center hidden-md-down" (click)="incrementSliceValueTwice()"><a class="page-link">{{(maxSliceValue / 4) + 2}}</a></li>
                                     <li class="page-item" [ngClass]="{'disabled' : (maxSliceValue == activeInvitations?.length)}"><a class="page-link" (click)="incrementSliceValue()"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
 
                                     <li class="firstAndLast page-item text-center" [ngClass]="{'disabled' : (maxSliceValue == activeInvitations?.length)}"><a class="page-link" (click)="maximizeSliceValue()">Sista</a></li>

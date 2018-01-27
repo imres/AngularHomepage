@@ -157,6 +157,9 @@ img {
 }
 
 /*Egna Margin-klasser*/
+.margin-navbar-top {
+    margin-top: 55px;
+}
 .margin-xs-top{
     margin-top: 5px;
 }
@@ -331,11 +334,6 @@ btn.btn-primary:active, .btn-primary:focus{
 .dropdown h5 {
     text-align: center;
 }
-
-nav .show {
-    margin-bottom: -0.5rem;
-}
-
 
 .center-flex {
     justify-content: center;
@@ -610,4 +608,87 @@ a.cover-btn:hover {
     -ms-flex-direction: column;
     flex-direction: column;
     background-color: #fff;
+}
+
+/* Sidebar */
+#sidebar {
+    height: 100%;
+    width: 100%;
+    background: #fff;
+    transition: all 0.3s;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar-link.sidebar-collapsed-link {
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+}
+
+.sidebar-link[aria-expanded="true"] {
+    background: #f0f0f0;
+}
+
+.sidebar-link[aria-expanded="true"]:hover {
+    background: #f0f0f0;
+    color: #000;
+}
+
+#sidebar .active {
+    background: #f0f0f0;
+}
+
+.sidebar-link {
+    width: 100%;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-bottom: 0.2rem;
+    padding-top: 0.2rem;
+    color: #000;
+    text-decoration: none;
+}
+
+.sidebar-link:hover {
+    color: #0AF;
+    background: #f0f0f0;
+    text-decoration: none;
+}
+
+/*.phone-sidebar {
+    border: 1px solid #ddd;
+    border-top: none;
+    color: black;
+    text-decoration: none;
+}
+
+.phone-sidebar:hover {
+    background: #f0f0f0;
+    color: #0AF;
+    text-decoration: none;
+}
+
+.br-0 {
+    border-right: none;
+}
+
+.bl-0 {
+    border-left: none;
+}*/
+
+ /*PhoneSidebar*/ 
+#phoneSidebar .active {
+    background: #f0f0f0;
+}
+
+#content {
+    padding: 3rem;
+    padding-top: 1rem;
+    padding-bottom: 0;
+}
+
+.phone-sidebar-link[aria-expanded="true"] {
+    background: #f0f0f0;
+}
+
+.phone-sidebar-link.sidebar-collapsed-link {
+    padding-left: 2rem;
 }
