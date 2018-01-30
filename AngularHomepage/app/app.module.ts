@@ -33,6 +33,7 @@ import { ClickStopPropagation } from './commonComponents/navbar.component';
 import { LoginSiteComponent } from './login/loginsite.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ActiveInvitationComponent } from './home/invitation/active-invitation.component';
+import { SidebarComponent } from './home/sidebar/sidebar.component'
 
 @NgModule({
     imports: [
@@ -63,6 +64,7 @@ import { ActiveInvitationComponent } from './home/invitation/active-invitation.c
         NavbarHomeComponent,
         UserGuideComponent,
         ActiveInvitationComponent,
+        SidebarComponent,
     ],
     providers: [
         AuthGuard,
