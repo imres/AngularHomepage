@@ -8,6 +8,7 @@ using UserManager.DTO;
 
 namespace UserManager.Core.Services
 {
+
     public class InvitationService : IInvitationService
     {
         private IInvitation _invitationRepository;

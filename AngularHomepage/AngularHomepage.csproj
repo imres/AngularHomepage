@@ -11701,6 +11701,7 @@
     <TypeScriptCompile Include="app\_services\consignment.service.ts" />
     <TypeScriptCompile Include="app\_services\index.ts" />
     <TypeScriptCompile Include="app\_services\invitation.service.ts" />
+    <TypeScriptCompile Include="app\_services\payment.service.ts" />
     <TypeScriptCompile Include="app\_services\toastr.service.ts" />
     <TypeScriptCompile Include="app\_services\user.service.ts" />
     <TypeScriptCompile Include="node_modules\%40angular\common\index.d.ts" />

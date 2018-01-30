@@ -4,6 +4,11 @@ namespace UserManager.DTO
 {
     public class InvitationDTO
     {
+        public InvitationDTO()
+        {
+            PaymentMethod = 0;
+        }
+
         public int Id { get; set; }
         public string SenderPersonId { get; set; }
         public string ReceiverPersonId { get; set; }

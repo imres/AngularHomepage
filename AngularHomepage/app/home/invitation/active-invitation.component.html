@@ -23,14 +23,14 @@
                 <div class="row">
                     <div *ngFor="let item of activeInvitations | slice:minSliceValue:maxSliceValue; let i=index" class="col-sm-6 my-2">
                         <div class="card mb-3 h-100">
-                            <div class="card-block" [ngClass]="{'card-border-receiver' : (currentUser.PersonId == item.ReceiverPersonId), 'card-border-sender' : (currentUser.PersonId == item.SenderPersonId)}">
-                                <p class="card-title title-border" *ngIf="currentUser.PersonId == item.ReceiverPersonId"><strong class="receiver-color">Avsändare:</strong> {{item.SenderPersonId}}</p>
-                                <p class="card-title title-border" *ngIf="currentUser.PersonId == item.SenderPersonId"><strong class="sender-color">Mottagare:</strong> {{item.ReceiverPersonId}}</p>
+                            <div class="card-block" [ngClass]="{'card-border-receiver' : HasReceiverRole(item), 'card-border-sender' : !HasReceiverRole(item)}">
+                                <p class="card-title title-border" *ngIf="HasReceiverRole(item)"><strong class="receiver-color">Avsändare:</strong> {{item.SenderPersonId}}</p>
+                                <p class="card-title title-border" *ngIf="!HasReceiverRole(item)"><strong class="sender-color">Mottagare:</strong> {{item.ReceiverPersonId}}</p>
                                 <p class="card-text">Status: <strong>{{translateInvitationStatus(item)}}</strong></p>
                                 <p class="card-text">Begärd summa: {{item.RequestedDepositAmount}}</p>
                                 <p class="card-text">Inbjudan skickad: {{item.StartDate}}</p>
 
-                                <div *ngIf="currentUser.PersonId == item.SenderPersonId && showPackageIdForm">
+                                <div *ngIf="!HasReceiverRole(item) && showPackageIdForm">
                                     <form name="packageIdForm" (ngSubmit)="f.form.valid && showPackageIdForm=false" #f="ngForm" novalidate>
                                         <input type="text" class="form-control" name="packageId" placeholder="Kolli-id"
                                                [(ngModel)]="invitationWithPackageId.PackageId" #packageId="ngModel" required />
@@ -39,8 +39,11 @@
                                     </form>
                                 </div>
 
-                                <a *ngIf="currentUser.PersonId == item.SenderPersonId && !showPackageIdForm" href="#" class="btn btn-primary col-md-9 col-lg-6" (click)="showPackageIdForm=true">Ange kolli-id</a>
-                                <a *ngIf="currentUser.PersonId == item.ReceiverPersonId" href="#" class="btn btn-primary col-md-9 col-lg-6">Betala</a>
+                                <a *ngIf="!HasReceiverRole(item) && !showPackageIdForm" href="#" class="btn btn-primary col-md-9 col-lg-6" 
+                                   (click)="showPackageIdForm=true" [class.disabled]="item.Status == invitationStatus.Accepted ? true : null">Ange kolli-id</a>
+
+                                <a *ngIf="HasReceiverRole(item) && item.Status == invitationStatus.Accepted" 
+                                   href="#" class="btn btn-primary col-md-9 col-lg-6" (click)="processPayment(item)">Betala</a>
                             </div>
                         </div>
                     </div>

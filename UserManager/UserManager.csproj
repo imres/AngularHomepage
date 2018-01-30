@@ -255,6 +255,7 @@
     <Compile Include="Controllers\CRUD.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvitationController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\Scrape.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Core\Cryptography.cs" />
@@ -265,13 +266,17 @@
     <Compile Include="Core\Interfaces\ICryptography.cs" />
     <Compile Include="Core\Interfaces\IInvitation.cs" />
     <Compile Include="Core\Interfaces\IInvitationService.cs" />
+    <Compile Include="Core\Interfaces\IPayment.cs" />
+    <Compile Include="Core\Interfaces\IPaymentService.cs" />
     <Compile Include="Core\Interfaces\IPerson.cs" />
     <Compile Include="Core\Mappers\Mapper.cs" />
     <Compile Include="Core\Mappers\PersonMapper.cs" />
     <Compile Include="Core\Repositories\ConsignmentRepository.cs" />
     <Compile Include="Core\Repositories\InvitationRepository.cs" />
+    <Compile Include="Core\Repositories\PaymentRepository.cs" />
     <Compile Include="Core\Repositories\PersonRepository.cs" />
     <Compile Include="Core\Services\InvitationService.cs" />
+    <Compile Include="Core\Services\PaymentService.cs" />
     <Compile Include="DBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -307,6 +312,9 @@
     <Compile Include="Models\JwtPayload.cs" />
     <Compile Include="Models\Personasdad.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Payment.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Person.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>

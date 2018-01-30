@@ -1,6 +1,6 @@
 ﻿import {
     Component, OnInit, Input, Output, EventEmitter, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA,
-    ChangeDetectionStrategy, ChangeDetectorRef, OnChanges, ViewContainerRef
+    ChangeDetectionStrategy, ChangeDetectorRef, OnChanges, ViewContainerRef, Injectable
 } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
@@ -8,7 +8,7 @@ import { DialogService } from "ng2-bootstrap-modal";
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { Person, Invitation } from '../../_models/index';
-import { UserService, InvitationService, AlertService, ToastrService } from '../../_services/index';
+import { UserService, InvitationService, AlertService, ToastrService, PaymentService } from '../../_services/index';
 import { ConfirmComponent } from '../../_dialog/confirm.component';
 import { InviteResponseComponent } from '../../_dialog/invite-response.component';
 import { InvitationStatusEnum } from '../../_models/enums/index';
@@ -21,6 +21,7 @@ import { InvitationStatusEnum } from '../../_models/enums/index';
     templateUrl: 'active-invitation.component.html'
 })
 
+@Injectable()
 export class ActiveInvitationComponent implements OnInit {
     @Input() activeInvitations: Invitation[];
     
@@ -43,6 +44,7 @@ export class ActiveInvitationComponent implements OnInit {
         private invitationService: InvitationService,
         private toastr: ToastsManager,
         private toastrService: ToastrService,
+        private paymentService: PaymentService
     ) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
@@ -54,8 +56,15 @@ export class ActiveInvitationComponent implements OnInit {
 
     }
 
+    processPayment(invitation: Invitation) {
+        this.paymentService.processPayment(invitation).subscribe(res => {
+            console.log(res);
+        });
+    }
 
-
+    HasReceiverRole(invitation: Invitation): boolean {
+        return invitation.ReceiverPersonId == this.currentUser.PersonId ? true : false;
+    }
 
     translateInvitationStatus(invite: Invitation){
         if (this.currentUser.PersonId == invite.SenderPersonId && invite.Status == this.invitationStatus.Accepted)

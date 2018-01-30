@@ -17,7 +17,7 @@ namespace UserManager.Core.Repositories
         /// <param name="invitationDTO"></param>
         public void AddInvitation(InvitationDTO invitationDTO)
         {
-            using (masterEntities context = new masterEntities())
+            using (var context = new masterEntities())
             {
                 var maxId = GetMaxInteger<Invitation>(x => x.Id);
 
