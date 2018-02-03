@@ -647,7 +647,6 @@ a.cover-btn:hover {
 
 .sidebar-link:hover {
     color: #0AF;
-    background: #f0f0f0;
     text-decoration: none;
 }
 
@@ -681,6 +680,10 @@ a.cover-btn:hover {
     padding: 3rem;
     padding-top: 1rem;
     padding-bottom: 0;
+}
+.phone-sidebar-link {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 .phone-sidebar-link[aria-expanded="true"] {
