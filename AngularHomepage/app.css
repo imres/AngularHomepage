@@ -620,8 +620,9 @@ a.cover-btn:hover {
 }
 
 .sidebar-link.sidebar-collapsed-link {
-    padding-top: 0.2rem;
-    padding-bottom: 0.2rem;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
 }
 
 .sidebar-link[aria-expanded="true"] {
@@ -639,10 +640,7 @@ a.cover-btn:hover {
 
 .sidebar-link {
     width: 100%;
-    padding-right: 1rem;
-    padding-left: 1rem;
-    padding-bottom: 0.2rem;
-    padding-top: 0.2rem;
+    padding: 1rem;
     color: #000;
     text-decoration: none;
 }
