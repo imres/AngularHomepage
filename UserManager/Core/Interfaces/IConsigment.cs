@@ -9,7 +9,7 @@ namespace UserManager.Core.Interfaces
 {
     public interface IConsigment
     {
-        void AddConsignment(InvitationExtended invitation);
+        ConsignmentDTO AddConsignment(InvitationExtended invitation);
 
         void DeleteConsignment(int ConsignmentId);
 

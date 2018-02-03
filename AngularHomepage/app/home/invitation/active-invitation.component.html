@@ -19,8 +19,6 @@
             </div> 
         </div>
 
-        <!--<pre>{{invitationExtended | json}}</pre>-->
-
         <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#activeInvites">
             <div class="card-body">
                 <div class="row">
@@ -48,7 +46,6 @@
 
                                 <ng-container *ngIf="HasReceiverRole(item) && item.Status == invitationStatus.Accepted">
                                     <a href="#" class="btn btn-primary col-md-9 col-lg-6" (click)="processPayment(item)">Betala</a>
-                                    <loading-spinner *ngIf="loading"></loading-spinner>
                                 </ng-container>
                             </div>
                         </div>

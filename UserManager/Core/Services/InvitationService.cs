@@ -71,19 +71,21 @@ namespace UserManager.Core.Services
             return true;
         }
 
-        public bool SavePackageId(InvitationExtended invitation)
+        public ConsignmentDTO SavePackageId(InvitationExtended invitation)
         {
+            ConsignmentDTO consignment;
+
             try
             {
                 _invitationRepository.EndInvitation(invitation);
-                _consignmentRepository.AddConsignment(invitation);
+                consignment = _consignmentRepository.AddConsignment(invitation);
             }
             catch (Exception ex)
             {
-                return false;
+                return null;
             }
 
-            return true;
+            return consignment;
         }
 
         public bool ValidateInvitation(InvitationDTO invitationToValidate)

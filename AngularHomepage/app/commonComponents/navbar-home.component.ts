@@ -1,4 +1,4 @@
-﻿import { Component, Input, Output, EventEmitter, OnInit, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges  } from '@angular/core';
+﻿import { Component, Input, Output, EventEmitter, OnInit, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges, SimpleChanges  } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
 import { DialogService } from "ng2-bootstrap-modal";
@@ -13,12 +13,13 @@ import { InvitationStatusEnum } from '../_models/enums/index';
 @Component({
     moduleId: module.id,
     templateUrl: 'navbar-home.component.html',
-    selector: 'navbar-home',
+    selector: 'navbar-home'
 })
 
-export class NavbarHomeComponent implements OnInit {
+export class NavbarHomeComponent implements OnInit, OnChanges {
+    @Input() invitations: Invitation[];
     @Input() invitationNotifications: Invitation[];
-    @Output() invitationsChanged: EventEmitter<any> = new EventEmitter<any>(); //Push change once emit is called on this object
+    //@Output() invitationsChanged: EventEmitter<any> = new EventEmitter<any>(); //Push change once emit is called on this object
 
     //invitations: Invitation[];
     //invitationNotifications: Invitation[];
@@ -39,21 +40,6 @@ export class NavbarHomeComponent implements OnInit {
     }
 
     ngOnInit() {
-    }
-
-    newInvitationList(event: any) {
-        //Method is connected to child method in order to receive event changes
-        //filter current invitation list since id from event is non-existing
-        this.invitationNotifications = this.invitationNotifications.filter(x => x.Id != event.invite.Id);
-
-        if (!event.inviteAccepted) return;
-
-        this.updateActiveInvitationList(event);
-    }
-
-    updateActiveInvitationList(invite: Invitation) {
-        //Get the last invitation interaction and emit the id to parent
-        this.invitationsChanged.emit(invite);
     }
 
     showConfirm(event: any) {

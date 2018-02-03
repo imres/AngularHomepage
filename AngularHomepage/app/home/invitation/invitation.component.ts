@@ -1,6 +1,6 @@
 ﻿import {
     Component, OnInit, Input, Output, EventEmitter, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA,
-    ChangeDetectionStrategy, ChangeDetectorRef, OnChanges, ViewContainerRef
+    ChangeDetectionStrategy, ChangeDetectorRef, OnChanges, SimpleChanges, ViewContainerRef
 } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
@@ -8,7 +8,7 @@ import { DialogService } from "ng2-bootstrap-modal";
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { Person, Invitation } from '../../_models/index';
-import { UserService, InvitationService, AlertService, ToastrService} from '../../_services/index';
+import { UserService, InvitationService, AlertService, ToastrService, FilterService} from '../../_services/index';
 import { ConfirmComponent } from '../../_dialog/confirm.component';
 import { InviteResponseComponent } from '../../_dialog/invite-response.component';
 import { InvitationStatusEnum } from '../../_models/enums/index';
@@ -21,51 +21,38 @@ import { InvitationStatusEnum } from '../../_models/enums/index';
 })
 
 
-export class InvitationComponent implements OnInit {
-    @Input() invitations: Invitation[]; //Array data received from parent
-    @Output() invitationsChanged: EventEmitter<any> = new EventEmitter<any>(); //Push change once emit is called on this object
+export class InvitationComponent implements OnInit, OnChanges {
+    @Input() invitations: Invitation[];
+    @Input() invitationNotifications: Invitation[];
 
     currentUser: Person;
-    currentInvite: Invitation;
     confirmResult: boolean = null;
     invitationStatus = InvitationStatusEnum;
-    currentInvitation: Invitation;
-    //invitations: Invitation[];
 
     constructor(private cd: ChangeDetectorRef,
                 private dialogService: DialogService,
                 private invitationService: InvitationService,
                 private toastr: ToastsManager,
-                private toastrService: ToastrService
+                private toastrService: ToastrService,
+                private filterService: FilterService
                 )
     {
     }
 
     ngOnInit() {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        //this.getStoredInvitations();
     }
 
-    updateActiveInvitationList(inviteAccepted: boolean) {
-        //Get the last invitation interaction and emit the id to parent
-        //Update status from created to accepted
-        //Update currentInvite with new status
-
-        var invite = this.currentInvitation;
-        
-        if (inviteAccepted)
-            invite.Status = InvitationStatusEnum.Accepted;
-
-        this.invitationsChanged.emit({ invite, inviteAccepted });
+    updateInvitationList(invitation: Invitation) {
+        this.invitationService.updateInvitations(this.invitations);
     }
     
-    showInviteResponseDialog(invite: Invitation) {
-        this.currentInvitation = invite;
+    showInviteResponseDialog(invitation: Invitation) {
 
         this.dialogService.addDialog(InviteResponseComponent, {
-            title: this.HasReceiverRole(invite) ? "Mottagare" : "Avsändare",
+            title: this.HasReceiverRole(invitation) ? "Mottagare" : "Avsändare",
             message: 'Bla bla confirm some action?',
-            currentInvitation: invite
+            currentInvitation: invitation
         })
         .subscribe((isConfirmed) => {
             //Get dialog result
@@ -75,13 +62,22 @@ export class InvitationComponent implements OnInit {
 
             this.toastrService.ShowToastr(isConfirmed, false, "Inbjudan accepterad, försändelse skapad");
 
-            this.updateActiveInvitationList(isConfirmed);
+            this.handleDialogResult(invitation, isConfirmed);
+
+            this.updateInvitationList(invitation)
             
         });
     }
 
-    private HasReceiverRole(invite: Invitation): boolean {
-        if (invite.ReceiverPersonId == this.currentUser.PersonId) {
+    handleDialogResult(invitation: Invitation, isConfirmed: boolean) {
+        if (isConfirmed)
+            this.filterService.updateInvitationStatus(this.invitations, invitation, InvitationStatusEnum.Accepted);
+        else
+            this.filterService.removeFromListByProperty(this.invitations, invitation);
+    }
+
+    private HasReceiverRole(invitation: Invitation): boolean {
+        if (invitation.ReceiverPersonId == this.currentUser.PersonId) {
             return true;
         } else {
             return false;
@@ -94,7 +90,7 @@ export class InvitationComponent implements OnInit {
 
         this.invitationService.endInvite(invite.Id).subscribe(
             res => {
-                this.invitationsChanged.emit({ invite, inviteAccepted });
+                
             },
             err => console.log(err)
         );

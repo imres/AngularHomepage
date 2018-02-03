@@ -13,6 +13,6 @@ namespace UserManager.Core.Interfaces
         bool AcceptInvitation(InvitationDTO invitation);
         bool DeclineInvitation(int Id);
         bool ValidateInvitation(InvitationDTO invitationToValidate);
-        bool SavePackageId(InvitationExtended invitation);
+        ConsignmentDTO SavePackageId(InvitationExtended invitation);
     }
 }

@@ -17,7 +17,7 @@ namespace UserManager.Core.Repositories
         /// Add new Consignment
         /// </summary>
         /// <param name="invitationDTO"></param>
-        public void AddConsignment(InvitationExtended invitation)
+        public ConsignmentDTO AddConsignment(InvitationExtended invitation)
         {
             using (var context = new masterEntities())
             {
@@ -38,6 +38,10 @@ namespace UserManager.Core.Repositories
                 context.Consignment.Add(consignment);
 
                 context.SaveChanges();
+
+                var consignmentDTO = EntityToDtoMapping<Consignment, ConsignmentDTO>(consignment);
+
+                return consignmentDTO;
             };
         }
         

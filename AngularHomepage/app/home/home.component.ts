@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 
-import { Person, Invitation } from '../_models/index';
+import { Person, Invitation, Consignment } from '../_models/index';
 import { UserService, InvitationService } from '../_services/index';
 import { InvitationStatusEnum } from '../_models/enums/index';
 
@@ -13,8 +13,10 @@ import { InvitationStatusEnum } from '../_models/enums/index';
 
 export class HomeComponent implements OnInit{
     invitations: Invitation[];
+    invitationNotifications: Invitation[];
     activeInvitations: Invitation[];
-    inactiveInvitations: Invitation[];
+
+    consignments: Consignment[];
 
     currentUser: Person;
     showDialog = false;
@@ -22,41 +24,40 @@ export class HomeComponent implements OnInit{
     invitationStatus = InvitationStatusEnum;
 
     constructor(private userService: UserService,
-                private invitationService: InvitationService) {
+        private invitationService: InvitationService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.isClassActive = false;
     }
 
     ngOnInit() {
-
         this.getInvitations();
+
+        this.invitationService.invitationList.subscribe(invitations => {
+            this.invitations = invitations;
+
+            this.updateFilteredInvitations();
+        });
     }
 
-    newInvitationList(event: any) {
-        //Method is connected to child method in order to receive event changes
-        //filter current invitation list since id from event is non-existing
-        this.activeInvitations = this.activeInvitations.concat(event.invite);
+    updateFilteredInvitations() {
+        if (this.invitations == null) return;
+
+        this.invitationNotifications = this.invitations.filter(x => { return x.Status == InvitationStatusEnum.Created });
+        this.activeInvitations = this.invitations.filter(x => { return x.Status > InvitationStatusEnum.Created && x.Status < InvitationStatusEnum.ConsignmentActive });
     }
 
     getInvitations() {
-        this.invitationService.getInvitations(this.currentUser.PersonId).subscribe(res => {
+        this.invitationService.getInvitations(this.currentUser.PersonId).subscribe(invitations => {
             console.log("Hämtade invites från API");
 
-            if (res == null) return;
+            if (invitations == null) return;
 
-            this.invitations = res;
-            this.activeInvitations = res.filter(x => x.Status > InvitationStatusEnum.Created);
-            this.inactiveInvitations = res.filter(x => x.Status == InvitationStatusEnum.Created);
+            this.invitations = invitations;
 
-            //Update invitationService for all using components
-            this.updateInvitationService(res);
+            //this.updateFilteredInvitations();
+            
+            this.invitationService.updateInvitations(invitations);
 
         }, err => { console.log("Error: {0}", err) });
     }
-
-    private updateInvitationService(invitations: Invitation[]) {
-        console.log("Uppdaterade invites i service");
-        this.invitationService.updateInvitations(invitations);
-    }
-    
 }

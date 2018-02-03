@@ -12,7 +12,7 @@ export class FilterService {
     constructor(private http: Http) { }
 
     //Set new invitation status from object in list
-    updateInvitationStatus(invitationList: InvitationExtended[], invitation: InvitationExtended, newStatus: InvitationStatusEnum): void {
+    updateInvitationStatus(invitationList: any[], invitation: any, newStatus: InvitationStatusEnum): void {
         let updateInvitation = invitationList.filter(x => x.Id == invitation.Id);
 
         let index = invitationList.indexOf(updateInvitation[0]);
@@ -29,4 +29,5 @@ export class FilterService {
 
         return list;
     }
+    
 }

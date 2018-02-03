@@ -2,17 +2,24 @@
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Person, Invitation } from '../_models/index';
+import { Person, Invitation, Consignment } from '../_models/index';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ConsignmentService {
+    private consignmentListSource = new BehaviorSubject<Consignment>(null);
+
+    consignmentList = this.consignmentListSource.asObservable();
 
     constructor(private http: Http) { }
 
     headers = new Headers({
         'Content-Type': 'application/json'
     });
+
+    updateConsignments(consignments: Consignment) {
+        this.consignmentListSource.next(consignments);
+    }
 
     acceptInvite(invitation: Invitation) {
         return this.http.post('http://localhost:65192/api/Consignment/AddConsignment',

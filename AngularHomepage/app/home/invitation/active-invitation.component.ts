@@ -1,6 +1,6 @@
 ﻿import {
     Component, OnInit, Input, Output, EventEmitter, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA,
-    ChangeDetectionStrategy, ChangeDetectorRef, OnChanges, ViewContainerRef, Injectable
+    ChangeDetectionStrategy, ChangeDetectorRef, OnChanges, SimpleChanges, ViewContainerRef, Injectable
 } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
@@ -8,7 +8,7 @@ import { DialogService } from "ng2-bootstrap-modal";
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { Person, Invitation, InvitationExtended } from '../../_models/index';
-import { UserService, InvitationService, AlertService, ToastrService, PaymentService, FilterService } from '../../_services/index';
+import { UserService, InvitationService, ConsignmentService, AlertService, ToastrService, PaymentService, FilterService } from '../../_services/index';
 import { ConfirmComponent } from '../../_dialog/confirm.component';
 import { InviteResponseComponent } from '../../_dialog/invite-response.component';
 import { InvitationStatusEnum } from '../../_models/enums/index';
@@ -25,7 +25,8 @@ export interface InvitationWithPackageId {
 })
 
 @Injectable()
-export class ActiveInvitationComponent implements OnInit {
+export class ActiveInvitationComponent implements OnInit, OnChanges {
+    @Input() invitations: InvitationExtended[];
     @Input() activeInvitations: InvitationExtended[];
     
     currentUser: Person;
@@ -36,20 +37,21 @@ export class ActiveInvitationComponent implements OnInit {
     showInvitations = true;
     showAllInvitationsEnabled = false;
     showPackageIdForm = false;
-
-    loading = false;
+    
     
     invitationExtended: InvitationExtended;
     
     constructor(private cd: ChangeDetectorRef,
         private dialogService: DialogService,
         private invitationService: InvitationService,
+        private consignmentService: ConsignmentService,
         private toastr: ToastsManager,
         private toastrService: ToastrService,
         private paymentService: PaymentService,
         private filterService: FilterService
     ) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.activeInvitations = this.invitations != null ? this.invitations : null;
     }
 
     ngOnInit() {
@@ -61,7 +63,11 @@ export class ActiveInvitationComponent implements OnInit {
         this.invitationService.savePackageId(this.invitationExtended).subscribe(res => {
             this.cancelPackageIdForm();
 
-            this.activeInvitations = this.filterService.removeFromListByProperty(this.activeInvitations, invitation);
+            this.invitations = this.filterService.removeFromListByProperty(this.invitations, invitation);
+
+            this.invitationService.updateInvitations(this.invitations);
+
+            this.consignmentService.updateConsignments(res);
         });
     }
 
@@ -86,8 +92,6 @@ export class ActiveInvitationComponent implements OnInit {
     }
 
     processPayment(invitation: InvitationExtended) {
-        this.loading = true;
-
         this.paymentService.processPayment(invitation).subscribe(res => {
 
             //Mock loading time -- not working properly, try setting a object with invitation Id and loading bool
@@ -97,7 +101,7 @@ export class ActiveInvitationComponent implements OnInit {
 
             //Once payment have gone through, update the activeInvitation array
             //this.updateInvitationList(invitation, InvitationStatusEnum.AmountDeposited);
-            this.filterService.updateInvitationStatus(this.activeInvitations, invitation, InvitationStatusEnum.AmountDeposited);
+            this.filterService.updateInvitationStatus(this.invitations, invitation, InvitationStatusEnum.AmountDeposited);
         });
     }
 
@@ -129,7 +133,7 @@ export class ActiveInvitationComponent implements OnInit {
 
     //---Pagination---
     incrementSliceValue() {
-        if (this.maxSliceValue >= this.activeInvitations.length)
+        if (this.maxSliceValue >= this.invitations.length)
             return;
 
         this.maxSliceValue += 4;
@@ -155,19 +159,19 @@ export class ActiveInvitationComponent implements OnInit {
     
 
     showAllInvitations() {
-        this.maxSliceValue = this.activeInvitations.length;
+        this.maxSliceValue = this.invitations.length;
         this.minSliceValue = 0;
 
         this.showAllInvitationsEnabled = true;
     }
 
     maximizeSliceValue() {
-        if (this.activeInvitations.length % 4 > 0){
-            this.maxSliceValue = this.activeInvitations.length + (4 - (this.activeInvitations.length % 4)); //Om antalet invitations inte är delbart på 4, ska den ändå visa rätt invites på sista sidan
+        if (this.invitations.length % 4 > 0){
+            this.maxSliceValue = this.invitations.length + (4 - (this.invitations.length % 4)); //Om antalet invitations inte är delbart på 4, ska den ändå visa rätt invites på sista sidan
             this.minSliceValue = this.maxSliceValue - 4;
         }
         else {
-            this.maxSliceValue = this.activeInvitations.length;
+            this.maxSliceValue = this.invitations.length;
             this.minSliceValue = this.maxSliceValue - 4;
         }
     }

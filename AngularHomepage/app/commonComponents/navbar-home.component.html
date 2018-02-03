@@ -24,7 +24,7 @@
                             <h4 class="card-title">Du har inga händelser</h4>
                             <a href="#" class="btn btn-primary" (click)=showConfirm($event)>Skicka inbjudan till en ny försändelse</a>
                         </div>
-                        <invite-notifications *ngIf="invitationNotifications?.length > 0" [invitations]="invitationNotifications" (invitationsChanged)="newInvitationList($event)"></invite-notifications><!--Update child component with array, and receive event from child on change-->
+                        <invite-notifications *ngIf="invitationNotifications?.length > 0" [invitations]="invitations" [invitationNotifications]="invitationNotifications"></invite-notifications><!--Update child component with array, and receive event from child on change-->
                     </div>
             </li>
         </ul>

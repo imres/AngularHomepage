@@ -92,10 +92,10 @@ namespace UserManager.Controllers
 
                 var consignmentAdded = _invitationService.SavePackageId(invitation);
 
-                if (!consignmentAdded)
+                if (consignmentAdded == null)
                     return Request.CreateResponse(HttpStatusCode.Conflict, invitation);
 
-                return Request.CreateResponse(HttpStatusCode.OK, invitation);
+                return Request.CreateResponse(HttpStatusCode.OK, consignmentAdded);
             }
         }
 

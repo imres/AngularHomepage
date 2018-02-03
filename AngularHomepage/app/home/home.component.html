@@ -1,5 +1,5 @@
 ﻿<!-- Navbar -->
-<navbar-home [invitationNotifications]="inactiveInvitations" (invitationsChanged)="newInvitationList($event)"></navbar-home>
+<navbar-home [invitations]="invitations" [invitationNotifications]="invitationNotifications"></navbar-home>
 
 <div class="container-fluid margin-navbar-top mb-3">
     <div class="row">
@@ -7,7 +7,7 @@
             <sidebar></sidebar>
         </div>
         <div class="col-lg-8 px-5">
-            <active-invitation [activeInvitations]="activeInvitations"></active-invitation>
+            <active-invitation [invitations]="invitations" [activeInvitations]="activeInvitations"></active-invitation>
             <consignment></consignment>
         </div>
     </div>

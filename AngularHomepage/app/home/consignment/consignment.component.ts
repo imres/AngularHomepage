@@ -19,11 +19,10 @@ import { InviteResponseComponent } from '../../_dialog/invite-response.component
 
 
 export class ConsignmentComponent implements OnInit {
-    //@Input() public invitationStream: Invitation[];
-    //invitation: Invitation = new Invitation();
+    consignments: Consignment[];
+
     currentUser: Person;
     confirmResult: boolean = null;
-    consignments: Consignment[];
     maxSliceValue = 4;
     minSliceValue = 0;
     showAllConsignmentsEnabled = false;
@@ -36,10 +35,17 @@ export class ConsignmentComponent implements OnInit {
 
     ) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        this.getConsignments();
+        
     }
 
     ngOnInit() {
+        this.getConsignments();
+
+        this.consignmentService.consignmentList.subscribe(consignments => {
+            if (!this.consignments) return;
+
+            this.consignments = this.consignments.concat(consignments);
+        });
     }
 
     getConsignments() {
