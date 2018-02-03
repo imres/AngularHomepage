@@ -28,7 +28,7 @@ export class InvitationComponent implements OnInit {
     currentUser: Person;
     currentInvite: Invitation;
     confirmResult: boolean = null;
-    invitationStatus = new InvitationStatusEnum;
+    invitationStatus = InvitationStatusEnum;
     currentInvitation: Invitation;
     //invitations: Invitation[];
 
@@ -54,7 +54,7 @@ export class InvitationComponent implements OnInit {
         var invite = this.currentInvitation;
         
         if (inviteAccepted)
-            invite.Status = this.invitationStatus.Accepted;
+            invite.Status = InvitationStatusEnum.Accepted;
 
         this.invitationsChanged.emit({ invite, inviteAccepted });
     }

@@ -5,6 +5,7 @@ using UserManager.Core.Enums;
 using UserManager.Core.Interfaces;
 using UserManager.Core.Mappers;
 using UserManager.DTO;
+using UserManager.Models;
 
 namespace UserManager.Core.Repositories
 {
@@ -104,6 +105,22 @@ namespace UserManager.Core.Repositories
                 var unrespondedInvitationsDTO = EntityToDtoMappingCollection<Invitation, InvitationDTO>(unrespondedInvitations);
 
                 return unrespondedInvitationsDTO;
+            }
+        }
+
+        /// <summary>
+        /// Set invitation status to ConsignmentActive
+        /// </summary>
+        public void EndInvitation(InvitationExtended invitation)
+        {
+            using (var context = new masterEntities())
+            {
+                var invitationToEnd = context.Invitation.Where(x => x.Id == invitation.Id).First();
+
+                invitationToEnd.Status = InvitationStatus.ConsignmentActive;
+                invitationToEnd.EndDate = DateTime.Now;
+
+                context.SaveChanges();
             }
         }
     }

@@ -11,7 +11,6 @@ namespace UserManager.DTO
         public string SenderPersonId { get; set; }
         public string ReceiverPersonId { get; set; }
         public int Status { get; set; }
-        public int RequestedDepositAmount { get; set; }
         public int PaymentMethod { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }

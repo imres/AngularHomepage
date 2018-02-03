@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit{
     currentUser: Person;
     showDialog = false;
     isClassActive: boolean;
-    invitationStatus: InvitationStatusEnum = new InvitationStatusEnum;
+    invitationStatus = InvitationStatusEnum;
 
     constructor(private userService: UserService,
                 private invitationService: InvitationService) {
@@ -45,8 +45,8 @@ export class HomeComponent implements OnInit{
             if (res == null) return;
 
             this.invitations = res;
-            this.activeInvitations = res.filter(x => x.Status > this.invitationStatus.Created);
-            this.inactiveInvitations = res.filter(x => x.Status == this.invitationStatus.Created);
+            this.activeInvitations = res.filter(x => x.Status > InvitationStatusEnum.Created);
+            this.inactiveInvitations = res.filter(x => x.Status == InvitationStatusEnum.Created);
 
             //Update invitationService for all using components
             this.updateInvitationService(res);

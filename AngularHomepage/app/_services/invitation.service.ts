@@ -2,7 +2,7 @@
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Person, Invitation } from '../_models/index';
+import { Person, Invitation, InvitationExtended } from '../_models/index';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -42,6 +42,17 @@ export class InvitationService {
 
     acceptInvite(invitation: Invitation) {
         return this.http.post('http://localhost:65192/api/Invitation/AcceptInvitation',
+            JSON.stringify(invitation),
+            { headers: this.headers })
+            .map((response: Response) =>
+                response.json()
+            ).catch(error =>
+                Observable.throw(false)
+            );
+    }
+
+    savePackageId(invitation: InvitationExtended) {
+        return this.http.post('http://localhost:65192/api/Invitation/SavePackageId',
             JSON.stringify(invitation),
             { headers: this.headers })
             .map((response: Response) =>

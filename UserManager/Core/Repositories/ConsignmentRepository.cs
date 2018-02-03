@@ -7,6 +7,7 @@ using UserManager.Core.Enums;
 using UserManager.Core.Interfaces;
 using UserManager.Core.Mappers;
 using UserManager.DTO;
+using UserManager.Models;
 
 namespace UserManager.Core.Repositories
 {
@@ -16,7 +17,7 @@ namespace UserManager.Core.Repositories
         /// Add new Consignment
         /// </summary>
         /// <param name="invitationDTO"></param>
-        public void AddConsignment(InvitationDTO invitationDTO)
+        public void AddConsignment(InvitationExtended invitation)
         {
             using (var context = new masterEntities())
             {
@@ -25,12 +26,13 @@ namespace UserManager.Core.Repositories
                 {
                     ConsignmentId = GetMaxInteger<Consignment>(x => x.ConsignmentId),
                     Id = GetMaxInteger<Consignment>(x => x.Id),
-                    PaymentMethod = invitationDTO.PaymentMethod.GetValueOrDefault(),
-                    ReceiverPersonId = invitationDTO.ReceiverPersonId,
-                    SenderPersonId = invitationDTO.SenderPersonId,
-                    RequestedDepositAmount = invitationDTO.RequestedDepositAmount.GetValueOrDefault(),
+                    PaymentMethod = invitation.PaymentMethod.GetValueOrDefault(),
+                    ReceiverPersonId = invitation.ReceiverPersonId,
+                    SenderPersonId = invitation.SenderPersonId,
                     Status = ConsignmentStatus.Active,
-                    StartDate = DateTime.Now
+                    StartDate = DateTime.Now,
+                    PackageId = invitation.PackageId,
+                    DepositedAmount = invitation.RequestedDepositAmount
                 };
 
                 context.Consignment.Add(consignment);

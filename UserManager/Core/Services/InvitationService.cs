@@ -5,6 +5,7 @@ using System.Web;
 using UserManager.Core.Interfaces;
 using UserManager.Core.Repositories;
 using UserManager.DTO;
+using UserManager.Models;
 
 namespace UserManager.Core.Services
 {
@@ -12,15 +13,17 @@ namespace UserManager.Core.Services
     public class InvitationService : IInvitationService
     {
         private IInvitation _invitationRepository;
+        private IConsigment _consignmentRepository;
 
         public InvitationService()
-            : this(new InvitationRepository())
+            : this(new InvitationRepository(), new ConsignmentRepository())
         {
         }
 
-        public InvitationService(IInvitation invitationRepository)
+        public InvitationService(IInvitation invitationRepository, IConsigment consignmentRepository)
         {
             _invitationRepository = invitationRepository;
+            _consignmentRepository = consignmentRepository;
         }
 
         public bool AcceptInvitation(InvitationDTO invitation)
@@ -61,6 +64,21 @@ namespace UserManager.Core.Services
                 _invitationRepository.EndInvitation(Id);
             }
             catch
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool SavePackageId(InvitationExtended invitation)
+        {
+            try
+            {
+                _invitationRepository.EndInvitation(invitation);
+                _consignmentRepository.AddConsignment(invitation);
+            }
+            catch (Exception ex)
             {
                 return false;
             }

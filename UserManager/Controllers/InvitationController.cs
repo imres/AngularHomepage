@@ -77,6 +77,28 @@ namespace UserManager.Controllers
             }
         }
 
+        [ActionName("SavePackageId")]
+        [HttpPost]
+        public HttpResponseMessage SavePackageId(InvitationExtended invitation)
+        {
+            using (HttpClient http = new HttpClient())
+            {
+                this.Request.RequestUri = new Uri("http://localhost:65192");
+
+                if (this.Request.Method == HttpMethod.Get)
+                {
+                    this.Request.Content = null;
+                }
+
+                var consignmentAdded = _invitationService.SavePackageId(invitation);
+
+                if (!consignmentAdded)
+                    return Request.CreateResponse(HttpStatusCode.Conflict, invitation);
+
+                return Request.CreateResponse(HttpStatusCode.OK, invitation);
+            }
+        }
+
         [ActionName("EndInvitation")]
         [HttpGet]
         public HttpResponseMessage EndInvitation(int Id)

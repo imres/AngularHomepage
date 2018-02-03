@@ -11695,12 +11695,14 @@
     <TypeScriptCompile Include="app\_models\invitation-models\payment-method.ts" />
     <TypeScriptCompile Include="app\_models\invitation.ts" />
     <TypeScriptCompile Include="app\_models\common-object.ts" />
+    <TypeScriptCompile Include="app\_models\invitation-extended.ts" />
     <TypeScriptCompile Include="app\_models\person.ts" />
     <TypeScriptCompile Include="app\_models\user.ts" />
     <TypeScriptCompile Include="app\_models\user-link.ts" />
     <TypeScriptCompile Include="app\_services\alert.service.ts" />
     <TypeScriptCompile Include="app\_services\authentication.service.ts" />
     <TypeScriptCompile Include="app\_services\consignment.service.ts" />
+    <TypeScriptCompile Include="app\_services\filter.service.ts" />
     <TypeScriptCompile Include="app\_services\index.ts" />
     <TypeScriptCompile Include="app\_services\invitation.service.ts" />
     <TypeScriptCompile Include="app\_services\payment.service.ts" />

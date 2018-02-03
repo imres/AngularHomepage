@@ -5,3 +5,4 @@ export * from './invitation.service';
 export * from './consignment.service';
 export * from './toastr.service';
 export * from './payment.service';
+export * from './filter.service';

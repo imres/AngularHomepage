@@ -25,7 +25,7 @@ export class NavbarHomeComponent implements OnInit {
     currentUser: Person;
     showDialog = false;
     isClassActive: boolean;
-    invitationStatus: InvitationStatusEnum = new InvitationStatusEnum;
+    invitationStatus = InvitationStatusEnum
 
     constructor(private userService: UserService,
         private invitationService: InvitationService,

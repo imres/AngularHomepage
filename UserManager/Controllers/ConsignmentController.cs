@@ -40,7 +40,7 @@ namespace UserManager.Controllers
 
         [ActionName("AddConsignment")]
         [HttpPost]
-        public HttpResponseMessage AddConsignment(InvitationDTO invitation)
+        public HttpResponseMessage AddConsignment(InvitationExtended invitation)
         {
             using (HttpClient http = new HttpClient())
             {

@@ -308,6 +308,7 @@
     <Compile Include="Models\AutoMapperProfile.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ImageLink.cs" />
+    <Compile Include="Models\InvitationExtended.cs" />
     <Compile Include="Models\JwtHeader.cs" />
     <Compile Include="Models\JwtPayload.cs" />
     <Compile Include="Models\Personasdad.cs" />
