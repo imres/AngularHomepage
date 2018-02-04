@@ -650,6 +650,10 @@ a.cover-btn:hover {
     text-decoration: none;
 }
 
+.animate-enter{
+    animation: slide-up 0.4s ease;
+}
+
 /*.phone-sidebar {
     border: 1px solid #ddd;
     border-top: none;
@@ -692,4 +696,20 @@ a.cover-btn:hover {
 
 .phone-sidebar-link.sidebar-collapsed-link {
     padding-left: 2rem;
+}
+
+
+
+
+
+@keyframes slide-up {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
