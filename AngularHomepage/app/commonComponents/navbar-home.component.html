@@ -10,6 +10,11 @@
                 <div class="dropdown-menu dropdown-menu-right width-15">
                     <a href="#" class="dropdown-item" [routerLink]="['/profile']"><i class="fa fa-user-circle-o fa-fw" aria-hidden="true"></i> Min profil</a>
                     <a href="#" class="dropdown-item"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> Kontoinställningar</a>
+
+                    <ng-container *ngIf="currentUser.UserRights == 10">
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item" [routerLink]="['/admin-panel']"><i class="fa fa-database fa-fw" aria-hidden="true"></i> Administratörsverktyg</a>
+                    </ng-container>
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item" [routerLink]="['/front']" role="button"><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i> Logga ut</a>
                 </div>

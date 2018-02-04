@@ -8,11 +8,14 @@ import { InvitationStatusEnum } from '../../_models/enums/index';
 
 @Component({
     moduleId: module.id,
-    templateUrl: 'admin-panel.component.html'
+    templateUrl: 'admin-panel.component.html',
+    selector: 'admin-panel',
 })
 
 export class AdminPanel implements OnInit {
     currentUser: Person;
+
+    modelList = [Person.name, Invitation.name, Consignment.name]; //If model is added here, it will appear on admin page
 
     constructor(private userService: UserService,
         private invitationService: InvitationService) {

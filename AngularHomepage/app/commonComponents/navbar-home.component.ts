@@ -40,6 +40,34 @@ export class NavbarHomeComponent implements OnInit, OnChanges {
     }
 
     ngOnInit() {
+        this.getInvitations();
+
+        this.invitationService.invitationList.subscribe(invitations => {
+            this.invitations = invitations;
+
+            this.updateFilteredInvitations();
+        });
+    }
+
+    updateFilteredInvitations() {
+        if (this.invitations == null) return;
+
+        this.invitationNotifications = this.invitations.filter(x => { return x.Status == InvitationStatusEnum.Created });
+    }
+
+    getInvitations() {
+        this.invitationService.getInvitations(this.currentUser.PersonId).subscribe(invitations => {
+            console.log("Hämtade invites från API");
+
+            if (invitations == null) return;
+
+            this.invitations = invitations;
+
+            //this.updateFilteredInvitations();
+
+            this.invitationService.updateInvitations(invitations);
+
+        }, err => { console.log("Error: {0}", err) });
     }
 
     showConfirm(event: any) {
