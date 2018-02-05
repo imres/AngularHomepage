@@ -340,6 +340,16 @@ btn.btn-primary:active, .btn-primary:focus{
     align-items: center;
 }
 
+
+#navbar-home {
+    -webkit-box-orient: horizontal;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+
 /* Cover */
 
 .primary-gradient {
@@ -685,19 +695,29 @@ a.cover-btn:hover {
     padding-top: 1rem;
     padding-bottom: 0;
 }
+
 .phone-sidebar-link {
     padding-top: 1rem;
     padding-bottom: 1rem;
+}
+
+.phone-sidebar-link:hover {
+    color: #0AF;
+    text-decoration: none;
 }
 
 .phone-sidebar-link[aria-expanded="true"] {
     background: #f0f0f0;
 }
 
+.phone-sidebar-link[aria-expanded="true"]:hover {
+    background: #f0f0f0;
+    color: #000;
+}
+
 .phone-sidebar-link.sidebar-collapsed-link {
     padding-left: 2rem;
 }
-
 
 
 
