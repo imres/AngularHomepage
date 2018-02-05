@@ -171,6 +171,7 @@
     <Content Include="app\home\invitation\invitation.component.html" />
     <Content Include="app\home\invitation\active-invitation.component.html" />
     <Content Include="app\home\sidebar\sidebar.component.html" />
+    <Content Include="app\home\user-settings\user-settings.component.html" />
     <Content Include="app\img\noise.0e9cf16a17adb19690cd31312cdaa809.png" />
     <Content Include="app\img\preset-light.fce1a96aaadda47900f6fedf0a348ad1.png" />
     <Content Include="app\login\index.js" />
@@ -11662,6 +11663,7 @@
       <DependentUpon>invitation.component.html</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="app\home\sidebar\sidebar.component.ts" />
+    <TypeScriptCompile Include="app\home\user-settings\user-settings.component.ts" />
     <TypeScriptCompile Include="app\login\index.ts" />
     <TypeScriptCompile Include="app\login\login.component.ts">
       <DependentUpon>login.component.html</DependentUpon>
