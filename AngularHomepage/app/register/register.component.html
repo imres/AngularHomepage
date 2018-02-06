@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-6 offset-sm-3 margin-xxl-top">
-            <h2 class="text-center">ProjektNamn</h2>
+            <h2 class="text-center">Skapa ett konto</h2>
             <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
                     <label for="firstName">Förnamn</label>
@@ -38,10 +38,14 @@
                     <div *ngIf="f.submitted && !address.valid" class="help-block">Fyll i giltigt personnummer</div>
                 </div>
                 <!--<pre>{{model | json}}</pre>-->
-                <div class="form-group col-sm-6 offset-sm-3">
-                    <button [disabled]="loading" class="btn btn-primary mx-2">Register</button>
-                    <loading-spinner *ngIf="loading"></loading-spinner>
-                    <a [routerLink]="['/login']" class="btn btn-outline-primary mx-2">Cancel</a>
+                <div class="form-group row">
+                    <div class="col-6">
+                        <button [disabled]="loading" class="btn btn-primary mx-2" role="button">Registrera dig</button>
+                        <loading-spinner *ngIf="loading"></loading-spinner>
+                    </div>
+                    <div class="col-6 text-right">
+                        <a [routerLink]="['/login']" class="btn btn-outline-primary mx-2">Avbryt</a>
+                    </div>
                 </div>
             </form>
         </div>
