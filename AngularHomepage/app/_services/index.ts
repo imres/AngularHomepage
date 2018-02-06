@@ -6,3 +6,4 @@ export * from './consignment.service';
 export * from './toastr.service';
 export * from './payment.service';
 export * from './filter.service';
+export * from './administrator.service';

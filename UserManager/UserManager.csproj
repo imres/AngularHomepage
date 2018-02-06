@@ -251,6 +251,7 @@
     <Compile Include="Consignment.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\AdministratorController.cs" />
     <Compile Include="Controllers\ConsignmentController.cs" />
     <Compile Include="Controllers\CRUD.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -262,6 +263,8 @@
     <Compile Include="Core\Enums\ConsignmentStatus.cs" />
     <Compile Include="Core\Enums\InvitationStatus.cs" />
     <Compile Include="Core\Enums\PersonUserRights.cs" />
+    <Compile Include="Core\Interfaces\IAdministrator.cs" />
+    <Compile Include="Core\Interfaces\IAdministratorService.cs" />
     <Compile Include="Core\Interfaces\IConsigment.cs" />
     <Compile Include="Core\Interfaces\ICryptography.cs" />
     <Compile Include="Core\Interfaces\IInvitation.cs" />
@@ -271,10 +274,12 @@
     <Compile Include="Core\Interfaces\IPerson.cs" />
     <Compile Include="Core\Mappers\Mapper.cs" />
     <Compile Include="Core\Mappers\PersonMapper.cs" />
+    <Compile Include="Core\Repositories\AdministratorRepository.cs" />
     <Compile Include="Core\Repositories\ConsignmentRepository.cs" />
     <Compile Include="Core\Repositories\InvitationRepository.cs" />
     <Compile Include="Core\Repositories\PaymentRepository.cs" />
     <Compile Include="Core\Repositories\PersonRepository.cs" />
+    <Compile Include="Core\Services\AdministratorService.cs" />
     <Compile Include="Core\Services\InvitationService.cs" />
     <Compile Include="Core\Services\PaymentService.cs" />
     <Compile Include="DBModel.Context.cs">
