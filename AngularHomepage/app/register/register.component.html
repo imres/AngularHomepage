@@ -37,6 +37,16 @@
                     <input type="text" class="form-control" name="address" [(ngModel)]="model.Address" #address="ngModel" />
                     <div *ngIf="f.submitted && !address.valid" class="help-block">Fyll i giltigt personnummer</div>
                 </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !address.valid }">
+                    <label for="address">Mobilnummer</label>
+                    <input type="text" class="form-control" name="phoneMobile" [(ngModel)]="model.PhoneMobile" #phoneMobile="ngModel" />
+                    <div *ngIf="f.submitted && !phoneMobile.valid" class="help-block">Fyll i giltigt mobilnummer</div>
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !address.valid }">
+                    <label for="address">Postkod</label>
+                    <input type="text" class="form-control" name="postalCode" [(ngModel)]="model.PostalCode" #postalCode="ngModel" />
+                    <div *ngIf="f.submitted && !postalCode.valid" class="help-block">Fyll i giltig postkod</div>
+                </div>
                 <!--<pre>{{model | json}}</pre>-->
                 <div class="form-group row">
                     <div class="col-6">
