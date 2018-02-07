@@ -126,14 +126,6 @@ export class ConsignmentComponent implements OnInit {
         this.showAllConsignmentsEnabled = false;
     }
 
-    hideConsignments() {
-        this.showConsignments = false;
-    }
-
-    showConsignmentsEnable() {
-        this.showConsignments = true;
-    }
-
 
     //multiplySliceValue(pageNumber) {
     //    this.maxSliceValue = pageNumber * 4;

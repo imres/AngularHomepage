@@ -596,6 +596,10 @@ a.cover-btn:hover {
     padding-top: 7px;
 }
 
+.hide-link:hover {
+    text-decoration: none;
+}
+
 /* Userprofile */
 .profile-btn {
     font-size: 0.85rem;
@@ -738,7 +742,6 @@ a.cover-btn:hover {
 .user-settings-title {
     margin-right: 5px;
 }
-
 
 
 @keyframes slide-up {
