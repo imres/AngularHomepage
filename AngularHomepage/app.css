@@ -7,6 +7,10 @@
         background: #ffffff;
     }
 
+    .primary-gradient.h-100 {
+        background: #ffffff;
+    }
+
     #activeInvites .showActiveInvitesBtn {
         margin-top: 1rem;
     }
@@ -219,6 +223,16 @@ img {
 }
 .ml-7 {
     margin-left: 5rem !important;
+}
+
+/*Egna padding*/
+.p-6 {
+    padding: 6rem !important;
+}
+
+.px-6 {
+    padding-top: 6rem !important;
+    padding-bottom: 6rem !important;
 }
 /*.btn-custom{
     background-color: #33b799 !important;
@@ -741,6 +755,11 @@ a.cover-btn:hover {
 /* Kontoinställningar */
 .user-settings-title {
     margin-right: 5px;
+}
+
+/*Register*/
+.required-asterisk {
+    color: red;
 }
 
 
