@@ -14,9 +14,8 @@
             </div>
         </div>
     </div>
-</div><br>
+    <br>
 
-<div class="my-5 py-2 container section-content" *ngIf="consignments?.length == 0">
     <guide></guide>
 </div>
 
@@ -39,48 +38,50 @@
     </div>
 </div>
 
-    <div *ngIf="consignments?.length > 0" class="row collapse show" id="consignments">
-        <div *ngFor="let item of consignments | slice:minSliceValue:maxSliceValue; let i=index" [ngClass]="{'col-sm-6' : (consignments?.length > 3), 'col-sm-12' : (consignments?.length < 4)}">
-            <div class="card mb-3">
-                <div class="card-block">
-                    <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId">Ditt paket är påväg till {{item.ReceiverPersonId}}</p>
-                    <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId">Ett paket från {{item.SenderPersonId}} är påväg till dig</p>
-                    <p class="card-text">Paketet befinner sig just nu i Stockholm</p>
-                    <p class="card-text">
-                        Paketet är beräknat till
-                        <i *ngIf="consignments?.length < 4">Måndag den 23 Augusti 2018</i>
-                        <i *ngIf="consignments?.length > 3">23 Aug 2018</i>
-                    </p>
-                    <img src="img/karta.png" class="consignment-img" *ngIf="consignments?.length < 4" />
+    <div *ngIf="consignments?.length > 0" class="collapse show" id="consignments">
+        <div class="row">
+            <div *ngFor="let item of consignments | slice:minSliceValue:maxSliceValue; let i=index" [ngClass]="{'col-sm-6' : (consignments?.length > 3), 'col-sm-12' : (consignments?.length < 4)}">
+                <div class="card mb-3">
+                    <div class="card-block">
+                        <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId">Ditt paket är påväg till {{item.ReceiverPersonId}}</p>
+                        <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId">Ett paket från {{item.SenderPersonId}} är påväg till dig</p>
+                        <p class="card-text">Paketet befinner sig just nu i Stockholm</p>
+                        <p class="card-text">
+                            Paketet är beräknat till
+                            <i *ngIf="consignments?.length < 4">Måndag den 23 Augusti 2018</i>
+                            <i *ngIf="consignments?.length > 3">23 Aug 2018</i>
+                        </p>
+                        <img src="img/karta.png" class="consignment-img" *ngIf="consignments?.length < 4" />
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-12" *ngIf="consignments?.length > 0">
-            <div class="row">
-                <div class="col-sm-8">
-                    <nav aria-label="Page navigation for active invitations" *ngIf="consignments?.length > 4 && !showAllConsignmentsEnabled">
-                        <ul class="pagination">
-                            <li class="firstAndLast page-item text-center" [ngClass]="{'disabled' : (minSliceValue < 4)}"><a class="page-link" (click)="resetSliceValue()">Första</a></li>
+            <div class="col-md-12" *ngIf="consignments?.length > 0">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <nav aria-label="Page navigation for active invitations" *ngIf="consignments?.length > 4 && !showAllConsignmentsEnabled">
+                            <ul class="pagination">
+                                <li class="firstAndLast page-item text-center" [ngClass]="{'disabled' : (minSliceValue < 4)}"><a class="page-link" (click)="resetSliceValue()">Första</a></li>
 
-                            <li class="page-item" [ngClass]="{'disabled' : (minSliceValue < 4)}"><a class="page-link" (click)="decrementSliceValue()"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>
-                            <li *ngIf="maxSliceValue >= consignments?.length && consignments?.length > 8" class="page-item paginationNumber text-center" (click)="decrementSliceValueTwice()"><a class="page-link">{{(maxSliceValue / 4) - 2}}</a></li>
-                            <li *ngIf="maxSliceValue > 4" class="page-item paginationNumber text-center" (click)="decrementSliceValue()"><a class="page-link">{{(maxSliceValue / 4) - 1}}</a></li>
-                            <li class="page-item disabled paginationNumber text-center"><a class="page-link activePage">{{maxSliceValue / 4}}</a></li>
-                            <li *ngIf="maxSliceValue < consignments?.length" class="page-item paginationNumber text-center"><a class="page-link" (click)="incrementSliceValue()">{{(maxSliceValue / 4) + 1}}</a></li>
-                            <li *ngIf="maxSliceValue == 4 && consignments?.length > 8" class="page-item paginationNumber text-center" (click)="incrementSliceValueTwice()"><a class="page-link">{{(maxSliceValue / 4) + 2}}</a></li>
-                            <li class="page-item" [ngClass]="{'disabled' : (maxSliceValue == unrespondedInvitations?.length)}"><a class="page-link" (click)="incrementSliceValue()"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+                                <li class="page-item" [ngClass]="{'disabled' : (minSliceValue < 4)}"><a class="page-link" (click)="decrementSliceValue()"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>
+                                <li *ngIf="maxSliceValue >= consignments?.length && consignments?.length > 8" class="page-item paginationNumber text-center" (click)="decrementSliceValueTwice()"><a class="page-link">{{(maxSliceValue / 4) - 2}}</a></li>
+                                <li *ngIf="maxSliceValue > 4" class="page-item paginationNumber text-center" (click)="decrementSliceValue()"><a class="page-link">{{(maxSliceValue / 4) - 1}}</a></li>
+                                <li class="page-item disabled paginationNumber text-center"><a class="page-link activePage">{{maxSliceValue / 4}}</a></li>
+                                <li *ngIf="maxSliceValue < consignments?.length" class="page-item paginationNumber text-center"><a class="page-link" (click)="incrementSliceValue()">{{(maxSliceValue / 4) + 1}}</a></li>
+                                <li *ngIf="maxSliceValue == 4 && consignments?.length > 8" class="page-item paginationNumber text-center" (click)="incrementSliceValueTwice()"><a class="page-link">{{(maxSliceValue / 4) + 2}}</a></li>
+                                <li class="page-item" [ngClass]="{'disabled' : (maxSliceValue == unrespondedInvitations?.length)}"><a class="page-link" (click)="incrementSliceValue()"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
 
-                            <li class="firstAndLast page-item text-center" [ngClass]="{'disabled' : (maxSliceValue == consignments?.length)}"><a class="page-link" (click)="maximizeSliceValue()">Sista</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-sm-4 text-right">
-                    <button *ngIf="maxSliceValue >= 4 && !showAllConsignmentsEnabled && consignments?.length > 4" class="btn btn-outline-primary" type="button" role="button" (click)="showAllConsignments()">
-                        Visa alla <i class="fa fa-angle-down" aria-hidden="true"></i>
-                    </button>
-                    <button *ngIf="showAllConsignmentsEnabled" class="btn btn-outline-primary" type="button" role="button" (click)="resetSliceValue()">
-                        Visa färre <i class="fa fa-angle-up" aria-hidden="true"></i>
-                    </button>
+                                <li class="firstAndLast page-item text-center" [ngClass]="{'disabled' : (maxSliceValue == consignments?.length)}"><a class="page-link" (click)="maximizeSliceValue()">Sista</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-sm-4 text-right">
+                        <button *ngIf="maxSliceValue >= 4 && !showAllConsignmentsEnabled && consignments?.length > 4" class="btn btn-outline-primary" type="button" role="button" (click)="showAllConsignments()">
+                            Visa alla <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        </button>
+                        <button *ngIf="showAllConsignmentsEnabled" class="btn btn-outline-primary" type="button" role="button" (click)="resetSliceValue()">
+                            Visa färre <i class="fa fa-angle-up" aria-hidden="true"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
