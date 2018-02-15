@@ -1,8 +1,8 @@
 ﻿<!--Invites-->
-<div id="activeInvites" class="mt-3" role="tablist">
+<div *ngIf="activeInvitations?.length > 0" id="activeInvites" class="mt-3" role="tablist">
     <div class="card-custom">
         <div class="card-header-custom col-12 animate-enter">
-            <div *ngIf="activeInvitations?.length > 0" class="row align-items-between">
+            <div class="row align-items-between">
                 <h4 class="m-0 col-sm-7" *ngIf="activeInvitations?.length > 1">Du har {{activeInvitations?.length}} aktiva inbjudningar</h4>
                 <h4 class="m-0 col-sm-7" *ngIf="activeInvitations?.length == 1">Du har {{activeInvitations?.length}} aktiv inbjudan</h4>
 
