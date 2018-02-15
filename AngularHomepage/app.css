@@ -77,7 +77,7 @@ body {
     color: #3e3e3e !important;
 }
 
-minheight-100 {
+.minheight-100 {
     min-height: 100% !important;
 }
 
