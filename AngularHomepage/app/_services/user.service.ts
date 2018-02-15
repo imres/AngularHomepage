@@ -10,6 +10,20 @@ export class UserService {
     headers = new Headers({
         'Content-Type': 'application/json'
     });
+
+    private postheader = new Headers({
+        'Content-Type': 'application/json;charset=UTF-8'
+    });
+    
+    getPackage() {
+        return this.http.get('http://localhost:65192/api/User/PostGet/2')
+            .map((response: Response) =>
+                response.json()
+            );
+    }
+
+
+    //https://api.aftership.com/v4/trackings/:slug/:RR747540648SE
     /*getAll(id: number) {
         return this.http.get('http://localhost:65192/api/User/GetById/'+id)
             .map((response: Response) => response.json());

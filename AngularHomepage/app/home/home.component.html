@@ -7,7 +7,7 @@
             <sidebar></sidebar>
         </div>
         <div class="col-lg-8 px-5">
-            <active-invitation [invitations]="invitations" [activeInvitations]="activeInvitations"></active-invitation>
+            <active-invitation *ngIf="activeInvitations?.length > 0" [invitations]="invitations" [activeInvitations]="activeInvitations"></active-invitation>
             <consignment></consignment>
         </div>
     </div>

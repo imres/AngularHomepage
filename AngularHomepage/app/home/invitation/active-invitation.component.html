@@ -31,7 +31,7 @@
                                 <p class="card-text">Begärd summa: {{item.RequestedDepositAmount}}</p>
                                 <p class="card-text">Inbjudan skickad: {{item.StartDate}}</p>
 
-                                <div *ngIf="!HasReceiverRole(item) && matchesInvitationWithPackageId(item)">
+                                <div *ngIf="!HasReceiverRole(item) && matchesInvitationWithPackageId(item)" class="animate-enter">
                                     <form name="packageIdForm" (ngSubmit)="f.form.valid && savePackageId()" #f="ngForm" novalidate>
                                         <input type="text" class="form-control mb-2" name="packageId" placeholder="Kolli-id"
                                                [(ngModel)]="invitationExtended.PackageId" #packageId="ngModel" pattern=".{3,}" title="3 characters minimum" required />
@@ -41,7 +41,7 @@
                                     </form>
                                 </div>
 
-                                <a *ngIf="!HasReceiverRole(item) && !matchesInvitationWithPackageId(item)" href="#" class="btn btn-primary col-md-9 col-lg-6" 
+                                <a *ngIf="!HasReceiverRole(item) && !matchesInvitationWithPackageId(item)" href="#" class="btn btn-primary col-md-9 col-lg-6 animate-enter" 
                                    (click)="enterPackageId(item);false" [class.disabled]="item.Status == invitationStatus.Accepted ? true : null">Ange kolli-id</a>
 
                                 <ng-container *ngIf="HasReceiverRole(item) && item.Status == invitationStatus.Accepted">
