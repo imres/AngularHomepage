@@ -1,4 +1,4 @@
-﻿@media screen and (max-device-width: 575px) {
+﻿@media screen and (max-width: 575px) /*sm-down*/ {
     #cover-caption .container .display-3 {
         font-size: 3.5rem;
     }
@@ -13,6 +13,44 @@
 
     #activeInvites .showActiveInvitesBtn {
         margin-top: 1rem;
+    }
+}
+@media screen and (max-width: 766px) /*md-down*/{
+    .sale-ads-title{
+        margin-top: 0px;
+    }
+
+    #user-settings {
+        font-size: 0.75rem;
+    }
+}
+@media screen and (min-width: 767px) /*md-up*/ {
+    .user-profile {
+        position: fixed;
+        right: 0;
+        width: 400px;
+    }
+
+    .sale-ads {
+        margin-right: 40%;
+    }
+}
+
+@media screen and (min-width: 992px) /*lg-up*/ {
+    .sale-ads {
+        margin-right: 33%;
+    }
+}
+
+@media screen and (max-height: 755px) {
+    .user-profile-img{
+        height: 15rem !important;
+    }
+}
+
+@media screen and (max-height: 677px) {
+    .user-profile-img {
+        height: 10rem !important;
     }
 }
 
@@ -88,6 +126,10 @@ app{
 
 img {
     max-width: 100%;
+}
+
+.img-cog {
+    margin-top: 0.25rem;
 }
 
 .help-block {
@@ -237,6 +279,14 @@ img {
 .px-6 {
     padding-top: 6rem !important;
     padding-bottom: 6rem !important;
+}
+
+.pt-6 {
+    padding-top: 6rem !important;
+}
+
+.padding-102px-top {
+    padding-top: 102px !important;
 }
 /*.btn-custom{
     background-color: #33b799 !important;
@@ -618,15 +668,27 @@ a.cover-btn:hover {
     text-decoration: none;
 }
 
-/* Userprofile */
+/* User Profile */
 .profile-btn {
     font-size: 0.85rem;
+    margin-top: 1rem;
+    width: 100%;
+    display: block;
 }
 
-.ad-img {
-    width: 600px;
-    height: 200px;
-    background: blue;
+.user-profile-img {
+    background: url(app/img/profilbild.png);
+    background-size: cover;
+    background-position: center;
+    height: 20rem;
+    width: 100%;
+}
+
+.sales-ads-img {
+    background: url(app/img/fotbollsskor.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 10rem;
 }
 
 .noborder{
@@ -656,7 +718,6 @@ a.cover-btn:hover {
     flex-direction: column;
     background-color: #fff;
 }
-
 /* Sidebar */
 #sidebar {
     height: 100%;
@@ -758,9 +819,16 @@ a.cover-btn:hover {
     padding-left: 2rem;
 }
 
-/* Kontoinställningar */
+/* User Settings */
 .user-settings-title {
     margin-right: 5px;
+}
+
+.user-settings-img {
+    background: url(app/img/profilbild.png);
+    background-size: cover;
+    background-position: center;
+    height: 20rem;
 }
 
 /*Register*/
