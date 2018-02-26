@@ -25,21 +25,21 @@
     }
 }
 @media screen and (min-width: 767px) /*md-up*/ {
-    .user-profile {
+    /*.user-profile {
         position: fixed;
         right: 0;
         width: 400px;
-    }
+    }*/
 
-    .sale-ads {
+    /*.sale-ads {
         margin-right: 40%;
-    }
+    }*/
 }
 
 @media screen and (min-width: 992px) /*lg-up*/ {
-    .sale-ads {
+    /*.sale-ads {
         margin-right: 33%;
-    }
+    }*/
 }
 
 @media screen and (max-height: 755px) {
@@ -760,8 +760,16 @@ a.cover-btn:hover {
     text-decoration: none;
 }
 
-.animate-enter{
+/*.animate-enter{
     animation: slide-up 0.4s ease;
+}*/
+
+#searchBar {
+    background: #f0f0f0;
+}
+
+#searchBarPhone {
+    background: #f0f0f0;
 }
 
 /*.phone-sidebar {
