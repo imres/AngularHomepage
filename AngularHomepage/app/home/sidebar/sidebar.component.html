@@ -1,27 +1,31 @@
 ﻿<div class="wrapper w-100 h-100">
 
     <nav id="sidebar" class="hidden-md-down list-unstyled components h-100">
-        <div class="active sidebar-link" [routerLink]="['/home']" role="button">
-            <i class="fa fa-home fa-fw" aria-hidden="true"></i>
+        <div class="sidebar-link" [routerLink]="['/home']" role="button">
+            <i class="fas fa-home fa-fw" aria-hidden="true"></i>
             Hem
         </div>
         <div href="#"class="sidebar-link" role="button">
-            <i class="fa fa-users fa-fw" aria-hidden="true"></i>
+            <i class="fas fa-users fa-fw" aria-hidden="true"></i>
             Mina vänner
         </div>
         <div class="sidebar-link"  href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" role="button">
-            <i class="fa fa-envelope fa-fw" aria-hidden="true"></i> Försändelser
-            <i class="fa fa-angle-down fa-pull-right" aria-hidden="true"></i>
+            <i class="fas fa-envelope fa-fw" aria-hidden="true"></i> Försändelser
+            <i class="fas fa-angle-down fa-pull-right" aria-hidden="true"></i>
             <div class="collapse list-unstyled" id="pageSubmenu">
-                <div href="#" role="button" class="sidebar-link sidebar-collapsed-link"><i class="fa fa-location-arrow fa-fw" aria-hidden="true"></i> Aktiva försändelser</div>
-                <div href="#" role="button" class="sidebar-link sidebar-collapsed-link"><i class="fa fa-plus fa-fw" aria-hidden="true"></i> Ny försändelse</div>
-                <div href="#" role="button" class="sidebar-link sidebar-collapsed-link"><i class="fa fa-envelope-open fa-fw" aria-hidden="true"></i> Historik</div>
+                <div href="#" role="button" class="sidebar-link sidebar-collapsed-link"><i class="fas fa-location-arrow fa-fw" aria-hidden="true"></i> Aktiva försändelser</div>
+                <div href="#" role="button" class="sidebar-link sidebar-collapsed-link"><i class="fas fa-plus fa-fw" aria-hidden="true"></i> Ny försändelse</div>
+                <div href="#" role="button" class="sidebar-link sidebar-collapsed-link"><i class="fas fa-envelope-open fa-fw" aria-hidden="true"></i> Historik</div>
             </div>
         </div>
-        <div href="#" class="sidebar-link" role="button">
-            <i class="fa fa-search fa-fw" aria-hidden="true"></i>
+        <div class="sidebar-link" href="#searchBar" data-toggle="collapse" aria-expanded="false" role="button">
+            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
             Sök annons
+
         </div>
+        <div class="pb-2 col-12 collapse" id="searchBar">
+            <input type="text" class="form-control" name="search" placeholder="Sök annons" />
+        </div>  
     </nav>
 
     <!--<div id="sidebarPhone" class="hidden-lg-up row">
@@ -52,7 +56,7 @@
         </button>
 
         <nav id="phoneSidebar" class="collapse">
-            <div class="active phone-sidebar-link px-3" [routerLink]="['/home']" role="button">
+            <div class="phone-sidebar-link px-3" [routerLink]="['/home']" role="button">
                 <i class="fa fa-home fa-fw" aria-hidden="true"></i>
                 Hem
             </div>
@@ -69,10 +73,13 @@
                     <div href="#" role="button" class="phone-sidebar-link sidebar-collapsed-link"><i class="fa fa-envelope-open fa-fw" aria-hidden="true"></i> Historik</div>
                 </div>
             </div>
-            <div href="#" class="phone-sidebar-link px-3" role="button">
+            <div class="phone-sidebar-link px-3" href="#searchBarPhone" data-toggle="collapse" aria-expanded="false" role="button">
                 <i class="fa fa-search fa-fw" aria-hidden="true"></i>
                 Sök annons
             </div>
+            <div class="pb-2 col-12 collapse" id="searchBarPhone">
+                <input type="text" class="form-control" name="search" placeholder="Sök annons" />
+            </div> 
         </nav>
     </div>
 
