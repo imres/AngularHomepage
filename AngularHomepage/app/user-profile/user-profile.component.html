@@ -8,38 +8,27 @@
         <sidebar class="col-lg-2 no-padding"></sidebar>
 
         <div class="col-lg-7 col-10 offset-1 p-2 pt-3 ">
-            <div class="row no-padding user-profile">
-                <div class="col-8 offset-2 col-sm-4 offset-sm-0">
+            <div class="row no-padding user-profile-header">
+                <div class="col-8 offset-2 col-sm-4 offset-sm-0 col-xl-2" id="user-profile-img-container">
                     <div class="user-profile-img"></div>
                 </div>
-                <div class="card-block col-sm-8 pb-0">
-                    <h4 class="card-title text-center">{{currentUser.FirstName}} {{currentUser.LastName}}</h4>
-                    <div class="card">
-                        <div class="list-group list-group-flush">
-                            <div class="list-group-item">
-                                {{currentUser.DisplayName}}
-                            </div>
-                            <div class="list-group-item">
-                                {{currentUser.Email}}
-                            </div>
-                            <div class="list-group-item">
-                                {{currentUser.Address}}
-                            </div>
-                            <div class="list-group-item">
-                                {{currentUser.PostalCode}}
-                            </div>
-                        </div>
+                <div class="col-sm-5 user-profile-block">
+                    <div class="user-profile-info">
+                        {{currentUser.Address}}, {{currentUser.PostalCode}}
                     </div>
-
+                    <div class="user-profile-info">
+                        {{currentUser.Email}}
+                    </div>
+                    <h3>{{currentUser.FirstName}} {{currentUser.LastName}} <i>({{currentUser.DisplayName}})</i></h3>
                 </div>
                 <ul class="col-12 nav nav-tabs mt-2 profile-tab">
-                    <li class="nav-item border-right border-left">
+                    <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#sale-ad-tab" role="tab">Annonser</a>
                     </li>
-                    <li class="nav-item border-right">
+                    <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#settings-tab" role="tab">Kontoinställningar</a>
                     </li>
-                    <li class="nav-item border-right">
+                    <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#friends-tab" role="tab">Vänner</a>
                     </li>
                 </ul>

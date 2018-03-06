@@ -187,7 +187,7 @@ img {
     margin-top: 25px;
 }
 .margin-xl-top {
-    margin-top: 50px;
+    margin-top: 5rem;
 }
 .margin-1xl-top {
     margin-top: 75px;
@@ -219,6 +219,7 @@ img {
 .ml-7 {
     margin-left: 5rem !important;
 }
+
 
 /*Egna padding*/
 .p-6 {
@@ -618,11 +619,27 @@ a.cover-btn:hover {
 }
 
 /* User Profile */
-.user-profile {
-    border: 1px solid rgba(0,0,0,.125);
+.user-profile-header {
+    background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
     border-radius: .25rem;
     margin: 0;
+    color: white;
+    box-shadow: var(--bottom-shadow);
 }
+
+.user-profile-info {
+    padding: 0.15rem 0rem;
+}
+
+.user-profile-block {
+    margin-top: 5rem;
+    padding-bottom: 0;
+}
+
+#user-profile-img-container {
+    min-width: 214px;
+}
+
 
 .profile-btn {
     font-size: 0.85rem;
@@ -633,7 +650,7 @@ a.cover-btn:hover {
 
 .profile-tab {
     border: none;
-    border-top: 1px solid rgba(0,0,0,.125);
+    background: white;
     padding-left: 14rem;
 }
 
@@ -649,14 +666,15 @@ a.cover-btn:hover {
     background: url(app/img/any.jpg);
     background-size: cover;
     background-position: center;
-    height: 14.2rem;
-    width: 12rem;
-    margin-bottom: -3rem;
-    margin-top: 3.6rem;
+    height: 11rem;
+    width: 11rem;
+    margin-bottom: -2rem;
+    margin-top: 4.6rem;
     z-index: 1;
-    border: 3px solid #000;
-    border-radius: 2px;
+    border: 3px solid #fff;
+    border-radius: 96px;
     position: relative;
+    box-shadow: #777777 0px 2px 8px;
 }
 .sales-ads-img {
     background: url(app/img/fotbollsskor.jpg);
@@ -849,11 +867,6 @@ a.cover-btn:hover {
         font-size: 0.75rem;
     }
 
-    .user-profile-img {
-        height: 12rem;
-        width: 100%;
-    }
-
     .profile-tab {
         padding-left: 0rem;
         padding-right: 0rem;
@@ -879,9 +892,12 @@ a.cover-btn:hover {
     }
 
     .user-profile-img {
-        margin-top: 1rem;
         margin-bottom: 0rem;
-        height: 15rem;
+        margin-top: 1.6rem;
+    }
+
+    .user-profile-block {
+        margin-top: 1rem;
     }
 
     .profile-tab {
