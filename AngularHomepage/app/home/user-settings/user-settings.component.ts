@@ -5,7 +5,8 @@ import { Person } from '../../_models/index';
 
 @Component({
     moduleId: module.id,
-    templateUrl: 'user-settings.component.html'
+    templateUrl: 'user-settings.component.html',
+    selector: 'user-settings',
 })
 
 export class UserSettingsComponent implements OnInit {
