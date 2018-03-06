@@ -3,7 +3,106 @@
 
 <!-- Kontoinställningar -->
 
-<div class="primary-gradient minheight-100">
+<section id="user-settings" class="col-12 card">
+    <div class="col-sm-12 justify-content-center">
+        <div class="section-content">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="list-group list-group-flush w-100">
+
+                        <div class="list-group-item">
+                            <div class="col-8 no-padding">
+                                <strong class="user-settings-title">Mailadress:</strong> {{currentUser.Email}}
+                            </div>
+                            <div class="col-4 no-padding text-right">
+                                <a class="link" href="#emailForm" data-toggle="collapse" aria-expanded="false" role="button"><i class="fas fa-cog fa-pull-right" aria-hidden="true"></i></a>
+                            </div>
+                            <div id="emailForm" class="collapse col-12">
+                                <div class="row mt-2">
+                                    <div class="col-12">
+                                        <input type="text" class="form-control" name="email" placeholder="Ny mailadress" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="list-group-item">
+                            <div class="col-8 no-padding">
+                                <strong class="user-settings-title">Lösenord:</strong> ******
+                            </div>
+                            <div class="col-4 no-padding text-right">
+                                <a class="link" href="#passwordForm" data-toggle="collapse" aria-expanded="false" role="button"><i class="fas fa-cog fa-pull-right" aria-hidden="true"></i></a>
+                            </div>
+                            <div id="passwordForm" class="collapse col-12">
+                                <div class="row mt-2">
+                                    <div class="col-12">
+                                        <input type="text" class="form-control" name="password" placeholder="Nytt lösenord" />
+                                    </div>
+                                    <div class="col-12 mt-2">
+                                        <input type="text" class="form-control" name="password" placeholder="Bekräfta lösenord" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="list-group-item">
+                            <div class="col-8 no-padding">
+                                <strong class="user-settings-title">Telefonnummer:</strong> {{currentUser.PhoneMobile}}
+                            </div>
+                            <div class="col-4 no-padding text-right">
+                                <a class="link" href="#phoneNumberForm" data-toggle="collapse" aria-expanded="false" role="button"><i class="fas fa-cog fa-pull-right" aria-hidden="true"></i></a>
+                            </div>
+                            <div id="phoneNumberForm" class="collapse col-12">
+                                <div class="row mt-2">
+                                    <div class="col-12">
+                                        <input type="text" class="form-control" name="phoneNumber" placeholder="Nytt telefonnummer" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="list-group-item">
+                            <div class="col-8 no-padding">
+                                <strong class="user-settings-title">Adress:</strong> {{currentUser.Address}}
+                            </div>
+                            <div class="col-4 no-padding text-right">
+                                <a class="link" href="#addressForm" data-toggle="collapse" aria-expanded="false" role="button"><i class="fas fa-cog fa-pull-right" aria-hidden="true"></i></a>
+                            </div>
+                            <div id="addressForm" class="collapse col-12">
+                                <div class="row mt-2">
+                                    <div class="col-12">
+                                        <input type="text" class="form-control" name="address" placeholder="Ny adress" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="list-group-item">
+                            <div class="col-8 no-padding">
+                                <strong class="user-settings-title">Postort:</strong> {{currentUser.PostalCode}}
+                            </div>
+                            <div class="col-4 no-padding text-right">
+                                <a class="link" href="#zipcodeForm" data-toggle="collapse" aria-expanded="false" role="button"><i class="fas fa-cog fa-pull-right" aria-hidden="true"></i></a>
+                            </div>
+                            <div id="zipcodeForm" class="collapse col-12">
+                                <div class="row mt-2">
+                                    <div class="col-12">
+                                        <input type="text" class="form-control" name="zipcode" placeholder="Ny postort" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-3 text-right">
+                            <button class="btn btn-primary" role="button">Spara ändringar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--<div class="primary-gradient minheight-100">
     <section id="user-settings" class="col-12 h-100 padding-102px-top pb-5">
         <div class="col-sm-8 offset-sm-2 col-md-6 offset-md-3 card ">
             <div class="col-8 offset-2 col-md-6 offset-md-3 pt-2 user-settings-img">
@@ -131,4 +230,4 @@
             </div>
         </div>
     </section>
-</div>
+</div>-->

@@ -2,7 +2,7 @@
 <div *ngIf="consignments?.length == 0">
     <div class="container-fluid ">
         <div class="row">
-            <div class="margin-xl-top card text-center col-md-12">
+            <div class="card text-center col-md-12">
                 <div class="card-block">
                     <h3 class="card-title">Inga aktiva försändelser</h3>
                     <p class="card-text">
@@ -28,11 +28,11 @@
         <p class="col-sm-5 m-0 text-sm-right">
             <a *ngIf="!showConsignments" (click)="showConsignments=true" class="hide-link"
                data-toggle="collapse" href="#consignments" role="button" aria-expanded="true" aria-controls="consignments">
-                Visa inbjudningar <i class="fa fa-angle-down" aria-hidden="true"></i>
+                Visa försändelser <i class="fa fa-angle-down" aria-hidden="true"></i>
             </a>
             <a *ngIf="showConsignments" (click)="showConsignments=false" class="hide-link"
                data-toggle="collapse" href="#consignments" role="button" aria-expanded="true" aria-controls="consignments">
-                Dölj inbjudningar <i class="fa fa-angle-up" aria-hidden="true"></i>
+                Dölj försändelser <i class="fa fa-angle-up" aria-hidden="true"></i>
             </a>
         </p>
     </div>

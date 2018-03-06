@@ -7,8 +7,117 @@
         <!--Sidebar-->
         <sidebar class="col-lg-2 no-padding"></sidebar>
 
-        <!--Profil-->
-        <div class="col-xl-3 col-lg-4 offset-lg-0 col-md-6 offset-md-3 col-sm-8 offset-sm-2 p-5 user-profile">
+        <div class="col-lg-7 col-10 offset-1 p-2 pt-3 ">
+            <div class="row no-padding user-profile">
+                <div class="col-8 offset-2 col-sm-4 offset-sm-0">
+                    <div class="user-profile-img"></div>
+                </div>
+                <div class="card-block col-sm-8 pb-0">
+                    <h4 class="card-title text-center">{{currentUser.FirstName}} {{currentUser.LastName}}</h4>
+                    <div class="card">
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item">
+                                {{currentUser.DisplayName}}
+                            </div>
+                            <div class="list-group-item">
+                                {{currentUser.Email}}
+                            </div>
+                            <div class="list-group-item">
+                                {{currentUser.Address}}
+                            </div>
+                            <div class="list-group-item">
+                                {{currentUser.PostalCode}}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <ul class="col-12 nav nav-tabs mt-2 profile-tab">
+                    <li class="nav-item border-right border-left">
+                        <a class="nav-link active" data-toggle="tab" href="#sale-ad-tab" role="tab">Annonser</a>
+                    </li>
+                    <li class="nav-item border-right">
+                        <a class="nav-link" data-toggle="tab" href="#settings-tab" role="tab">Kontoinställningar</a>
+                    </li>
+                    <li class="nav-item border-right">
+                        <a class="nav-link" data-toggle="tab" href="#friends-tab" role="tab">Vänner</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="tab-content col-12 py-3 px-0">
+                <!-- AD-TAB -->
+                <div class="tab-pane fade show active" id="sale-ad-tab" role="tabpanel">
+                    <div class="card mb-3">
+                        <div class="sales-ads-img">
+                            <div class="row px-1">
+                                <div class="col-6">
+                                    <a class="link" href="" role="button"><i class="fas fa-cog fa-fw img-cog" aria-hidden="true"></i></a>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <a class="link" href="" role="button"><i class="fas fa-trash fa-fw img-cog" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-block">
+                            <h4 class="card-title">Fotbollsskor</h4>
+                            <p class="card-text">Hej nu ska jag sälja mina fina fotbollsskor som jag använt under den senaste säsongen, dom är i gott skick......</p>
+                            <button class="btn btn-block btn-outline-primary" role="button">Gå till annons på Blocket</button>
+
+                        </div>
+                    </div>
+
+                    <div class="card mb-3">
+                        <div class="sales-ads-img">
+                            <div class="row px-1">
+                                <div class="col-6">
+                                    <a class="link" href="" role="button"><i class="fas fa-cog fa-fw img-cog" aria-hidden="true"></i></a>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <a class="link" href="" role="button"><i class="fas fa-trash fa-fw img-cog" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-block">
+                            <h4 class="card-title">Fotbollsskor</h4>
+                            <p class="card-text">Hej nu ska jag sälja mina fina fotbollsskor som jag använt under den senaste säsongen, dom är i gott skick......</p>
+                            <button class="btn btn-block btn-outline-primary" role="button">Gå till annons på Blocket</button>
+
+                        </div>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="sales-ads-img">
+                            <div class="row px-1">
+                                <div class="col-6">
+                                    <a class="link" href="" role="button"><i class="fas fa-cog fa-fw img-cog" aria-hidden="true"></i></a>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <a class="link" href="" role="button"><i class="fas fa-trash fa-fw img-cog" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-block">
+                            <h4 class="card-title">Fotbollsskor</h4>
+                            <p class="card-text">Hej nu ska jag sälja mina fina fotbollsskor som jag använt under den senaste säsongen, dom är i gott skick......</p>
+                            <button class="btn btn-block btn-outline-primary" role="button">Gå till annons på Blocket</button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- settings-tab -->
+                <div class="tab-pane fade" id="settings-tab" role="tabpanel">
+                    <user-settings></user-settings>
+                </div>
+
+                <div class="tab-pane fade" id="friends-tab" role="tabpanel">
+                    <h1>VÄNNER</h1>
+                </div>
+            </div>
+        </div>
+
+            <!--
+        <div class="col-lg-3 offset-lg-1 col-md-6 offset-md-3 col-10 offset-1 p-2 pt-3 user-profile">
             <div class="card col-12 no-padding">
                 <div class="col-12 user-profile-img">
                     <a class="link" href="" role="button"><i class="fas fa-cog fa-pull-right img-cog" aria-hidden="true"></i></a>
@@ -38,11 +147,9 @@
             </div>
         </div>
 
-        <!-- Annonser -->
-        <div class="col-lg-5 offset-lg-0 col-md-10 offset-md-1 sale-ads p-5">
-            <h2 class="text-center sale-ads-title">Mina annonser</h2>
 
-            <div class="card my-3">
+        <div class="col-lg-4 offset-lg-0 col-10 offset-1 sale-ads p-2 pt-3">
+            <div class="card mb-3">
                 <div class="sales-ads-img">
                     <div class="row px-1">
                         <div class="col-6">
@@ -61,7 +168,7 @@
                 </div>
             </div>
 
-            <div class="card my-3">
+            <div class="card mb-3">
                 <div class="sales-ads-img">
                     <div class="row px-1">
                         <div class="col-6">
@@ -79,7 +186,7 @@
 
                 </div>
             </div>
-            <div class="card my-3">
+            <div class="card mb-3">
                 <div class="sales-ads-img">
                     <div class="row px-1">
                         <div class="col-6">
@@ -97,8 +204,8 @@
 
                 </div>
             </div>
+
+        </div>-->
 
         </div>
-
-    </div>
 </div>
