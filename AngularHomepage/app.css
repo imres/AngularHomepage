@@ -1,4 +1,9 @@
-﻿.link {
+﻿:root {
+    --bottom-shadow: #e0e0e0 0px 2px 8px;
+    --center-shadow: #e0e0e0 0px 0px 8px;
+}
+
+.link {
     color: #000;
     text-decoration:none;
 }
@@ -36,7 +41,7 @@
 }
 
 .navbar {
-    border-bottom: 1px solid #ddd;
+    box-shadow: var(--center-shadow);
 }
 
 a {
@@ -692,7 +697,7 @@ a.cover-btn:hover {
     height: 100%;
     background: #fff;
     transition: all 0.3s;
-    border-right: 1px solid #ddd;
+    box-shadow: var(--center-shadow);
     position: fixed;
     max-width: 20%;
     width: 230px;
@@ -812,6 +817,15 @@ a.cover-btn:hover {
 .required-asterisk {
     color: red;
 }
+
+.card {
+    border: 0;
+    box-shadow: var(--bottom-shadow);
+}
+
+
+
+
 
 
 @keyframes slide-up {
