@@ -1,60 +1,4 @@
-﻿@media screen and (max-width: 575px) /*sm-down*/ {
-    #cover-caption .container .display-3 {
-        font-size: 3.5rem;
-    }
-
-    login .primary-gradient{
-        background: #ffffff;
-    }
-
-    .primary-gradient.h-100 {
-        background: #ffffff;
-    }
-
-    #activeInvites .showActiveInvitesBtn {
-        margin-top: 1rem;
-    }
-}
-@media screen and (max-width: 766px) /*md-down*/{
-    .sale-ads-title{
-        margin-top: 0px;
-    }
-
-    #user-settings {
-        font-size: 0.75rem;
-    }
-}
-@media screen and (min-width: 767px) /*md-up*/ {
-    /*.user-profile {
-        position: fixed;
-        right: 0;
-        width: 400px;
-    }*/
-
-    /*.sale-ads {
-        margin-right: 40%;
-    }*/
-}
-
-@media screen and (min-width: 992px) /*lg-up*/ {
-    /*.sale-ads {
-        margin-right: 33%;
-    }*/
-}
-
-@media screen and (max-height: 755px) {
-    .user-profile-img{
-        height: 15rem !important;
-    }
-}
-
-@media screen and (max-height: 677px) {
-    .user-profile-img {
-        height: 10rem !important;
-    }
-}
-
-.link {
+﻿.link {
     color: #000;
     text-decoration:none;
 }
@@ -669,6 +613,12 @@ a.cover-btn:hover {
 }
 
 /* User Profile */
+.user-profile {
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    margin: 0;
+}
+
 .profile-btn {
     font-size: 0.85rem;
     margin-top: 1rem;
@@ -676,14 +626,33 @@ a.cover-btn:hover {
     display: block;
 }
 
-.user-profile-img {
-    background: url(app/img/profilbild.png);
-    background-size: cover;
-    background-position: center;
-    height: 20rem;
-    width: 100%;
+.profile-tab {
+    border: none;
+    border-top: 1px solid rgba(0,0,0,.125);
+    padding-left: 14rem;
 }
 
+.border-right {
+    border-right: 1px solid rgba(0,0,0,.125);
+}
+
+.border-left {
+    border-left: 1px solid rgba(0,0,0,.125);
+}
+
+.user-profile-img {
+    background: url(app/img/any.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 14.2rem;
+    width: 12rem;
+    margin-bottom: -3rem;
+    margin-top: 3.6rem;
+    z-index: 1;
+    border: 3px solid #000;
+    border-radius: 2px;
+    position: relative;
+}
 .sales-ads-img {
     background: url(app/img/fotbollsskor.jpg);
     background-size: cover;
@@ -855,4 +824,83 @@ a.cover-btn:hover {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+@media screen and (max-width: 766px) /*md-down*/ {
+    .sale-ads-title {
+        margin-top: 0px;
+    }
+
+    #user-settings {
+        font-size: 0.75rem;
+    }
+
+    .user-profile-img {
+        height: 12rem;
+        width: 100%;
+    }
+
+    .profile-tab {
+        padding-left: 0rem;
+        padding-right: 0rem;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 575px) /*sm-down*/ {
+    #cover-caption .container .display-3 {
+        font-size: 3.5rem;
+    }
+
+    login .primary-gradient {
+        background: #ffffff;
+    }
+
+    .primary-gradient.h-100 {
+        background: #ffffff;
+    }
+
+    #activeInvites .showActiveInvitesBtn {
+        margin-top: 1rem;
+    }
+
+    .user-profile-img {
+        margin-top: 1rem;
+        margin-bottom: 0rem;
+        height: 15rem;
+    }
+
+    .profile-tab {
+        font-size: 0.75rem;
+    }
+}
+
+@media screen and (min-width: 767px) /*md-up*/ {
+    /*.user-profile {
+        position: fixed;
+        right: 0;
+        width: 400px;
+    }*/
+
+    /*.sale-ads {
+        margin-right: 40%;
+    }*/
+}
+
+@media screen and (min-width: 992px) /*lg-up*/ {
+    /*.sale-ads {
+        margin-right: 33%;
+    }*/
+}
+
+@media screen and (max-height: 755px) {
+    /*.user-profile-img{
+        height: 15rem !important;
+    }*/
+}
+
+@media screen and (max-height: 677px) {
+    /*.user-profile-img {
+        height: 10rem !important;
+    }*/
 }
