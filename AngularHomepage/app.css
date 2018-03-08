@@ -1,6 +1,7 @@
 ﻿:root {
     --bottom-shadow: #e0e0e0 0px 2px 8px;
     --center-shadow: #e0e0e0 0px 0px 8px;
+    --bottom-shadow-darker: #e0e0e0 0px 5px 11px;
 }
 
 .link {
@@ -386,6 +387,10 @@ btn.btn-primary:active, .btn-primary:focus{
     background: linear-gradient(to right, #2F80ED, #56CCF2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+.secondary-gradient {
+    background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+}
+
 .cover {
     color: black;
     height: 80vh;
@@ -572,12 +577,20 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 /* Consignments */
-.consignment-img {
+.consignment-card-img {
     width: 125px;
     height: 125px;
     position: absolute;
     right: 1rem;
     top: 1rem;
+}
+
+.consignment-card-header {
+    height: 10rem;
+    width: 100%;
+    color: white;
+    padding-top: 3rem;
+    box-shadow: var(--bottom-shadow-darker);
 }
 
 .firstAndLast {

@@ -1,5 +1,5 @@
 ﻿<!-- Om inga försändelser finns så visas den här rutan med länk till att skicka invites och guide för att förstå hur man gör -->
-<div *ngIf="consignments?.length == 0">
+<div *ngIf="consignments?.length == 0" class="mt-3">
     <div class="container-fluid ">
         <div class="row">
             <div class="card text-center col-md-12">
@@ -40,8 +40,12 @@
 
     <div *ngIf="consignments?.length > 0" class="collapse show" id="consignments">
         <div class="row">
-            <div *ngFor="let item of consignments | slice:minSliceValue:maxSliceValue; let i=index" [ngClass]="{'col-sm-6' : (consignments?.length > 3), 'col-sm-12' : (consignments?.length < 4)}">
+            <div *ngFor="let item of consignments | slice:minSliceValue:maxSliceValue; let i=index" [ngClass]="{'col-sm-6' : (consignments?.length > 1), 'col-sm-12' : (consignments?.length < 2)}">
                 <div class="card mb-3">
+                    <div class="consignment-card-header" [ngClass]="{'primary-gradient' : (currentUser.PersonId == item.SenderPersonId), 'secondary-gradient' : (currentUser.PersonId == item.ReceiverPersonId)}">
+                        <h2 class="text-center"><i class="fas fa-map-marker-alt"></i> Stockholm</h2>
+                        <p class="text-center"><i class="far fa-calendar-alt"></i> 22.08.2018</p>
+                    </div>
                     <div class="card-block">
                         <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId">Ditt paket är påväg till {{item.ReceiverPersonId}}</p>
                         <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId">Ett paket från {{item.SenderPersonId}} är påväg till dig</p>
@@ -51,7 +55,7 @@
                             <i *ngIf="consignments?.length < 4">Måndag den 23 Augusti 2018</i>
                             <i *ngIf="consignments?.length > 3">23 Aug 2018</i>
                         </p>
-                        <img src="img/karta.png" class="consignment-img" *ngIf="consignments?.length < 4" />
+                        <!--<img src="img/karta.png" class="consignment-card-img hidden-sm-down" *ngIf="consignments?.length < 4" />-->
                     </div>
                 </div>
             </div>
