@@ -632,7 +632,7 @@ a.cover-btn:hover {
 }
 
 .user-profile-block {
-    margin-top: 5rem;
+    margin-top: 6rem;
     padding-bottom: 0;
 }
 
@@ -663,7 +663,7 @@ a.cover-btn:hover {
 }
 
 .user-profile-img {
-    background: url(app/img/any.jpg);
+    background: url(app/img/profilepic.jpeg);
     background-size: cover;
     background-position: center;
     height: 11rem;
@@ -867,6 +867,15 @@ a.cover-btn:hover {
         font-size: 0.75rem;
     }
 
+    .user-profile-img {
+        margin-bottom: 0rem;
+        margin-top: 1.6rem;
+    }
+
+    .user-profile-block {
+        margin-top: 3rem;
+    }
+
     .profile-tab {
         padding-left: 0rem;
         padding-right: 0rem;
@@ -891,17 +900,12 @@ a.cover-btn:hover {
         margin-top: 1rem;
     }
 
-    .user-profile-img {
-        margin-bottom: 0rem;
-        margin-top: 1.6rem;
+    .profile-tab {
+        font-size: 0.75rem;
     }
 
     .user-profile-block {
         margin-top: 1rem;
-    }
-
-    .profile-tab {
-        font-size: 0.75rem;
     }
 }
 

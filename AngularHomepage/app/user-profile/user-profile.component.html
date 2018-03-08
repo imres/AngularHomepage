@@ -12,14 +12,20 @@
                 <div class="col-8 offset-2 col-sm-4 offset-sm-0 col-xl-2" id="user-profile-img-container">
                     <div class="user-profile-img"></div>
                 </div>
-                <div class="col-sm-5 user-profile-block">
+                <div class="col-sm-5 col-xl-4 offset-sm-0 col-10 offset-1 user-profile-block">
+                    <h3 class="text-center mb-0">
+                        {{currentUser.FirstName}} {{currentUser.LastName}}
+                    </h3>
+                    <div class="text-center">
+                        <i>@{{currentUser.DisplayName}}</i>
+                    </div>
                     <div class="user-profile-info">
                         {{currentUser.Address}}, {{currentUser.PostalCode}}
                     </div>
                     <div class="user-profile-info">
                         {{currentUser.Email}}
-                    </div>
-                    <h3>{{currentUser.FirstName}} {{currentUser.LastName}} <i>({{currentUser.DisplayName}})</i></h3>
+                    </div><!--
+                    <h3>{{currentUser.FirstName}} {{currentUser.LastName}} <i>({{currentUser.DisplayName}})</i></h3>-->
                 </div>
                 <ul class="col-12 nav nav-tabs mt-2 profile-tab">
                     <li class="nav-item">
