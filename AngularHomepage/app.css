@@ -238,12 +238,7 @@ img {
 .padding-102px-top {
     padding-top: 102px !important;
 }
-/*.btn-custom{
-    background-color: #33b799 !important;
-    border-color: #33b799 !important;
-    border-bottom-width: 3px !important;
-    border-bottom-color: #0c886c !important;
-}*/
+
 .color-custom {
     color: #33b799;
 }
@@ -392,8 +387,6 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 .cover {
-    /*background: #222 url('img/paket.jpg') center center no-repeat;
-    background-size: cover;*/
     color: black;
     height: 80vh;
     text-align: center;
@@ -414,20 +407,10 @@ btn.btn-primary:active, .btn-primary:focus{
     width: 100%;
 }
 
-    #cover-caption .container div form {
-        justify-content: center;
-    }
-
-/*.cover-btn {
-    background: #0AF;
-    color: white;
-    outline: 0rem;
+#cover-caption .container div form {
+    justify-content: center;
 }
 
-a.cover-btn:hover {
-    background: #0275d8;
-    color: white;
-}*/
 
 /*User Guide*/
 
@@ -764,27 +747,6 @@ a.cover-btn:hover {
     background: #f0f0f0;
 }
 
-/*.phone-sidebar {
-    border: 1px solid #ddd;
-    border-top: none;
-    color: black;
-    text-decoration: none;
-}
-
-.phone-sidebar:hover {
-    background: #f0f0f0;
-    color: #0AF;
-    text-decoration: none;
-}
-
-.br-0 {
-    border-right: none;
-}
-
-.bl-0 {
-    border-left: none;
-}*/
-
  /*PhoneSidebar*/ 
 #phoneSidebar .active {
     background: #f0f0f0;
@@ -910,31 +872,17 @@ a.cover-btn:hover {
 }
 
 @media screen and (min-width: 767px) /*md-up*/ {
-    /*.user-profile {
-        position: fixed;
-        right: 0;
-        width: 400px;
-    }*/
 
-    /*.sale-ads {
-        margin-right: 40%;
-    }*/
 }
 
 @media screen and (min-width: 992px) /*lg-up*/ {
-    /*.sale-ads {
-        margin-right: 33%;
-    }*/
+
 }
 
 @media screen and (max-height: 755px) {
-    /*.user-profile-img{
-        height: 15rem !important;
-    }*/
+
 }
 
 @media screen and (max-height: 677px) {
-    /*.user-profile-img {
-        height: 10rem !important;
-    }*/
+
 }
