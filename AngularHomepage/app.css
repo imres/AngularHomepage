@@ -727,12 +727,16 @@ btn.btn-primary:active, .btn-primary:focus{
     padding-bottom: 1rem;
 }
 
-.sidebar-link[aria-expanded="true"] {
-    background: #f0f0f0;
+.sidebar-link-last {
+    padding-bottom: 0 !important;
 }
 
-.sidebar-link[aria-expanded="true"]:hover {
+/*.sidebar-link[aria-expanded="true"] {
     background: #f0f0f0;
+}*/
+
+.sidebar-link[aria-expanded="true"]:hover {
+    /*background: #f0f0f0;*/
     color: #000;
 }
 
@@ -785,12 +789,12 @@ btn.btn-primary:active, .btn-primary:focus{
     text-decoration: none;
 }
 
-.phone-sidebar-link[aria-expanded="true"] {
+/*.phone-sidebar-link[aria-expanded="true"] {
     background: #f0f0f0;
-}
+}*/
 
 .phone-sidebar-link[aria-expanded="true"]:hover {
-    background: #f0f0f0;
+    /*background: #f0f0f0;*/
     color: #000;
 }
 
