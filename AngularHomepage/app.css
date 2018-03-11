@@ -717,6 +717,10 @@ btn.btn-primary:active, .btn-primary:focus{
     width: 230px;
 }
 
+.phone-sidebar {
+    padding-left: 0.5rem !important;
+}
+
 .sidebar-link.sidebar-collapsed-link {
     padding-top: 1rem;
     padding-left: 1rem;
