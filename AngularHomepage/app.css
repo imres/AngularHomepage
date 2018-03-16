@@ -19,6 +19,12 @@
     text-decoration: none;
 }
 
+.btn {
+    border: none;
+    border-radius: 0;
+    box-shadow: var(--bottom-shadow-darker);
+}
+
 .card-border-sender {
     border-top: 3px #0AF solid;
     
