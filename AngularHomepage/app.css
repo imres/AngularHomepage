@@ -825,16 +825,16 @@ btn.btn-primary:active, .btn-primary:focus{
     color: red;
 }
 
+/* Prio 1 */
 .card {
     border: 0;
     box-shadow: var(--bottom-shadow);
 }
 
-
-
-
-
-
+.dropdown-menu {
+    border: 0;
+    box-shadow: var(--bottom-shadow);
+}
 @keyframes slide-up {
     0% {
         opacity: 0;
