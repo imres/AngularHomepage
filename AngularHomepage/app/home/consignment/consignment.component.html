@@ -1,13 +1,13 @@
 ﻿<!-- Om inga försändelser finns så visas den här rutan med länk till att skicka invites och guide för att förstå hur man gör -->
 <div *ngIf="consignments?.length == 0" class="mt-3">
+    <h4 class="pl-0 col-12">Du har inga aktiva försändelser</h4>
     <div class="container-fluid ">
         <div class="row">
             <div class="card text-center col-md-12">
                 <div class="card-block">
-                    <h3 class="card-title">Inga aktiva försändelser</h3>
+                    <!--<h3 class="card-title">Inga aktiva försändelser</h3>-->
                     <p class="card-text">
-                        Du har inga aktiva försändelser, läs mer hur du kommer igång på några minuter
-                        eller skicka en inbjudan.
+                        Läs mer hur du kommer igång på några minuter eller skicka en inbjudan.
                     </p>
                     <a href="#" class="btn btn-primary" (click)=showConfirm($event)>Skicka inbjudan</a>
                 </div>
