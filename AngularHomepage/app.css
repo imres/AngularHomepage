@@ -766,13 +766,6 @@ btn.btn-primary:active, .btn-primary:focus{
     animation: slide-up 0.4s ease;
 }*/
 
-#searchBar {
-    background: #f0f0f0;
-}
-
-#searchBarPhone {
-    background: #f0f0f0;
-}
 
  /*PhoneSidebar*/ 
 #phoneSidebar .active {
