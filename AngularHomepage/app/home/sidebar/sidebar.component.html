@@ -9,13 +9,14 @@
             <i class="fas fa-users fa-fw" aria-hidden="true"></i>
             Mina vänner
         </div>
-        <div class="sidebar-link"  href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" role="button">
+        <div class="sidebar-link" (click)="consignmentsToggle()" href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" role="button">
             <i class="fas fa-envelope fa-fw" aria-hidden="true"></i> Försändelser
-            <i class="fas fa-angle-down fa-pull-right" aria-hidden="true"></i>
-            <div class="collapse list-unstyled" id="pageSubmenu">
+            <i *ngIf="!consignmentsToggled" class="fas fa-angle-down fa-pull-right sidebar-arrow" aria-hidden="true"></i>
+            <i *ngIf="consignmentsToggled" class="fas fa-angle-up fa-pull-right sidebar-arrow" aria-hidden="true"></i>
+            <div class="collapse list-unstyled pt-2" id="pageSubmenu">
                 <div href="#" role="button" class="sidebar-link sidebar-collapsed-link"><i class="fas fa-location-arrow fa-fw" aria-hidden="true"></i> Aktiva försändelser</div>
                 <div (click)=showConfirm($event) role="button" class="sidebar-link sidebar-collapsed-link"><i class="fas fa-plus fa-fw" aria-hidden="true"></i> Ny försändelse</div>
-                <div href="#" role="button" class="sidebar-link sidebar-collapsed-link"><i class="fas fa-envelope-open fa-fw" aria-hidden="true"></i> Historik</div>
+                <div href="#" role="button" class="sidebar-link sidebar-link-last sidebar-collapsed-link"><i class="fas fa-envelope-open fa-fw" aria-hidden="true"></i> Historik</div>
             </div>
         </div>
         <div class="sidebar-link" href="#searchBar" data-toggle="collapse" aria-expanded="false" role="button">
@@ -50,30 +51,31 @@
         </div>  
     </div>-->
 
-    <div id="content" class="hidden-lg-up">
-        <button href="#phoneSidebar" data-toggle="collapse" aria-expanded="false" type="button" id="sidebarCollapse" class="btn btn-outline-primary navbar-btn sidebar-btn mb-2">
+    <div id="content" class="hidden-lg-up offset-1 phone-sidebar">
+        <button href="#phoneSidebar" data-toggle="collapse" aria-expanded="false" type="button" role="button" id="sidebarCollapse" class="btn btn-outline-primary navbar-btn sidebar-btn mb-2">
             <i class="fa fa-align-left" aria-hidden="true"></i>
         </button>
 
         <nav id="phoneSidebar" class="collapse">
-            <div class="phone-sidebar-link px-3" [routerLink]="['/home']" role="button">
+            <div class="phone-sidebar-link" [routerLink]="['/home']" role="button">
                 <i class="fa fa-home fa-fw" aria-hidden="true"></i>
                 Hem
             </div>
-            <div href="#" class="phone-sidebar-link px-3" role="button">
+            <div href="#" class="phone-sidebar-link" role="button">
                 <i class="fa fa-users fa-fw" aria-hidden="true"></i>
                 Mina vänner
             </div>
-            <div class="phone-sidebar-link px-3" href="#phoneConsignmentSubmenu" data-toggle="collapse" aria-expanded="false" role="button">
+            <div class="phone-sidebar-link" (click)="phoneConsingmentsToggle()" href="#phoneSidebarSubmenu" data-toggle="collapse" aria-expanded="false" role="button">
                 <i class="fa fa-envelope fa-fw" aria-hidden="true"></i> Försändelser
-                <i class="fa fa-angle-down fa-pull-right" aria-hidden="true"></i>
-                <div class="collapse list-unstyled" id="phoneConsignmentSubmenu">
+                <i *ngIf="!phoneConsignmentsToggled" class="fas fa-angle-down fa-pull-right sidebar-arrow" aria-hidden="true"></i>
+                <i *ngIf="phoneConsignmentsToggled" class="fas fa-angle-up fa-pull-right sidebar-arrow" aria-hidden="true"></i>
+                <div class="collapse list-unstyled py-2" id="phoneSidebarSubmenu">
                     <div href="#" role="button" class="phone-sidebar-link sidebar-collapsed-link"><i class="fa fa-location-arrow fa-fw" aria-hidden="true"></i> Aktiva försändelser</div>
                     <div href="#" role="button" class="phone-sidebar-link sidebar-collapsed-link"><i class="fa fa-plus fa-fw" aria-hidden="true"></i> Ny försändelse</div>
-                    <div href="#" role="button" class="phone-sidebar-link sidebar-collapsed-link"><i class="fa fa-envelope-open fa-fw" aria-hidden="true"></i> Historik</div>
+                    <div href="#" role="button" class="phone-sidebar-link sidebar-link-last sidebar-collapsed-link"><i class="fa fa-envelope-open fa-fw" aria-hidden="true"></i> Historik</div>
                 </div>
             </div>
-            <div class="phone-sidebar-link px-3" href="#searchBarPhone" data-toggle="collapse" aria-expanded="false" role="button">
+            <div class="phone-sidebar-link" href="#searchBarPhone" data-toggle="collapse" aria-expanded="false" role="button">
                 <i class="fa fa-search fa-fw" aria-hidden="true"></i>
                 Sök annons
             </div>
