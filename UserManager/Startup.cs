@@ -5,6 +5,7 @@ using Microsoft.Owin;
 using Owin;
 using AutoMapper;
 using UserManager.DTO;
+using UserManager.Core.Mappers;
 using System.IdentityModel.Tokens.Jwt;
 
 [assembly: OwinStartup(typeof(UserManager.Startup))]
@@ -16,6 +17,8 @@ namespace UserManager
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+
+            MappingProfile.InitializeMappings();
         }
     }
 }

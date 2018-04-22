@@ -21,7 +21,7 @@ import { InvitationStatusEnum } from '../../_models/enums/index';
 })
 
 
-export class InvitationComponent implements OnInit, OnChanges {
+export class InvitationComponent implements OnInit {
     @Input() invitations: Invitation[];
     @Input() invitationNotifications: Invitation[];
 

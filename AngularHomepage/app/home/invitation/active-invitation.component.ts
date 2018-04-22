@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Rx';
 import { DialogService } from "ng2-bootstrap-modal";
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
-import { Person, Invitation, InvitationExtended } from '../../_models/index';
+import { Person, Invitation, InvitationExtended, PostNordSchema } from '../../_models/index';
 import { UserService, InvitationService, ConsignmentService, AlertService, ToastrService, PaymentService, FilterService } from '../../_services/index';
 import { ConfirmComponent } from '../../_dialog/confirm.component';
 import { InviteResponseComponent } from '../../_dialog/invite-response.component';
@@ -25,7 +25,7 @@ export interface InvitationWithPackageId {
 })
 
 @Injectable()
-export class ActiveInvitationComponent implements OnInit, OnChanges {
+export class ActiveInvitationComponent implements OnInit {
     @Input() invitations: InvitationExtended[];
     @Input() activeInvitations: InvitationExtended[];
     

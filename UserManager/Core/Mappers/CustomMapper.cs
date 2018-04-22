@@ -7,7 +7,7 @@ using UserManager.DTO;
 
 namespace UserManager.Core.Mappers
 {
-    public abstract class Mapper
+    public abstract class CustomMapper
     {
         //public Invitation DtoToEntityMapping(InvitationDTO invitationDTO)
         //{

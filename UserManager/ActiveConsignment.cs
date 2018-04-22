@@ -12,7 +12,7 @@ namespace UserManager
     using System;
     using System.Collections.Generic;
     
-    public partial class Consignment
+    public partial class ActiveConsignment
     {
         public int Id { get; set; }
         public Nullable<int> DepositedAmount { get; set; }
@@ -23,5 +23,6 @@ namespace UserManager
         public int PaymentMethod { get; set; }
         public System.DateTime StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
+        public string Content { get; set; }
     }
 }

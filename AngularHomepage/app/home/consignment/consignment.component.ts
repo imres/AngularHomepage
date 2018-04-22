@@ -3,7 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@a
 import { Observable } from 'rxjs/Rx';
 import { DialogService } from "ng2-bootstrap-modal";
 
-import { Person, Invitation, Consignment } from '../../_models/index';
+import { Person, Invitation, Consignment, ActiveConsignment } from '../../_models/index';
 import { UserService, InvitationService, ConsignmentService, ToastrService } from '../../_services/index';
 import { ConfirmComponent } from '../../_dialog/confirm.component';
 import { InviteResponseComponent } from '../../_dialog/invite-response.component';
@@ -19,7 +19,7 @@ import { InviteResponseComponent } from '../../_dialog/invite-response.component
 
 
 export class ConsignmentComponent implements OnInit {
-    consignments: Consignment[];
+    consignments: ActiveConsignment[];
 
     currentUser: Person;
     confirmResult: boolean = null;
@@ -27,6 +27,7 @@ export class ConsignmentComponent implements OnInit {
     minSliceValue = 0;
     showAllConsignmentsEnabled = false;
     showConsignments = true;
+    loading = false;
 
     constructor(private cd: ChangeDetectorRef,
         private dialogService: DialogService,
@@ -46,11 +47,19 @@ export class ConsignmentComponent implements OnInit {
 
             this.consignments = this.consignments.concat(consignments);
         });
+
+        
     }
 
     getConsignments() {
+
+        this.loading = true;
         this.consignmentService.getConsignments(this.currentUser.PersonId).subscribe(res => {
             this.consignments = res;
+
+            this.loading = false;
+
+            console.log(res);
         });
     }
 
@@ -67,7 +76,7 @@ export class ConsignmentComponent implements OnInit {
                 //Get dialog result
                 this.confirmResult = isConfirmed;
 
-                this.toastrService.ShowToastr(isConfirmed, false, "Inbjudan skickades");
+                this.toastrService.ShowToastr(isConfirmed, false, true, "Inbjudan skickades");
 
             });
     }

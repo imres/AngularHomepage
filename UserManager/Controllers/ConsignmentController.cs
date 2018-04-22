@@ -64,7 +64,7 @@ namespace UserManager.Controllers
         public HttpResponseMessage GetConsignments(string Id)
         {
             //IEnumerable<InvitationDTO> invitations = _invitationRepository.GetInvitations(Id);
-            IEnumerable<ConsignmentDTO> consignments = _consignmentRepository.GetConsignments(Id);
+            IEnumerable<ActiveConsignmentDTO> consignments = _consignmentRepository.GetActiveConsignments(Id);
 
             return Request.CreateResponse(HttpStatusCode.OK, consignments);
 

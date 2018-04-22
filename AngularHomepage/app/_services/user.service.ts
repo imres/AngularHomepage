@@ -15,12 +15,22 @@ export class UserService {
         'Content-Type': 'application/json;charset=UTF-8'
     });
     
-    getPackage() {
-        return this.http.get('http://localhost:65192/api/User/PostGet/2')
-            .map((response: Response) =>
-                response.json()
-            );
-    }
+    //getPackage() {
+    //    return this.http.get('http://localhost:65192/api/PackageInformation/PostGet/2')
+    //        .map((response: Response) =>
+    //            response.json()
+    //        );
+    //}
+
+    //getPackage(consignment: Person) {
+    //    console.log(user);
+    //    return this.http.post('http://localhost:65192/api/PackageInformation/PostGet',
+    //        JSON.stringify(user),
+    //        { headers: this.headers })
+    //        .map((response: Response) =>
+    //            response.json()
+    //        );
+    //}
 
 
     //https://api.aftership.com/v4/trackings/:slug/:RR747540648SE

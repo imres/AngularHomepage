@@ -12,16 +12,11 @@ namespace UserManager
     using System;
     using System.Collections.Generic;
     
-    public partial class Consignment
+    public partial class PackageInformation
     {
         public int Id { get; set; }
-        public Nullable<int> DepositedAmount { get; set; }
-        public string PackageId { get; set; }
-        public string SenderPersonId { get; set; }
-        public string ReceiverPersonId { get; set; }
-        public int Status { get; set; }
-        public int PaymentMethod { get; set; }
-        public System.DateTime StartDate { get; set; }
-        public Nullable<System.DateTime> EndDate { get; set; }
+        public int ConsignmentId { get; set; }
+        public string Content { get; set; }
+        public System.DateTime LastUpdated { get; set; }
     }
 }

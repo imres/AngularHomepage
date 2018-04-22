@@ -99,6 +99,7 @@
       <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.1.4\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
     </Reference>
     <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
       <Private>True</Private>
@@ -108,6 +109,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
       <Private>True</Private>
@@ -214,6 +216,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActiveConsignment.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -256,6 +261,7 @@
     <Compile Include="Controllers\CRUD.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvitationController.cs" />
+    <Compile Include="Controllers\PackageInformationController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\Scrape.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -269,18 +275,25 @@
     <Compile Include="Core\Interfaces\ICryptography.cs" />
     <Compile Include="Core\Interfaces\IInvitation.cs" />
     <Compile Include="Core\Interfaces\IInvitationService.cs" />
+    <Compile Include="Core\Interfaces\IPackageInformation.cs" />
+    <Compile Include="Core\Interfaces\IPackageInformationService.cs" />
     <Compile Include="Core\Interfaces\IPayment.cs" />
     <Compile Include="Core\Interfaces\IPaymentService.cs" />
     <Compile Include="Core\Interfaces\IPerson.cs" />
-    <Compile Include="Core\Mappers\Mapper.cs" />
+    <Compile Include="Core\Interfaces\IRepository.cs" />
+    <Compile Include="Core\Mappers\CustomMapper.cs" />
+    <Compile Include="Core\Mappers\MappingProfile.cs" />
     <Compile Include="Core\Mappers\PersonMapper.cs" />
     <Compile Include="Core\Repositories\AdministratorRepository.cs" />
     <Compile Include="Core\Repositories\ConsignmentRepository.cs" />
     <Compile Include="Core\Repositories\InvitationRepository.cs" />
+    <Compile Include="Core\Repositories\PackageInformationRepository.cs" />
     <Compile Include="Core\Repositories\PaymentRepository.cs" />
     <Compile Include="Core\Repositories\PersonRepository.cs" />
+    <Compile Include="Core\Repositories\Repository.cs" />
     <Compile Include="Core\Services\AdministratorService.cs" />
     <Compile Include="Core\Services\InvitationService.cs" />
+    <Compile Include="Core\Services\PackageInformationService.cs" />
     <Compile Include="Core\Services\PaymentService.cs" />
     <Compile Include="DBModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -297,9 +310,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DTO\ActiveConsignmentDTO.cs" />
     <Compile Include="DTO\ConsignmentDTO.cs" />
     <Compile Include="DTO\InvitationDTO.cs" />
     <Compile Include="DTO\PersonDTO.cs" />
+    <Compile Include="DTO\PostnordShipmentResponseDTO.cs" />
     <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="DTO\UserLinksDTO.cs" />
     <Compile Include="Global.asax.cs">
@@ -318,6 +333,9 @@
     <Compile Include="Models\JwtPayload.cs" />
     <Compile Include="Models\Personasdad.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="PackageInformation.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Payment.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>

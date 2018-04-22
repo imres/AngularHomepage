@@ -32,15 +32,6 @@ export class HomeComponent implements OnInit{
     }
 
     ngOnInit() {
-        this.userService.getPackage().subscribe((res: PostNordSchema) => {
-            this.postNordPackages = res;
-
-            console.log(res);
-
-
-            var terst = this.postNordPackages.TrackingInformationResponse;
-        });
-
         this.getInvitations();
 
         this.invitationService.invitationList.subscribe(invitations => {

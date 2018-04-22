@@ -1,4 +1,6 @@
-﻿<!-- Om inga försändelser finns så visas den här rutan med länk till att skicka invites och guide för att förstå hur man gör -->
+﻿<loading-spinner *ngIf="loading"></loading-spinner>
+
+<!-- Om inga försändelser finns så visas den här rutan med länk till att skicka invites och guide för att förstå hur man gör -->
 <div *ngIf="consignments?.length == 0" class="mt-3">
     <div class="container-fluid ">
         <div class="row">
@@ -43,17 +45,15 @@
             <div *ngFor="let item of consignments | slice:minSliceValue:maxSliceValue; let i=index" [ngClass]="{'col-sm-6' : (consignments?.length > 1), 'col-sm-12' : (consignments?.length < 2)}">
                 <div class="card mb-3">
                     <div class="consignment-card-header" [ngClass]="{'primary-gradient' : (currentUser.PersonId == item.SenderPersonId), 'secondary-gradient' : (currentUser.PersonId == item.ReceiverPersonId)}">
-                        <h2 class="text-center"><i class="fas fa-map-marker-alt"></i> Stockholm</h2>
-                        <p class="text-center"><i class="far fa-calendar-alt"></i> 22.08.2018</p>
+                        <h2 class="text-center"><i class="fas fa-map-marker-alt"></i> {{item.LastSeenCity}}</h2>
+                        <p class="text-center"><i class="far fa-calendar-alt"></i> {{item.LastSeenTimeStamp}}</p>
                     </div>
                     <div class="card-block">
-                        <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId">Ditt paket är påväg till {{item.ReceiverPersonId}}</p>
-                        <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId">Ett paket från {{item.SenderPersonId}} är påväg till dig</p>
-                        <p class="card-text">Paketet befinner sig just nu i Stockholm</p>
+                        <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId">Ditt paket är påväg till {{item.Consignee?.address.city}}</p>
+                        <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId">Ett paket från {{item.Consignor?.address.city}} är påväg till dig</p>
+                        <p class="card-text">Paketet befinner sig just nu i {{item.LastSeenCity}}</p>
                         <p class="card-text">
-                            Paketet är beräknat till
-                            <i *ngIf="consignments?.length < 4">Måndag den 23 Augusti 2018</i>
-                            <i *ngIf="consignments?.length > 3">23 Aug 2018</i>
+                            Paketet skickades {{item.DropOffDate}} från {{item.Consignor.address.city}}, {{item.Consignor.address.postCode}}
                         </p>
                         <!--<img src="img/karta.png" class="consignment-card-img hidden-sm-down" *ngIf="consignments?.length < 4" />-->
                     </div>
