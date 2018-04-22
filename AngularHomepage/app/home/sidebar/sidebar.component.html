@@ -9,9 +9,10 @@
             <i class="fas fa-users fa-fw" aria-hidden="true"></i>
             Mina vänner
         </div>
-        <div class="sidebar-link"  href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" role="button">
+        <div class="sidebar-link" (click)="consignmentsToggle()" href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" role="button">
             <i class="fas fa-envelope fa-fw" aria-hidden="true"></i> Försändelser
-            <i class="fas fa-angle-down fa-pull-right" aria-hidden="true"></i>
+            <i *ngIf="!consignmentsToggled" class="fas fa-angle-down fa-pull-right sidebar-arrow" aria-hidden="true"></i>
+            <i *ngIf="consignmentsToggled" class="fas fa-angle-up fa-pull-right sidebar-arrow" aria-hidden="true"></i>
             <div class="collapse list-unstyled pt-2" id="pageSubmenu">
                 <div href="#" role="button" class="sidebar-link sidebar-collapsed-link"><i class="fas fa-location-arrow fa-fw" aria-hidden="true"></i> Aktiva försändelser</div>
                 <div (click)=showConfirm($event) role="button" class="sidebar-link sidebar-collapsed-link"><i class="fas fa-plus fa-fw" aria-hidden="true"></i> Ny försändelse</div>
@@ -64,9 +65,10 @@
                 <i class="fa fa-users fa-fw" aria-hidden="true"></i>
                 Mina vänner
             </div>
-            <div class="phone-sidebar-link" href="#phoneSidebarSubmenu" data-toggle="collapse" aria-expanded="false" role="button">
+            <div class="phone-sidebar-link" (click)="phoneConsingmentsToggle()" href="#phoneSidebarSubmenu" data-toggle="collapse" aria-expanded="false" role="button">
                 <i class="fa fa-envelope fa-fw" aria-hidden="true"></i> Försändelser
-                <i class="fa fa-angle-down fa-pull-right" aria-hidden="true"></i>
+                <i *ngIf="!phoneConsignmentsToggled" class="fas fa-angle-down fa-pull-right sidebar-arrow" aria-hidden="true"></i>
+                <i *ngIf="phoneConsignmentsToggled" class="fas fa-angle-up fa-pull-right sidebar-arrow" aria-hidden="true"></i>
                 <div class="collapse list-unstyled py-2" id="phoneSidebarSubmenu">
                     <div href="#" role="button" class="phone-sidebar-link sidebar-collapsed-link"><i class="fa fa-location-arrow fa-fw" aria-hidden="true"></i> Aktiva försändelser</div>
                     <div href="#" role="button" class="phone-sidebar-link sidebar-collapsed-link"><i class="fa fa-plus fa-fw" aria-hidden="true"></i> Ny försändelse</div>
