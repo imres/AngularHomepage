@@ -19,13 +19,9 @@ import { InviteResponseComponent } from '../../_dialog/invite-response.component
 
 
 export class ConsignmentComponent implements OnInit {
-<<<<<<< HEAD
-    consignments: Consignment[];
-    archivedConsignments: Consignment[];
-    activeConsignments: Consignment[];
-=======
+    archivedConsignments: ActiveConsignment[];
+    activeConsignments: ActiveConsignment[];
     consignments: ActiveConsignment[];
->>>>>>> d6085a5bc0fa9906e5fb09399a93e0996276ee8d
 
     currentUser: Person;
     confirmResult: boolean = null;
@@ -33,11 +29,7 @@ export class ConsignmentComponent implements OnInit {
     minSliceValue = 0;
     showAllConsignmentsEnabled = false;
     showConsignments = true;
-<<<<<<< HEAD
-    //toggleArchivedConsignments = false;
-=======
     loading = false;
->>>>>>> d6085a5bc0fa9906e5fb09399a93e0996276ee8d
 
     constructor(private cd: ChangeDetectorRef,
         private dialogService: DialogService,
@@ -61,13 +53,8 @@ export class ConsignmentComponent implements OnInit {
         
     }
 
-<<<<<<< HEAD
     getActiveConsignments() {
-=======
-    getConsignments() {
-
         this.loading = true;
->>>>>>> d6085a5bc0fa9906e5fb09399a93e0996276ee8d
         this.consignmentService.getConsignments(this.currentUser.PersonId).subscribe(res => {
             this.activeConsignments = res;
             this.consignments = res;
