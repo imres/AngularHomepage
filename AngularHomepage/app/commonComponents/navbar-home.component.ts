@@ -16,7 +16,7 @@ import { InvitationStatusEnum } from '../_models/enums/index';
     selector: 'navbar-home'
 })
 
-export class NavbarHomeComponent implements OnInit, OnChanges {
+export class NavbarHomeComponent implements OnInit {
     @Input() invitations: Invitation[];
     @Input() invitationNotifications: Invitation[];
     //@Output() invitationsChanged: EventEmitter<any> = new EventEmitter<any>(); //Push change once emit is called on this object

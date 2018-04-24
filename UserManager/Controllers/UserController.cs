@@ -21,45 +21,7 @@ namespace UserManager.Controllers
     {
         private CRUD _crud = new CRUD();
         private PersonRepository _PersonRepository = new PersonRepository();
-        //private Scrape _scrape = new Scrape();
-
-        [ActionName("PostGet")]
-        [HttpGet]
-        public HttpResponseMessage PostGet(int Id)
-        {
-            using (HttpClient http = new HttpClient())
-            {
-                this.Request.RequestUri = new Uri("http://localhost:65192");
-
-                if (this.Request.Method == HttpMethod.Get)
-                {
-                    this.Request.Content = null;
-                }
-
-                var gettimeline = WebRequest.Create("https://api2.postnord.com/rest/shipment/v1/trackandtrace/findByIdentifier.json?id=RR747540648SE&locale=en&apikey=e6e47dc24100ab0e9f60bab3290d07ac") as HttpWebRequest;
-                gettimeline.Method = "GET";
-                try
-                {
-                    string respbody = null;
-                    using (var resp = gettimeline.GetResponse().GetResponseStream())//there request sends
-                    {
-                        var respR = new StreamReader(resp);
-                        respbody = respR.ReadToEnd();
-                    }
-
-                    var result = JsonConvert.DeserializeObject<Object>(respbody);
-                    //TODO use a library to parse json
-                    return Request.CreateResponse(HttpStatusCode.OK, result);
-                }
-                catch //401 (access token invalid or expired)
-                {
-                    //TODO
-                }
-
-                return Request.CreateResponse(HttpStatusCode.OK);
-            }
-        }
-
+        
         //[Route("TSPRoute")]
         [ActionName("Register")]
         [HttpPost]

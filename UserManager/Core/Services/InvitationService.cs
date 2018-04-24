@@ -9,7 +9,6 @@ using UserManager.Models;
 
 namespace UserManager.Core.Services
 {
-
     public class InvitationService : IInvitationService
     {
         private IInvitation _invitationRepository;
@@ -71,21 +70,25 @@ namespace UserManager.Core.Services
             return true;
         }
 
-        public ConsignmentDTO SavePackageId(InvitationExtended invitation)
+        public ActiveConsignmentDTO SavePackageId(InvitationExtended invitation)
         {
-            ConsignmentDTO consignment;
+            ActiveConsignmentDTO activeConsignment; 
 
             try
             {
                 _invitationRepository.EndInvitation(invitation);
-                consignment = _consignmentRepository.AddConsignment(invitation);
+
+                var consignment = _consignmentRepository.AddConsignment(invitation);
+
+                //Find and return active consignment containing package API data
+                activeConsignment = _consignmentRepository.ListByQuery<ActiveConsignment, ActiveConsignmentDTO>(x => x.Id == consignment.Id).FirstOrDefault();
             }
-            catch (Exception ex)
+            catch (ArgumentException ex)
             {
                 return null;
             }
-
-            return consignment;
+            
+            return activeConsignment;
         }
 
         public bool ValidateInvitation(InvitationDTO invitationToValidate)

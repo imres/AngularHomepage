@@ -8,4 +8,6 @@
     public PaymentMethod: number;
     public StartDate: Date;
     public EndDate: Date;
+
+    public Content: string = '';
 }

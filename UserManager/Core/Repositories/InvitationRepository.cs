@@ -9,7 +9,7 @@ using UserManager.Models;
 
 namespace UserManager.Core.Repositories
 {
-    public class InvitationRepository : Mapper, IInvitation
+    public class InvitationRepository : CustomMapper, IInvitation
     {
         
         /// <summary>
@@ -30,7 +30,7 @@ namespace UserManager.Core.Repositories
 
                 context.Invitation.Add(entity);
                 context.SaveChanges();
-            };
+            }
         }
 
         /// <summary>

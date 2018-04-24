@@ -7,5 +7,6 @@ export * from './common-object';
 export * from './invitation-models/invitation-role';
 export * from './invitation-models/payment-method';
 export * from './consignment';
+export * from './active-consignment';
 export * from './invitation-extended';
 export * from './postnord-schema';

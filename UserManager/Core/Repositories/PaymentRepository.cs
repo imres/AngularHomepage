@@ -8,7 +8,7 @@ using UserManager.DTO;
 
 namespace UserManager.Core.Repositories
 {
-    public class PaymentRepository : Mapper, IPayment
+    public class PaymentRepository : CustomMapper, IPayment
     {
         public void MockProcessPayment(InvitationDTO invitation)
         {

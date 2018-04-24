@@ -2,12 +2,12 @@
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Person, Invitation, Consignment } from '../_models/index';
+import { Person, Invitation, Consignment, ActiveConsignment } from '../_models/index';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ConsignmentService {
-    private consignmentListSource = new BehaviorSubject<Consignment>(null);
+    private consignmentListSource = new BehaviorSubject<ActiveConsignment>(null);
 
     consignmentList = this.consignmentListSource.asObservable();
 
@@ -17,7 +17,7 @@ export class ConsignmentService {
         'Content-Type': 'application/json'
     });
 
-    updateConsignments(consignments: Consignment) {
+    updateConsignments(consignments: ActiveConsignment) {
         this.consignmentListSource.next(consignments);
     }
 

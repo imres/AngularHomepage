@@ -3,7 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@a
 import { Observable } from 'rxjs/Rx';
 import { DialogService } from "ng2-bootstrap-modal";
 
-import { Person, Invitation, Consignment } from '../../_models/index';
+import { Person, Invitation, Consignment, ActiveConsignment } from '../../_models/index';
 import { UserService, InvitationService, ConsignmentService, ToastrService } from '../../_services/index';
 import { ConfirmComponent } from '../../_dialog/confirm.component';
 import { InviteResponseComponent } from '../../_dialog/invite-response.component';
@@ -19,9 +19,13 @@ import { InviteResponseComponent } from '../../_dialog/invite-response.component
 
 
 export class ConsignmentComponent implements OnInit {
+<<<<<<< HEAD
     consignments: Consignment[];
     archivedConsignments: Consignment[];
     activeConsignments: Consignment[];
+=======
+    consignments: ActiveConsignment[];
+>>>>>>> d6085a5bc0fa9906e5fb09399a93e0996276ee8d
 
     currentUser: Person;
     confirmResult: boolean = null;
@@ -29,7 +33,11 @@ export class ConsignmentComponent implements OnInit {
     minSliceValue = 0;
     showAllConsignmentsEnabled = false;
     showConsignments = true;
+<<<<<<< HEAD
     //toggleArchivedConsignments = false;
+=======
+    loading = false;
+>>>>>>> d6085a5bc0fa9906e5fb09399a93e0996276ee8d
 
     constructor(private cd: ChangeDetectorRef,
         private dialogService: DialogService,
@@ -49,12 +57,24 @@ export class ConsignmentComponent implements OnInit {
 
             this.consignments = this.consignments.concat(consignments);
         });
+
+        
     }
 
+<<<<<<< HEAD
     getActiveConsignments() {
+=======
+    getConsignments() {
+
+        this.loading = true;
+>>>>>>> d6085a5bc0fa9906e5fb09399a93e0996276ee8d
         this.consignmentService.getConsignments(this.currentUser.PersonId).subscribe(res => {
             this.activeConsignments = res;
             this.consignments = res;
+
+            this.loading = false;
+
+            console.log(res);
         });
     }
 
@@ -98,7 +118,7 @@ export class ConsignmentComponent implements OnInit {
                 //Get dialog result
                 this.confirmResult = isConfirmed;
 
-                this.toastrService.ShowToastr(isConfirmed, false, "Inbjudan skickades");
+                this.toastrService.ShowToastr(isConfirmed, false, true, "Inbjudan skickades");
 
             });
     }

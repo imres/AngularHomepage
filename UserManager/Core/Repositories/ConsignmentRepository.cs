@@ -1,8 +1,16 @@
-﻿using System;
+﻿using AutoMapper;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Transactions;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.Serialization.Json;
+using System.Text;
+using System.Web.Script.Serialization;
 using UserManager.Core.Enums;
 using UserManager.Core.Interfaces;
 using UserManager.Core.Mappers;
@@ -11,37 +19,56 @@ using UserManager.Models;
 
 namespace UserManager.Core.Repositories
 {
-    public class ConsignmentRepository : Mapper, IConsigment
+
+    public class ConsignmentRepository : Repository, IConsigment
     {
+        private IPackageInformation _packageInformationRepository;
+
+        public ConsignmentRepository() 
+            : this(new PackageInformationRepository())
+        {
+        }
+
+        
+
+        public ConsignmentRepository(IPackageInformation packageInformationRepository) : base()
+        {
+            _packageInformationRepository = packageInformationRepository;
+        }
+
+
         /// <summary>
         /// Add new Consignment
         /// </summary>
         /// <param name="invitationDTO"></param>
         public ConsignmentDTO AddConsignment(InvitationExtended invitation)
         {
-            using (var context = new masterEntities())
+            using (var scope = new TransactionScope())
             {
-                //Transform invitation to consignment
-                var consignment = new Consignment
+                using (var context = new masterEntities())
                 {
-                    ConsignmentId = GetMaxInteger<Consignment>(x => x.ConsignmentId),
-                    Id = GetMaxInteger<Consignment>(x => x.Id),
-                    PaymentMethod = invitation.PaymentMethod.GetValueOrDefault(),
-                    ReceiverPersonId = invitation.ReceiverPersonId,
-                    SenderPersonId = invitation.SenderPersonId,
-                    Status = ConsignmentStatus.Active,
-                    StartDate = DateTime.Now,
-                    PackageId = invitation.PackageId,
-                    DepositedAmount = invitation.RequestedDepositAmount
-                };
+                    //Transform invitation to consignment
+                    var consignment = new Consignment
+                    {
+                        PaymentMethod = invitation.PaymentMethod.GetValueOrDefault(),
+                        ReceiverPersonId = invitation.ReceiverPersonId,
+                        SenderPersonId = invitation.SenderPersonId,
+                        Status = ConsignmentStatus.Active,
+                        StartDate = DateTime.Now,
+                        PackageId = invitation.PackageId,
+                        DepositedAmount = invitation.RequestedDepositAmount
+                    };
 
-                context.Consignment.Add(consignment);
+                    context.Consignment.Add(consignment);
+                    context.SaveChanges();
 
-                context.SaveChanges();
+                    var consignmentDTO = Mapper.Map<ConsignmentDTO>(consignment);
+                    _packageInformationRepository.UpdatePackageInformation(consignmentDTO);
 
-                var consignmentDTO = EntityToDtoMapping<Consignment, ConsignmentDTO>(consignment);
+                    scope.Complete();
 
-                return consignmentDTO;
+                    return consignmentDTO;
+                }
             };
         }
         
@@ -80,16 +107,22 @@ namespace UserManager.Core.Repositories
         /// </summary>
         /// <param name="PersonId"></param>
         /// <returns></returns>
-        public IEnumerable<ConsignmentDTO> GetConsignments(string PersonId)
+        public IEnumerable<ActiveConsignmentDTO> GetActiveConsignments(string PersonId)
         {
-            using (masterEntities context = new masterEntities())
+            using (var context = new masterEntities())
             {
-                IEnumerable<Consignment> consignments = context.Consignment
-                    .Where(x => x.ReceiverPersonId == PersonId && x.Status < 10 || x.SenderPersonId == PersonId && x.Status < 10);
+                IEnumerable<ActiveConsignment> consignments = context.ActiveConsignment
+                    .Where(x => x.ReceiverPersonId == PersonId || x.SenderPersonId == PersonId);
 
-                var consignmentsDTO = EntityToDtoMappingCollection<Consignment, ConsignmentDTO>(consignments);
+                //var activeConsignmentsDTO = EntityToDtoMappingCollection<ActiveConsignment, ActiveConsignmentDTO>(consignments).ToList();
+                var activeConsignmentsDTO = Mapper.Map<IEnumerable<ActiveConsignmentDTO>>(consignments).ToList();
 
-                return consignmentsDTO;
+                activeConsignmentsDTO.ForEach(consignment =>
+                {
+                    _packageInformationRepository.UpdatePackageInformation(consignment);
+                });
+
+                return activeConsignmentsDTO;
             }
         }
         public IEnumerable<ConsignmentDTO> GetArchivedConsignments(string PersonId)
@@ -99,7 +132,7 @@ namespace UserManager.Core.Repositories
                 IEnumerable<Consignment> archivedConsignments = context.Consignment
                     .Where(x => x.ReceiverPersonId == PersonId && x.Status == 10 || x.SenderPersonId == PersonId && x.Status == 10);
 
-                var archivedConsignmentsDTO = EntityToDtoMappingCollection<Consignment, ConsignmentDTO>(archivedConsignments);
+                var archivedConsignmentsDTO = Mapper.Map<IEnumerable<ActiveConsignmentDTO>>(archivedConsignments).ToList();
 
                 return archivedConsignmentsDTO;
             }

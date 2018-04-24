@@ -4,7 +4,7 @@ using UserManager.Core.Mappers;
 
 namespace UserManager.Core.Repositories
 {
-    public class AdministratorRepository : Mapper, IAdministrator
+    public class AdministratorRepository : CustomMapper, IAdministrator
     {
         /// <summary>
         /// Truncate the specified table

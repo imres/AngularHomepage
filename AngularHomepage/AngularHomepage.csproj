@@ -11689,6 +11689,7 @@
     <TypeScriptCompile Include="app\_guards\index.ts" />
     <TypeScriptCompile Include="app\_helpers\fake-backend.ts" />
     <TypeScriptCompile Include="app\_helpers\index.ts" />
+    <TypeScriptCompile Include="app\_models\active-consignment.ts" />
     <TypeScriptCompile Include="app\_models\consignment.ts" />
     <TypeScriptCompile Include="app\_models\enums\http-status-code.enum.ts" />
     <TypeScriptCompile Include="app\_models\enums\index.ts" />
@@ -11702,6 +11703,12 @@
     <TypeScriptCompile Include="app\_models\invitation-extended.ts" />
     <TypeScriptCompile Include="app\_models\person.ts" />
     <TypeScriptCompile Include="app\_models\postnord-schema.ts" />
+    <TypeScriptCompile Include="app\_models\PostNord\index.ts" />
+    <TypeScriptCompile Include="app\_models\PostNord\postnord-address.ts" />
+    <TypeScriptCompile Include="app\_models\PostNord\postnord-consignee.ts" />
+    <TypeScriptCompile Include="app\_models\PostNord\postnord-consignor.ts" />
+    <TypeScriptCompile Include="app\_models\PostNord\postnord-contact.ts" />
+    <TypeScriptCompile Include="app\_models\PostNord\postnord-customer.ts" />
     <TypeScriptCompile Include="app\_models\user.ts" />
     <TypeScriptCompile Include="app\_models\user-link.ts" />
     <TypeScriptCompile Include="app\_services\administrator.service.ts" />
