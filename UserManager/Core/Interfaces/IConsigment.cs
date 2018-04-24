@@ -16,5 +16,7 @@ namespace UserManager.Core.Interfaces
         ConsignmentDTO GetConsignment(int ConsignmentId);
 
         IEnumerable<ConsignmentDTO> GetConsignments(string PersonId);
+
+        IEnumerable<ConsignmentDTO> GetArchivedConsignments(string PersonId);
     }
 }

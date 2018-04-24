@@ -71,7 +71,10 @@ namespace UserManager.Core.Repositories
         {
             throw new NotImplementedException();
         }
-
+        public ConsignmentDTO GetArchivedConsignments(int ConsignmentId)
+        {
+            throw new NotImplementedException();
+        }
         /// <summary>
         /// Get Consignments by PersonId
         /// </summary>
@@ -82,11 +85,23 @@ namespace UserManager.Core.Repositories
             using (masterEntities context = new masterEntities())
             {
                 IEnumerable<Consignment> consignments = context.Consignment
-                    .Where(x => x.ReceiverPersonId == PersonId || x.SenderPersonId == PersonId);
+                    .Where(x => x.ReceiverPersonId == PersonId && x.Status < 10 || x.SenderPersonId == PersonId && x.Status < 10);
 
                 var consignmentsDTO = EntityToDtoMappingCollection<Consignment, ConsignmentDTO>(consignments);
 
                 return consignmentsDTO;
+            }
+        }
+        public IEnumerable<ConsignmentDTO> GetArchivedConsignments(string PersonId)
+        {
+            using (masterEntities context = new masterEntities())
+            {
+                IEnumerable<Consignment> archivedConsignments = context.Consignment
+                    .Where(x => x.ReceiverPersonId == PersonId && x.Status == 10 || x.SenderPersonId == PersonId && x.Status == 10);
+
+                var archivedConsignmentsDTO = EntityToDtoMappingCollection<Consignment, ConsignmentDTO>(archivedConsignments);
+
+                return archivedConsignmentsDTO;
             }
         }
     }

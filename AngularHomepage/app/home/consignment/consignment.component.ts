@@ -1,4 +1,4 @@
-﻿ import { Component, OnInit, Input, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges } from '@angular/core';
+﻿import { Component, OnInit, Input, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
 import { DialogService } from "ng2-bootstrap-modal";
@@ -20,6 +20,8 @@ import { InviteResponseComponent } from '../../_dialog/invite-response.component
 
 export class ConsignmentComponent implements OnInit {
     consignments: Consignment[];
+    archivedConsignments: Consignment[];
+    activeConsignments: Consignment[];
 
     currentUser: Person;
     confirmResult: boolean = null;
@@ -27,6 +29,7 @@ export class ConsignmentComponent implements OnInit {
     minSliceValue = 0;
     showAllConsignmentsEnabled = false;
     showConsignments = true;
+    //toggleArchivedConsignments = false;
 
     constructor(private cd: ChangeDetectorRef,
         private dialogService: DialogService,
@@ -39,7 +42,7 @@ export class ConsignmentComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getConsignments();
+        this.getActiveConsignments();
 
         this.consignmentService.consignmentList.subscribe(consignments => {
             if (!this.consignments) return;
@@ -48,10 +51,38 @@ export class ConsignmentComponent implements OnInit {
         });
     }
 
-    getConsignments() {
+    getActiveConsignments() {
         this.consignmentService.getConsignments(this.currentUser.PersonId).subscribe(res => {
+            this.activeConsignments = res;
             this.consignments = res;
         });
+    }
+
+    getArchivedConsignments() {
+        this.consignmentService.getArchivedConsignments(this.currentUser.PersonId).subscribe((res: any) => {
+            this.archivedConsignments = res;
+            this.consignments = this.consignments.concat(this.archivedConsignments);
+            //this.consignments = this.consignments.concat(res);
+        });
+    }
+
+    toggleArchivedConsignments(event: any) {
+        if (event.srcElement.checked)
+            this.archivedConsignmentsHasValue();
+        else 
+            this.consignments = this.activeConsignments;
+    }
+
+    archivedConsignmentsHasValue() {
+        if (this.archivedConsignments != null)
+        {
+            this.consignments = this.consignments.concat(this.archivedConsignments);
+        }
+        else
+        {
+            this.getArchivedConsignments();
+            console.log("Arkiverade hämtat från API");
+        }
     }
 
     showInvite(invite: Invitation) {
