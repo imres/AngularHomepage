@@ -768,7 +768,7 @@ namespace UserManager.DTO
     public class Width
     {
         [DataMember]
-        public int value { get; set; }
+        public string value { get; set; }
         [DataMember]
         public string unit { get; set; }
     }
@@ -777,7 +777,7 @@ namespace UserManager.DTO
     public class Volume
     {
         [DataMember]
-        public int value { get; set; }
+        public string value { get; set; }
         [DataMember]
         public string unit { get; set; }
     }
@@ -786,7 +786,7 @@ namespace UserManager.DTO
     public class Compass
     {
         [DataMember]
-        public int value { get; set; }
+        public string value { get; set; }
         [DataMember]
         public string unit { get; set; }
     }
@@ -795,7 +795,7 @@ namespace UserManager.DTO
     public class CompassPlusLength
     {
         [DataMember]
-        public int value { get; set; }
+        public string value { get; set; }
         [DataMember]
         public string unit { get; set; }
     }
