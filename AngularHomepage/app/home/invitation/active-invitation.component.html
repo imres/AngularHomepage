@@ -26,7 +26,7 @@
                         <p class="card-title title-border" *ngIf="HasReceiverRole(item)"><strong class="receiver-color">Avsändare:</strong> {{item.SenderPersonId}}</p>
                         <p class="card-title title-border" *ngIf="!HasReceiverRole(item)"><strong class="sender-color">Mottagare:</strong> {{item.ReceiverPersonId}}</p>
                         <p class="card-text">Status: <strong>{{translateInvitationStatus(item)}}</strong></p>
-                        <p class="card-text">Begärd summa: {{item.RequestedDepositAmount}}</p>
+                        <p class="card-text">Begärd summa: {{item.RequestedDepositAmount}} kronor</p>
                         <p class="card-text">Inbjudan skickad: {{item.StartDate | date:'yyyy-MM-dd, HH:mm'}}</p>
 
                         <div *ngIf="!HasReceiverRole(item) && matchesInvitationWithPackageId(item)" class="animate-enter">
