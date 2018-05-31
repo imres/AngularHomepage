@@ -27,16 +27,81 @@
         <h4 class="m-0 col-sm-7" *ngIf="consignments?.length > 1">Du har {{consignments?.length}} försändelser</h4>
         <h4 class="m-0 col-sm-7" *ngIf="consignments?.length == 1">Du har {{consignments?.length}} försändelse</h4>
         
-
-
-        <div class="form-check col-sm-5 text-sm-right">
-            <label class="form-check-label">
-                <input (click)="toggleArchivedConsignments($event)" type="checkbox" class="form-check-input">
-                Visa arkiverade försändelser
-            </label>
+        <div class="col-sm-5 m-0 text-sm-right">
+            <div class="form-check dropdown-item">
+                <label class="form-check-label">
+                    <input (click)="toggleArchivedConsignments($event)" type="checkbox" class="form-check-input">
+                    Visa arkiverade försändelser
+                </label>
+            </div>
         </div>
-
-        <!--<p class="col-sm-5 m-0 text-sm-right">
+            <!--<div class="dropdown">
+                <a class="btn btn-outline-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Antal per sida <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </a>
+                <div id="consignmentAmount" class="dropdown-menu dropdown-menu-right">
+                    <fieldset class="form-group">
+                        <h6 class="dropdown-header">Försändelser per sida</h6>
+                        <div class="form-check dropdown-item">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option1" (click)="filteringNumberOfConsignments($event)">
+                                2
+                            </label>
+                        </div>
+                        <div class="form-check dropdown-item">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios4" value="option2" (click)="filteringNumberOfConsignments($event)" checked>
+                                4
+                            </label>
+                        </div>
+                        <div class="form-check dropdown-item">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios6" value="option3" (click)="filteringNumberOfConsignments($event)">
+                                6
+                            </label>
+                        </div>
+                        <div class="form-check dropdown-item">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios8" value="option4" (click)="filteringNumberOfConsignments($event)">
+                                8
+                            </label>
+                        </div>
+                        <div class="form-check dropdown-item">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios10" value="option5" (click)="filteringNumberOfConsignments($event)">
+                                10
+                            </label>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="form-check dropdown-item">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadiosAll" value="option6" (click)="filteringNumberOfConsignments($event)">
+                                Visa alla
+                            </label>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a class="btn btn-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Filtrera <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <div class="form-check dropdown-item">
+                        <label class="form-check-label">
+                            <input (click)="toggleArchivedConsignments($event)" type="checkbox" class="form-check-input">
+                            Visa arkiverade försändelser
+                        </label>
+                    </div>
+                    <div class="form-check dropdown-item">
+                        <label class="form-check-label">
+                            <input (click)="showOnlyArchivedConsignments($event)" type="checkbox" class="form-check-input">
+                            Visa endast arkiverade försändelser
+                        </label>
+                    </div>
+                </div>
+            </div>
+        <p class="col-sm-5 m-0 text-sm-right">
             <a *ngIf="!showConsignments" (click)="showConsignments=true" class="hide-link"
                data-toggle="collapse" href="#consignments" role="button" aria-expanded="true" aria-controls="consignments">
                 Visa försändelser <i class="fa fa-angle-down" aria-hidden="true"></i>
@@ -49,9 +114,9 @@
     </div>
 </div>
 
-<div *ngIf="consignments?.length > 0" class="collapse show" id="consignments">
-    <div class="row">
-        <div *ngFor="let item of consignments | slice:minSliceValue:maxSliceValue; let i=index" [ngClass]="{'col-sm-6' : (consignments?.length > 1), 'col-sm-12' : (consignments?.length < 2)}">
+<div *ngIf="consignments?.length > 0" id="consignments">
+    <div class="row" [ngClass]="{'mh-688' : (consignments?.length >= 4)}">
+        <div *ngFor="let item of pagedItems" [ngClass]="{'col-sm-6' : (consignments?.length > 1), 'col-sm-12' : (consignments?.length < 2)}">
             <div class="card mb-3">
                 <div class="consignment-card-header" [ngClass]="{'primary-gradient' : (currentUser.PersonId == item.SenderPersonId), 'secondary-gradient' : (currentUser.PersonId == item.ReceiverPersonId)}">
                     <ng-container *ngIf="item.Status < 10">
@@ -70,46 +135,61 @@
                     <p class="card-text">
                         Paketet skickades {{item.DropOffDate}} från {{item.Consignor.address.city}}, {{item.Consignor.address.postCode}}
                     </p>
-                    <!--<img src="img/karta.png" class="consignment-card-img hidden-sm-down" *ngIf="consignments?.length < 4" />-->
                 </div>
                 <div *ngIf="item.Status == 10" class="card-block">
-                    <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId">Ditt paket är levererat till {{item.Consignee?.address.city}}</p>
+                    <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId">Ditt paket är levererat till {{item.Consignee?.address.city}}!</p>
                     <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId">Ett paket från {{item.Consignor?.address.city}} är levererat till dig i {{item.Consignee?.address.city}}!</p>
                     <p class="card-text">
                         Paketet skickades {{item.DropOffDate}} från {{item.Consignor.address.city}}, {{item.Consignor.address.postCode}}
                     </p>
-                    <!--<img src="img/karta.png" class="consignment-card-img hidden-sm-down" *ngIf="consignments?.length < 4" />-->
                 </div>
             </div>
         </div>
     </div>
     <div class="col-md-12" *ngIf="consignments?.length > 0">
         <div class="row">
-            <div class="col-sm-8">
-                <nav aria-label="Page navigation for active invitations" *ngIf="consignments?.length > 4 && !showAllConsignmentsEnabled">
+            <div class="col-sm-8 no-padding">
+                <ul *ngIf="pager.Pages && pager.Pages.length" class="pagination">
+                    <li [ngClass]="{disabled:pager.CurrentPage === 1}" class="page-item">
+                        <a class="page-link" (click)="setPage(1)">First</a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.CurrentPage === 1}" class="page-item">
+                        <a class="page-link" (click)="setPage(pager.CurrentPage - 1)">Previous</a>
+                    </li>
+                    <li *ngFor="let Page of pager.Pages" [ngClass]="{active:pager.CurrentPage === Page}" class="page-item paginationNumber text-center">
+                        <a class="page-link" (click)="setPage(Page)">{{Page}}</a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.CurrentPage === pager.TotalPages}" class="page-item">
+                        <a class="page-link" (click)="setPage(pager.CurrentPage + 1)">Next</a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.CurrentPage === pager.TotalPages}" class="page-item">
+                        <a class="page-link" (click)="setPage(pager.TotalPages)">Last</a>
+                    </li>
+                </ul>
+                <!--<nav aria-label="Page navigation for active invitations" *ngIf="consignments?.length > filteringSliceValue && !showAllConsignmentsEnabled">
                     <ul class="pagination">
-                        <li class="firstAndLast page-item text-center" [ngClass]="{'disabled' : (minSliceValue < 4)}"><a class="page-link" (click)="resetSliceValue()">Första</a></li>
+                        <li class="firstAndLast page-item text-center" [ngClass]="{'disabled' : (minSliceValue < filteringSliceValue)}"><a class="page-link" (click)="resetSliceValue()">Första</a></li>
 
-                        <li class="page-item" [ngClass]="{'disabled' : (minSliceValue < 4)}"><a class="page-link" (click)="decrementSliceValue()"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>
-                        <li *ngIf="maxSliceValue >= consignments?.length && consignments?.length > 8" class="page-item paginationNumber text-center" (click)="decrementSliceValueTwice()"><a class="page-link">{{(maxSliceValue / 4) - 2}}</a></li>
-                        <li *ngIf="maxSliceValue > 4" class="page-item paginationNumber text-center" (click)="decrementSliceValue()"><a class="page-link">{{(maxSliceValue / 4) - 1}}</a></li>
-                        <li class="page-item disabled paginationNumber text-center"><a class="page-link activePage">{{maxSliceValue / 4}}</a></li>
-                        <li *ngIf="maxSliceValue < consignments?.length" class="page-item paginationNumber text-center"><a class="page-link" (click)="incrementSliceValue()">{{(maxSliceValue / 4) + 1}}</a></li>
-                        <li *ngIf="maxSliceValue == 4 && consignments?.length > 8" class="page-item paginationNumber text-center" (click)="incrementSliceValueTwice()"><a class="page-link">{{(maxSliceValue / 4) + 2}}</a></li>
+                        <li class="page-item" [ngClass]="{'disabled' : (minSliceValue < filteringSliceValue)}"><a class="page-link" (click)="decrementSliceValue()"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>
+                        <li *ngIf="maxSliceValue >= consignments?.length && consignments?.length > (filteringSliceValue * 2)" class="page-item paginationNumber text-center" (click)="decrementSliceValueTwice()"><a class="page-link">{{(maxSliceValue / filteringSliceValue) - 2}}</a></li>
+                        <li *ngIf="maxSliceValue > filteringSliceValue" class="page-item paginationNumber text-center" (click)="decrementSliceValue()"><a class="page-link">{{(maxSliceValue / filteringSliceValue) - 1}}</a></li>
+                        <li class="page-item disabled paginationNumber text-center"><a class="page-link activePage">{{maxSliceValue / filteringSliceValue}}</a></li>
+                        <li *ngIf="maxSliceValue < consignments?.length" class="page-item paginationNumber text-center"><a class="page-link" (click)="incrementSliceValue()">{{(maxSliceValue / filteringSliceValue) + 1}}</a></li>
+                        <li *ngIf="maxSliceValue == filteringSliceValue && consignments?.length > (2 * filteringSliceValue)" class="page-item paginationNumber text-center" (click)="incrementSliceValueTwice()"><a class="page-link">{{(maxSliceValue / filteringSliceValue) + 2}}</a></li>
                         <li class="page-item" [ngClass]="{'disabled' : (maxSliceValue == unrespondedInvitations?.length)}"><a class="page-link" (click)="incrementSliceValue()"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
 
                         <li class="firstAndLast page-item text-center" [ngClass]="{'disabled' : (maxSliceValue == consignments?.length)}"><a class="page-link" (click)="maximizeSliceValue()">Sista</a></li>
                     </ul>
-                </nav>
+                </nav>-->
             </div>
-            <div class="col-sm-4 text-right">
+            <!--<div class="col-sm-4 text-right">
                 <button *ngIf="maxSliceValue >= 4 && !showAllConsignmentsEnabled && consignments?.length > 4" class="btn btn-outline-primary" type="button" role="button" (click)="showAllConsignments()">
                     Visa alla <i class="fa fa-angle-down" aria-hidden="true"></i>
                 </button>
                 <button *ngIf="showAllConsignmentsEnabled" class="btn btn-outline-primary" type="button" role="button" (click)="resetSliceValue()">
                     Visa färre <i class="fa fa-angle-up" aria-hidden="true"></i>
                 </button>
-            </div>
+            </div>-->
         </div>
     </div>
 </div>

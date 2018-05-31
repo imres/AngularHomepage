@@ -18,7 +18,7 @@ import { AlertComponent } from './_directives/index';
 import { AuthGuard } from './_guards/index';
 import {
     AlertService, AuthenticationService, UserService, InvitationService, ConsignmentService,
-    ToastrService, PaymentService, FilterService, AdministratorService
+    ToastrService, PaymentService, FilterService, AdministratorService, PagerService
 } from './_services/index';
 import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
@@ -84,6 +84,7 @@ import { UserSettingsComponent } from './home/user-settings/user-settings.compon
         PaymentService,
         FilterService,
         AdministratorService,
+        PagerService,
 
         // providers used to create fake backend
         //fakeBackendProvider,
