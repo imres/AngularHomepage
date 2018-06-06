@@ -29,8 +29,6 @@ namespace UserManager.Core.Repositories
         {
         }
 
-        
-
         public ConsignmentRepository(IPackageInformation packageInformationRepository) : base()
         {
             _packageInformationRepository = packageInformationRepository;

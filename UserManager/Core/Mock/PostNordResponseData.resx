@@ -1,0 +1,408 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="PostNordResponseMock" xml:space="preserve">
+    <value>{
+  "TrackingInformationResponse": {
+    "shipments": [
+      {
+        "shipmentId": "00073942910063717801",
+        "assessedNumberOfItems": 1,
+        "deliveryDate": "2018-04-25T14:27:00",
+        "service": {
+          "code": "19",
+          "name": "PostNord MyPack Collect"
+        },
+        "consignor": {
+          "name": "NetOnNet",
+          "address": {
+            "street1": "Företagsgatan 69",
+            "city": "BORÅS",
+            "countryCode": "SWE",
+            "country": "Sweden",
+            "postCode": "50464"
+          }
+        },
+        "consignee": {
+          "address": {
+            "city": "Skellefteå",
+            "countryCode": "SWE",
+            "country": "Sweden",
+            "postCode": "93137"
+          }
+        },
+        "pickupParty": {
+          "name": "NetOnNet/E-Handel",
+          "address": {
+            "street1": "Företagsgatan 69",
+            "city": "BORÅS",
+            "countryCode": "SWE",
+            "country": "Sweden",
+            "postCode": "50464"
+          },
+          "contact": {}
+        },
+        "statusText": {
+          "header": "The shipment has been delivered to the recipient",
+          "body": "The shipment was delivered on 4/25/2018 at 2:27 PM"
+        },
+        "status": "DELIVERED",
+        "totalWeight": {
+          "value": "3.04",
+          "unit": "kg"
+        },
+        "totalVolume": {
+          "value": "0.025",
+          "unit": "m3"
+        },
+        "assessedWeight": {
+          "value": "2.8",
+          "unit": "kg"
+        },
+        "assessedVolume": {
+          "value": "0.012",
+          "unit": "m3"
+        },
+        "items": [
+          {
+            "itemId": "00073942910063717801",
+            "dropOffDate": "2018-04-23T10:04:00",
+            "deliveryDate": "2018-04-25T14:27:00",
+            "typeOfItemActual": "UNDEF",
+            "typeOfItemActualName": "-",
+            "status": "DELIVERED",
+            "statusText": {
+              "header": "The shipment item has been delivered to the recipient",
+              "body": "The shipment item was delivered on 4/25/2018 at 2:27 PM"
+            },
+            "statedMeasurement": {
+              "weight": {
+                "value": "3.04",
+                "unit": "kg"
+              },
+              "length": {
+                "value": "0.38",
+                "unit": "m"
+              },
+              "height": {
+                "value": "0.23",
+                "unit": "m"
+              },
+              "width": {
+                "value": "0.29",
+                "unit": "m"
+              },
+              "volume": {
+                "value": "0.025",
+                "unit": "m3"
+              }
+            },
+            "assessedMeasurement": {
+              "weight": {
+                "value": "2.8",
+                "unit": "kg"
+              },
+              "length": {
+                "value": "0.38",
+                "unit": "m"
+              },
+              "height": {
+                "value": "0.25",
+                "unit": "m"
+              },
+              "width": {
+                "value": "0.29",
+                "unit": "m"
+              },
+              "volume": {
+                "value": "0.012",
+                "unit": "m3"
+              }
+            },
+            "events": [
+              {
+                "eventTime": "2018-04-23T10:04:00",
+                "eventCode": "31",
+                "status": "EN_ROUTE",
+                "eventDescription": "The shipment item is under transportation",
+                "location": {
+                  "locationId": "501",
+                  "displayName": "NetOnNet Centrallager",
+                  "name": "NetOnNet Centrallager",
+                  "countryCode": "SWE",
+                  "country": "Sweden",
+                  "postcode": "50464",
+                  "city": "Borås",
+                  "locationType": "HUB"
+                }
+              },
+              {
+                "eventTime": "2018-04-23T19:15:00",
+                "eventCode": "31",
+                "status": "EN_ROUTE",
+                "eventDescription": "The shipment item is under transportation",
+                "location": {
+                  "locationId": "551",
+                  "displayName": "Torsvik",
+                  "name": "Torsvik",
+                  "countryCode": "SWE",
+                  "country": "Sweden",
+                  "postcode": "55652",
+                  "city": "Jönköping",
+                  "locationType": "HUB"
+                }
+              },
+              {
+                "eventTime": "2018-04-24T07:21:00",
+                "eventCode": "31",
+                "status": "EN_ROUTE",
+                "eventDescription": "The shipment item is under transportation",
+                "location": {
+                  "locationId": "701",
+                  "displayName": "Örebro",
+                  "name": "Örebro",
+                  "countryCode": "SWE",
+                  "country": "Sweden",
+                  "postcode": "70236",
+                  "city": "Örebro",
+                  "locationType": "HUB"
+                }
+              },
+              {
+                "eventTime": "2018-04-24T19:49:00",
+                "eventCode": "355",
+                "status": "EN_ROUTE",
+                "eventDescription": "The shipment item is under transportation",
+                "location": {
+                  "locationId": "901",
+                  "displayName": "Umeå",
+                  "name": "Umeå",
+                  "countryCode": "SWE",
+                  "country": "Sweden",
+                  "postcode": "90422",
+                  "city": "Umeå",
+                  "locationType": "HUB"
+                }
+              },
+              {
+                "eventTime": "2018-04-25T05:41:00",
+                "eventCode": "31",
+                "status": "EN_ROUTE",
+                "eventDescription": "The shipment item is under transportation",
+                "location": {
+                  "locationId": "1193100",
+                  "displayName": "Skellefteå",
+                  "name": "Skellefteå",
+                  "countryCode": "SWE",
+                  "country": "Sweden",
+                  "locationType": "SLINGA"
+                }
+              },
+              {
+                "eventTime": "2018-04-25T08:48:00",
+                "eventCode": "z65",
+                "status": "EN_ROUTE",
+                "eventDescription": "The shipment item has arrived at the distribution terminal",
+                "location": {
+                  "locationId": "1193100",
+                  "displayName": "Skellefteå",
+                  "name": "Skellefteå",
+                  "countryCode": "SWE",
+                  "country": "Sweden",
+                  "locationType": "SLINGA"
+                }
+              },
+              {
+                "eventTime": "2018-04-25T13:05:00",
+                "eventCode": "1",
+                "status": "AVAILABLE_FOR_DELIVERY",
+                "eventDescription": "The shipment item has been delivered to a service point",
+                "location": {
+                  "locationId": "960160",
+                  "displayName": "ICA Supermarket Torget",
+                  "name": "ICA Supermarket Torget",
+                  "countryCode": "SWE",
+                  "country": "Sweden",
+                  "postcode": "93131",
+                  "city": "Skellefteå",
+                  "locationType": "SERVICE_POINT"
+                }
+              },
+              {
+                "eventTime": "2018-04-25T13:25:00",
+                "eventCode": "z04",
+                "status": "OTHER",
+                "eventDescription": "A text message notification has been delivered to the recipient",
+                "location": {
+                  "locationId": "3",
+                  "displayName": "PostNord",
+                  "name": "PostNord",
+                  "countryCode": "SWE",
+                  "country": "Sweden",
+                  "locationType": "HUB"
+                }
+              },
+              {
+                "eventTime": "2018-04-25T14:27:00",
+                "eventCode": "21",
+                "status": "DELIVERED",
+                "eventDescription": "The shipment item has been delivered",
+                "location": {
+                  "locationId": "960160",
+                  "displayName": "ICA Supermarket Torget",
+                  "name": "ICA Supermarket Torget",
+                  "countryCode": "SWE",
+                  "country": "Sweden",
+                  "postcode": "93131",
+                  "city": "Skellefteå",
+                  "locationType": "SERVICE_POINT"
+                }
+              }
+            ],
+            "references": [
+              {
+                "value": "71962024",
+                "type": "CU",
+                "name": "Sender's reference"
+              }
+            ],
+            "itemRefIds": [],
+            "freeTexts": []
+          }
+        ],
+        "additionalServices": [
+          {
+            "code": "68",
+            "name": "Notification by SMS"
+          }
+        ],
+        "splitStatuses": [],
+        "shipmentReferences": [
+          {
+            "value": "71962024",
+            "type": "CU",
+            "name": "Sender's reference"
+          }
+        ]
+      }
+    ]
+  }
+}</value>
+  </data>
+</root>

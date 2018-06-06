@@ -2,13 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
+using System.Reflection;
+using System.Resources;
 using UserManager.Core.Enums;
 using UserManager.Core.Interfaces;
 using UserManager.Core.Mappers;
+using UserManager.Core.Mock;
 using UserManager.DTO;
 using UserManager.Models;
 
@@ -16,6 +20,17 @@ namespace UserManager.Core.Repositories
 {
     public class PackageInformationRepository : CustomMapper, IPackageInformation
     {
+        private IIORepository _IORepository;
+
+        public PackageInformationRepository() : this(new IORepository())
+        {
+        }
+
+        public PackageInformationRepository(IIORepository IORepository)
+        {
+            _IORepository = IORepository;
+        }
+
         private bool timeCheckEnabled = true;
 
         /// <summary>
@@ -23,63 +38,81 @@ namespace UserManager.Core.Repositories
         /// </summary>
         public void UpdatePackageInformation(ConsignmentDTO consignment)
         {
+            UpdateOrCreateRow(consignment);
+        }
+
+        private void UpdateOrCreateRow(ConsignmentDTO consignment)
+        {
             using (var context = new masterEntities())
             {
-                UpdateOrCreateRow(consignment, context);
+                var packageInformationExist = context.PackageInformation.Any(x => x.ConsignmentId == consignment.Id);
+
+                if (packageInformationExist)
+                {
+                    try
+                    {
+                        UpdateRow(consignment);
+                    }
+                    catch
+                    {
+                        //Handle error on postnord api hit?
+                    }
+
+                    return;
+                }
+
+                CreateNewRow(consignment);
+            }
+        }
+
+        private void UpdateRow(ConsignmentDTO consignment)
+        {
+            using (var context = new masterEntities())
+            {
+                var entity = context.PackageInformation.Where(x => x.ConsignmentId == consignment.Id).First();
+
+                var hourDifference = (DateTime.Now - entity.LastUpdated).TotalHours;
+
+                //Only hit PostNord api if one hour passed since last update
+                if (!timeCheckEnabled || hourDifference > 0.05)
+                {
+                    var packageInformation = GetPackageInformation(consignment.PackageId).ToString();
+
+                    entity.Content = packageInformation;
+                    entity.LastUpdated = DateTime.Now;
+                }
 
                 context.SaveChanges();
             }
         }
 
-        private void UpdateOrCreateRow(ConsignmentDTO consignment, masterEntities context)
+        private void CreateNewRow(ConsignmentDTO consignment)
         {
-            var packageInformationExist = context.PackageInformation.Any(x => x.ConsignmentId == consignment.Id);
-
-            if (packageInformationExist)
+            using (var context = new masterEntities())
             {
+                string packageInformation = string.Empty;
+
                 try
                 {
-                    UpdateRow(consignment, context);
+                    packageInformation = GetPackageInformation(consignment.PackageId).ToString();
                 }
                 catch
                 {
-                    //Handle error on postnord api hit?
+                    packageInformation = PostNordResponseData.PostNordResponseMock;
                 }
+                
 
-                return;
+                var entity = new PackageInformation
+                {
+                    Content = packageInformation,
+                    ConsignmentId = consignment.Id,
+                    LastUpdated = DateTime.Now
+                };
+
+                context.PackageInformation.Add(entity);
+
+                context.SaveChanges();
             }
-            
-            CreateNewRow(consignment, context);
-        }
-
-        private void UpdateRow(ConsignmentDTO consignment, masterEntities context)
-        {
-            var entity = context.PackageInformation.Where(x => x.ConsignmentId == consignment.Id).First();
-
-            var hourDifference = (DateTime.Now - entity.LastUpdated).TotalHours;
-
-            //Only hit PostNord api if one hour passed since last update
-            if (!timeCheckEnabled || hourDifference > 0.05)
-            {
-                var packageInformation = GetPackageInformation(consignment.PackageId).ToString();
-
-                entity.Content = packageInformation;
-                entity.LastUpdated = DateTime.Now;
-            }
-        }
-
-        private void CreateNewRow(ConsignmentDTO consignment, masterEntities context)
-        {
-            var packageInformation = GetPackageInformation(consignment.PackageId).ToString();
-
-            var entity = new PackageInformation
-            {
-                Content = packageInformation,
-                ConsignmentId = consignment.Id,
-                LastUpdated = DateTime.Now
-            };
-
-            context.PackageInformation.Add(entity);
         }
         
         /// <summary>
@@ -114,8 +147,7 @@ namespace UserManager.Core.Repositories
                     result = JsonConvert.DeserializeObject<Object>(respbody);
 
                     //.trackingInformationResponse.shipments.Any()
-                    //var test = result.GetType().GetProperty("TrackingInformationResponse").GetType().GetProperty("shipments");
-                    //var asd = test.GetValue(test);
+                    var test = result.GetType().GetProperty("shipments").GetValue(result);
 
                     if (result == null)
                         throw new NullReferenceException();
@@ -129,7 +161,7 @@ namespace UserManager.Core.Repositories
             }
             catch
             {
-                throw new WebException();
+                return new ArgumentNullException();
             }
         }
     }
