@@ -448,10 +448,14 @@ btn.btn-primary:active, .btn-primary:focus{
 .card-deck i {
     opacity: 0.1;
 }
-    /* Egna height och width-klasser */
-    .height-15 {
-        height: 15rem;
-    }
+/* Egna height och width-klasser */
+.mh-688 {
+    min-height: 688px;
+}
+
+.height-15 {
+    height: 15rem;
+}
 
 .height-20 {
     height: 20rem;

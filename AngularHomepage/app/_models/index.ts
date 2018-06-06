@@ -10,3 +10,4 @@ export * from './consignment';
 export * from './active-consignment';
 export * from './invitation-extended';
 export * from './postnord-schema';
+export * from './pager';

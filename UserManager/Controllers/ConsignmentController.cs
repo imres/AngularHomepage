@@ -69,5 +69,16 @@ namespace UserManager.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, consignments);
 
         }
+
+        [ActionName("GetArchivedConsignments")]
+        [HttpGet]
+        public HttpResponseMessage GetArchivedConsignments(string Id)
+        {
+            //IEnumerable<InvitationDTO> invitations = _invitationRepository.GetInvitations(Id);
+            IEnumerable<ActiveConsignmentDTO> consignments = _consignmentRepository.GetArchivedConsignments(Id);
+
+            return Request.CreateResponse(HttpStatusCode.OK, consignments);
+
+        }
     }
 }

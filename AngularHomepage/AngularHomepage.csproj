@@ -11701,6 +11701,7 @@
     <TypeScriptCompile Include="app\_models\invitation.ts" />
     <TypeScriptCompile Include="app\_models\common-object.ts" />
     <TypeScriptCompile Include="app\_models\invitation-extended.ts" />
+    <TypeScriptCompile Include="app\_models\pager.ts" />
     <TypeScriptCompile Include="app\_models\person.ts" />
     <TypeScriptCompile Include="app\_models\postnord-schema.ts" />
     <TypeScriptCompile Include="app\_models\PostNord\index.ts" />
@@ -11718,6 +11719,7 @@
     <TypeScriptCompile Include="app\_services\filter.service.ts" />
     <TypeScriptCompile Include="app\_services\index.ts" />
     <TypeScriptCompile Include="app\_services\invitation.service.ts" />
+    <TypeScriptCompile Include="app\_services\pager.service.ts" />
     <TypeScriptCompile Include="app\_services\payment.service.ts" />
     <TypeScriptCompile Include="app\_services\toastr.service.ts" />
     <TypeScriptCompile Include="app\_services\user.service.ts" />

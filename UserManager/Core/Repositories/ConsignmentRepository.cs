@@ -96,7 +96,10 @@ namespace UserManager.Core.Repositories
         {
             throw new NotImplementedException();
         }
-
+        public ConsignmentDTO GetArchivedConsignments(int ConsignmentId)
+        {
+            throw new NotImplementedException();
+        }
         /// <summary>
         /// Get Consignments by PersonId
         /// </summary>
@@ -107,7 +110,7 @@ namespace UserManager.Core.Repositories
             using (var context = new masterEntities())
             {
                 IEnumerable<ActiveConsignment> consignments = context.ActiveConsignment
-                    .Where(x => x.ReceiverPersonId == PersonId || x.SenderPersonId == PersonId);
+                    .Where(x => (x.ReceiverPersonId == PersonId || x.SenderPersonId == PersonId) && x.Status < ConsignmentStatus.Completed);
 
                 //var activeConsignmentsDTO = EntityToDtoMappingCollection<ActiveConsignment, ActiveConsignmentDTO>(consignments).ToList();
                 var activeConsignmentsDTO = Mapper.Map<IEnumerable<ActiveConsignmentDTO>>(consignments).ToList();
@@ -118,6 +121,18 @@ namespace UserManager.Core.Repositories
                 });
 
                 return activeConsignmentsDTO;
+            }
+        }
+        public IEnumerable<ActiveConsignmentDTO> GetArchivedConsignments(string PersonId)
+        {
+            using (masterEntities context = new masterEntities())
+            {
+                IEnumerable<ActiveConsignment> archivedConsignments = context.ActiveConsignment
+                    .Where(x => (x.ReceiverPersonId == PersonId || x.SenderPersonId == PersonId) && x.Status == ConsignmentStatus.Completed);
+
+                var archivedConsignmentsDTO = Mapper.Map<IEnumerable<ActiveConsignmentDTO>>(archivedConsignments).ToList();
+
+                return archivedConsignmentsDTO;
             }
         }
     }
