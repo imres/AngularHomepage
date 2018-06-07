@@ -16,7 +16,7 @@
             <div class="collapse list-unstyled pt-2" id="pageSubmenu">
                 <div href="#" role="button" class="sidebar-link sidebar-collapsed-link"><i class="fas fa-location-arrow fa-fw" aria-hidden="true"></i> Aktiva försändelser</div>
                 <div (click)=showConfirm($event) role="button" class="sidebar-link sidebar-collapsed-link"><i class="fas fa-plus fa-fw" aria-hidden="true"></i> Ny försändelse</div>
-                <div href="#" role="button" class="sidebar-link sidebar-link-last sidebar-collapsed-link"><i class="fas fa-envelope-open fa-fw" aria-hidden="true"></i> Historik</div>
+                <div [routerLink]="['/history']" role="button" class="sidebar-link sidebar-link-last sidebar-collapsed-link"><i class="fas fa-envelope-open fa-fw" aria-hidden="true"></i> Historik</div>
             </div>
         </div>
         <div class="sidebar-link" href="#searchBar" data-toggle="collapse" aria-expanded="false" role="button">

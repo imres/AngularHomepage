@@ -1,0 +1,95 @@
+﻿<!-- Navbar -->
+<navbar-home [invitations]="invitations" [invitationNotifications]="invitationNotifications"></navbar-home>
+
+<div class="container-fluid margin-navbar-top mb-3">
+    <div class="row">
+
+        <sidebar class="col-lg-2 no-padding"></sidebar>
+
+        <div class="col-xl-6 col-lg-7 col-10 offset-1 p-2 pt-3">
+            <loading-spinner *ngIf="loading"></loading-spinner>
+
+            <!-- Om inga försändelser finns så visas den här rutan med länk till att skicka invites och guide för att förstå hur man gör -->
+            <div *ngIf="archivedConsignments?.length == 0" class="mt-3">
+                <h4 class="pl-0 col-12">Du har inga arkiverade försändelser</h4>
+                <div class="container-fluid ">
+                    <div class="row">
+                        <div class="card text-center col-md-12">
+                            <div class="card-block">
+                                <p class="card-text">
+                                    Läs mer hur du kommer igång på några minuter eller skicka en inbjudan.
+                                </p>
+                                <a href="#" class="btn btn-primary" (click)=showConfirm($event)>Skicka inbjudan</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <guide></guide>
+            </div>
+
+            <!-- Om arkiverade försändelser finns så visas dom här komponenterna -->
+            <div class="card-header-custom col-12 animate-enter">
+                <div *ngIf="archivedConsignments?.length > 0" class="row align-items-between">
+                    <h4 class="m-0 col-sm-7" *ngIf="archivedConsignments?.length > 1">Du har {{archivedConsignments?.length}} arkiverade försändelser</h4>
+                    <h4 class="m-0 col-sm-7" *ngIf="archivedConsignments?.length == 1">Du har {{archivedConsignments?.length}} arkiverad försändelse</h4>
+
+                    <p class="col-sm-5 m-0 text-sm-right">
+                        <a *ngIf="!showConsignments" (click)="showConsignments=true" class="hide-link"
+                           data-toggle="collapse" href="#consignments" role="button" aria-expanded="true" aria-controls="consignments">
+                            Visa försändelser <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        </a>
+                        <a *ngIf="showConsignments" (click)="showConsignments=false" class="hide-link"
+                           data-toggle="collapse" href="#consignments" role="button" aria-expanded="true" aria-controls="consignments">
+                            Dölj försändelser <i class="fa fa-angle-up" aria-hidden="true"></i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <div *ngIf="archivedConsignments?.length > 0" id="consignments">
+                <div class="row" [ngClass]="{'mh-688' : (archivedConsignments?.length >= 4)}">
+                    <div *ngFor="let item of pagedItems" [ngClass]="{'col-sm-6' : (pagedItems?.length > 1), 'col-sm-12' : (pagedItems?.length < 2)}">
+                        <div class="card mb-3">
+                            <div class="consignment-card-header" [ngClass]="{'primary-gradient' : (currentUser.PersonId == item.SenderPersonId), 'secondary-gradient' : (currentUser.PersonId == item.ReceiverPersonId)}">
+                                    <h2 class="text-center"><i class="fas fa-map-marker-alt"></i> {{item.Consignee?.address.city}}</h2>
+                                    <p class="text-center"><i class="far fa-calendar-alt"></i> Paketet levererades {{item.EndDate | date:'yyyy-MM-dd, HH:mm'}}</p>
+                            </div>
+                            <div class="card-block">
+                                <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId">Ditt paket är levererat till {{item.Consignee?.address.city}}!</p>
+                                <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId">Ett paket från {{item.Consignor?.address.city}} är levererat till dig i {{item.Consignee?.address.city}}!</p>
+                                <p class="card-text">
+                                    Paketet skickades {{item.DropOffDate}} från {{item.Consignor.address.city}}, {{item.Consignor.address.postCode}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12" *ngIf="archivedConsignments?.length > 4">
+                    <div class="row">
+                        <div class="col-sm-8 no-padding">
+                            <ul *ngIf="pager.Pages?.length" class="pagination">
+                                <li [ngClass]="{disabled:pager.CurrentPage === 1}" class="page-item">
+                                    <a class="page-link" (click)="setPage(1)">First</a>
+                                </li>
+                                <li [ngClass]="{disabled:pager.CurrentPage === 1}" class="page-item">
+                                    <a class="page-link" (click)="setPage(pager.CurrentPage - 1)">Previous</a>
+                                </li>
+                                <li *ngFor="let Page of pager.Pages" [ngClass]="{active:pager.CurrentPage === Page}" class="page-item paginationNumber text-center">
+                                    <a class="page-link" (click)="setPage(Page)">{{Page}}</a>
+                                </li>
+                                <li [ngClass]="{disabled:pager.CurrentPage === pager.TotalPages}" class="page-item">
+                                    <a class="page-link" (click)="setPage(pager.CurrentPage + 1)">Next</a>
+                                </li>
+                                <li [ngClass]="{disabled:pager.CurrentPage === pager.TotalPages}" class="page-item">
+                                    <a class="page-link" (click)="setPage(pager.TotalPages)">Last</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

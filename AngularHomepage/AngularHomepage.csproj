@@ -165,6 +165,7 @@
     <Content Include="app\frontpage\front.component.html" />
     <Content Include="app\home\administrator\admin-panel.component.html" />
     <Content Include="app\home\consignment\consignment.component.html" />
+    <Content Include="app\home\consignment\consignment-history.component.html" />
     <Content Include="app\home\home.component.html" />
     <Content Include="app\home\home.component.js" />
     <Content Include="app\home\index.js" />
@@ -11648,6 +11649,7 @@
     <TypeScriptCompile Include="app\frontpage\front.component.ts" />
     <TypeScriptCompile Include="app\frontpage\index.ts" />
     <TypeScriptCompile Include="app\home\administrator\admin-panel.component.ts" />
+    <TypeScriptCompile Include="app\home\consignment\consignment-history.component.ts" />
     <TypeScriptCompile Include="app\home\consignment\consignment.component.ts">
       <SubType>Code</SubType>
       <DependentUpon>consignment.component.html</DependentUpon>

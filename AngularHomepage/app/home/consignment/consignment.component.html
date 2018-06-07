@@ -51,19 +51,13 @@
 
 <div *ngIf="consignments?.length > 0" id="consignments">
     <div class="row" [ngClass]="{'mh-688' : (consignments?.length >= 4)}">
-        <div *ngFor="let item of pagedItems" [ngClass]="{'col-sm-6' : (consignments?.length > 1), 'col-sm-12' : (consignments?.length < 2)}">
+        <div *ngFor="let item of pagedItems" [ngClass]="{'col-sm-6' : (pagedItems?.length > 1), 'col-sm-12' : (pagedItems?.length < 2)}">
             <div class="card mb-3">
                 <div class="consignment-card-header" [ngClass]="{'primary-gradient' : (currentUser.PersonId == item.SenderPersonId), 'secondary-gradient' : (currentUser.PersonId == item.ReceiverPersonId)}">
-                    <ng-container *ngIf="item.Status < 10">
-                        <h2 class="text-center"><i class="fas fa-map-marker-alt"></i> {{item.LastSeenCity}}</h2>
-                        <p class="text-center"><i class="far fa-calendar-alt"></i> {{item.LastSeenTimeStamp}}</p>
-                    </ng-container>
-                    <ng-container *ngIf="item.Status == 10">
-                        <h2 class="text-center"><i class="fas fa-map-marker-alt"></i> {{item.Consignee?.address.city}}</h2>
-                        <p class="text-center"><i class="far fa-calendar-alt"></i> Paketet levererades {{item.EndDate | date:'yyyy-MM-dd, HH:mm'}}</p>
-                    </ng-container>
+                    <h2 class="text-center"><i class="fas fa-map-marker-alt"></i> {{item.LastSeenCity}}</h2>
+                    <p class="text-center"><i class="far fa-calendar-alt"></i> {{item.LastSeenTimeStamp}}</p>
                 </div>
-                <div *ngIf="item.Status < 10" class="card-block">
+                <div class="card-block">
                     <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId">Ditt paket är påväg till {{item.Consignee?.address.city}}</p>
                     <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId">Ett paket från {{item.Consignor?.address.city}} är påväg till dig</p>
                     <p class="card-text">Paketet befinner sig just nu i {{item.LastSeenCity}}</p>
@@ -71,17 +65,10 @@
                         Paketet skickades {{item.DropOffDate}} från {{item.Consignor.address.city}}, {{item.Consignor.address.postCode}}
                     </p>
                 </div>
-                <div *ngIf="item.Status == 10" class="card-block">
-                    <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId">Ditt paket är levererat till {{item.Consignee?.address.city}}!</p>
-                    <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId">Ett paket från {{item.Consignor?.address.city}} är levererat till dig i {{item.Consignee?.address.city}}!</p>
-                    <p class="card-text">
-                        Paketet skickades {{item.DropOffDate}} från {{item.Consignor.address.city}}, {{item.Consignor.address.postCode}}
-                    </p>
-                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-12" *ngIf="consignments?.length > 0">
+    <div class="col-md-12" *ngIf="consignments?.length > 4">
         <div class="row">
             <div class="col-sm-8 no-padding">
                 <ul *ngIf="pager.Pages?.length" class="pagination">
