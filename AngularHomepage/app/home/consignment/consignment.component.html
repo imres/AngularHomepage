@@ -12,7 +12,7 @@
                         Läs mer hur du kommer igång på några minuter eller skicka en inbjudan.
                     </p>
                     <a href="#" class="btn btn-primary" (click)=showConfirm($event)>Skicka inbjudan</a>
-                </div>
+                </div>  
             </div>
         </div>
     </div>
@@ -26,15 +26,6 @@
     <div *ngIf="consignments?.length > 0" class="row align-items-between">
         <h4 class="m-0 col-sm-7" *ngIf="consignments?.length > 1">Du har {{consignments?.length}} försändelser</h4>
         <h4 class="m-0 col-sm-7" *ngIf="consignments?.length == 1">Du har {{consignments?.length}} försändelse</h4>
-        
-        <!--<div class="col-sm-5 m-0 text-sm-right">
-            <div class="form-check dropdown-item">
-                <label class="form-check-label">
-                    <input (click)="toggleArchivedConsignments($event)" type="checkbox" class="form-check-input">
-                    Visa arkiverade försändelser
-                </label>
-            </div>
-        </div>-->
             
         <p class="col-sm-5 m-0 text-sm-right">
             <a *ngIf="!showConsignments" (click)="showConsignments=true" class="hide-link"
@@ -50,6 +41,19 @@
 </div>
 
 <div *ngIf="consignments?.length > 0" id="consignments">
+    <div class="no-padding d-flex flex-row-reverse">
+        <form #orderForm="ngForm" class="form-inline mb-3" (change)="orderBySelection($event.target.value)">
+            <label class="mr-sm-2" for="orderBySelection">Sortera efter:</label>
+            <select class="custom-select mb-2 mb-sm-0" name="orderBySelection" ngModel>
+                <option selected value="-StartDate">Nyast först</option>
+                <option value="StartDate">Äldst först</option>
+                <option value="SenderPersonId">Avsändare A-Ö</option>
+                <option value="ReceiverPersonId">Mottagare A-Ö</option>
+                <option value="-DepositedAmount">Betald summa fallande</option>
+                <option value="DepositedAmount">Betald summa stigande</option>
+            </select>
+        </form>
+    </div>
     <div class="row" [ngClass]="{'mh-cards-grid' : (consignments?.length >= 4)}">
         <div *ngFor="let item of pagedItems" [ngClass]="{'col-sm-6' : (pagedItems?.length > 1), 'col-sm-12' : (pagedItems?.length < 2)}">
             <div class="card mb-3">
@@ -68,24 +72,24 @@
             </div>
         </div>
     </div>
-    <div class="col-md-12" *ngIf="consignments?.length > 4">
-        <div class="row">
-            <div class="col-sm-8 no-padding">
+    <div *ngIf="consignments?.length > 4">
+        <div class="col-12 d-flex justify-content-center">
+            <div class="no-padding">
                 <ul *ngIf="pager.Pages?.length" class="pagination">
-                    <li [ngClass]="{disabled:pager.CurrentPage === 1}" class="page-item">
-                        <a class="page-link" (click)="setPage(1)">First</a>
+                    <li [ngClass]="{disabled:pager.CurrentPage === 1}" class="page-item text-center width-70px">
+                        <a class="page-link" (click)="setPage(1)">Första</a>
                     </li>
-                    <li [ngClass]="{disabled:pager.CurrentPage === 1}" class="page-item">
-                        <a class="page-link" (click)="setPage(pager.CurrentPage - 1)">Previous</a>
+                    <li [ngClass]="{disabled:pager.CurrentPage === 1}" class="page-item text-center width-3">
+                        <a class="page-link" (click)="setPage(pager.CurrentPage - 1)"><i class="far fa-arrow-alt-circle-left"></i></a>
                     </li>
                     <li *ngFor="let Page of pager.Pages" [ngClass]="{active:pager.CurrentPage === Page}" class="page-item paginationNumber text-center">
                         <a class="page-link" (click)="setPage(Page)">{{Page}}</a>
                     </li>
-                    <li [ngClass]="{disabled:pager.CurrentPage === pager.TotalPages}" class="page-item">
-                        <a class="page-link" (click)="setPage(pager.CurrentPage + 1)">Next</a>
+                    <li [ngClass]="{disabled:pager.CurrentPage === pager.TotalPages}" class="page-item text-center width-3">
+                        <a class="page-link" (click)="setPage(pager.CurrentPage + 1)"><i class="far fa-arrow-alt-circle-right"></i></a>
                     </li>
-                    <li [ngClass]="{disabled:pager.CurrentPage === pager.TotalPages}" class="page-item">
-                        <a class="page-link" (click)="setPage(pager.TotalPages)">Last</a>
+                    <li [ngClass]="{disabled:pager.CurrentPage === pager.TotalPages}" class="page-item text-center width-70px">
+                        <a class="page-link" (click)="setPage(pager.TotalPages)">Sista</a>
                     </li>
                 </ul>
             </div>

@@ -62,10 +62,27 @@ export class ConsignmentComponent implements OnInit {
 
             console.log(res);
 
-            // initialize pager to page 1
-            this.setPage(1);
+            this.orderBy('-StartDate');
         });
     }
+
+    orderBySelection(event: any){
+        this.orderBy(event);
+    }
+
+    orderBy(prop: string) {
+        if (prop.charAt(0) === '-') {
+            prop = prop.replace('-', '');
+            this.consignments = this.consignments.sort((a, b) => a[prop] > b[prop] ? 1 : a[prop] === b[prop] ? 0 : -1);
+            this.consignments = this.consignments.reverse();
+        }
+        else 
+            this.consignments = this.consignments.sort((a, b) => a[prop] > b[prop] ? 1 : a[prop] === b[prop] ? 0 : -1);
+
+        // initialize pager to page 1
+        this.setPage(1);
+    }   
+
 
     setPage(Page: number) {
         if (Page < 1 || Page > this.pager.TotalPages) {
