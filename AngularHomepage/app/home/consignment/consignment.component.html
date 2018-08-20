@@ -44,7 +44,7 @@
     <div class="no-padding d-flex flex-row-reverse">
         <form #orderForm="ngForm" class="form-inline mb-3" (change)="orderBySelection($event.target.value)">
             <label class="mr-sm-2" for="orderBySelection">Sortera efter:</label>
-            <select class="custom-select mb-2 mb-sm-0" name="orderBySelection" ngModel>
+            <select class="custom-select mb-2 mb-sm-0" name="orderBySelection">
                 <option selected value="-StartDate">Nyast först</option>
                 <option value="StartDate">Äldst först</option>
                 <option value="SenderPersonId">Avsändare A-Ö</option>
