@@ -11,83 +11,93 @@
                     <div class="list-group list-group-flush w-100">
 
                         <div class="list-group-item">
-                            <div class="col-8 no-padding">
-                                <strong class="user-settings-title">Mailadress:</strong> {{currentUser.Email}}
-                            </div>
-                            <div class="col-4 no-padding text-right">
-                                <a class="link" href="#emailForm" data-toggle="collapse" aria-expanded="false" role="button"><i class="fas fa-cog fa-pull-right" aria-hidden="true"></i></a>
-                            </div>
-                            <div id="emailForm" class="collapse col-12">
-                                <div class="row mt-2">
-                                    <div class="col-12">
-                                        <input type="text" class="form-control" name="email" placeholder="Ny mailadress" />
+                            <div class="row">
+                                <div class="col-8">
+                                    <strong class="user-settings-title">Mailadress:</strong> {{currentUser.Email}}
+                                </div>
+                                <div class="col-4">
+                                    <a class="link" href="#emailForm" data-toggle="collapse" aria-expanded="false" role="button"><i class="fas fa-cog fa-pull-right" aria-hidden="true"></i></a>
+                                </div>
+                                <div id="emailForm" class="collapse col-12">
+                                    <div class="row mt-2">
+                                        <div class="col-12">
+                                            <input type="text" class="form-control" name="email" placeholder="Ny mailadress" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="list-group-item">
-                            <div class="col-8 no-padding">
-                                <strong class="user-settings-title">Lösenord:</strong> ******
-                            </div>
-                            <div class="col-4 no-padding text-right">
-                                <a class="link" href="#passwordForm" data-toggle="collapse" aria-expanded="false" role="button"><i class="fas fa-cog fa-pull-right" aria-hidden="true"></i></a>
-                            </div>
-                            <div id="passwordForm" class="collapse col-12">
-                                <div class="row mt-2">
-                                    <div class="col-12">
-                                        <input type="text" class="form-control" name="password" placeholder="Nytt lösenord" />
-                                    </div>
-                                    <div class="col-12 mt-2">
-                                        <input type="text" class="form-control" name="password" placeholder="Bekräfta lösenord" />
+                            <div class="row">
+                                <div class="col-8">
+                                    <strong class="user-settings-title">Lösenord:</strong> ******
+                                </div>
+                                <div class="col-4">
+                                    <a class="link" href="#passwordForm" data-toggle="collapse" aria-expanded="false" role="button"><i class="fas fa-cog fa-pull-right" aria-hidden="true"></i></a>
+                                </div>
+                                <div id="passwordForm" class="collapse col-12">
+                                    <div class="row mt-2">
+                                        <div class="col-12">
+                                            <input type="text" class="form-control" name="password" placeholder="Nytt lösenord" />
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <input type="text" class="form-control" name="password" placeholder="Bekräfta lösenord" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="list-group-item">
-                            <div class="col-8 no-padding">
-                                <strong class="user-settings-title">Telefonnummer:</strong> {{currentUser.PhoneMobile}}
-                            </div>
-                            <div class="col-4 no-padding text-right">
-                                <a class="link" href="#phoneNumberForm" data-toggle="collapse" aria-expanded="false" role="button"><i class="fas fa-cog fa-pull-right" aria-hidden="true"></i></a>
-                            </div>
-                            <div id="phoneNumberForm" class="collapse col-12">
-                                <div class="row mt-2">
-                                    <div class="col-12">
-                                        <input type="text" class="form-control" name="phoneNumber" placeholder="Nytt telefonnummer" />
+                            <div class="row">
+                                <div class="col-8">
+                                    <strong class="user-settings-title">Telefonnummer:</strong> {{currentUser.PhoneMobile}}
+                                </div>
+                                <div class="col-4">
+                                    <a class="link" href="#phoneNumberForm" data-toggle="collapse" aria-expanded="false" role="button"><i class="fas fa-cog fa-pull-right" aria-hidden="true"></i></a>
+                                </div>
+                                <div id="phoneNumberForm" class="collapse col-12">
+                                    <div class="row mt-2">
+                                        <div class="col-12">
+                                            <input type="text" class="form-control" name="phoneNumber" placeholder="Nytt telefonnummer" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="list-group-item">
-                            <div class="col-8 no-padding">
-                                <strong class="user-settings-title">Adress:</strong> {{currentUser.Address}}
-                            </div>
-                            <div class="col-4 no-padding text-right">
-                                <a class="link" href="#addressForm" data-toggle="collapse" aria-expanded="false" role="button"><i class="fas fa-cog fa-pull-right" aria-hidden="true"></i></a>
-                            </div>
-                            <div id="addressForm" class="collapse col-12">
-                                <div class="row mt-2">
-                                    <div class="col-12">
-                                        <input type="text" class="form-control" name="address" placeholder="Ny adress" />
+                            <div class="row">
+                                <div class="col-8">
+                                    <strong class="user-settings-title">Adress:</strong> {{currentUser.Address}}
+                                </div>
+                                <div class="col-4">
+                                    <a class="link" href="#addressForm" data-toggle="collapse" aria-expanded="false" role="button"><i class="fas fa-cog fa-pull-right" aria-hidden="true"></i></a>
+                                </div>
+                                <div id="addressForm" class="collapse col-12">
+                                    <div class="row mt-2">
+                                        <div class="col-12">
+                                            <input type="text" class="form-control" name="address" placeholder="Ny adress" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="list-group-item">
-                            <div class="col-8 no-padding">
-                                <strong class="user-settings-title">Postort:</strong> {{currentUser.PostalCode}}
-                            </div>
-                            <div class="col-4 no-padding text-right">
-                                <a class="link" href="#zipcodeForm" data-toggle="collapse" aria-expanded="false" role="button"><i class="fas fa-cog fa-pull-right" aria-hidden="true"></i></a>
-                            </div>
-                            <div id="zipcodeForm" class="collapse col-12">
-                                <div class="row mt-2">
-                                    <div class="col-12">
-                                        <input type="text" class="form-control" name="zipcode" placeholder="Ny postort" />
+                            <div class="row">
+                                <div class="col-8">
+                                    <strong class="user-settings-title">Postort:</strong> {{currentUser.PostalCode}}
+                                </div>
+                                <div class="col-4">
+                                    <a class="link" href="#zipcodeForm" data-toggle="collapse" aria-expanded="false" role="button"><i class="fas fa-cog fa-pull-right" aria-hidden="true"></i></a>
+                                </div>
+                                <div id="zipcodeForm" class="collapse col-12">
+                                    <div class="row mt-2">
+                                        <div class="col-12">
+                                            <input type="text" class="form-control" name="zipcode" placeholder="Ny postort" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>

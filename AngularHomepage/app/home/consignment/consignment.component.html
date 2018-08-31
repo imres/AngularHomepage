@@ -6,7 +6,7 @@
     <div class="container-fluid ">
         <div class="row">
             <div class="card text-center col-md-12">
-                <div class="card-block">
+                <div class="card-body">
                     <!--<h3 class="card-title">Inga aktiva försändelser</h3>-->
                     <p class="card-text">
                         Läs mer hur du kommer igång på några minuter eller skicka en inbjudan.
@@ -61,7 +61,7 @@
                     <h2 class="text-center"><i class="fas fa-map-marker-alt"></i> {{item.LastSeenCity}}</h2>
                     <p class="text-center"><i class="far fa-calendar-alt"></i> {{item.LastSeenTimeStamp}}</p>
                 </div>
-                <div class="card-block">
+                <div class="card-body">
                     <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId">Ditt paket är påväg till {{item.Consignee?.address.city}}</p>
                     <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId">Ett paket från {{item.Consignor?.address.city}} är påväg till dig</p>
                     <p class="card-text">Paketet befinner sig just nu i {{item.LastSeenCity}}</p>

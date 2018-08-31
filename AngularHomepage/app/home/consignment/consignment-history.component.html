@@ -15,7 +15,7 @@
                 <div class="container-fluid ">
                     <div class="row">
                         <div class="card text-center col-md-12">
-                            <div class="card-block">
+                            <div class="card-body">
                                 <p class="card-text">
                                     Läs mer hur du kommer igång på några minuter eller skicka en inbjudan.
                                 </p>
@@ -54,9 +54,9 @@
                         <div class="card mb-3">
                             <div class="consignment-card-header" [ngClass]="{'primary-gradient' : (currentUser.PersonId == item.SenderPersonId), 'secondary-gradient' : (currentUser.PersonId == item.ReceiverPersonId)}">
                                     <h2 class="text-center"><i class="fas fa-map-marker-alt"></i> {{item.Consignee?.address.city}}</h2>
-                                    <p class="text-center"><i class="far fa-calendar-alt"></i> Paketet levererades {{item.EndDate | date:'yyyy-MM-dd, HH:mm'}}</p>
+                                    <p class="text-center mx-3"><i class="far fa-calendar-alt"></i> Paketet levererades {{item.EndDate | date:'yyyy-MM-dd, HH:mm'}}</p>
                             </div>
-                            <div class="card-block">
+                            <div class="card-body">
                                 <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId">Ditt paket är levererat till {{item.Consignee?.address.city}}!</p>
                                 <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId">Ett paket från {{item.Consignor?.address.city}} är levererat till dig i {{item.Consignee?.address.city}}!</p>
                                 <p class="card-text">

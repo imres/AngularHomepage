@@ -22,7 +22,7 @@
         <div class="row">
             <div *ngFor="let item of activeInvitations | slice:minSliceValue:maxSliceValue; let i=index" class="col-sm-6 my-2 animate-enter">
                 <div class="card mb-3 h-100">
-                    <div class="card-block" [ngClass]="{'card-border-receiver' : HasReceiverRole(item), 'card-border-sender' : !HasReceiverRole(item)}">
+                    <div class="card-body" [ngClass]="{'card-border-receiver' : HasReceiverRole(item), 'card-border-sender' : !HasReceiverRole(item)}">
                         <p class="card-title title-border" *ngIf="HasReceiverRole(item)"><strong class="receiver-color">Avsändare:</strong> {{item.SenderPersonId}}</p>
                         <p class="card-title title-border" *ngIf="!HasReceiverRole(item)"><strong class="sender-color">Mottagare:</strong> {{item.ReceiverPersonId}}</p>
                         <p class="card-text">Status: <strong>{{translateInvitationStatus(item)}}</strong></p>

@@ -3,8 +3,8 @@
         <div class="modal-content">
             <form name="form" (ngSubmit)="f.form.valid && acceptInvitation(currentInvitation)" #f="ngForm" novalidate>
                 <div class="modal-header">
-                    <button type="button" class="close" (click)="close()">&times;</button>
                     <h4 class="modal-title">{{title || 'Confirm'}}</h4>
+                    <button type="button" class="close" (click)="close()">&times;</button>
                 </div>
                 <div class="modal-body">
                     {{isReceiver}}
