@@ -42,7 +42,7 @@
     color: #0AF;
 }
 
-.card-block .title-border {
+.card-body .title-border {
     padding-bottom: 5px;
     border-bottom: 1px #ddd dashed;
 }
@@ -449,9 +449,6 @@ btn.btn-primary:active, .btn-primary:focus{
     opacity: 0.1;
 }
 /* Egna height och width-klasser */
-.mh-688 {
-    min-height: 688px;
-}
 
 .height-15 {
     height: 15rem;
@@ -538,6 +535,9 @@ btn.btn-primary:active, .btn-primary:focus{
     width: 575px;
 }
 
+.width-70px {
+    width: 70px;
+}
 /* Notificationcenter */
 .notification {
     border-bottom: 1px solid rgba(0,0,0,.15);
@@ -898,12 +898,30 @@ btn.btn-primary:active, .btn-primary:focus{
     }
 }
 
+@media screen and (min-width: 576px) {
+    .mh-cards-grid {
+        min-height: 784px;
+    }
+}
+
+@media screen and (min-width: 686px) {
+    .mh-cards-grid {
+        min-height: 736px;
+    }
+}
+
 @media screen and (min-width: 767px) /*md-up*/ {
 
 }
 
 @media screen and (min-width: 992px) /*lg-up*/ {
 
+}
+
+@media screen and (min-width: 1327px) /*xl-up*/ {
+    .mh-cards-grid {
+        min-height: 688px;
+    }
 }
 
 @media screen and (max-height: 755px) {

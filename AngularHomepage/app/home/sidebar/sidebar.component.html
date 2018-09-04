@@ -1,6 +1,6 @@
 ﻿<div class="wrapper w-100 h-100">
 
-    <nav id="sidebar" class="hidden-md-down list-unstyled components h-100">
+    <nav id="sidebar" class="d-none d-lg-block list-unstyled components h-100">
         <div class="sidebar-link" [routerLink]="['/home']" role="button">
             <i class="fas fa-home fa-fw" aria-hidden="true"></i>
             Hem
@@ -16,7 +16,7 @@
             <div class="collapse list-unstyled pt-2" id="pageSubmenu">
                 <div href="#" role="button" class="sidebar-link sidebar-collapsed-link"><i class="fas fa-location-arrow fa-fw" aria-hidden="true"></i> Aktiva försändelser</div>
                 <div (click)=showConfirm($event) role="button" class="sidebar-link sidebar-collapsed-link"><i class="fas fa-plus fa-fw" aria-hidden="true"></i> Ny försändelse</div>
-                <div href="#" role="button" class="sidebar-link sidebar-link-last sidebar-collapsed-link"><i class="fas fa-envelope-open fa-fw" aria-hidden="true"></i> Historik</div>
+                <div [routerLink]="['/history']" role="button" class="sidebar-link sidebar-link-last sidebar-collapsed-link"><i class="fas fa-envelope-open fa-fw" aria-hidden="true"></i> Historik</div>
             </div>
         </div>
         <div class="sidebar-link" href="#searchBar" data-toggle="collapse" aria-expanded="false" role="button">
@@ -51,7 +51,7 @@
         </div>  
     </div>-->
 
-    <div id="content" class="hidden-lg-up offset-1 phone-sidebar">
+    <div id="content" class="d-lg-none offset-1 phone-sidebar">
         <button href="#phoneSidebar" data-toggle="collapse" aria-expanded="false" type="button" role="button" id="sidebarCollapse" class="btn btn-outline-primary navbar-btn sidebar-btn mb-2">
             <i class="fa fa-align-left" aria-hidden="true"></i>
         </button>

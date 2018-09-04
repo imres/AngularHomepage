@@ -6,13 +6,13 @@
     <div class="container-fluid ">
         <div class="row">
             <div class="card text-center col-md-12">
-                <div class="card-block">
+                <div class="card-body">
                     <!--<h3 class="card-title">Inga aktiva försändelser</h3>-->
                     <p class="card-text">
                         Läs mer hur du kommer igång på några minuter eller skicka en inbjudan.
                     </p>
                     <a href="#" class="btn btn-primary" (click)=showConfirm($event)>Skicka inbjudan</a>
-                </div>
+                </div>  
             </div>
         </div>
     </div>
@@ -26,81 +26,7 @@
     <div *ngIf="consignments?.length > 0" class="row align-items-between">
         <h4 class="m-0 col-sm-7" *ngIf="consignments?.length > 1">Du har {{consignments?.length}} försändelser</h4>
         <h4 class="m-0 col-sm-7" *ngIf="consignments?.length == 1">Du har {{consignments?.length}} försändelse</h4>
-        
-        <div class="col-sm-5 m-0 text-sm-right">
-            <div class="form-check dropdown-item">
-                <label class="form-check-label">
-                    <input (click)="toggleArchivedConsignments($event)" type="checkbox" class="form-check-input">
-                    Visa arkiverade försändelser
-                </label>
-            </div>
-        </div>
-            <!--<div class="dropdown">
-                <a class="btn btn-outline-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Antal per sida <i class="fa fa-angle-down" aria-hidden="true"></i>
-                </a>
-                <div id="consignmentAmount" class="dropdown-menu dropdown-menu-right">
-                    <fieldset class="form-group">
-                        <h6 class="dropdown-header">Försändelser per sida</h6>
-                        <div class="form-check dropdown-item">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option1" (click)="filteringNumberOfConsignments($event)">
-                                2
-                            </label>
-                        </div>
-                        <div class="form-check dropdown-item">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios4" value="option2" (click)="filteringNumberOfConsignments($event)" checked>
-                                4
-                            </label>
-                        </div>
-                        <div class="form-check dropdown-item">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios6" value="option3" (click)="filteringNumberOfConsignments($event)">
-                                6
-                            </label>
-                        </div>
-                        <div class="form-check dropdown-item">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios8" value="option4" (click)="filteringNumberOfConsignments($event)">
-                                8
-                            </label>
-                        </div>
-                        <div class="form-check dropdown-item">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios10" value="option5" (click)="filteringNumberOfConsignments($event)">
-                                10
-                            </label>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <div class="form-check dropdown-item">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadiosAll" value="option6" (click)="filteringNumberOfConsignments($event)">
-                                Visa alla
-                            </label>
-                        </div>
-                    </fieldset>
-                </div>
-            </div>
-            <div class="dropdown">
-                <a class="btn btn-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Filtrera <i class="fa fa-angle-down" aria-hidden="true"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <div class="form-check dropdown-item">
-                        <label class="form-check-label">
-                            <input (click)="toggleArchivedConsignments($event)" type="checkbox" class="form-check-input">
-                            Visa arkiverade försändelser
-                        </label>
-                    </div>
-                    <div class="form-check dropdown-item">
-                        <label class="form-check-label">
-                            <input (click)="showOnlyArchivedConsignments($event)" type="checkbox" class="form-check-input">
-                            Visa endast arkiverade försändelser
-                        </label>
-                    </div>
-                </div>
-            </div>
+            
         <p class="col-sm-5 m-0 text-sm-right">
             <a *ngIf="!showConsignments" (click)="showConsignments=true" class="hide-link"
                data-toggle="collapse" href="#consignments" role="button" aria-expanded="true" aria-controls="consignments">
@@ -110,25 +36,32 @@
                data-toggle="collapse" href="#consignments" role="button" aria-expanded="true" aria-controls="consignments">
                 Dölj försändelser <i class="fa fa-angle-up" aria-hidden="true"></i>
             </a>
-        </p>-->
+        </p>
     </div>
 </div>
 
 <div *ngIf="consignments?.length > 0" id="consignments">
-    <div class="row" [ngClass]="{'mh-688' : (consignments?.length >= 4)}">
-        <div *ngFor="let item of pagedItems" [ngClass]="{'col-sm-6' : (consignments?.length > 1), 'col-sm-12' : (consignments?.length < 2)}">
+    <div class="no-padding d-flex flex-row-reverse">
+        <form #orderForm="ngForm" class="form-inline mb-3" (change)="orderBySelection($event.target.value)">
+            <label class="mr-sm-2" for="orderBySelection">Sortera efter:</label>
+            <select class="custom-select mb-2 mb-sm-0" name="orderBySelection">
+                <option selected value="-StartDate">Nyast först</option>
+                <option value="StartDate">Äldst först</option>
+                <option value="SenderPersonId">Avsändare A-Ö</option>
+                <option value="ReceiverPersonId">Mottagare A-Ö</option>
+                <option value="-DepositedAmount">Betald summa fallande</option>
+                <option value="DepositedAmount">Betald summa stigande</option>
+            </select>
+        </form>
+    </div>
+    <div class="row" [ngClass]="{'mh-cards-grid' : (consignments?.length >= 4)}">
+        <div *ngFor="let item of pagedItems" [ngClass]="{'col-sm-6' : (pagedItems?.length > 1), 'col-sm-12' : (pagedItems?.length < 2)}">
             <div class="card mb-3">
                 <div class="consignment-card-header" [ngClass]="{'primary-gradient' : (currentUser.PersonId == item.SenderPersonId), 'secondary-gradient' : (currentUser.PersonId == item.ReceiverPersonId)}">
-                    <ng-container *ngIf="item.Status < 10">
-                        <h2 class="text-center"><i class="fas fa-map-marker-alt"></i> {{item.LastSeenCity}}</h2>
-                        <p class="text-center"><i class="far fa-calendar-alt"></i> {{item.LastSeenTimeStamp}}</p>
-                    </ng-container>
-                    <ng-container *ngIf="item.Status == 10">
-                        <h2 class="text-center"><i class="fas fa-map-marker-alt"></i> {{item.Consignee?.address.city}}</h2>
-                        <p class="text-center"><i class="far fa-calendar-alt"></i> Paketet levererades {{item.EndDate | date:'yyyy-MM-dd, HH:mm'}}</p>
-                    </ng-container>
+                    <h2 class="text-center"><i class="fas fa-map-marker-alt"></i> {{item.LastSeenCity}}</h2>
+                    <p class="text-center"><i class="far fa-calendar-alt"></i> {{item.LastSeenTimeStamp}}</p>
                 </div>
-                <div *ngIf="item.Status < 10" class="card-block">
+                <div class="card-body">
                     <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId">Ditt paket är påväg till {{item.Consignee?.address.city}}</p>
                     <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId">Ett paket från {{item.Consignor?.address.city}} är påväg till dig</p>
                     <p class="card-text">Paketet befinner sig just nu i {{item.LastSeenCity}}</p>
@@ -136,60 +69,30 @@
                         Paketet skickades {{item.DropOffDate}} från {{item.Consignor.address.city}}, {{item.Consignor.address.postCode}}
                     </p>
                 </div>
-                <div *ngIf="item.Status == 10" class="card-block">
-                    <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId">Ditt paket är levererat till {{item.Consignee?.address.city}}!</p>
-                    <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId">Ett paket från {{item.Consignor?.address.city}} är levererat till dig i {{item.Consignee?.address.city}}!</p>
-                    <p class="card-text">
-                        Paketet skickades {{item.DropOffDate}} från {{item.Consignor.address.city}}, {{item.Consignor.address.postCode}}
-                    </p>
-                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-12" *ngIf="consignments?.length > 0">
-        <div class="row">
-            <div class="col-sm-8 no-padding">
-                <ul *ngIf="pager.Pages && pager.Pages.length" class="pagination">
-                    <li [ngClass]="{disabled:pager.CurrentPage === 1}" class="page-item">
-                        <a class="page-link" (click)="setPage(1)">First</a>
+    <div *ngIf="consignments?.length > 4">
+        <div class="col-12 d-flex justify-content-center">
+            <div class="no-padding">
+                <ul *ngIf="pager.Pages?.length" class="pagination">
+                    <li [ngClass]="{disabled:pager.CurrentPage === 1}" class="page-item text-center width-70px">
+                        <a class="page-link" (click)="setPage(1)">Första</a>
                     </li>
-                    <li [ngClass]="{disabled:pager.CurrentPage === 1}" class="page-item">
-                        <a class="page-link" (click)="setPage(pager.CurrentPage - 1)">Previous</a>
+                    <li [ngClass]="{disabled:pager.CurrentPage === 1}" class="page-item text-center width-3">
+                        <a class="page-link" (click)="setPage(pager.CurrentPage - 1)"><i class="far fa-arrow-alt-circle-left"></i></a>
                     </li>
                     <li *ngFor="let Page of pager.Pages" [ngClass]="{active:pager.CurrentPage === Page}" class="page-item paginationNumber text-center">
                         <a class="page-link" (click)="setPage(Page)">{{Page}}</a>
                     </li>
-                    <li [ngClass]="{disabled:pager.CurrentPage === pager.TotalPages}" class="page-item">
-                        <a class="page-link" (click)="setPage(pager.CurrentPage + 1)">Next</a>
+                    <li [ngClass]="{disabled:pager.CurrentPage === pager.TotalPages}" class="page-item text-center width-3">
+                        <a class="page-link" (click)="setPage(pager.CurrentPage + 1)"><i class="far fa-arrow-alt-circle-right"></i></a>
                     </li>
-                    <li [ngClass]="{disabled:pager.CurrentPage === pager.TotalPages}" class="page-item">
-                        <a class="page-link" (click)="setPage(pager.TotalPages)">Last</a>
+                    <li [ngClass]="{disabled:pager.CurrentPage === pager.TotalPages}" class="page-item text-center width-70px">
+                        <a class="page-link" (click)="setPage(pager.TotalPages)">Sista</a>
                     </li>
                 </ul>
-                <!--<nav aria-label="Page navigation for active invitations" *ngIf="consignments?.length > filteringSliceValue && !showAllConsignmentsEnabled">
-                    <ul class="pagination">
-                        <li class="firstAndLast page-item text-center" [ngClass]="{'disabled' : (minSliceValue < filteringSliceValue)}"><a class="page-link" (click)="resetSliceValue()">Första</a></li>
-
-                        <li class="page-item" [ngClass]="{'disabled' : (minSliceValue < filteringSliceValue)}"><a class="page-link" (click)="decrementSliceValue()"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>
-                        <li *ngIf="maxSliceValue >= consignments?.length && consignments?.length > (filteringSliceValue * 2)" class="page-item paginationNumber text-center" (click)="decrementSliceValueTwice()"><a class="page-link">{{(maxSliceValue / filteringSliceValue) - 2}}</a></li>
-                        <li *ngIf="maxSliceValue > filteringSliceValue" class="page-item paginationNumber text-center" (click)="decrementSliceValue()"><a class="page-link">{{(maxSliceValue / filteringSliceValue) - 1}}</a></li>
-                        <li class="page-item disabled paginationNumber text-center"><a class="page-link activePage">{{maxSliceValue / filteringSliceValue}}</a></li>
-                        <li *ngIf="maxSliceValue < consignments?.length" class="page-item paginationNumber text-center"><a class="page-link" (click)="incrementSliceValue()">{{(maxSliceValue / filteringSliceValue) + 1}}</a></li>
-                        <li *ngIf="maxSliceValue == filteringSliceValue && consignments?.length > (2 * filteringSliceValue)" class="page-item paginationNumber text-center" (click)="incrementSliceValueTwice()"><a class="page-link">{{(maxSliceValue / filteringSliceValue) + 2}}</a></li>
-                        <li class="page-item" [ngClass]="{'disabled' : (maxSliceValue == unrespondedInvitations?.length)}"><a class="page-link" (click)="incrementSliceValue()"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
-
-                        <li class="firstAndLast page-item text-center" [ngClass]="{'disabled' : (maxSliceValue == consignments?.length)}"><a class="page-link" (click)="maximizeSliceValue()">Sista</a></li>
-                    </ul>
-                </nav>-->
             </div>
-            <!--<div class="col-sm-4 text-right">
-                <button *ngIf="maxSliceValue >= 4 && !showAllConsignmentsEnabled && consignments?.length > 4" class="btn btn-outline-primary" type="button" role="button" (click)="showAllConsignments()">
-                    Visa alla <i class="fa fa-angle-down" aria-hidden="true"></i>
-                </button>
-                <button *ngIf="showAllConsignmentsEnabled" class="btn btn-outline-primary" type="button" role="button" (click)="resetSliceValue()">
-                    Visa färre <i class="fa fa-angle-up" aria-hidden="true"></i>
-                </button>
-            </div>-->
         </div>
     </div>
 </div>

@@ -9,11 +9,11 @@
         <div class="col-lg-8 px-5 py-4">
             <h1 class="mb-5">Administratörsverktyg</h1>
 
-            <div *ngFor="let item of modelList" class="card card-inverse card-warning mb-3 animate-enter">
-                <div class="card-block">
+            <div *ngFor="let item of modelList" class="card mb-3 animate-enter">
+                <div class="card-body">
                     <h3 class="card-title">Rensa tabell: {{item}}</h3>
                     <p class="card-text">Ta bort alla rader i databas-tabellen "{{item}}"</p>
-                    <a href="#" class="btn btn-primary" (click)="cleanTable(item);false">Bekräfta</a>
+                    <a href="#" class="btn btn-danger" (click)="cleanTable(item);false">Bekräfta</a>
                 </div>
                 
             </div>

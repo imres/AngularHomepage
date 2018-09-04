@@ -30,6 +30,7 @@ import { InviteResponseComponent } from './_dialog/invite-response.component';
 import { LoadingComponent } from './_directives/loading.component';
 import { InvitationComponent } from './home/invitation/invitation.component';
 import { ConsignmentComponent } from './home/consignment/consignment.component';
+import { ConsignmentHistoryComponent } from './home/consignment/consignment-history.component';
 import { NavbarComponent } from './commonComponents/navbar.component';
 import { NavbarHomeComponent } from './commonComponents/navbar-home.component';
 import { ClickStopPropagation } from './commonComponents/navbar.component';
@@ -54,6 +55,7 @@ import { UserSettingsComponent } from './home/user-settings/user-settings.compon
         AppComponent,
         InvitationComponent,
         ConsignmentComponent,
+        ConsignmentHistoryComponent,
         AlertComponent,
         HomeComponent,
         LoginComponent,

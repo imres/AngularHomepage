@@ -3,7 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@a
 import { Observable } from 'rxjs/Rx';
 import { DialogService } from "ng2-bootstrap-modal";
 
-import { Person, Invitation, Consignment, ActiveConsignment, Pager} from '../../_models/index';
+import { Person, Invitation, Consignment, ActiveConsignment, Pager } from '../../_models/index';
 import { UserService, InvitationService, ConsignmentService, ToastrService, PagerService } from '../../_services/index';
 import { ConfirmComponent } from '../../_dialog/confirm.component';
 import { InviteResponseComponent } from '../../_dialog/invite-response.component';
@@ -11,14 +11,13 @@ import { InviteResponseComponent } from '../../_dialog/invite-response.component
 
 @Component({
     moduleId: module.id,
-    selector: 'consignment',
-    templateUrl: 'consignment.component.html'
+    templateUrl: 'consignment-history.component.html',
     //changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 
-export class ConsignmentComponent implements OnInit {
-    activeConsignments: ActiveConsignment[];
+export class ConsignmentHistoryComponent implements OnInit {
+    archivedConsignments: ActiveConsignment[];
     consignments: ActiveConsignment[];
     // pager object
     pager: Pager = new Pager();
@@ -40,49 +39,28 @@ export class ConsignmentComponent implements OnInit {
 
     ) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        
+
     }
 
     ngOnInit() {
-        this.getConsignments();
+        this.getArchivedConsignments();
 
         this.consignmentService.consignmentList.subscribe(consignments => {
             if (!this.consignments) return;
 
             this.consignments = this.consignments.concat(consignments);
-        }); 
+        });
+
     }
 
-    getConsignments() {
-        this.loading = true;
-        this.consignmentService.getConsignments(this.currentUser.PersonId).subscribe(res => {
-            this.consignments = res;
+    getArchivedConsignments() {
+        this.consignmentService.getArchivedConsignments(this.currentUser.PersonId).subscribe((res: any) => {
+            this.archivedConsignments = res;
 
-            this.loading = false;
-
-            console.log(res);
-
-            this.orderBy('-StartDate');
+            // initialize pager to page 1
+            this.setPage(1);
         });
     }
-
-    orderBySelection(event: any){
-        this.orderBy(event);
-    }
-
-    orderBy(prop: string) {
-        if (prop.charAt(0) === '-') {
-            prop = prop.replace('-', '');
-            this.consignments = this.consignments.sort((a, b) => a[prop] > b[prop] ? 1 : a[prop] === b[prop] ? 0 : -1);
-            this.consignments = this.consignments.reverse();
-        }
-        else 
-            this.consignments = this.consignments.sort((a, b) => a[prop] > b[prop] ? 1 : a[prop] === b[prop] ? 0 : -1);
-
-        // initialize pager to page 1
-        this.setPage(1);
-    }   
-
 
     setPage(Page: number) {
         if (Page < 1 || Page > this.pager.TotalPages) {
@@ -90,10 +68,10 @@ export class ConsignmentComponent implements OnInit {
         }
 
         // get pager object from service
-        this.pager = this.pagerService.getPager(this.consignments.length, Page);
+        this.pager = this.pagerService.getPager(this.archivedConsignments.length, Page);
 
         // get current page of items
-        this.pagedItems = this.consignments.slice(this.pager.StartIndex, this.pager.EndIndex + 1);
+        this.pagedItems = this.archivedConsignments.slice(this.pager.StartIndex, this.pager.EndIndex + 1);
     }
 
     showInvite(invite: Invitation) {
