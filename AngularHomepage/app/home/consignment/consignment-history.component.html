@@ -50,7 +50,7 @@
 
             <div *ngIf="archivedConsignments?.length > 0" id="consignments">
                 <div class="row" [ngClass]="{'mh-cards-grid' : (archivedConsignments?.length >= 4)}">
-                    <div *ngFor="let item of pagedItems" [ngClass]="{'col-sm-6' : (pagedItems?.length > 1), 'col-sm-12' : (pagedItems?.length < 2)}">
+                    <div *ngFor="let item of pagedItems" [ngClass]="{'col-sm-6' : (archivedConsignments?.length > 1), 'col-sm-12' : (archivedConsignments?.length < 2)}">
                         <div class="card mb-3">
                             <div class="consignment-card-header" [ngClass]="{'primary-gradient' : (currentUser.PersonId == item.SenderPersonId), 'secondary-gradient' : (currentUser.PersonId == item.ReceiverPersonId)}">
                                     <h2 class="text-center"><i class="fas fa-map-marker-alt"></i> {{item.Consignee?.address.city}}</h2>
@@ -67,23 +67,23 @@
                     </div>
                 </div>
                 <div class="col-md-12" *ngIf="archivedConsignments?.length > 4">
-                    <div class="row">
-                        <div class="col-sm-8 no-padding">
+                    <div class="col-12 d-flex justify-content-center">
+                        <div class="no-padding">
                             <ul *ngIf="pager.Pages?.length" class="pagination">
-                                <li [ngClass]="{disabled:pager.CurrentPage === 1}" class="page-item">
-                                    <a class="page-link" (click)="setPage(1)">First</a>
+                                <li [ngClass]="{disabled:pager.CurrentPage === 1}" class="page-item text-center width-70px">
+                                    <a class="page-link" (click)="setPage(1)">Första</a>
                                 </li>
-                                <li [ngClass]="{disabled:pager.CurrentPage === 1}" class="page-item">
-                                    <a class="page-link" (click)="setPage(pager.CurrentPage - 1)">Previous</a>
+                                <li [ngClass]="{disabled:pager.CurrentPage === 1}" class="page-item text-center width-3">
+                                    <a class="page-link" (click)="setPage(pager.CurrentPage - 1)"><i class="far fa-arrow-alt-circle-left"></i></a>
                                 </li>
                                 <li *ngFor="let Page of pager.Pages" [ngClass]="{active:pager.CurrentPage === Page}" class="page-item paginationNumber text-center">
                                     <a class="page-link" (click)="setPage(Page)">{{Page}}</a>
                                 </li>
-                                <li [ngClass]="{disabled:pager.CurrentPage === pager.TotalPages}" class="page-item">
-                                    <a class="page-link" (click)="setPage(pager.CurrentPage + 1)">Next</a>
+                                <li [ngClass]="{disabled:pager.CurrentPage === pager.TotalPages}" class="page-item text-center width-3">
+                                    <a class="page-link" (click)="setPage(pager.CurrentPage + 1)"><i class="far fa-arrow-alt-circle-right"></i></a>
                                 </li>
-                                <li [ngClass]="{disabled:pager.CurrentPage === pager.TotalPages}" class="page-item">
-                                    <a class="page-link" (click)="setPage(pager.TotalPages)">Last</a>
+                                <li [ngClass]="{disabled:pager.CurrentPage === pager.TotalPages}" class="page-item text-center width-70px">
+                                    <a class="page-link" (click)="setPage(pager.TotalPages)">Sista</a>
                                 </li>
                             </ul>
                         </div>

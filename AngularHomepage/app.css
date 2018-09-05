@@ -547,6 +547,7 @@ btn.btn-primary:active, .btn-primary:focus{
 .notification:hover {
     color: #0AF;
     background: #f7f9fa;
+    cursor: pointer;
 }
 
 .badge {
@@ -561,6 +562,7 @@ btn.btn-primary:active, .btn-primary:focus{
 .notification-bell {
     height: 35px;
     width: 40px;
+    cursor: pointer;
 }
 
 #bell {
@@ -764,6 +766,7 @@ btn.btn-primary:active, .btn-primary:focus{
 .sidebar-link:hover {
     color: #0AF;
     text-decoration: none;
+    cursor: pointer;
 }
 
 /*.animate-enter{
@@ -794,6 +797,12 @@ btn.btn-primary:active, .btn-primary:focus{
     color: #0AF;
     text-decoration: none;
 }
+
+/*.phone-sidebar-link.disabled:hover {
+    color: black;
+    cursor: default;
+    text-decoration: none;
+}*/
 
 /*.phone-sidebar-link[aria-expanded="true"] {
     background: #f0f0f0;
@@ -826,6 +835,12 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 /* Prio 1 */
+.disabled:hover {
+    text-decoration: none;
+    color: black;
+    cursor: default;
+}
+
 .card {
     border: 0;
     box-shadow: var(--bottom-shadow);
