@@ -15,7 +15,7 @@
                                 <div class="col-12">
                                     <strong class="user-settings-title">Mailadress:</strong> 
                                     <ng-container *ngIf="!editActive">{{currentUser.Email}}</ng-container>
-                                    <input *ngIf="editActive" type="text" class="form-control user-settings" name="email" placeholder="{{currentUser.Email}}" />
+                                    <input *ngIf="editActive" type="text" class="form-control col-12 col-md-6" name="email" placeholder="{{currentUser.Email}}" />
                                 </div>
                             </div>
                         </div>
@@ -25,8 +25,8 @@
                                 <div class="col-12">
                                     <strong class="user-settings-title">Lösenord:</strong> 
                                     <ng-container *ngIf="!editActive">******</ng-container>
-                                    <input *ngIf="editActive" type="password" class="form-control user-settings" name="password" placeholder="Nytt lösenord" />
-                                    <input *ngIf="editActive" type="password" class="form-control user-settings mt-3" name="passwordConfirm" placeholder="Bekräfta lösenord" />
+                                    <input *ngIf="editActive" type="password" class="form-control  col-12 col-md-6" name="password" placeholder="Nytt lösenord" />
+                                    <input *ngIf="editActive" type="password" class="form-control mt-3  col-12 col-md-6" name="passwordConfirm" placeholder="Bekräfta lösenord" />
                                 </div>
                             </div>
                         </div>
@@ -36,7 +36,7 @@
                                 <div class="col-12">
                                     <strong class="user-settings-title">Mobilnummer:</strong>
                                     <ng-container *ngIf="!editActive">{{currentUser.PhoneMobile}}</ng-container>
-                                    <input *ngIf="editActive" type="text" class="form-control user-settings" name="email" placeholder="{{currentUser.PhoneMobile}}" />
+                                    <input *ngIf="editActive" type="text" class="form-control  col-12 col-md-6" name="email" placeholder="{{currentUser.PhoneMobile}}" />
                                 </div>
                             </div>
                         </div>
