@@ -3,6 +3,9 @@
     --center-shadow: #e0e0e0 0px 0px 8px;
     --bottom-shadow-darker: #e0e0e0 0px 5px 11px;
     --primary: #0AF;
+    /*--blue: #0069d9;*/
+    --red: #FF1930;
+    --yellow: #EDE618;
 }
 
 .link {
@@ -25,6 +28,24 @@
     border: none;
     border-radius: 0;
     box-shadow: var(--bottom-shadow-darker);
+}
+
+.btn.btn-primary{
+    background-color: var(--primary);
+}
+
+.btn.btn-primary:hover {
+    background-color: var(--blue);
+}
+
+.btn.btn-outline-primary {
+    color: var(--primary);
+}
+
+.btn.btn-outline-primary:hover {
+    color: white;
+    background-color: var(--primary);
+    border-color: var(--primary);
 }
 
 .card-border-sender {
@@ -619,6 +640,11 @@ btn.btn-primary:active, .btn-primary:focus{
     background: #f7f9fa !important;
 }
 
+.page-item.active .page-link {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+
 .hide-link {
     color: var(--primary) !important;
     padding-top: 7px;
@@ -852,6 +878,7 @@ btn.btn-primary:active, .btn-primary:focus{
     border: 0;
     box-shadow: var(--bottom-shadow);
 }
+
 @keyframes slide-up {
     0% {
         opacity: 0;
