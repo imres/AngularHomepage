@@ -10,8 +10,8 @@ import { Person } from '../../_models/index';
 })
 
 export class UserSettingsComponent implements OnInit {
-
     currentUser: Person;
+    editActive: false;
 
     ngOnInit() {
         
