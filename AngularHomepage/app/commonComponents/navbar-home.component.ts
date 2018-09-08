@@ -83,4 +83,9 @@ export class NavbarHomeComponent implements OnInit {
 
             });
     }
+
+    logOut() {
+        localStorage.removeItem('currentUser');
+        this.currentUser = null;
+    }
 }

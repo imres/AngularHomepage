@@ -17,21 +17,21 @@
                         <a href="#" class="dropdown-item" [routerLink]="['/admin-panel']"><i class="fas fa-database fa-fw" aria-hidden="true"></i> Administratörsverktyg</a>
                     </ng-container>
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item" [routerLink]="['/front']" role="button"><i class="fas fa-sign-out-alt fa-fw" aria-hidden="true"></i> Logga ut</a>
+                    <a href="#" class="dropdown-item" (click)="logOut()"  [routerLink]="['/front']" role="button"><i class="fas fa-sign-out-alt fa-fw" aria-hidden="true"></i> Logga ut</a>
                 </div>
             </li>
             <li class="nav-item">
-                    <div data-toggle="dropdown" class="notification-bell" role="button" aria-haspopup="true" aria-expanded="false">
-                        <i class="far fa-bell fa-2x" aria-hidden="true" id="bell"></i>
-                        <h6 *ngIf="invitationNotifications?.length > 0" class="notification-counter">{{invitationNotifications?.length}}</h6>
+                <div data-toggle="dropdown" class="notification-bell" role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="far fa-bell fa-2x" aria-hidden="true" id="bell"></i>
+                    <h6 *ngIf="invitationNotifications?.length > 0" class="notification-counter">{{invitationNotifications?.length}}</h6>
+                </div>
+                <div class="dropdown-menu dropdown-menu-right notification-dropdown">
+                    <div class="width-20 text-center py-4" *ngIf="invitationNotifications?.length == 0">
+                        <h4 class="card-title">Du har inga händelser</h4>
+                        <a href="#" class="btn btn-primary" (click)=showConfirm($event)>Skicka inbjudan till en ny försändelse</a>
                     </div>
-                    <div class="dropdown-menu dropdown-menu-right notification-dropdown">
-                        <div class="width-20 text-center py-4" *ngIf="invitationNotifications?.length == 0">
-                            <h4 class="card-title">Du har inga händelser</h4>
-                            <a href="#" class="btn btn-primary" (click)=showConfirm($event)>Skicka inbjudan till en ny försändelse</a>
-                        </div>
-                        <invite-notifications *ngIf="invitationNotifications?.length > 0" [invitations]="invitations" [invitationNotifications]="invitationNotifications"></invite-notifications><!--Update child component with array, and receive event from child on change-->
-                    </div>
+                    <invite-notifications *ngIf="invitationNotifications?.length > 0" [invitations]="invitations" [invitationNotifications]="invitationNotifications"></invite-notifications><!--Update child component with array, and receive event from child on change-->
+                </div>
             </li>
         </ul>
     </div>
