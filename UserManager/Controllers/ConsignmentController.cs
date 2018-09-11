@@ -80,5 +80,15 @@ namespace UserManager.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, consignments);
 
         }
+        [ActionName("GetFinishedConsignments")]
+        [HttpGet]
+        public HttpResponseMessage GetFinishedConsignments(string Id)
+        {
+            //IEnumerable<InvitationDTO> invitations = _invitationRepository.GetInvitations(Id);
+            IEnumerable<ActiveConsignmentDTO> consignments = _consignmentRepository.GetFinishedConsignments(Id);
+
+            return Request.CreateResponse(HttpStatusCode.OK, consignments);
+
+        }
     }
 }

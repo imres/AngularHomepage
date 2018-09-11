@@ -18,6 +18,7 @@ import { InviteResponseComponent } from '../../_dialog/invite-response.component
 
 export class ConsignmentHistoryComponent implements OnInit {
     archivedConsignments: ActiveConsignment[];
+    finishedConsignments: ActiveConsignment[];
     consignments: ActiveConsignment[];
     // pager object
     pager: Pager = new Pager();
@@ -45,6 +46,8 @@ export class ConsignmentHistoryComponent implements OnInit {
     ngOnInit() {
         this.getArchivedConsignments();
 
+        this.getFinishedConsignments();
+
         this.consignmentService.consignmentList.subscribe(consignments => {
             if (!this.consignments) return;
 
@@ -59,6 +62,14 @@ export class ConsignmentHistoryComponent implements OnInit {
 
             // initialize pager to page 1
             this.setPage(1);
+        });
+    }
+
+    getFinishedConsignments() {
+        this.consignmentService.getFinishedConsignments(this.currentUser.PersonId).subscribe((res: any) => {
+            this.finishedConsignments = res;
+
+            console.log(res);
         });
     }
 

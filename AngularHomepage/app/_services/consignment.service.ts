@@ -43,6 +43,13 @@ export class ConsignmentService {
                 response.json()
             );
     }
+
+    getFinishedConsignments(personId: string) {
+        return this.http.get('http://localhost:65192/api/Consignment/GetFinishedConsignments/' + personId)
+            .map((response: Response) =>
+                response.json()
+            );
+    }
     /*getById(id: number) {
         return this.http.get('/api/users/' + id, this.jwt())
             .map((response: Response) =>

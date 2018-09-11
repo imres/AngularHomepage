@@ -1,8 +1,8 @@
 ﻿import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 
-import { Person, Invitation, Consignment, PostNordSchema } from '../_models/index';
-import { UserService, InvitationService } from '../_services/index';
+import { Person, Invitation, Consignment, PostNordSchema, ActiveConsignment } from '../_models/index';
+import { UserService, InvitationService, ConsignmentService } from '../_services/index';
 import { InvitationStatusEnum } from '../_models/enums/index';
 
 
@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit{
     invitations: Invitation[];
     invitationNotifications: Invitation[];
     activeInvitations: Invitation[];
+    finishedConsignments: ActiveConsignment[];
 
     postNordPackages: PostNordSchema;
 
@@ -25,14 +26,19 @@ export class HomeComponent implements OnInit{
     isClassActive: boolean;
     invitationStatus = InvitationStatusEnum;
 
-    constructor(private userService: UserService,
-        private invitationService: InvitationService) {
+    constructor(
+        private userService: UserService,
+        private invitationService: InvitationService,
+        private consignmentService: ConsignmentService
+    ) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.isClassActive = false;
     }
 
     ngOnInit() {
         this.getInvitations();
+
+        this.getFinishedConsignments();
 
         this.invitationService.invitationList.subscribe(invitations => {
             this.invitations = invitations;
@@ -61,5 +67,13 @@ export class HomeComponent implements OnInit{
             this.invitationService.updateInvitations(invitations);
 
         }, err => { console.log("Error: {0}", err) });
+    }
+
+    getFinishedConsignments() {
+        this.consignmentService.getFinishedConsignments(this.currentUser.PersonId).subscribe((res: any) => {
+            this.finishedConsignments = res;
+
+            console.log(res);
+        });
     }
 }

@@ -117,6 +117,10 @@ namespace UserManager.Core.Repositories
         {
             throw new NotImplementedException();
         }
+        public ConsignmentDTO GetFinishedConsignments(int ConsignmentId)
+        {
+            throw new NotImplementedException();
+        }
         /// <summary>
         /// Get Consignments by PersonId
         /// </summary>
@@ -150,6 +154,18 @@ namespace UserManager.Core.Repositories
                 var archivedConsignmentsDTO = Mapper.Map<IEnumerable<ActiveConsignmentDTO>>(archivedConsignments).ToList();
 
                 return archivedConsignmentsDTO;
+            }
+        }
+        public IEnumerable<ActiveConsignmentDTO> GetFinishedConsignments(string PersonId)
+        {
+            using (masterEntities context = new masterEntities())
+            {
+                IEnumerable<ActiveConsignment> finishedConsignments = context.ActiveConsignment
+                    .Where(x => (x.ReceiverPersonId == PersonId || x.SenderPersonId == PersonId) && x.Status == 9);
+
+                var finishedConsignmentsDTO = Mapper.Map<IEnumerable<ActiveConsignmentDTO>>(finishedConsignments).ToList();
+
+                return finishedConsignmentsDTO;
             }
         }
     }
