@@ -33,15 +33,7 @@ namespace UserManager.Core.Repositories
 
         private bool timeCheckEnabled = true;
 
-        /// <summary>
-        /// If package information does not exist on consignment id, create new row. Otherwise update existing row with new content 
-        /// </summary>
-        public void UpdatePackageInformation(ConsignmentDTO consignment)
-        {
-            UpdateOrCreateRow(consignment);
-        }
-
-        private void UpdateOrCreateRow(ConsignmentDTO consignment)
+        public PackageInformation UpdatePackageInformation(ConsignmentDTO consignment)
         {
             using (var context = new masterEntities())
             {
@@ -51,21 +43,23 @@ namespace UserManager.Core.Repositories
                 {
                     try
                     {
-                        UpdateRow(consignment);
+                        return UpdatePackageInformationRow(consignment);
                     }
                     catch
                     {
                         //Handle error on postnord api hit?
                     }
-
-                    return;
                 }
 
-                CreateNewRow(consignment);
+                return CreatePackageInformationRow(consignment);
             }
         }
 
-        private void UpdateRow(ConsignmentDTO consignment)
+        /// <summary>
+        /// Handle Package ID found in PackageInformation row in database, just update existing row
+        /// </summary>
+        /// <returns>Updated row</returns>
+        private PackageInformation UpdatePackageInformationRow(ConsignmentDTO consignment)
         {
             using (var context = new masterEntities())
             {
@@ -82,11 +76,15 @@ namespace UserManager.Core.Repositories
                     entity.LastUpdated = DateTime.Now;
                 }
 
-                context.SaveChanges();
+                return entity;
             }
         }
 
-        private void CreateNewRow(ConsignmentDTO consignment)
+        /// <summary>
+        /// Handle Package ID not registered in database
+        /// </summary>
+        /// <returns>Created row in PackageInformation table</returns>
+        private PackageInformation CreatePackageInformationRow(ConsignmentDTO consignment)
         {
             using (var context = new masterEntities())
             {
@@ -101,7 +99,6 @@ namespace UserManager.Core.Repositories
                     packageInformation = PostNordResponseData.PostNordResponseMock;
                 }
                 
-
                 var entity = new PackageInformation
                 {
                     Content = packageInformation,
@@ -109,9 +106,7 @@ namespace UserManager.Core.Repositories
                     LastUpdated = DateTime.Now
                 };
 
-                context.PackageInformation.Add(entity);
-
-                context.SaveChanges();
+                return entity;
             }
         }
         
@@ -127,6 +122,7 @@ namespace UserManager.Core.Repositories
             {
                 object result = null;
 
+                //Give 4 attempts at API before returning null
                 for (int i = 0; i < 4; i++)
                 {
                     var requestString = string.Format("https://api2.postnord.com/rest/shipment/v1/trackandtrace/findByIdentifier.json?id={0}&locale=en&apikey=e6e47dc24100ab0e9f60bab3290d07ac", PackageId);
@@ -147,21 +143,19 @@ namespace UserManager.Core.Repositories
                     result = JsonConvert.DeserializeObject<Object>(respbody);
 
                     //.trackingInformationResponse.shipments.Any()
-                    var test = result.GetType().GetProperty("shipments").GetValue(result);
+                    //var test = result.GetType().GetProperty("shipments").GetValue(result);
 
-                    if (result == null)
-                        throw new NullReferenceException();
-                    //else if ()
-                    //    throw new MissingFieldException();
-                    else
+                    if (result != null)
                         i = 4;
                 }
+
+                throw new ArgumentNullException();
 
                 return result;
             }
             catch
             {
-                return new ArgumentNullException();
+                throw new ArgumentNullException();
             }
         }
     }

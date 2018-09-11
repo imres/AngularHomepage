@@ -43,6 +43,14 @@ namespace UserManager.DTO
             }
         }
 
+        public Location DropOffLocation
+        {
+            get
+            {
+                return ShipmentInformation?.items?.LastOrDefault()?.events?.FirstOrDefault()?.location;
+            }
+        }
+
         private Shipment ShipmentInformation => ContentModel.trackingInformationResponse.shipments.FirstOrDefault();
 
         private Event LastSeenEventWithLocation

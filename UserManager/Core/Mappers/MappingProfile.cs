@@ -28,13 +28,15 @@ namespace UserManager.Core.Mappers
                     .ForMember(x => x.Consignor, opt => opt.Ignore())
                     .ForMember(x => x.Consignee, opt => opt.Ignore())
                     .ForMember(x => x.DropOffDate, opt => opt.Ignore())
+                    .ForMember(x => x.DropOffLocation, opt => opt.Ignore())
                     .IgnoreAllPropertiesWithAnInaccessibleSetter();
                 cfg.CreateMap<ActiveConsignmentDTO, ActiveConsignment>()
                     .ForSourceMember(x => x.LastSeenCity, opt => opt.Ignore())
                     .ForSourceMember(x => x.LastSeenTimeStamp, opt => opt.Ignore())
                     .ForSourceMember(x => x.Consignor, opt => opt.Ignore())
                     .ForSourceMember(x => x.Consignee, opt => opt.Ignore())
-                    .ForSourceMember(x => x.DropOffDate, opt => opt.Ignore());
+                    .ForSourceMember(x => x.DropOffDate, opt => opt.Ignore())
+                    .ForSourceMember(x => x.DropOffLocation, opt => opt.Ignore());
 
                 cfg.CreateMap<Person, PersonDTO>();
                 cfg.CreateMap<PersonDTO, Person>();

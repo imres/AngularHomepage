@@ -39,35 +39,52 @@ namespace UserManager.Core.Repositories
         /// Add new Consignment
         /// </summary>
         /// <param name="invitationDTO"></param>
+        /// TODO: Snygga till mappning och id-sättning
         public ConsignmentDTO AddConsignment(InvitationExtended invitation)
         {
-            using (var scope = new TransactionScope())
+            
+
+            using (var context = new masterEntities())
             {
-                using (var context = new masterEntities())
+                using (var scope = new TransactionScope())
                 {
-                    //Transform invitation to consignment
-                    var consignment = new Consignment
+                    try
                     {
-                        PaymentMethod = invitation.PaymentMethod.GetValueOrDefault(),
-                        ReceiverPersonId = invitation.ReceiverPersonId,
-                        SenderPersonId = invitation.SenderPersonId,
-                        Status = ConsignmentStatus.Active,
-                        StartDate = DateTime.Now,
-                        PackageId = invitation.PackageId,
-                        DepositedAmount = invitation.RequestedDepositAmount
-                    };
+                        //Transform invitation to consignment
+                        var consignment = new Consignment
+                        {
+                            PaymentMethod = invitation.PaymentMethod.GetValueOrDefault(),
+                            ReceiverPersonId = invitation.ReceiverPersonId,
+                            SenderPersonId = invitation.SenderPersonId,
+                            Status = ConsignmentStatus.Active,
+                            StartDate = DateTime.Now,
+                            PackageId = invitation.PackageId,
+                            DepositedAmount = invitation.RequestedDepositAmount
+                        };
 
-                    context.Consignment.Add(consignment);
-                    context.SaveChanges();
+                        context.Consignment.Add(consignment);
+                        context.SaveChanges();
 
-                    var consignmentDTO = Mapper.Map<ConsignmentDTO>(consignment);
-                    _packageInformationRepository.UpdatePackageInformation(consignmentDTO);
+                        var consignmentDTO = Mapper.Map<ConsignmentDTO>(consignment);
 
-                    scope.Complete();
+                        var packageInformation = _packageInformationRepository.UpdatePackageInformation(consignmentDTO);
 
-                    return consignmentDTO;
-                }
-            };
+                        context.PackageInformation.Add(packageInformation);
+                        context.SaveChanges();
+                        scope.Complete();
+
+                        consignmentDTO.Id = consignment.Id;
+
+                        return consignmentDTO;
+                    }
+                    catch (Exception)
+                    {
+                        scope.Dispose();
+
+                        return null;
+                    }
+                };
+            }
         }
         
         //public int GenericRepository<T>(Expression<Func<T, object>> p)

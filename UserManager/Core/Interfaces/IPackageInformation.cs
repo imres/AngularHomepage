@@ -9,6 +9,10 @@ namespace UserManager.Core.Interfaces
 {
     public interface IPackageInformation
     {
-        void UpdatePackageInformation(ConsignmentDTO consignment);
+        /// <summary>
+        /// If package information does not exist on consignment id, create new row. Otherwise update existing row with new content 
+        /// </summary>
+        /// <returns>Updated/Created PackageInformation row</returns>
+        PackageInformation UpdatePackageInformation(ConsignmentDTO consignment);
     }
 }
