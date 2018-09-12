@@ -19,13 +19,19 @@
                 <div [routerLink]="['/history']" role="button" class="sidebar-link sidebar-link-last sidebar-collapsed-link"><i class="fas fa-envelope-open fa-fw" aria-hidden="true"></i> Historik</div>
             </div>
         </div>
-        <div class="sidebar-link" href="#searchBar" data-toggle="collapse" aria-expanded="false" role="button">
+        <!--<div class="sidebar-link" href="#searchBar" data-toggle="collapse" aria-expanded="false" role="button">
             <i class="fas fa-search fa-fw" aria-hidden="true"></i>
-            Sök annons
+            Sök efter annons
 
-        </div>
-        <div class="pb-2 col-12 collapse" id="searchBar">
-            <input type="text" class="form-control" name="search" placeholder="Sök annons" />
+        </div>-->
+        <div class="pb-2 col-12 sidebar-link" id="searchBar">
+            <div class="input-group">
+                
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Sök">
+            </div>
         </div>  
     </nav>
 
@@ -75,13 +81,18 @@
                     <div href="#" role="button" class="phone-sidebar-link sidebar-link-last sidebar-collapsed-link"><i class="fa fa-envelope-open fa-fw" aria-hidden="true"></i> Historik</div>
                 </div>
             </div>
-            <div class="phone-sidebar-link" href="#searchBarPhone" data-toggle="collapse" aria-expanded="false" role="button">
+            <!--<div class="phone-sidebar-link" href="#searchBarPhone" data-toggle="collapse" aria-expanded="false" role="button">
                 <i class="fa fa-search fa-fw" aria-hidden="true"></i>
                 Sök annons
-            </div>
-            <div class="pb-2 col-12 collapse" id="searchBarPhone">
-                <input type="text" class="form-control" name="search" placeholder="Sök annons" />
-            </div> 
+            </div>-->
+            <div class="pb-2 phone-sidebar-link" id="searchBarPhone">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Sök">
+                </div>
+            </div>  
         </nav>
     </div>
 
