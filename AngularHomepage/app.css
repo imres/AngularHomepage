@@ -249,6 +249,9 @@ img {
 .ml-7 {
     margin-left: 5rem !important;
 }
+.mb-2rem {
+    margin-bottom: 2rem !important;
+}
 
 
 /*Egna padding*/
@@ -712,11 +715,48 @@ btn.btn-primary:active, .btn-primary:focus{
     position: relative;
     box-shadow: #777777 0px 2px 8px;
 }
+
+.friends-img {
+    background: url(app/img/profilepic.jpeg);
+    background-size: cover;
+    background-position: center;
+    height: 11rem;
+    width: 11rem;
+    margin-top: 1rem;
+    align-self: center;
+    z-index: 1;
+    border: 3px solid #fff;
+    border-radius: 96px;
+    position: relative;
+    box-shadow: #777777 0px 2px 8px;
+}
+
 .sales-ads-img {
     background: url(app/img/fotbollsskor.jpg);
     background-size: cover;
     background-position: center;
-    height: 10rem;
+    height: 15rem;
+}
+
+.sales-ads-img-2 {
+    background: url(app/img/screens.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 15rem;
+}
+
+.sales-ads-img-3 {
+    background: url(app/img/tv.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 15rem;
+}
+
+.sales-ads-img-4 {
+    background: url(app/img/soffa.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 15rem;
 }
 
 .noborder{
