@@ -275,6 +275,7 @@
     <Compile Include="Core\Interfaces\ICryptography.cs" />
     <Compile Include="Core\Interfaces\IInvitation.cs" />
     <Compile Include="Core\Interfaces\IInvitationService.cs" />
+    <Compile Include="Core\Interfaces\IIORepository.cs" />
     <Compile Include="Core\Interfaces\IPackageInformation.cs" />
     <Compile Include="Core\Interfaces\IPackageInformationService.cs" />
     <Compile Include="Core\Interfaces\IPayment.cs" />
@@ -284,9 +285,15 @@
     <Compile Include="Core\Mappers\CustomMapper.cs" />
     <Compile Include="Core\Mappers\MappingProfile.cs" />
     <Compile Include="Core\Mappers\PersonMapper.cs" />
+    <Compile Include="Core\Mock\PostNordResponseData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PostNordResponseData.resx</DependentUpon>
+    </Compile>
     <Compile Include="Core\Repositories\AdministratorRepository.cs" />
     <Compile Include="Core\Repositories\ConsignmentRepository.cs" />
     <Compile Include="Core\Repositories\InvitationRepository.cs" />
+    <Compile Include="Core\Repositories\IORepository.cs" />
     <Compile Include="Core\Repositories\PackageInformationRepository.cs" />
     <Compile Include="Core\Repositories\PaymentRepository.cs" />
     <Compile Include="Core\Repositories\PersonRepository.cs" />
@@ -448,6 +455,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Core\Mock\PostNordResponseData.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PostNordResponseData.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

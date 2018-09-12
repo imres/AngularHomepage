@@ -72,7 +72,7 @@ namespace UserManager.Core.Services
 
         public ActiveConsignmentDTO SavePackageId(InvitationExtended invitation)
         {
-            ActiveConsignmentDTO activeConsignment; 
+            ActiveConsignmentDTO activeConsignment = null;
 
             try
             {
@@ -81,7 +81,8 @@ namespace UserManager.Core.Services
                 var consignment = _consignmentRepository.AddConsignment(invitation);
 
                 //Find and return active consignment containing package API data
-                activeConsignment = _consignmentRepository.ListByQuery<ActiveConsignment, ActiveConsignmentDTO>(x => x.Id == consignment.Id).FirstOrDefault();
+                if(consignment != null)
+                    activeConsignment = _consignmentRepository.ListByQuery<ActiveConsignment, ActiveConsignmentDTO>(x => x.Id == consignment.Id).FirstOrDefault();
             }
             catch (ArgumentException ex)
             {
