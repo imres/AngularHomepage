@@ -3,6 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@a
 import { Observable } from 'rxjs/Rx';
 import { DialogService } from "ng2-bootstrap-modal";
 
+import { BasicComponent } from '../../shared/basic.component';
 import { Person, Invitation, Consignment, ActiveConsignment, Pager} from '../../_models/index';
 import { UserService, InvitationService, ConsignmentService, ToastrService, PagerService } from '../../_services/index';
 import { ConfirmComponent } from '../../_dialog/confirm.component';
@@ -17,14 +18,9 @@ import { InviteResponseComponent } from '../../_dialog/invite-response.component
 })
 
 
-export class ConsignmentComponent implements OnInit {
+export class ConsignmentComponent extends BasicComponent implements OnInit {
     activeConsignments: ActiveConsignment[];
     consignments: ActiveConsignment[];
-    // pager object
-    pager: Pager = new Pager();
-
-    // paged items
-    pagedItems: ActiveConsignment[];
 
     currentUser: Person;
     confirmResult: boolean = null;
@@ -37,8 +33,8 @@ export class ConsignmentComponent implements OnInit {
         private consignmentService: ConsignmentService,
         private toastrService: ToastrService,
         private pagerService: PagerService,
-
     ) {
+        super(pagerService);
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         
     }
@@ -62,40 +58,10 @@ export class ConsignmentComponent implements OnInit {
 
             console.log(res);
 
-            this.orderBy('-StartDate');
+            this.consignments = this.orderBy('-StartDate', this.consignments);
         });
     }
-
-    orderBySelection(event: any){
-        this.orderBy(event);
-    }
-
-    orderBy(prop: string) {
-        if (prop.charAt(0) === '-') {
-            prop = prop.replace('-', '');
-            this.consignments = this.consignments.sort((a, b) => a[prop] > b[prop] ? 1 : a[prop] === b[prop] ? 0 : -1);
-            this.consignments = this.consignments.reverse();
-        }
-        else 
-            this.consignments = this.consignments.sort((a, b) => a[prop] > b[prop] ? 1 : a[prop] === b[prop] ? 0 : -1);
-
-        // initialize pager to page 1
-        this.setPage(1);
-    }   
-
-
-    setPage(Page: number) {
-        if (Page < 1 || Page > this.pager.TotalPages) {
-            return;
-        }
-
-        // get pager object from service
-        this.pager = this.pagerService.getPager(this.consignments.length, Page);
-
-        // get current page of items
-        this.pagedItems = this.consignments.slice(this.pager.StartIndex, this.pager.EndIndex + 1);
-    }
-
+    
     showInvite(invite: Invitation) {
         console.log(invite);
     }

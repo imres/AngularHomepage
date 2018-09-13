@@ -11605,7 +11605,6 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -11673,6 +11672,7 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="app\login\loginsite.component.ts" />
     <TypeScriptCompile Include="app\main.ts" />
+    <TypeScriptCompile Include="app\shared\basic.component.ts" />
     <TypeScriptCompile Include="app\user-profile\user-profile.component.ts" />
     <TypeScriptCompile Include="app\register\index.ts" />
     <TypeScriptCompile Include="app\register\register.component.ts">
@@ -13208,6 +13208,7 @@
     <Folder Include="node_modules\lite-server\node_modules\browser-sync\node_modules\yargs\node_modules\read-pkg-up\node_modules\read-pkg\node_modules\normalize-package-data\node_modules\is-builtin-module\node_modules\builtin-modules\" />
     <Folder Include="node_modules\lite-server\node_modules\browser-sync\node_modules\yargs\node_modules\read-pkg-up\node_modules\read-pkg\node_modules\normalize-package-data\node_modules\validate-npm-package-license\node_modules\" />
     <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

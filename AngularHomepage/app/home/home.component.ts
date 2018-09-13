@@ -14,7 +14,7 @@ import { InvitationStatusEnum } from '../_models/enums/index';
 export class HomeComponent implements OnInit{
     invitations: Invitation[];
     invitationNotifications: Invitation[];
-    activeInvitations: Invitation[];
+    
     finishedConsignments: ActiveConsignment[];
 
     postNordPackages: PostNordSchema;
@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit{
         if (this.invitations == null) return;
 
         this.invitationNotifications = this.invitations.filter(x => { return x.Status == InvitationStatusEnum.Created });
-        this.activeInvitations = this.invitations.filter(x => { return x.Status > InvitationStatusEnum.Created && x.Status < InvitationStatusEnum.ConsignmentActive });
+        
     }
 
     getInvitations() {

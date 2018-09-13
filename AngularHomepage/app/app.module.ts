@@ -39,7 +39,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ActiveInvitationComponent } from './home/invitation/active-invitation.component';
 import { SidebarComponent } from './home/sidebar/sidebar.component';
 import { AdminPanel } from './home/administrator/admin-panel.component';
-import { UserSettingsComponent } from './home/user-settings/user-settings.component'
+import { UserSettingsComponent } from './home/user-settings/user-settings.component';
+import { BasicComponent } from './shared/basic.component';
 
 @NgModule({
     imports: [
@@ -74,6 +75,7 @@ import { UserSettingsComponent } from './home/user-settings/user-settings.compon
         SidebarComponent,
         AdminPanel,
         UserSettingsComponent,
+        BasicComponent
     ],
     providers: [
         AuthGuard,
