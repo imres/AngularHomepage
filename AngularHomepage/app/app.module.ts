@@ -40,6 +40,7 @@ import { ActiveInvitationComponent } from './home/invitation/active-invitation.c
 import { SidebarComponent } from './home/sidebar/sidebar.component';
 import { AdminPanel } from './home/administrator/admin-panel.component';
 import { UserSettingsComponent } from './home/user-settings/user-settings.component';
+import { BasicComponent } from './shared/basic.component';
 import { FriendsComponent } from './user-profile/friends.component';
 
 @NgModule({
@@ -76,6 +77,7 @@ import { FriendsComponent } from './user-profile/friends.component';
         AdminPanel,
         UserSettingsComponent,
         FriendsComponent,
+        BasicComponent
     ],
     providers: [
         AuthGuard,

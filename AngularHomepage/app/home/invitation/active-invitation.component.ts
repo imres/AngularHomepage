@@ -26,8 +26,8 @@ export interface InvitationWithPackageId {
 
 @Injectable()
 export class ActiveInvitationComponent implements OnInit {
-    @Input() invitations: InvitationExtended[];
-    @Input() activeInvitations: InvitationExtended[];
+    invitations: Invitation[];
+    activeInvitations: Invitation[];
     
     currentUser: Person;
     //unrespondedInvitations: Invitation[];
@@ -55,6 +55,16 @@ export class ActiveInvitationComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.getInvitations();
+    }
+
+    private getInvitations() {
+        this.invitationService.getInvitations(this.currentUser.PersonId).subscribe(res => {
+            this.invitations = res;
+
+            if (this.invitations != null)
+                this.activeInvitations = this.invitations.filter(x => { return x.Status > InvitationStatusEnum.Created && x.Status < InvitationStatusEnum.ConsignmentActive });
+        });
     }
 
     savePackageId() {
