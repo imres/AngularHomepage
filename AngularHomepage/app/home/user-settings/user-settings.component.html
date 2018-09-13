@@ -1,4 +1,4 @@
-﻿<!-- Navbar -->
+﻿ <!-- Navbar -->
 <navbar-home [invitations]="invitations" [invitationNotifications]="invitationNotifications"></navbar-home>
 
 <!-- Kontoinställningar -->
@@ -10,180 +10,99 @@
                 <div class="row justify-content-center">
                     <div class="list-group list-group-flush w-100">
 
-                        <div class="list-group-item">
-                            <div class="row">
-                                <div class="col-12">
-                                    <strong class="user-settings-title">Mailadress:</strong> 
-                                    <ng-container *ngIf="!editActive">{{currentUser.Email}}</ng-container>
-                                    <input *ngIf="editActive" type="text" class="form-control col-12 col-md-6" name="email" placeholder="{{currentUser.Email}}" />
+                        <div *ngIf="!editActive">
+                            <div class="list-group-item">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <strong class="user-settings-title">Mailadress:</strong>
+                                        <ng-container>{{currentUser.Email}}</ng-container>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="list-group-item">
-                            <div class="row">
-                                <div class="col-12">
-                                    <strong class="user-settings-title">Lösenord:</strong> 
-                                    <ng-container *ngIf="!editActive">******</ng-container>
-                                    <input *ngIf="editActive" type="password" class="form-control  col-12 col-md-6" name="password" placeholder="Nytt lösenord" />
-                                    <input *ngIf="editActive" type="password" class="form-control mt-3  col-12 col-md-6" name="passwordConfirm" placeholder="Bekräfta lösenord" />
+                            <div class="list-group-item">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <strong class="user-settings-title">Lösenord:</strong>
+                                        <ng-container>******</ng-container>
+                                    </div>
                                 </div>
                             </div>
+
+                            <div class="list-group-item">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <strong class="user-settings-title">Mobilnummer:</strong>
+                                        <ng-container>{{currentUser.PhoneMobile}}</ng-container>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="list-group-item">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <strong class="user-settings-title">Adress:</strong> {{currentUser.Address}}, {{currentUser.PostalCode}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6 p-3">
+                                    <div (click)="editActive=true" class="btn btn-primary text-white" role="button">
+                                        Redigera kontouppgifter
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
 
-                        <div class="list-group-item">
-                            <div class="row">
-                                <div class="col-12">
+
+                        <div *ngIf="editActive">
+                            <form name="form" (ngSubmit)="f.form.valid && password.value == confirmPassword.value && updateAccount()" #f="ngForm">
+                                <div class="form-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+                                    <strong class="user-settings-title">Mailadress:</strong>
+                                    <input type="text" class="form-control col-12 col-md-6" name="email" [(ngModel)]="model.Email" #email="ngModel" placeholder="{{currentUser.Email}}"/>
+                                    <div *ngIf="f.submitted && !email.valid" class="help-block">Fyll i giltig e-post</div>
+                                </div>
+                                <div class="list-group-item">
+                                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                                        <strong class="user-settings-title">Lösenord:</strong>
+                                        <input type="password" class="form-control col-12 col-md-6" name="password" [(ngModel)]="model.Password" #password="ngModel" />
+                                        <div *ngIf="f.submitted && !password.valid" class="help-block">Fyll i lösenord</div>
+                                    </div>
+                                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && password.value !== confirmPassword.value}">
+                                        <strong class="user-settings-title">Bekräfta lösenord:</strong>
+                                        <input type="password" class="form-control col-12 col-md-6" name="confirmPassword" [(ngModel)]="model.ConfirmPassword" #confirmPassword="ngModel" />
+                                        <div *ngIf="f.submitted && password.value !== confirmPassword.value" class="help-block">Lösenorden matchar inte</div>
+                                    </div>
+                                </div>
+                                <div class="form-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !phoneMobile.valid }">
                                     <strong class="user-settings-title">Mobilnummer:</strong>
-                                    <ng-container *ngIf="!editActive">{{currentUser.PhoneMobile}}</ng-container>
-                                    <input *ngIf="editActive" type="text" class="form-control  col-12 col-md-6" name="email" placeholder="{{currentUser.PhoneMobile}}" />
+                                    <input type="text" class="form-control col-12 col-md-6" name="phoneMobile" [(ngModel)]="model.PhoneMobile" #phoneMobile="ngModel" placeholder="{{currentUser.PhoneMobile}}" />
+                                    <div *ngIf="f.submitted && !phoneMobile.valid" class="help-block">Fyll i giltigt mobilnummer</div>
                                 </div>
-                            </div>
+                                <div class="form-group list-group-item">
+                                    <strong class="user-settings-title">Adress:</strong>
+                                    <input type="text" class="form-control col-12 col-md-6 " name="adress" value="{{currentUser.Address}}, {{currentUser.PostalCode}}" disabled/>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-6 p-3">
+                                        <button class="btn btn-primary text-white" role="button">
+                                            Spara ändringar
+                                        </button>
+                                    </div>
+                                    <div class="col-6 p-3 text-right">
+                                        <div *ngIf="editActive" (click)="editActive=false" class="btn btn-outline-primary" role="button">
+                                            Avbryt
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
 
-                        <div class="list-group-item">
-                            <div class="row">
-                                <div class="col-12">
-                                    <strong class="user-settings-title">Adress:</strong> {{currentUser.Address}}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="list-group-item">
-                            <div class="row">
-                                <div class="col-12">
-                                    <strong class="user-settings-title">Postkod:</strong> {{currentUser.PostalCode}}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-6 p-3">
-                                <div *ngIf="!editActive" (click)="editActive=true" class="btn btn-primary text-white" role="button">
-                                    Redigera kontoupgifter
-                                </div>
-                                <div *ngIf="editActive" (click)="editActive=false" class="btn btn-primary text-white" role="button">
-                                    Spara ändringar
-                                </div>
-                            </div>
-                            <div *ngIf="editActive" class="col-6 p-3 text-right">
-                                <div *ngIf="editActive" (click)="editActive=false" class="btn btn-outline-primary" role="button">
-                                    Avbryt
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-<!--<section id="user-settings" class="col-12 card">
-    <div class="col-sm-12 justify-content-center">
-        <div class="section-content">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="list-group list-group-flush w-100">
-
-                        <div class="list-group-item">
-                            <div class="row">
-                                <div class="col-8">
-                                    <strong class="user-settings-title">Mailadress:</strong> {{currentUser.Email}}
-                                </div>
-                                <div class="col-4">
-                                    <a class="link" href="#emailForm" data-toggle="collapse" aria-expanded="false" role="button"><i class="fas fa-cog fa-pull-right" aria-hidden="true"></i></a>
-                                </div>
-                                <div id="emailForm" class="collapse col-12">
-                                    <div class="row mt-2">
-                                        <div class="col-12">
-                                            <input type="text" class="form-control" name="email" placeholder="Ny mailadress" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="list-group-item">
-                            <div class="row">
-                                <div class="col-8">
-                                    <strong class="user-settings-title">Lösenord:</strong> ******
-                                </div>
-                                <div class="col-4">
-                                    <a class="link" href="#passwordForm" data-toggle="collapse" aria-expanded="false" role="button"><i class="fas fa-cog fa-pull-right" aria-hidden="true"></i></a>
-                                </div>
-                                <div id="passwordForm" class="collapse col-12">
-                                    <div class="row mt-2">
-                                        <div class="col-12">
-                                            <input type="text" class="form-control" name="password" placeholder="Nytt lösenord" />
-                                        </div>
-                                        <div class="col-12 mt-2">
-                                            <input type="text" class="form-control" name="password" placeholder="Bekräfta lösenord" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="list-group-item">
-                            <div class="row">
-                                <div class="col-8">
-                                    <strong class="user-settings-title">Telefonnummer:</strong> {{currentUser.PhoneMobile}}
-                                </div>
-                                <div class="col-4">
-                                    <a class="link" href="#phoneNumberForm" data-toggle="collapse" aria-expanded="false" role="button"><i class="fas fa-cog fa-pull-right" aria-hidden="true"></i></a>
-                                </div>
-                                <div id="phoneNumberForm" class="collapse col-12">
-                                    <div class="row mt-2">
-                                        <div class="col-12">
-                                            <input type="text" class="form-control" name="phoneNumber" placeholder="Nytt telefonnummer" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="list-group-item">
-                            <div class="row">
-                                <div class="col-8">
-                                    <strong class="user-settings-title">Adress:</strong> {{currentUser.Address}}
-                                </div>
-                                <div class="col-4">
-                                    <a class="link" href="#addressForm" data-toggle="collapse" aria-expanded="false" role="button"><i class="fas fa-cog fa-pull-right" aria-hidden="true"></i></a>
-                                </div>
-                                <div id="addressForm" class="collapse col-12">
-                                    <div class="row mt-2">
-                                        <div class="col-12">
-                                            <input type="text" class="form-control" name="address" placeholder="Ny adress" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="list-group-item">
-                            <div class="row">
-                                <div class="col-8">
-                                    <strong class="user-settings-title">Postort:</strong> {{currentUser.PostalCode}}
-                                </div>
-                                <div class="col-4">
-                                    <a class="link" href="#zipcodeForm" data-toggle="collapse" aria-expanded="false" role="button"><i class="fas fa-cog fa-pull-right" aria-hidden="true"></i></a>
-                                </div>
-                                <div id="zipcodeForm" class="collapse col-12">
-                                    <div class="row mt-2">
-                                        <div class="col-12">
-                                            <input type="text" class="form-control" name="zipcode" placeholder="Ny postort" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-3 text-right">
-                            <button class="btn btn-primary" role="button">Spara ändringar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>-->

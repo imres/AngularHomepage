@@ -41,6 +41,7 @@ import { SidebarComponent } from './home/sidebar/sidebar.component';
 import { AdminPanel } from './home/administrator/admin-panel.component';
 import { UserSettingsComponent } from './home/user-settings/user-settings.component';
 import { BasicComponent } from './shared/basic.component';
+import { FriendsComponent } from './user-profile/friends.component';
 
 @NgModule({
     imports: [
@@ -75,6 +76,7 @@ import { BasicComponent } from './shared/basic.component';
         SidebarComponent,
         AdminPanel,
         UserSettingsComponent,
+        FriendsComponent,
         BasicComponent
     ],
     providers: [
