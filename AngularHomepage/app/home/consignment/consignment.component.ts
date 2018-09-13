@@ -50,6 +50,8 @@ export class ConsignmentComponent implements OnInit {
             if (!this.consignments) return;
 
             this.consignments = this.consignments.concat(consignments);
+
+            this.orderBy('-StartDate');
         }); 
     }
 
