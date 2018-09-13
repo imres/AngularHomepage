@@ -131,7 +131,7 @@ namespace UserManager.Core.Repositories
             using (var context = new masterEntities())
             {
                 IEnumerable<ActiveConsignment> consignments = context.ActiveConsignment
-                    .Where(x => (x.ReceiverPersonId == PersonId || x.SenderPersonId == PersonId) && x.Status < ConsignmentStatus.Completed);
+                    .Where(x => (x.ReceiverPersonId == PersonId || x.SenderPersonId == PersonId) && x.Status < ConsignmentStatus.Finished);
 
                 //var activeConsignmentsDTO = EntityToDtoMappingCollection<ActiveConsignment, ActiveConsignmentDTO>(consignments).ToList();
                 var activeConsignmentsDTO = Mapper.Map<IEnumerable<ActiveConsignmentDTO>>(consignments).ToList();
@@ -149,7 +149,7 @@ namespace UserManager.Core.Repositories
             using (masterEntities context = new masterEntities())
             {
                 IEnumerable<ActiveConsignment> archivedConsignments = context.ActiveConsignment
-                    .Where(x => (x.ReceiverPersonId == PersonId || x.SenderPersonId == PersonId) && x.Status == ConsignmentStatus.Completed);
+                    .Where(x => (x.ReceiverPersonId == PersonId || x.SenderPersonId == PersonId) && x.Status == ConsignmentStatus.Archived);
 
                 var archivedConsignmentsDTO = Mapper.Map<IEnumerable<ActiveConsignmentDTO>>(archivedConsignments).ToList();
 
@@ -161,7 +161,7 @@ namespace UserManager.Core.Repositories
             using (masterEntities context = new masterEntities())
             {
                 IEnumerable<ActiveConsignment> finishedConsignments = context.ActiveConsignment
-                    .Where(x => (x.ReceiverPersonId == PersonId || x.SenderPersonId == PersonId) && x.Status == 9);
+                    .Where(x => (x.ReceiverPersonId == PersonId || x.SenderPersonId == PersonId) && x.Status == ConsignmentStatus.Finished);
 
                 var finishedConsignmentsDTO = Mapper.Map<IEnumerable<ActiveConsignmentDTO>>(finishedConsignments).ToList();
 
