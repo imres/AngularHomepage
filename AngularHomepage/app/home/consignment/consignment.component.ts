@@ -24,7 +24,6 @@ export class ConsignmentComponent extends BasicComponent implements OnInit {
 
     currentUser: Person;
     confirmResult: boolean = null;
-    showAllConsignmentsEnabled = false;
     showConsignments = true;
     loading = false;
 
@@ -47,7 +46,7 @@ export class ConsignmentComponent extends BasicComponent implements OnInit {
 
             this.consignments = this.consignments.concat(consignments);
 
-            this.orderBy('-StartDate');
+            this.orderBy('-StartDate', this.consignments);
         }); 
     }
 
@@ -60,7 +59,7 @@ export class ConsignmentComponent extends BasicComponent implements OnInit {
 
             console.log(res);
 
-            this.consignments = this.orderBy('-StartDate', this.consignments);
+            this.orderBy('-StartDate', this.consignments);
         });
     }
     

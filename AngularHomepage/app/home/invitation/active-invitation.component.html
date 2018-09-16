@@ -19,8 +19,21 @@
     </div>
 
     <div id="activeInvitesGrid" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#activeInvites">
+        <div class="no-padding d-flex flex-row-reverse">
+            <form #orderForm="ngForm" class="form-inline mb-3" (change)="orderBySelection($event.target.value, activeInvitations)">
+                <label class="mr-sm-2" for="orderBySelection">Sortera efter:</label>
+                <select class="custom-select mb-2 mb-sm-0" name="orderBySelection">
+                    <option selected value="-StartDate">Nyast först</option>
+                    <option value="StartDate">Äldst först</option>
+                    <option value="SenderPersonId">Avsändare A-Ö</option>
+                    <option value="ReceiverPersonId">Mottagare A-Ö</option>
+                    <option value="-DepositedAmount">Betald summa fallande</option>
+                    <option value="DepositedAmount">Betald summa stigande</option>
+                </select>
+            </form>
+        </div>
         <div class="row">
-            <div *ngFor="let item of activeInvitations | slice:minSliceValue:maxSliceValue; let i=index" class="col-sm-6 my-2 animate-enter">
+            <div *ngFor="let item of pagedItems" class="col-sm-6 my-2 animate-enter">
                 <div class="card mb-3 h-100">
                     <div class="card-body" [ngClass]="{'card-border-receiver' : HasReceiverRole(item), 'card-border-sender' : !HasReceiverRole(item)}">
                         <p class="card-title title-border" *ngIf="HasReceiverRole(item)"><strong class="receiver-color">Avsändare:</strong> {{item.SenderPersonId}}</p>
@@ -49,32 +62,26 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12 text-right" *ngIf="activeInvitations?.length > 0">
-            <div class="row">
-                <div class="col-sm-8">
-                    <nav aria-label="Page navigation for active invitations" *ngIf="activeInvitations?.length > 4 && !showAllInvitationsEnabled">
-                        <ul class="pagination">
-                            <li class="firstAndLast page-item text-center" [ngClass]="{'disabled' : (minSliceValue < 4)}"><a class="page-link" (click)="resetSliceValue()">Första</a></li>
-
-                            <li class="page-item" [ngClass]="{'disabled' : (minSliceValue < 4)}"><a class="page-link" (click)="decrementSliceValue()"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>
-                            <li *ngIf="maxSliceValue >= activeInvitations?.length && activeInvitations?.length > 8" class="page-item paginationNumber text-center hidden-md-down" (click)="decrementSliceValueTwice()"><a class="page-link">{{(maxSliceValue / 4) - 2}}</a></li>
-                            <li *ngIf="maxSliceValue > 4" class="page-item paginationNumber text-center hidden-md-down" (click)="decrementSliceValue()"><a class="page-link">{{(maxSliceValue / 4) - 1}}</a></li>
-                            <li class="page-item disabled paginationNumber text-center"><a class="page-link activePage">{{maxSliceValue / 4}}</a></li>
-                            <li *ngIf="maxSliceValue < activeInvitations?.length" class="page-item paginationNumber text-center hidden-md-down"><a class="page-link" (click)="incrementSliceValue()">{{(maxSliceValue / 4) + 1}}</a></li>
-                            <li *ngIf="maxSliceValue == 4 && activeInvitations?.length > 8" class="page-item paginationNumber text-center hidden-md-down" (click)="incrementSliceValueTwice()"><a class="page-link">{{(maxSliceValue / 4) + 2}}</a></li>
-                            <li class="page-item" [ngClass]="{'disabled' : (maxSliceValue == activeInvitations?.length)}"><a class="page-link" (click)="incrementSliceValue()"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
-
-                            <li class="firstAndLast page-item text-center" [ngClass]="{'disabled' : (maxSliceValue == activeInvitations?.length)}"><a class="page-link" (click)="maximizeSliceValue()">Sista</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-sm-4">
-                    <button *ngIf="maxSliceValue >= 4 && !showAllInvitationsEnabled && activeInvitations?.length > 4" class="btn btn-outline-primary" type="button" role="button" (click)="showAllInvitations()">
-                        Visa alla <i class="fa fa-angle-down" aria-hidden="true"></i>
-                    </button>
-                    <button *ngIf="showAllInvitationsEnabled" class="btn btn-outline-primary" type="button" role="button" (click)="resetSliceValue()">
-                        Visa färre <i class="fa fa-angle-up" aria-hidden="true"></i>
-                    </button>
+        <div *ngIf="activeInvitations?.length > 4">
+            <div class="col-12 d-flex justify-content-center">
+                <div class="no-padding">
+                    <ul *ngIf="pager.Pages?.length" class="pagination">
+                        <li [ngClass]="{disabled:pager.CurrentPage === 1}" class="page-item text-center width-70px">
+                            <a class="page-link" (click)="setPage(1, activeInvitations)">Första</a>
+                        </li>
+                        <li [ngClass]="{disabled:pager.CurrentPage === 1}" class="page-item text-center width-3">
+                            <a class="page-link" (click)="setPage(pager.CurrentPage - 1, activeInvitations)"><i class="far fa-arrow-alt-circle-left"></i></a>
+                        </li>
+                        <li *ngFor="let Page of pager.Pages" [ngClass]="{active:pager.CurrentPage === Page}" class="page-item paginationNumber text-center">
+                            <a class="page-link" (click)="setPage(Page, activeInvitations)">{{Page}}</a>
+                        </li>
+                        <li [ngClass]="{disabled:pager.CurrentPage === pager.TotalPages}" class="page-item text-center width-3">
+                            <a class="page-link" (click)="setPage(pager.CurrentPage + 1, activeInvitations)"><i class="far fa-arrow-alt-circle-right"></i></a>
+                        </li>
+                        <li [ngClass]="{disabled:pager.CurrentPage === pager.TotalPages}" class="page-item text-center width-70px">
+                            <a class="page-link" (click)="setPage(pager.TotalPages, activeInvitations)">Sista</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

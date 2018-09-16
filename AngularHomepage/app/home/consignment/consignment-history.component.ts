@@ -3,6 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@a
 import { Observable } from 'rxjs/Rx';
 import { DialogService } from "ng2-bootstrap-modal";
 
+import { BasicComponent } from '../../shared/basic.component';
 import { Person, Invitation, Consignment, ActiveConsignment, Pager } from '../../_models/index';
 import { UserService, InvitationService, ConsignmentService, ToastrService, PagerService } from '../../_services/index';
 import { ConfirmComponent } from '../../_dialog/confirm.component';
@@ -16,10 +17,9 @@ import { InviteResponseComponent } from '../../_dialog/invite-response.component
 })
 
 
-export class ConsignmentHistoryComponent implements OnInit {
+export class ConsignmentHistoryComponent extends BasicComponent implements OnInit {
     archivedConsignments: ActiveConsignment[];
     finishedConsignments: ActiveConsignment[];
-    consignments: ActiveConsignment[];
     // pager object
     pager: Pager = new Pager();
 
@@ -39,6 +39,7 @@ export class ConsignmentHistoryComponent implements OnInit {
         private pagerService: PagerService,
 
     ) {
+        super(pagerService);
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
     }
@@ -48,12 +49,6 @@ export class ConsignmentHistoryComponent implements OnInit {
 
         this.getFinishedConsignments();
 
-        this.consignmentService.consignmentList.subscribe(consignments => {
-            if (!this.consignments) return;
-
-            this.consignments = this.consignments.concat(consignments);
-        });
-
     }
 
     getArchivedConsignments() {
@@ -61,7 +56,7 @@ export class ConsignmentHistoryComponent implements OnInit {
             this.archivedConsignments = res;
 
             // initialize pager to page 1
-            this.setPage(1);
+            this.orderBy('-StartDate', this.archivedConsignments);
         });
     }
 
@@ -71,18 +66,6 @@ export class ConsignmentHistoryComponent implements OnInit {
 
             console.log(res);
         });
-    }
-
-    setPage(Page: number) {
-        if (Page < 1 || Page > this.pager.TotalPages) {
-            return;
-        }
-
-        // get pager object from service
-        this.pager = this.pagerService.getPager(this.archivedConsignments.length, Page);
-
-        // get current page of items
-        this.pagedItems = this.archivedConsignments.slice(this.pager.StartIndex, this.pager.EndIndex + 1);
     }
 
     showInvite(invite: Invitation) {

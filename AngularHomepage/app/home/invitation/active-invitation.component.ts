@@ -7,8 +7,9 @@ import { Observable } from 'rxjs/Rx';
 import { DialogService } from "ng2-bootstrap-modal";
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
-import { Person, Invitation, InvitationExtended, PostNordSchema } from '../../_models/index';
-import { UserService, InvitationService, ConsignmentService, AlertService, ToastrService, PaymentService, FilterService } from '../../_services/index';
+import { BasicComponent } from '../../shared/basic.component';
+import { Person, Invitation, InvitationExtended, PostNordSchema, Pager } from '../../_models/index';
+import { UserService, InvitationService, ConsignmentService, AlertService, ToastrService, PaymentService, FilterService, PagerService } from '../../_services/index';
 import { ConfirmComponent } from '../../_dialog/confirm.component';
 import { InviteResponseComponent } from '../../_dialog/invite-response.component';
 import { InvitationStatusEnum } from '../../_models/enums/index';
@@ -25,18 +26,16 @@ export interface InvitationWithPackageId {
 })
 
 @Injectable()
-export class ActiveInvitationComponent implements OnInit {
+export class ActiveInvitationComponent extends BasicComponent implements OnInit {
     invitations: Invitation[];
     activeInvitations: Invitation[];
-    
-    currentUser: Person;
-    //unrespondedInvitations: Invitation[];
-    maxSliceValue = 4;
-    minSliceValue = 0;
-    invitationStatus = InvitationStatusEnum;
+
     showInvitations = true;
-    showAllInvitationsEnabled = false;
+    currentUser: Person;
+    invitationStatus = InvitationStatusEnum;
     showPackageIdForm = false;
+    unrespondedInvitations: Invitation[];
+    
     
     
     invitationExtended: InvitationExtended;
@@ -48,14 +47,24 @@ export class ActiveInvitationComponent implements OnInit {
         private toastr: ToastsManager,
         private toastrService: ToastrService,
         private paymentService: PaymentService,
-        private filterService: FilterService
+        private filterService: FilterService,
+        private pagerService: PagerService,
     ) {
+        super(pagerService)
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.activeInvitations = this.invitations != null ? this.invitations : null;
     }
 
     ngOnInit() {
         this.getInvitations();
+
+        this.invitationService.invitationList.subscribe(invitations => {
+            if (!this.activeInvitations) return;
+
+            this.activeInvitations = invitations.filter(x => { return x.Status > InvitationStatusEnum.Created && x.Status < InvitationStatusEnum.ConsignmentActive });
+
+            this.orderBy('-StartDate', this.activeInvitations);
+        }); 
     }
 
     private getInvitations() {
@@ -64,6 +73,8 @@ export class ActiveInvitationComponent implements OnInit {
 
             if (this.invitations != null)
                 this.activeInvitations = this.invitations.filter(x => { return x.Status > InvitationStatusEnum.Created && x.Status < InvitationStatusEnum.ConsignmentActive });
+
+            this.orderBy('-StartDate', this.activeInvitations);
         });
     }
 
@@ -115,16 +126,6 @@ export class ActiveInvitationComponent implements OnInit {
         });
     }
 
-    //updateInvitationList(invitation: InvitationExtended, newStatus: InvitationStatusEnum) {
-    //    let updateInvitation = this.activeInvitations.filter(x => x.Id == invitation.Id);
-
-    //    let index = this.activeInvitations.indexOf(updateInvitation[0]);
-
-    //    invitation.Status = newStatus;
-
-    //    this.activeInvitations[index] = invitation;
-    //}
-
     HasReceiverRole(invitation: Invitation): boolean {
         return invitation.ReceiverPersonId == this.currentUser.PersonId ? true : false;
     }
@@ -140,56 +141,4 @@ export class ActiveInvitationComponent implements OnInit {
             return "Väntar på att avsändaren ska skicka paketet."
     }
 
-
-    //---Pagination---
-    incrementSliceValue() {
-        if (this.maxSliceValue >= this.invitations.length)
-            return;
-
-        this.maxSliceValue += 4;
-        this.minSliceValue += 4;
-    }
-
-    incrementSliceValueTwice() {
-        this.maxSliceValue += 8;
-        this.minSliceValue += 8;
-    }
-
-    decrementSliceValue() {
-        if (this.minSliceValue >= 4){
-            this.maxSliceValue -= 4;
-            this.minSliceValue -= 4;
-        }
-    }
-
-    decrementSliceValueTwice() {
-        this.maxSliceValue -= 8;
-        this.minSliceValue -= 8;
-    }
-    
-
-    showAllInvitations() {
-        this.maxSliceValue = this.invitations.length;
-        this.minSliceValue = 0;
-
-        this.showAllInvitationsEnabled = true;
-    }
-
-    maximizeSliceValue() {
-        if (this.invitations.length % 4 > 0){
-            this.maxSliceValue = this.invitations.length + (4 - (this.invitations.length % 4)); //Om antalet invitations inte är delbart på 4, ska den ändå visa rätt invites på sista sidan
-            this.minSliceValue = this.maxSliceValue - 4;
-        }
-        else {
-            this.maxSliceValue = this.invitations.length;
-            this.minSliceValue = this.maxSliceValue - 4;
-        }
-    }
-
-    resetSliceValue() {
-        this.maxSliceValue = 4;
-        this.minSliceValue = 0;
-
-        this.showAllInvitationsEnabled = false;
-    }
 }

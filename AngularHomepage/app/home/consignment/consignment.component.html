@@ -42,7 +42,7 @@
 
 <div *ngIf="consignments?.length > 0" id="consignments">
     <div class="no-padding d-flex flex-row-reverse">
-        <form #orderForm="ngForm" class="form-inline mb-3" (change)="consignments = orderBySelection($event.target.value, consignments)">
+        <form #orderForm="ngForm" class="form-inline mb-3" (change)="orderBySelection($event.target.value, consignments)">
             <label class="mr-sm-2" for="orderBySelection">Sortera efter:</label>
             <select class="custom-select mb-2 mb-sm-0" name="orderBySelection">
                 <option selected value="-StartDate">Nyast först</option>
@@ -77,19 +77,19 @@
             <div class="no-padding">
                 <ul *ngIf="pager.Pages?.length" class="pagination">
                     <li [ngClass]="{disabled:pager.CurrentPage === 1}" class="page-item text-center width-70px">
-                        <a class="page-link" (click)="setPage(1)">Första</a>
+                        <a class="page-link" (click)="setPage(1, consignments)">Första</a>
                     </li>
                     <li [ngClass]="{disabled:pager.CurrentPage === 1}" class="page-item text-center width-3">
-                        <a class="page-link" (click)="setPage(pager.CurrentPage - 1)"><i class="far fa-arrow-alt-circle-left"></i></a>
+                        <a class="page-link" (click)="setPage(pager.CurrentPage - 1, consignments)"><i class="far fa-arrow-alt-circle-left"></i></a>
                     </li>
                     <li *ngFor="let Page of pager.Pages" [ngClass]="{active:pager.CurrentPage === Page}" class="page-item paginationNumber text-center">
-                        <a class="page-link" (click)="setPage(Page)">{{Page}}</a>
+                        <a class="page-link" (click)="setPage(Page, consignments)">{{Page}}</a>
                     </li>
                     <li [ngClass]="{disabled:pager.CurrentPage === pager.TotalPages}" class="page-item text-center width-3">
-                        <a class="page-link" (click)="setPage(pager.CurrentPage + 1)"><i class="far fa-arrow-alt-circle-right"></i></a>
+                        <a class="page-link" (click)="setPage(pager.CurrentPage + 1, consignments)"><i class="far fa-arrow-alt-circle-right"></i></a>
                     </li>
                     <li [ngClass]="{disabled:pager.CurrentPage === pager.TotalPages}" class="page-item text-center width-70px">
-                        <a class="page-link" (click)="setPage(pager.TotalPages)">Sista</a>
+                        <a class="page-link" (click)="setPage(pager.TotalPages, consignments)">Sista</a>
                     </li>
                 </ul>
             </div>
