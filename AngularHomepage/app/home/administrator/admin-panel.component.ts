@@ -15,7 +15,7 @@ import { InvitationStatusEnum } from '../../_models/enums/index';
 export class AdminPanel implements OnInit {
     currentUser: Person;
 
-    modelList = [Person.name, Invitation.name, Consignment.name]; //If model is added here, it will appear on admin page
+    modelList = [Person.name, Invitation.name, Consignment.name, "PackageInformation"]; //If model is added here, it will appear on admin page
 
     constructor(private userService: UserService,
         private administratorService: AdministratorService) {
