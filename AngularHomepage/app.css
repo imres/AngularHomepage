@@ -845,6 +845,10 @@ btn.btn-primary:active, .btn-primary:focus{
     margin-top: 2px;
 }
 
+.sidebar-link .btn .fa-pull-left {
+    margin-top: .2rem;
+}
+
 /*PhoneSidebar*/
 #phoneSidebar .active {
     background: #f0f0f0;
@@ -883,6 +887,10 @@ btn.btn-primary:active, .btn-primary:focus{
 
 .phone-sidebar-link.sidebar-collapsed-link {
     padding-left: 2rem;
+}
+
+.phone-sidebar-link .btn .fa-pull-left {
+    margin-top: .2rem;
 }
 
 /* User Settings */

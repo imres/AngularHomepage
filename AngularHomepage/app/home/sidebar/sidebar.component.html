@@ -1,15 +1,18 @@
 ﻿<div class="wrapper w-100 h-100">
 
     <nav id="sidebar" class="d-none d-lg-block list-unstyled components h-100">
+
         <div class="sidebar-link" role="button" [routerLink]="['/home']">
             <i class="fas fa-home fa-fw" aria-hidden="true"></i>
             Hem
         </div>
+
         <div href=""class="sidebar-link disabled " role="button">
             <i class="fas fa-users fa-fw" aria-hidden="true"></i>
             Mina vänner
         </div>
-        <div class="sidebar-link" (click)="consignmentsToggle()" href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" role="button">
+
+        <!--<div class="sidebar-link" (click)="consignmentsToggle()" href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" role="button">
             <i class="fas fa-envelope fa-fw" aria-hidden="true"></i> Försändelser
             <i *ngIf="!consignmentsToggled" class="fas fa-angle-down fa-pull-right sidebar-arrow" aria-hidden="true"></i>
             <i *ngIf="consignmentsToggled" class="fas fa-angle-up fa-pull-right sidebar-arrow" aria-hidden="true"></i>
@@ -18,12 +21,16 @@
                 <div (click)=showConfirm($event) role="button" class="sidebar-link sidebar-collapsed-link"><i class="fas fa-plus fa-fw" aria-hidden="true"></i> Ny försändelse</div>
                 <div [routerLink]="['/history']" role="button" class="sidebar-link sidebar-link-last sidebar-collapsed-link"><i class="fas fa-envelope-open fa-fw" aria-hidden="true"></i> Historik</div>
             </div>
-        </div>
-        <!--<div class="sidebar-link" href="#searchBar" data-toggle="collapse" aria-expanded="false" role="button">
-            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
-            Sök efter annons
-
         </div>-->
+
+        <div [routerLink]="['/history']" role="button" class="sidebar-link"><i class="fas fa-envelope-open fa-fw" aria-hidden="true"></i> Arkiverade försändelser</div>
+
+        <div class="sidebar-link">
+            <div class="btn btn-primary btn-block" (click)=showConfirm($event)>
+                <i class="fas fa-plus fa-fw fa-pull-left" aria-hidden="true"></i> Ny försändelse
+            </div>
+        </div>
+
         <div class="pb-2 col-12 sidebar-link" id="searchBar">
             <div class="input-group">
                 
@@ -35,28 +42,6 @@
         </div>  
     </nav>
 
-    <!--<div id="sidebarPhone" class="hidden-lg-up row">
-        <div [routerLink]="['/home']" class="col-3 text-center phone-sidebar py-3 bl-0" role="button">
-            <i class="fa fa-home fa-2x" aria-hidden="true"></i>
-        </div>
-        <div href="#" class="col-3 text-center phone-sidebar py-3" role="button">
-            <i class="fa fa-users fa-2x" aria-hidden="true"></i>
-        </div>
-        <div class="col-3 text-center phone-sidebar py-3" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-plane fa-2x" aria-hidden="true"></i>
-            <div class="dropdown-menu dropdown-menu-left">
-                <div>
-                    <a class="dropdown-item" href="#">Aktiva försändelser</a>
-                    <a class="dropdown-item" href="#">Ny försändelse</a>
-                    <a class="dropdown-item" href="#">Historik</a>
-                </div>
-            </div>
-        </div>
-        <div href="#" class="col-3 text-center phone-sidebar py-3 br-0" role="button">
-            <i class="fa fa-search fa-2x" aria-hidden="true"></i>
-        </div>  
-    </div>-->
-
     <div id="content" class="d-lg-none offset-1 phone-sidebar">
         <button href="#phoneSidebar" data-toggle="collapse" aria-expanded="false" type="button" role="button" id="sidebarCollapse" class="btn btn-outline-primary navbar-btn sidebar-btn mb-2">
             <i class="fa fa-align-left" aria-hidden="true"></i>
@@ -67,24 +52,20 @@
                 <i class="fa fa-home fa-fw" aria-hidden="true"></i>
                 Hem
             </div>
+
             <div href="" class="phone-sidebar-link disabled" role="button">
                 <i class="fa fa-users fa-fw" aria-hidden="true"></i>
                 Mina vänner
             </div>
-            <div class="phone-sidebar-link" (click)="phoneConsingmentsToggle()" href="#phoneSidebarSubmenu" data-toggle="collapse" aria-expanded="false" role="button">
-                <i class="fa fa-envelope fa-fw" aria-hidden="true"></i> Försändelser
-                <i *ngIf="!phoneConsignmentsToggled" class="fas fa-angle-down fa-pull-right sidebar-arrow" aria-hidden="true"></i>
-                <i *ngIf="phoneConsignmentsToggled" class="fas fa-angle-up fa-pull-right sidebar-arrow" aria-hidden="true"></i>
-                <div class="collapse list-unstyled py-2" id="phoneSidebarSubmenu">
-                    <div href="#" role="button" class="phone-sidebar-link sidebar-collapsed-link"><i class="fa fa-location-arrow fa-fw" aria-hidden="true"></i> Aktiva försändelser</div>
-                    <div href="#" role="button" class="phone-sidebar-link sidebar-collapsed-link"><i class="fa fa-plus fa-fw" aria-hidden="true"></i> Ny försändelse</div>
-                    <div href="#" role="button" class="phone-sidebar-link sidebar-link-last sidebar-collapsed-link"><i class="fa fa-envelope-open fa-fw" aria-hidden="true"></i> Historik</div>
+
+            <div [routerLink]="['/history']" role="button" class="phone-sidebar-link"><i class="fas fa-envelope-open fa-fw" aria-hidden="true"></i> Arkiverade försändelser</div>
+
+            <div class="phone-sidebar-link">
+                <div class="btn btn-primary btn-block" (click)=showConfirm($event)>
+                    <i class="fas fa-plus fa-fw fa-pull-left" aria-hidden="true"></i> Ny försändelse
                 </div>
             </div>
-            <!--<div class="phone-sidebar-link" href="#searchBarPhone" data-toggle="collapse" aria-expanded="false" role="button">
-                <i class="fa fa-search fa-fw" aria-hidden="true"></i>
-                Sök annons
-            </div>-->
+
             <div class="pb-2 phone-sidebar-link" id="searchBarPhone">
                 <div class="input-group">
                     <div class="input-group-prepend">
