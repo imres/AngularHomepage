@@ -8,7 +8,8 @@ import { AuthGuard } from './_guards/index';
 import { FrontComponent } from './frontpage/index';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserSettingsComponent } from './home/user-settings/user-settings.component';
-import { ConsignmentHistoryComponent } from './home/consignment/consignment-history.component'
+import { ConsignmentHistoryComponent } from './home/consignment/consignment-history.component',
+import { ConsignmentDetailComponent } from './home/consignment/consignment-detail.component',
 
 
 const appRoutes: Routes = [
@@ -21,6 +22,7 @@ const appRoutes: Routes = [
     { path: 'admin-panel', component: AdminPanel },
     { path: 'user-settings', component: UserSettingsComponent },
     { path: 'history', component: ConsignmentHistoryComponent },
+    { path: 'consignment-detail', component: ConsignmentDetailComponent },
 
 
     // otherwise redirect to home

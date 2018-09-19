@@ -657,6 +657,17 @@ btn.btn-primary:active, .btn-primary:focus{
     text-decoration: none;
 }
 
+.map-with-marker {
+    background: url(app/img/sverige-karta.png);
+    background-size: cover;
+    background-position: center;
+    height: 20rem;
+    width: 100&;
+    color: white;
+    padding-top: 3rem;
+    box-shadow: var(--bottom-shadow-darker);
+}
+
 /* User Profile */
 .user-profile-header {
     background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
@@ -920,6 +931,16 @@ btn.btn-primary:active, .btn-primary:focus{
 .card {
     border: 0;
     box-shadow: var(--bottom-shadow);
+}
+
+.consignment-detail__card {
+    box-shadow: none;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    margin-bottom: 1rem;
+}
+
+.consignment-detail__card h5 {
+    margin-bottom: 0rem;
 }
 
 .dropdown-menu {

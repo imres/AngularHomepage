@@ -1,0 +1,72 @@
+﻿<navbar-home [invitations]="invitations" [invitationNotifications]="invitationNotifications"></navbar-home>
+
+<div class="container-fluid margin-navbar-top mb-3">
+    <div class="row">
+        <sidebar class="col-lg-2 no-padding"></sidebar>
+
+        <div class="col-xl-6 col-lg-7 col-10 offset-1 p-2 pt-3">
+            <!--<loading-spinner *ngIf="loading"></loading-spinner>-->
+                
+                <h4 class="text-center mb-3">"Grand Frank Kingston White Chronograph"</h4>
+
+                <div class="map-with-marker"></div>
+
+                <div class="py-3">
+                    <div class="card consignment-detail__card">
+                        <div class="card-header">
+                            <h5 class="text-center">Händelser</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="list-group list-group-flush w-100 mb-3">
+                                <div class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-sm-4 text-center"><strong>Datum / Tidpunkt</strong></div>
+                                        <div class="col-sm-4 text-center"><strong>Plats</strong></div>
+                                        <div class="col-sm-4 text-center"><strong>Händelse</strong></div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-sm-4 text-center">2018-08-16, 07:47</div>
+                                        <div class="col-sm-4 text-center">Umeå, Sverige</div>
+                                        <div class="col-sm-4 text-center">Försändelsen är på väg</div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-sm-4 text-center">2018-08-14, 21:01</div>
+                                        <div class="col-sm-4 text-center">Segeltorp, Sverige</div>
+                                        <div class="col-sm-4 text-center">Försändelsen är på väg</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card consignment-detail__card">
+                        <div class="card-header">
+                            <h5 class="text-center">Försändelseinformation</h5>
+                        </div>
+                        <div class="card-body row">
+                            <div class="col-md-5 offset-md-1">
+                                <p class="card-text"><strong>Avsändare:</strong> Grand Frank c/o Bonver Logistics</p>
+                                <p class="card-text"><strong>Mottagare:</strong> Anton Nystedt</p>
+                                <p class="card-text"><strong>Vikt:</strong> 0.77kg</p>
+                                <p class="card-text"><strong>Mått (H x B x D):</strong> 180 cm x 35cm x 10cm</p>
+                            </div>
+                            <div class="col-md-5 offset-md-1">
+                                <p class="card-text"><strong>Kolli-ID:</strong> 69571469704SE</p>
+                                <p class="card-text"><strong>Pakettyp:</strong> PostNord MyPack Collect</p>
+                                <p class="card-text"><strong>Tilläggstjänst(er):</strong> SMS-Avisering</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="btn btn-primary btn-block" [routerLink]="['/home']">Gå tillbaka till alla försändelser</div>
+                </div>
+
+        </div>
+
+    </div>
+</div>
