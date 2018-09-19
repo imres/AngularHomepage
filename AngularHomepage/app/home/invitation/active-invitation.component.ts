@@ -59,7 +59,7 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
         this.getInvitations();
 
         this.invitationService.invitationList.subscribe(invitations => {
-            if (!this.activeInvitations) return;
+            if (!invitations) return;
 
             this.activeInvitations = invitations.filter(x => { return x.Status > InvitationStatusEnum.Created && x.Status < InvitationStatusEnum.ConsignmentActive });
 
