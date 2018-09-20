@@ -17,6 +17,17 @@
 
                     <!--Sender personid-->
                     <ng-container *ngIf="selectedRole == 1">
+                        <div class="form-group" [ngClass]="{ 'has-error': title.dirty && !title.valid }">
+                            <label for="title">Paketnamn</label>
+                            <input type="text" class="form-control" name="title"
+                                   [(ngModel)]="model.Title" #title="ngModel" required />
+                            <div *ngIf="title.dirty && !title.valid" class="help-block">Fyll i paketnamn</div>
+                        </div>
+                        <div class="form-group" [ngClass]="{ 'has-error': description.dirty && !description.valid }">
+                            <label for="description">Beskrivning</label>
+                            <input type="text" class="form-control" name="description"
+                                   [(ngModel)]="model.Description" #description="ngModel" />
+                        </div>
                         <div class="form-group"  [ngClass]="{ 'has-error': receiverPersonId.dirty && !receiverPersonId.valid }">
                             <label for="receiverPersonId">Mottagare</label>
                             <input type="text" class="form-control" name="receiverPersonId" placeholder="Personnummer/namn"
@@ -39,6 +50,17 @@
 
                     <!--Receiver personid-->
                     <ng-container *ngIf="selectedRole == 2" >
+                        <div class="form-group" [ngClass]="{ 'has-error': title.dirty && !title.valid }">
+                            <label for="title">Paketnamn</label>
+                            <input type="text" class="form-control" name="title"
+                                   [(ngModel)]="model.Title" #title="ngModel" required />
+                            <div *ngIf="title.dirty && !title.valid" class="help-block">Fyll i paketnamn</div>
+                        </div>
+                        <div class="form-group" [ngClass]="{ 'has-error': description.dirty && !description.valid }">
+                            <label for="description">Beskrivning</label>
+                            <input type="text" class="form-control" name="description"
+                                   [(ngModel)]="model.Description" #description="ngModel" />
+                        </div>
                         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !senderPersonId.valid }">
                             <label for="senderPersonId">Avsändare</label>
                             <input type="text" class="form-control" name="senderPersonId" placeholder="Personnummer/namn"

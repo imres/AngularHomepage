@@ -22,6 +22,9 @@ namespace UserManager.Core.Mappers
                 cfg.CreateMap<Invitation, InvitationDTO>();
                 cfg.CreateMap<InvitationDTO, Invitation>();
 
+                cfg.CreateMap<Consignment, ConsignmentDTO>();
+                cfg.CreateMap<ConsignmentDTO, Consignment>();
+
                 cfg.CreateMap<ActiveConsignment, ActiveConsignmentDTO>()
                     .ForMember(x => x.LastSeenCity, opt => opt.Ignore())
                     .ForMember(x => x.LastSeenTimeStamp, opt => opt.Ignore())
@@ -36,13 +39,13 @@ namespace UserManager.Core.Mappers
                     .ForSourceMember(x => x.Consignor, opt => opt.Ignore())
                     .ForSourceMember(x => x.Consignee, opt => opt.Ignore())
                     .ForSourceMember(x => x.DropOffDate, opt => opt.Ignore())
-                    .ForSourceMember(x => x.DropOffLocation, opt => opt.Ignore());
+                    .ForSourceMember(x => x.DropOffLocation, opt => opt.Ignore())
+                    ;
 
                 cfg.CreateMap<Person, PersonDTO>();
                 cfg.CreateMap<PersonDTO, Person>();
 
-                cfg.CreateMap<Consignment, ConsignmentDTO>();
-                cfg.CreateMap<ConsignmentDTO, Consignment>();
+                
             });
 
             Mapper.AssertConfigurationIsValid();

@@ -7,7 +7,7 @@ namespace UserManager.Core.Interfaces
     {
         bool AddInvitation(InvitationDTO invitation);
         bool AcceptInvitation(InvitationDTO invitation);
-        bool DeclineInvitation(int Id);
+        bool EndInvitation(int Id);
         bool ValidateInvitation(InvitationDTO invitationToValidate);
         ActiveConsignmentDTO SavePackageId(InvitationExtended invitation);
     }

@@ -8,17 +8,14 @@ using UserManager.Models;
 
 namespace UserManager.Core.Interfaces
 {
-    public interface IConsigment : IRepository
+    public interface IConsignmentRepository : IRepository<Consignment>
     {
-        ConsignmentDTO AddConsignment(InvitationExtended invitation);
 
         void DeleteConsignment(int ConsignmentId);
 
         ConsignmentDTO GetConsignment(int ConsignmentId);
         
         IEnumerable<ActiveConsignmentDTO> GetArchivedConsignments(string PersonId);
-
-        IEnumerable<ActiveConsignmentDTO> GetActiveConsignments(string PersonId);
 
         IEnumerable<ActiveConsignmentDTO> GetFinishedConsignments(string PersonId);
     }

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using AutoMapper;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,7 +9,10 @@ using System.Net.Http;
 using System.Text;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using UserManager.Core;
+using UserManager.Core.Interfaces;
 using UserManager.Core.Repositories;
+using UserManager.Core.Services;
 using UserManager.DTO;
 using UserManager.Models;
 using Http = System.Net.WebRequestMethods.Http;
@@ -19,9 +23,20 @@ namespace UserManager.Controllers
     //[RoutePrefix("api/books")]
     public class UserController : ApiController
     {
-        private CRUD _crud = new CRUD();
-        private PersonRepository _PersonRepository = new PersonRepository();
-        
+        private UnitOfWork unitOfWork = new UnitOfWork(new masterEntities());
+
+        private IUserService _userService;
+
+        UserController()
+            : this(new UserService())
+        {
+        }
+
+        public UserController(IUserService userService)
+        {
+            _userService = userService;
+        }
+
         //[Route("TSPRoute")]
         [ActionName("Register")]
         [HttpPost]
@@ -35,10 +50,39 @@ namespace UserManager.Controllers
                 {
                     this.Request.Content = null;
                 }
-                
-                _PersonRepository.AddPerson(User);
+
+                var entity = Mapper.Map<Person>(User);
+
+                unitOfWork.Person.Add(entity);
+                unitOfWork.Save();
 
                 return Request.CreateResponse(HttpStatusCode.OK, Configuration.Formatters.JsonFormatter);
+            }
+        }
+
+        [ActionName("Update")]
+        [HttpPost]
+        public HttpResponseMessage Update(PersonDTO User)
+        {
+            using (HttpClient http = new HttpClient())
+            {
+                this.Request.RequestUri = new Uri("http://localhost:65192");
+
+                if (this.Request.Method == HttpMethod.Get)
+                {
+                    this.Request.Content = null;
+                }
+
+                try
+                {
+                    User = _userService.UpdateUser(User);
+                }
+                catch (InvalidDataException)
+                {
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, Configuration.Formatters.JsonFormatter);
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK, User);
             }
         }
 
@@ -57,7 +101,7 @@ namespace UserManager.Controllers
 
                 try
                 {
-                    User = _PersonRepository.Authenticate(User);
+                    User = unitOfWork.Person.Authenticate(User);
                 }
                 catch (ArgumentException arg)
                 {

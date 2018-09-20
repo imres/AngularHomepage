@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using UserManager.Core;
 using UserManager.Core.Interfaces;
 using UserManager.Core.Repositories;
 using UserManager.Core.Services;
@@ -18,18 +19,18 @@ namespace UserManager.Controllers
 {
     public class InvitationController : ApiController
     {
+        private UnitOfWork unitOfWork = new UnitOfWork(new masterEntities());
+
         private IInvitationService _invitationService;
-        private IInvitation _invitationRepository;
 
         InvitationController()
-            : this(new InvitationService(), new InvitationRepository())
+            : this(new InvitationService())
         {
         }
 
-        public InvitationController(IInvitationService invitationService, IInvitation invitationRepository)
+        public InvitationController(IInvitationService invitationService)
         {
             _invitationService = invitationService;
-            _invitationRepository = invitationRepository;
         }
 
         [ActionName("Invite")]
@@ -111,8 +112,8 @@ namespace UserManager.Controllers
                 {
                     this.Request.Content = null;
                 }
-                
-                var invitationEnded = _invitationService.DeclineInvitation(Id);
+
+                var invitationEnded = _invitationService.EndInvitation(Id);
 
                 if(!invitationEnded)
                     return Request.CreateResponse(HttpStatusCode.Forbidden);
@@ -126,7 +127,7 @@ namespace UserManager.Controllers
         [HttpGet]
         public HttpResponseMessage GetInvitations(string Id)
         {
-            IEnumerable<InvitationDTO> invitations = _invitationRepository.GetInvitations(Id);
+            IEnumerable<InvitationDTO> invitations = unitOfWork.Invitation.GetInvitations(Id);
 
             return Request.CreateResponse(HttpStatusCode.OK, invitations);
 
@@ -136,7 +137,7 @@ namespace UserManager.Controllers
         [HttpGet]
         public HttpResponseMessage GetUnrespondedInvitations(string Id)
         {
-            IEnumerable<InvitationDTO> unrespondedInvitations = _invitationRepository.GetUnrespondedInvitations(Id);
+            IEnumerable<InvitationDTO> unrespondedInvitations = unitOfWork.Invitation.GetUnrespondedInvitations(Id);
 
             return Request.CreateResponse(HttpStatusCode.OK, unrespondedInvitations);
         }

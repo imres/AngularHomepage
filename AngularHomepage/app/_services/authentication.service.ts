@@ -13,6 +13,35 @@ export class AuthenticationService {
         'Content-Type': 'application/json'
     });
 
+    bankIdAuth(personId: string) {
+        return this.http.get('http://localhost:65192/api/BankId/BankIdAuth/' + personId)
+            .map((response: Response) =>
+                response.json()
+            ).catch(err => {
+                return Observable.throw("Could not authenticate");
+            });
+    }
+
+    bankIdCollect(bankIdAuthResponse: JSON) {
+        return this.http.post('http://localhost:65192/api/BankId/BankIdCollect',
+            bankIdAuthResponse,
+            { headers: this.headers })
+            .map((response: Response) => {
+                let user = response.json();
+                if (user && user.Token) {
+                    // store user details and jwt token in local storage to keep user logged in between page refreshes
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                }
+            }).catch(err => {
+
+                if (err.status == HttpStatusCode.PRECONDITION_FAILED)
+                    return Observable.throw("BankID anrop misslyckades");
+                if (err.status == HttpStatusCode.BAD_REQUEST)
+                    return Observable.throw("Det gick inte att logga in. Påloggningen är redan påbörjad. Öppna BankID säkerhetsapp och vänta tills du ser 'Klar att användas'. Vänligen försök sedan logga in igen.");
+
+                return Observable.throw("Could not send request");
+            });
+    }
 
     login(email: string, password: string) {
         return this.http.post('http://localhost:65192/api/User/Auth',

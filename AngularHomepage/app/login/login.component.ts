@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
     model: any = {};
     loading = false;
     returnUrl: string;
+    bankIdPending: boolean = false;
 
     constructor(
         private route: ActivatedRoute,
@@ -26,6 +27,25 @@ export class LoginComponent implements OnInit {
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    }
+
+    bankIdAuth() {
+        this.authenticationService.bankIdAuth(this.model.PersonId)
+            .subscribe(
+            res => {
+                this.bankIdPending = true;
+
+                this.authenticationService.bankIdCollect(res).subscribe(data => {
+                    this.bankIdPending = false;
+                    this.router.navigate([this.returnUrl]);
+                }, error => {
+                    this.bankIdPending = false;
+                    this.alertService.error(error);
+                });
+
+            }, error => {
+                this.alertService.error(error);
+            });
     }
 
     login() {

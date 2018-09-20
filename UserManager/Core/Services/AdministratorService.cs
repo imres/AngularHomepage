@@ -11,14 +11,14 @@ namespace UserManager.Core.Services
 {
     public class AdministratorService : IAdministratorService
     {
-        private IAdministrator _administratorRepository;
+        private IAdministratorRepository _administratorRepository;
 
         public AdministratorService()
             : this(new AdministratorRepository())
         {
         }
 
-        public AdministratorService(IAdministrator administratorRepository)
+        public AdministratorService(IAdministratorRepository administratorRepository)
         {
             _administratorRepository = administratorRepository;
         }

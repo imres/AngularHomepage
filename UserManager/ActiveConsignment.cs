@@ -23,6 +23,8 @@ namespace UserManager
         public int PaymentMethod { get; set; }
         public System.DateTime StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
         public string Content { get; set; }
     }
 }

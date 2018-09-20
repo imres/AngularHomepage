@@ -56,9 +56,23 @@ export class UserService {
             );
     }
 
-    update(user: User) {
-        return this.http.put('/api/users/' + user.Id, user, this.jwt()).map((response: Response) => response.json());
+    update(user: Person) {
+        console.log(user);
+        return this.http.post('http://localhost:65192/api/User/Update',
+            JSON.stringify(user),
+            { headers: this.headers })
+            .map((response: Response) => {
+                let user = response.json();
+                if (user) {
+                    // store user details and jwt token in local storage to keep user logged in between page refreshes
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                }
+            });
     }
+
+    //update(user: User) {
+    //    return this.http.put('/api/users/' + user.Id, user, this.jwt()).map((response: Response) => response.json());
+    //}
 
     delete(id: number) {
         return this.http.delete('/api/users/' + id, this.jwt()).map((response: Response) => response.json());

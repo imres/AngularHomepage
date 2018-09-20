@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
@@ -8,25 +9,48 @@ using UserManager.Core.Interfaces;
 
 namespace UserManager.Core.Repositories
 {
-    public class Repository : IRepository
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        /// <summary>
-        /// Get list of rows matching expression
-        /// </summary>
-        /// <typeparam name="TEntity">Source entity</typeparam>
-        /// <typeparam name="TEntityDto">Destination entity</typeparam>
-        public IEnumerable<TEntityDto> ListByQuery<TEntity, TEntityDto>(Expression<Func<TEntity, bool>> query) where TEntity : class
+        protected readonly masterEntities Context;
+
+        public Repository(masterEntities context)
         {
-            using (var context = new masterEntities())
-            {
-                var dbSet = context.Set<TEntity>();
+            Context = context;
+        }
 
-                var entity = dbSet.Where(query).ToArray();
+        public void Add(TEntity entity)
+        {
+            Context.Set<TEntity>().Add(entity);
+        }
 
-                var result = Mapper.Map<IEnumerable<TEntityDto>>(entity);
+        public void AddRange(IEnumerable<TEntity> entities)
+        {
+            Context.Set<TEntity>().AddRange(entities);
+        }
 
-                return result;
-            }
+        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        {
+            return Context.Set<TEntity>().Where(predicate);
+        }
+
+        public TEntity Get(int id)
+        {
+            return Context.Set<TEntity>().Find(id);
+        }
+
+        public IEnumerable<TEntity> GetAll()
+        {
+            return Context.Set<TEntity>().ToList();
+        }
+
+        public void Remove(TEntity entity)
+        {
+            Context.Set<TEntity>().Remove(entity);
+        }
+
+        public void RemoveRange(IEnumerable<TEntity> entities)
+        {
+            Context.Set<TEntity>().RemoveRange(entities);
         }
     }
 }

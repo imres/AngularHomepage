@@ -11,23 +11,18 @@ namespace UserManager.Core.Services
 {
     public class PackageInformationService : IPackageInformationService
     {
-        private IPackageInformation _packageInformationRepository;
-
-        public PackageInformationService()
-            : this(new PackageInformationRepository())
-        {
-        }
-
-        public PackageInformationService(IPackageInformation packageInformationRepository)
-        {
-            _packageInformationRepository = packageInformationRepository;
-        }
+        private UnitOfWork unitOfWork = new UnitOfWork(new masterEntities());
 
         public bool SavePackageInformation(ConsignmentDTO consignment)
         {
             try
             {
-                _packageInformationRepository.UpdatePackageInformation(consignment);
+                using(var context = new masterEntities())
+                {
+                    var packageInformation = unitOfWork.PackageInformation.UpdatePackageInformation(consignment);
+                    context.PackageInformation.Add(packageInformation);
+                    context.SaveChanges();
+                }
             }
             catch
             {

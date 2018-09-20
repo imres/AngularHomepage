@@ -257,8 +257,8 @@
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AdministratorController.cs" />
+    <Compile Include="Controllers\BankIdController.cs" />
     <Compile Include="Controllers\ConsignmentController.cs" />
-    <Compile Include="Controllers\CRUD.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvitationController.cs" />
     <Compile Include="Controllers\PackageInformationController.cs" />
@@ -269,19 +269,24 @@
     <Compile Include="Core\Enums\ConsignmentStatus.cs" />
     <Compile Include="Core\Enums\InvitationStatus.cs" />
     <Compile Include="Core\Enums\PersonUserRights.cs" />
-    <Compile Include="Core\Interfaces\IAdministrator.cs" />
+    <Compile Include="Core\Interfaces\IActiveConsignmentRepository.cs" />
+    <Compile Include="Core\Interfaces\IAdministratorRepository.cs" />
     <Compile Include="Core\Interfaces\IAdministratorService.cs" />
-    <Compile Include="Core\Interfaces\IConsigment.cs" />
+    <Compile Include="Core\Interfaces\IBankIdService.cs" />
+    <Compile Include="Core\Interfaces\IConsignmentRepository.cs" />
     <Compile Include="Core\Interfaces\ICryptography.cs" />
-    <Compile Include="Core\Interfaces\IInvitation.cs" />
+    <Compile Include="Core\Interfaces\IInvitationRepository.cs" />
+    <Compile Include="Core\Interfaces\IConsignmentService.cs" />
     <Compile Include="Core\Interfaces\IInvitationService.cs" />
     <Compile Include="Core\Interfaces\IIORepository.cs" />
-    <Compile Include="Core\Interfaces\IPackageInformation.cs" />
+    <Compile Include="Core\Interfaces\IPackageInformationRepository.cs" />
     <Compile Include="Core\Interfaces\IPackageInformationService.cs" />
     <Compile Include="Core\Interfaces\IPayment.cs" />
     <Compile Include="Core\Interfaces\IPaymentService.cs" />
-    <Compile Include="Core\Interfaces\IPerson.cs" />
+    <Compile Include="Core\Interfaces\IPersonRepository.cs" />
     <Compile Include="Core\Interfaces\IRepository.cs" />
+    <Compile Include="Core\Interfaces\IUserService.cs" />
+    <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Core\Mappers\CustomMapper.cs" />
     <Compile Include="Core\Mappers\MappingProfile.cs" />
     <Compile Include="Core\Mappers\PersonMapper.cs" />
@@ -290,6 +295,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PostNordResponseData.resx</DependentUpon>
     </Compile>
+    <Compile Include="Core\Repositories\ActiveConsignmentRepository.cs" />
     <Compile Include="Core\Repositories\AdministratorRepository.cs" />
     <Compile Include="Core\Repositories\ConsignmentRepository.cs" />
     <Compile Include="Core\Repositories\InvitationRepository.cs" />
@@ -299,9 +305,13 @@
     <Compile Include="Core\Repositories\PersonRepository.cs" />
     <Compile Include="Core\Repositories\Repository.cs" />
     <Compile Include="Core\Services\AdministratorService.cs" />
+    <Compile Include="Core\Services\BankIdService.cs" />
+    <Compile Include="Core\Services\ConsignmentService.cs" />
     <Compile Include="Core\Services\InvitationService.cs" />
     <Compile Include="Core\Services\PackageInformationService.cs" />
     <Compile Include="Core\Services\PaymentService.cs" />
+    <Compile Include="Core\Services\UserService.cs" />
+    <Compile Include="Core\UnitOfWork.cs" />
     <Compile Include="DBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -318,6 +328,7 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="DTO\ActiveConsignmentDTO.cs" />
+    <Compile Include="DTO\BankIdDto.cs" />
     <Compile Include="DTO\ConsignmentDTO.cs" />
     <Compile Include="DTO\InvitationDTO.cs" />
     <Compile Include="DTO\PersonDTO.cs" />
@@ -353,6 +364,9 @@
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Users.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

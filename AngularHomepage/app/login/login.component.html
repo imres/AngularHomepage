@@ -52,7 +52,20 @@
                     <div class="section-content">
                         <div class="container">
                             <div class="row justify-content-center">
-                                <img src="img/bankid.png" alt="BankID" />
+                                <form name="bankidform" class="px-4 py-3" (ngSubmit)="bankidform.form.valid && bankIdAuth()" #bankidform="ngForm" novalidate>
+                                    <div *ngIf="bankIdPending">
+                                        <loading-spinner></loading-spinner>
+                                        <p>Väntar på svar från Mobilt BankID</p>
+                                    </div>
+
+                                    <div *ngIf="!bankIdPending" class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+                                        <label for="FormPersonId">Personnummer</label>
+                                        <input id="FormPersonId" type="text" class="form-control" placeholder="ååååmmddxxxx" name="personid" [(ngModel)]="model.PersonId" #personid="ngModel" required />
+                                        <div *ngIf="bankidform.submitted && !personid.valid" class="help-block">Ange personnummer</div>
+                                    </div>
+
+                                    <button class="btn btn-primary btn-block" role="button">Logga in med BankID</button>
+                                </form>
                             </div>
                         </div>
                     </div>

@@ -6,8 +6,18 @@ using System.Web;
 
 namespace UserManager.Core.Interfaces
 {
-    public interface IRepository
+    public interface IRepository<TEntity> where TEntity : class
     {
-        IEnumerable<TEntityDto> ListByQuery<TEntity, TEntityDto>(Expression<Func<TEntity, bool>> query) where TEntity : class;
+        TEntity Get(int id);
+        IEnumerable<TEntity> GetAll();
+        IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
+
+        void Add(TEntity entity);
+        void AddRange(IEnumerable<TEntity> entities);
+
+        void Remove(TEntity entity);
+        void RemoveRange(IEnumerable<TEntity> entities);
+
+        //IEnumerable<TEntityDto> Find<TEntity, TEntityDto>(Expression<Func<TEntity, bool>> query) where TEntity : class;
     }
 }

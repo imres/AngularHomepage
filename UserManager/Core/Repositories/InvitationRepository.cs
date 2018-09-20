@@ -1,5 +1,7 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using UserManager.Core.Enums;
 using UserManager.Core.Interfaces;
@@ -9,59 +11,15 @@ using UserManager.Models;
 
 namespace UserManager.Core.Repositories
 {
-    public class InvitationRepository : CustomMapper, IInvitation
+    public class InvitationRepository : Repository<Invitation>, IInvitationRepository
     {
-        
-        /// <summary>
-        /// Add new invitation
-        /// </summary>
-        /// <param name="invitationDTO"></param>
-        public void AddInvitation(InvitationDTO invitationDTO)
+        public InvitationRepository(masterEntities context)
+            : base(context)
         {
-            using (var context = new masterEntities())
-            {
-                var maxId = GetMaxInteger<Invitation>(x => x.Id);
 
-                invitationDTO.Id = maxId;
-                invitationDTO.Status = InvitationStatus.Created;
-                invitationDTO.StartDate = DateTime.Now;
-
-                var entity = DtoToEntityMapping<InvitationDTO, Invitation>(invitationDTO);
-
-                context.Invitation.Add(entity);
-                context.SaveChanges();
-            }
         }
 
-        /// <summary>
-        /// Accept received invitation and set status
-        /// </summary>
-        /// <param name="Id">Invitation Id</param>
-        public void AcceptInvitation(InvitationDTO invitationDTO)
-        {
-            using (var context = new masterEntities())
-            {
-                var invitationToAccept = context.Invitation.Where(x => x.Id == invitationDTO.Id).First();
 
-                invitationToAccept.Status = InvitationStatus.Accepted;
-                invitationToAccept.RequestedDepositAmount = invitationDTO.RequestedDepositAmount;
-
-                context.SaveChanges();
-            }
-        }
-
-        public void EndInvitation(int Id)
-        {
-            using (var context = new masterEntities())
-            {
-
-                var invitationToEdit = context.Invitation.Where(x => x.Id == Id).First();
-
-                invitationToEdit.EndDate = DateTime.Now;
-
-                context.SaveChanges();
-            }
-        }
 
         /// <summary>
         /// Get invitation by id
@@ -89,7 +47,7 @@ namespace UserManager.Core.Repositories
                     (x.Status == InvitationStatus.Created && x.InvitationInitiatorPersonId != personId))
                 );
 
-                var invitationsDTO = EntityToDtoMappingCollection<Invitation, InvitationDTO>(invitations);
+                var invitationsDTO = Mapper.Map<IEnumerable<InvitationDTO>>(invitations);
 
                 return invitationsDTO;
             }
@@ -102,7 +60,7 @@ namespace UserManager.Core.Repositories
                 IEnumerable<Invitation> unrespondedInvitations = context.Invitation.Where(x => x.EndDate == null &&
                 (x.ReceiverPersonId == personId || x.SenderPersonId == personId));
 
-                var unrespondedInvitationsDTO = EntityToDtoMappingCollection<Invitation, InvitationDTO>(unrespondedInvitations);
+                var unrespondedInvitationsDTO = Mapper.Map<IEnumerable<InvitationDTO>>(unrespondedInvitations);
 
                 return unrespondedInvitationsDTO;
             }

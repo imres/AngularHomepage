@@ -7,7 +7,7 @@ using UserManager.Models;
 
 namespace UserManager.Core.Interfaces
 {
-    public interface IPackageInformation
+    public interface IPackageInformationRepository
     {
         /// <summary>
         /// If package information does not exist on consignment id, create new row. Otherwise update existing row with new content 

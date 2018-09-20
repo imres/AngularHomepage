@@ -12,30 +12,26 @@ using UserManager.Core.Repositories;
 using UserManager.DTO;
 using UserManager.Models;
 using Http = System.Net.WebRequestMethods.Http;
+using System.Security.Cryptography.X509Certificates;
+using UserManager.Core;
+using UserManager.Core.Services;
 
 namespace UserManager.Controllers
 {
     public class ConsignmentController: ApiController
     {
-        private IConsigment _consignmentRepository;
-        private IInvitation _invitationRepository;
+        public UnitOfWork unitOfWork = new UnitOfWork(new masterEntities());
+        private IInvitationService _invitationService;
+        private IConsignmentService _consignmentService;
 
-        ConsignmentController()
-            : this(
-                  new ConsignmentRepository(),
-                  new InvitationRepository()
-                  )
+        public ConsignmentController() : this(new InvitationService(), new ConsignmentService())
         {
         }
 
-        public ConsignmentController
-            (
-            IConsigment consignmentRepository,
-            IInvitation invitationRepository
-            )
+        public ConsignmentController(IInvitationService invitationService, IConsignmentService consignmentService)
         {
-            _consignmentRepository = consignmentRepository;
-            _invitationRepository = invitationRepository;
+            _invitationService = invitationService;
+            _consignmentService = consignmentService;
         }
 
         [ActionName("AddConsignment")]
@@ -51,20 +47,22 @@ namespace UserManager.Controllers
                     this.Request.Content = null;
                 }
 
-                _consignmentRepository.AddConsignment(invitation);
-                _invitationRepository.EndInvitation(invitation.Id);
+                var consignment = _consignmentService.CreateConsignmentFromInvitation(invitation);
+                unitOfWork.Consignment.Add(consignment);
+                unitOfWork.Save();
+
+                _invitationService.EndInvitation(invitation.Id);
 
                 return Request.CreateResponse(HttpStatusCode.OK); //: Request.CreateResponse(HttpStatusCode.Forbidden, invitation);
             }
         }
 
-        // GET: api/User
         [ActionName("GetConsignments")]
         [HttpGet]
         public HttpResponseMessage GetConsignments(string Id)
         {
             //IEnumerable<InvitationDTO> invitations = _invitationRepository.GetInvitations(Id);
-            IEnumerable<ActiveConsignmentDTO> consignments = _consignmentRepository.GetActiveConsignments(Id);
+            IEnumerable<ActiveConsignmentDTO> consignments = _consignmentService.GetActiveConsignments(Id);
 
             return Request.CreateResponse(HttpStatusCode.OK, consignments);
 
@@ -75,7 +73,7 @@ namespace UserManager.Controllers
         public HttpResponseMessage GetArchivedConsignments(string Id)
         {
             //IEnumerable<InvitationDTO> invitations = _invitationRepository.GetInvitations(Id);
-            IEnumerable<ActiveConsignmentDTO> consignments = _consignmentRepository.GetArchivedConsignments(Id);
+            IEnumerable<ActiveConsignmentDTO> consignments = unitOfWork.Consignment.GetArchivedConsignments(Id);
 
             return Request.CreateResponse(HttpStatusCode.OK, consignments);
 
@@ -85,7 +83,7 @@ namespace UserManager.Controllers
         public HttpResponseMessage GetFinishedConsignments(string Id)
         {
             //IEnumerable<InvitationDTO> invitations = _invitationRepository.GetInvitations(Id);
-            IEnumerable<ActiveConsignmentDTO> consignments = _consignmentRepository.GetFinishedConsignments(Id);
+            IEnumerable<ActiveConsignmentDTO> consignments = unitOfWork.Consignment.GetFinishedConsignments(Id);
 
             return Request.CreateResponse(HttpStatusCode.OK, consignments);
 

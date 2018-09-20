@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,9 +11,14 @@ using UserManager.DTO;
 
 namespace UserManager.Core.Repositories
 {
-    public class PersonRepository : PersonMapper, IPerson
+    public class PersonRepository : Repository<Person>, IPersonRepository
     {
         protected PersonCrypography _personCryptography = new PersonCrypography();
+
+        public PersonRepository(masterEntities context) : base(context)
+        {
+
+        }
 
         /// <summary>
         /// Add new Person
@@ -28,7 +34,7 @@ namespace UserManager.Core.Repositories
                 personDTO.RegisterDate = DateTime.Now;
                 personDTO.UserRights = personDTO.PersonId?.Length > 4 ? PersonUserRights.Write : PersonUserRights.Read;
 
-                var entity = DtoToEntityMapping(personDTO);
+                var entity = Mapper.Map<Person>(personDTO);
 
                 context.Person.Add(entity);
                 context.SaveChanges();
@@ -50,7 +56,7 @@ namespace UserManager.Core.Repositories
 
                 var matchedPerson = findPerson != null && findPerson.Count() > 0 ? findPerson.FirstOrDefault() : null;
 
-                var matchedPersonDTO = EntityToDtoMapping(matchedPerson);
+                var matchedPersonDTO = Mapper.Map<PersonDTO>(matchedPerson);
 
                 if (matchedPerson == null)
                     throw new ArgumentException("InvalidCredentials");
@@ -59,14 +65,23 @@ namespace UserManager.Core.Repositories
             }
         }
 
-        public override Person DtoToEntityMapping(PersonDTO personDTO)
+        public PersonDTO AuthenticateBankId(BankIdCollectDto collectDto)
         {
-            return base.DtoToEntityMapping(personDTO);
-        }
+            //Hitta matchande användare. returnera res 200 & token
+            using (masterEntities context = new masterEntities())
+            {
+                //Users nullUser = null;
+                IEnumerable<Person> findPerson = context.Person.Where(x => x.PersonId == collectDto.completionData.user.personalNumber);
 
-        public override PersonDTO EntityToDtoMapping(Person person)
-        {
-            return base.EntityToDtoMapping(person);
+                var matchedPerson = findPerson != null && findPerson.Count() > 0 ? findPerson.FirstOrDefault() : null;
+
+                var matchedPersonDTO = Mapper.Map<PersonDTO>(matchedPerson);
+
+                if (matchedPerson == null)
+                    throw new UnauthorizedAccessException("Not registered user"); //TODO: Register new user
+
+                return _personCryptography.GenerateSignature(matchedPersonDTO);
+            }
         }
 
     }

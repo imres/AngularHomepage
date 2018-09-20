@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using UserManager.DTO;
+using UserManager.Models;
 
 namespace UserManager.Core.Interfaces
 {
-    public interface IPerson
+    public interface IAdministratorRepository
     {
-        void AddPerson(PersonDTO personDTO);
-
-        PersonDTO Authenticate(PersonDTO personDTO);
+        void CleanTable(string TableName);
     }
 }

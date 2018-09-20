@@ -27,16 +27,10 @@ export class UserSettingsComponent implements OnInit {
     }
 
     updateAccount() {
-        this.editActive = false;
+        this.userService.update(this.currentUser).subscribe(res => {
+            this.currentUser = res;
+        });
 
-        //this.userService.update(this.model)
-        //    .subscribe(
-        //    data => {
-        //        this.alertService.success('Redigering lyckades', true);
-        //    },
-        //    error => {
-        //        this.alertService.error(error);
-        //    }
-        //    );
+        this.editActive = false;
     }
 }

@@ -7,11 +7,8 @@ using UserManager.Models;
 
 namespace UserManager.Core.Interfaces
 {
-    public interface IInvitation
+    public interface IInvitationRepository : IRepository<Invitation>
     {
-        void AddInvitation(InvitationDTO invitationDTO);
-
-        void AcceptInvitation(InvitationDTO invitationDTO);
 
         void EndInvitation(InvitationExtended invitation);
 
@@ -20,8 +17,6 @@ namespace UserManager.Core.Interfaces
         IEnumerable<InvitationDTO> GetInvitations(string personId);
 
         IEnumerable<InvitationDTO> GetUnrespondedInvitations(string personId);
-
-        void EndInvitation(int Id);
         
 
     }
