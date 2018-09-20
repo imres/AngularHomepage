@@ -8,6 +8,18 @@
     --yellow: #EDE618;
 }
 
+.color-primary {
+    color: var(--primary);
+}
+
+.color-red {
+    color: var(--red);
+}
+
+.color-yellow {
+    color: var(--yellow);
+}
+
 .link {
     color: #000;
     text-decoration:none;

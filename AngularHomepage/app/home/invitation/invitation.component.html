@@ -1,18 +1,16 @@
-﻿<div class="width-21">
-    <h5 *ngIf="invitationNotifications?.length == 1" class="card-title text-center pt-2">Du har {{invitationNotifications?.length}} händelse</h5>
-    <h5 *ngIf="invitationNotifications?.length > 1" class="card-title text-center pt-2">Du har {{invitationNotifications?.length}} händelser</h5>
-    <div class="container-fluid">
-        <div *ngFor="let inv of invitationNotifications" class="row notification no-padding">
-            <div class="col-sm-11 no-padding" (click)="showInviteResponseDialog(inv)" role="button">
-                <div class="text-center py-3" *ngIf="currentUser.PersonId == inv.SenderPersonId">{{inv.ReceiverPersonId}} vill <b class="sender-color"> köpa </b> ett paket av dig!</div>
-                <div class="text-center py-3" *ngIf="currentUser.PersonId == inv.ReceiverPersonId">{{inv.SenderPersonId}} vill <b class="receiver-color"> skicka </b> ett paket till dig!</div>
-            </div>
-            <button type="button" class="close close-notification col-sm-1 align-self-start" (click)="cancel(inv)" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+﻿<h5 *ngIf="invitationNotifications?.length == 1" class="card-title text-center my-3">1 ny inbjudan</h5>
+<h5 *ngIf="invitationNotifications?.length > 1" class="card-title text-center my-3">{{invitationNotifications?.length}} nya inbjudningar</h5>
+<div *ngFor="let inv of invitationNotifications" class="row notification no-padding">
+    <div class="col-sm-11 no-padding" (click)="showInviteResponseDialog(inv)" role="button">
+        <div class="text-center ml-3 py-3" *ngIf="currentUser.PersonId == inv.SenderPersonId">{{inv.ReceiverPersonId}} vill <b class="sender-color"> köpa </b> ett paket av dig!</div>
+        <div class="text-center ml-3 py-3" *ngIf="currentUser.PersonId == inv.ReceiverPersonId">{{inv.SenderPersonId}} vill <b class="receiver-color"> skicka </b> ett paket till dig!</div>
     </div>
+    <button type="button" class="close close-notification col-sm-1 align-self-start" (click)="cancel(inv)" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
 </div>
+
+
 
 <!--<div class="counter">
     <button (click)="decrement()">

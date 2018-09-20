@@ -32,6 +32,7 @@ import { InvitationComponent } from './home/invitation/invitation.component';
 import { ConsignmentComponent } from './home/consignment/consignment.component';
 import { ConsignmentHistoryComponent } from './home/consignment/consignment-history.component';
 import { ConsignmentDetailComponent } from './home/consignment/consignment-detail.component';
+import { ConsignmentNotificationComponent } from './home/consignment/consignment-notification.component';
 import { NavbarComponent } from './commonComponents/navbar.component';
 import { NavbarHomeComponent } from './commonComponents/navbar-home.component';
 import { ClickStopPropagation } from './commonComponents/navbar.component';
@@ -60,6 +61,7 @@ import { FriendsComponent } from './user-profile/friends.component';
         ConsignmentComponent,
         ConsignmentHistoryComponent,
         ConsignmentDetailComponent,
+        ConsignmentNotificationComponent,
         AlertComponent,
         HomeComponent,
         LoginComponent,

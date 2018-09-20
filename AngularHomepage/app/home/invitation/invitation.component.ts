@@ -97,5 +97,6 @@ export class InvitationComponent implements OnInit {
 
         this.result = false;
         this.close();
+   
     }
 }
