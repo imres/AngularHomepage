@@ -17,12 +17,14 @@ using System.Web.Script.Serialization;
 using System.Threading;
 using UserManager.Core.Services;
 using UserManager.Core;
+using AutoMapper;
 
 namespace UserManager.Controllers
 {
     public class BankIdController : ApiController
     {
         private UnitOfWork unitOfWork = new UnitOfWork(new masterEntities());
+        protected PersonCrypography _personCryptography = new PersonCrypography();
         private IBankIdService _bankIdService;
 
         public BankIdController()
@@ -78,7 +80,20 @@ namespace UserManager.Controllers
                         return Request.CreateResponse(HttpStatusCode.PreconditionFailed);
 
                     if(collectResponse.completionData != null)
+                    {
                         person = unitOfWork.Person.AuthenticateBankId(collectResponse);
+
+                        if (person == null)
+                        {
+                            var dto = new BankIdPersonDTO(collectResponse.completionData.user);
+                            var entity = unitOfWork.Person.AddPerson(dto);
+
+                            person = Mapper.Map<PersonDTO>(entity);
+
+                            person = _personCryptography.GenerateSignature(person);
+                        }
+                    }
+                        
 
                 }
                 catch (WebException)

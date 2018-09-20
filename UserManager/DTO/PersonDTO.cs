@@ -1,9 +1,17 @@
 ﻿using System;
+using UserManager.Core.Enums;
+using UserManager.Core.Interfaces;
 
 namespace UserManager.DTO
 {
-    public class PersonDTO
+    public class PersonDTO : IPerson
     {
+        public PersonDTO()
+        {
+            RegisterDate = DateTime.Now;
+            UserRights = PersonId?.Length > 4 ? PersonUserRights.Write : PersonUserRights.Read;
+        }
+
         public int Id { get; set; }
         public string DisplayName { get; set; }
         public string FirstName { get; set; }

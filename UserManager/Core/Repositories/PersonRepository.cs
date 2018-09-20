@@ -24,21 +24,14 @@ namespace UserManager.Core.Repositories
         /// Add new Person
         /// </summary>
         /// <param name="personDTO"></param>
-        public void AddPerson(PersonDTO personDTO)
+        public Person AddPerson(IPerson personDTO)
         {
-            using (masterEntities context = new masterEntities())
-            {
-                var maxId = context.Person.Any() ? context.Person.Max(x => x.Id) + 1 : 0;
-                personDTO.Id = maxId;
+            var entity = Mapper.Map<Person>(personDTO);
 
-                personDTO.RegisterDate = DateTime.Now;
-                personDTO.UserRights = personDTO.PersonId?.Length > 4 ? PersonUserRights.Write : PersonUserRights.Read;
+            Context.Person.Add(entity);
+            Context.SaveChanges();
 
-                var entity = Mapper.Map<Person>(personDTO);
-
-                context.Person.Add(entity);
-                context.SaveChanges();
-            };
+            return entity;
         }
 
         /// <summary>
@@ -67,21 +60,16 @@ namespace UserManager.Core.Repositories
 
         public PersonDTO AuthenticateBankId(BankIdCollectDto collectDto)
         {
-            //Hitta matchande användare. returnera res 200 & token
-            using (masterEntities context = new masterEntities())
-            {
-                //Users nullUser = null;
-                IEnumerable<Person> findPerson = context.Person.Where(x => x.PersonId == collectDto.completionData.user.personalNumber);
+            //Users nullUser = null;
+            Person findPerson = Context.Person.Where(x => x.PersonId == collectDto.completionData.user.personalNumber).FirstOrDefault();
 
-                var matchedPerson = findPerson != null && findPerson.Count() > 0 ? findPerson.FirstOrDefault() : null;
+            //var matchedPerson = findPerson != null ? findPerson : null;
+            if (findPerson == null)
+                return null;
 
-                var matchedPersonDTO = Mapper.Map<PersonDTO>(matchedPerson);
+            var matchedPersonDTO = Mapper.Map<PersonDTO>(findPerson);
 
-                if (matchedPerson == null)
-                    throw new UnauthorizedAccessException("Not registered user"); //TODO: Register new user
-
-                return _personCryptography.GenerateSignature(matchedPersonDTO);
-            }
+            return _personCryptography.GenerateSignature(matchedPersonDTO);
         }
 
     }

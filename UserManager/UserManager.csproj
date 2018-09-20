@@ -283,6 +283,7 @@
     <Compile Include="Core\Interfaces\IPackageInformationService.cs" />
     <Compile Include="Core\Interfaces\IPayment.cs" />
     <Compile Include="Core\Interfaces\IPaymentService.cs" />
+    <Compile Include="Core\Interfaces\IPerson.cs" />
     <Compile Include="Core\Interfaces\IPersonRepository.cs" />
     <Compile Include="Core\Interfaces\IRepository.cs" />
     <Compile Include="Core\Interfaces\IUserService.cs" />
@@ -329,6 +330,7 @@
     </Compile>
     <Compile Include="DTO\ActiveConsignmentDTO.cs" />
     <Compile Include="DTO\BankIdDto.cs" />
+    <Compile Include="DTO\BankIdPersonDTO.cs" />
     <Compile Include="DTO\ConsignmentDTO.cs" />
     <Compile Include="DTO\InvitationDTO.cs" />
     <Compile Include="DTO\PersonDTO.cs" />

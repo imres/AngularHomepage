@@ -58,11 +58,10 @@ namespace UserManager.Core
         {
             //--Create JWT Components--
             string userRights = Base64Encode(personDTO.UserRights.ToString());
-            string baseUsername = Base64Encode(personDTO.Email);
+            string basePersonId = Base64Encode(personDTO.PersonId);
             string signature = SignatureEncode(personDTO);
-
             
-            personDTO.Token = string.Format("{0}.{1}.{2}", userRights, baseUsername, signature);
+            personDTO.Token = string.Format("{0}.{1}.{2}", userRights, basePersonId, signature);
 
             return personDTO;
         }
