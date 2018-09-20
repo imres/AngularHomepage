@@ -8,6 +8,18 @@
     --yellow: #EDE618;
 }
 
+.color-primary {
+    color: var(--primary);
+}
+
+.color-red {
+    color: var(--red);
+}
+
+.color-yellow {
+    color: var(--yellow);
+}
+
 .link {
     color: #000;
     text-decoration:none;
@@ -657,6 +669,17 @@ btn.btn-primary:active, .btn-primary:focus{
     text-decoration: none;
 }
 
+.map-with-marker {
+    background: url(app/img/sverige-karta.png);
+    background-size: cover;
+    background-position: center;
+    height: 20rem;
+    width: 100&;
+    color: white;
+    padding-top: 3rem;
+    box-shadow: var(--bottom-shadow-darker);
+}
+
 /* User Profile */
 .user-profile-header {
     background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
@@ -845,6 +868,10 @@ btn.btn-primary:active, .btn-primary:focus{
     margin-top: 2px;
 }
 
+.sidebar-link .btn .fa-pull-left {
+    margin-top: .2rem;
+}
+
 /*PhoneSidebar*/
 #phoneSidebar .active {
     background: #f0f0f0;
@@ -885,6 +912,10 @@ btn.btn-primary:active, .btn-primary:focus{
     padding-left: 2rem;
 }
 
+.phone-sidebar-link .btn .fa-pull-left {
+    margin-top: .2rem;
+}
+
 /* User Settings */
 .user-settings-title {
     margin-right: 5px;
@@ -912,6 +943,14 @@ btn.btn-primary:active, .btn-primary:focus{
 .card {
     border: 0;
     box-shadow: var(--bottom-shadow);
+}
+
+.consignment-detail__card {
+    margin-bottom: 1rem;
+}
+
+.consignment-detail__card h5 {
+    margin-bottom: 0rem;
 }
 
 .dropdown-menu {

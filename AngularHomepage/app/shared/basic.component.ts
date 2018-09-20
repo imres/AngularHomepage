@@ -42,9 +42,12 @@ export class BasicComponent
 
 
     public setPage(Page: number, itemList: any[]): any[] {
-        if (Page < 1 || Page > this.pager.TotalPages) {
+        if (itemList.length <= 4)
+            this.pagedItems = itemList;
+
+        if (Page < 1 || Page > this.pager.TotalPages) 
             return;
-        }
+        
 
         // get pager object from service
         this.pager = this.pagerService.getPager(itemList.length, Page);
