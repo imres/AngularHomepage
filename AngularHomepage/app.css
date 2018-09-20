@@ -934,8 +934,6 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 .consignment-detail__card {
-    box-shadow: none;
-    border: 1px solid rgba(0, 0, 0, 0.125);
     margin-bottom: 1rem;
 }
 
