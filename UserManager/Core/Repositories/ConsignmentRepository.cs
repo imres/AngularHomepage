@@ -60,7 +60,7 @@ namespace UserManager.Core.Repositories
             using (masterEntities context = new masterEntities())
             {
                 IEnumerable<ActiveConsignment> archivedConsignments = context.ActiveConsignment
-                    .Where(x => (x.ReceiverPersonId == PersonId || x.SenderPersonId == PersonId) && x.Status == ConsignmentStatus.Completed);
+                    .Where(x => (x.ReceiverPersonId == PersonId || x.SenderPersonId == PersonId) && x.Status == ConsignmentStatus.Archived);
 
                 var archivedConsignmentsDTO = Mapper.Map<IEnumerable<ActiveConsignmentDTO>>(archivedConsignments).ToList();
 
