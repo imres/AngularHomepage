@@ -34,7 +34,8 @@ namespace UserManager.Core.Services
 
             X509Certificate2 Cert = new X509Certificate2();
 
-            string CertPath = "C:\\Users\\pontus\\Desktop\\FPTestcert2_20150818_102329.pfx";
+            string CertPath = System.AppDomain.CurrentDomain.BaseDirectory + "FPTestcert2_20150818_102329.pfx";
+            //string CertPath = "C:\\Users\\pontus\\Desktop\\FPTestcert2_20150818_102329.pfx";
 
             string CertPwd = "qwerty123";
 
@@ -42,7 +43,9 @@ namespace UserManager.Core.Services
 
             req.ClientCertificates.Add(Cert);
 
-            var certcer = new X509Certificate2(X509Certificate2.CreateFromCertFile("C:\\Users\\pontus\\Desktop\\BankID.cer"));
+            //string BankIdCerPath = "C:\\Users\\pontus\\Desktop\\BankID.cer";
+            string BankIdCerPath = System.AppDomain.CurrentDomain.BaseDirectory + "BankID.cer";
+            var certcer = new X509Certificate2(X509Certificate2.CreateFromCertFile(BankIdCerPath));
             req.ClientCertificates.Add(certcer);
 
             req.AuthenticationLevel = System.Net.Security.AuthenticationLevel.None;
@@ -90,7 +93,7 @@ namespace UserManager.Core.Services
 
             X509Certificate2 Cert = new X509Certificate2();
 
-            string CertPath = "C:\\Users\\pontus\\Desktop\\FPTestcert2_20150818_102329.pfx";
+            string CertPath = System.AppDomain.CurrentDomain.BaseDirectory + "FPTestcert2_20150818_102329.pfx";
 
             string CertPwd = "qwerty123";
 
@@ -98,7 +101,8 @@ namespace UserManager.Core.Services
 
             req.ClientCertificates.Add(Cert);
 
-            var certcer = new X509Certificate2(X509Certificate2.CreateFromCertFile("C:\\Users\\pontus\\Desktop\\BankID.cer"));
+            string BankIdCerPath = System.AppDomain.CurrentDomain.BaseDirectory + "BankID.cer";
+            var certcer = new X509Certificate2(X509Certificate2.CreateFromCertFile(BankIdCerPath));
             req.ClientCertificates.Add(certcer);
 
             req.AuthenticationLevel = System.Net.Security.AuthenticationLevel.None;
