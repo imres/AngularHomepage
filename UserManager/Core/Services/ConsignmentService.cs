@@ -59,7 +59,7 @@ namespace UserManager.Core.Services
             var packageInformations = new List<PackageInformation>();
 
             IEnumerable<ActiveConsignment> consignments = unitOfWork.ActiveConsignment
-                .Find(x => (x.ReceiverPersonId == PersonId || x.SenderPersonId == PersonId) && x.Status < ConsignmentStatus.Completed);
+                .Find(x => (x.ReceiverPersonId == PersonId || x.SenderPersonId == PersonId) && x.Status < ConsignmentStatus.Active);
             
             var activeConsignmentsDTO = Mapper.Map<IEnumerable<ActiveConsignmentDTO>>(consignments).ToList();
 
