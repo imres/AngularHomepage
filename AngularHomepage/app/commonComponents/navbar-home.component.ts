@@ -58,7 +58,7 @@ export class NavbarHomeComponent extends BasicComponent implements OnInit {
     }
 
     updateFilteredInvitations() {
-        if (this.invitations == null) return;
+        if (!this.invitations) return;
 
         this.invitationNotifications = this.invitations.filter(x => { return x.Status == InvitationStatusEnum.Created && x.InvitationInitiatorPersonId != this.currentUser.PersonId });
 
