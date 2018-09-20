@@ -28,33 +28,6 @@ namespace UserManager.Core.Repositories
 
         }
 
-        /// <summary>
-        /// Delete Consignment by Id
-        /// </summary>
-        /// <param name="ConsignmentId"></param>
-        public void DeleteConsignment(int ConsignmentId)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Get Consignment by Id
-        /// </summary>
-        /// <param name="ConsignmentId"></param>
-        /// <returns></returns>
-        public ConsignmentDTO GetConsignment(int ConsignmentId)
-        {
-            throw new NotImplementedException();
-        }
-        public ConsignmentDTO GetArchivedConsignments(int ConsignmentId)
-        {
-            throw new NotImplementedException();
-        }
-        public ConsignmentDTO GetFinishedConsignments(int ConsignmentId)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<ActiveConsignmentDTO> GetArchivedConsignments(string PersonId)
         {
             using (masterEntities context = new masterEntities())

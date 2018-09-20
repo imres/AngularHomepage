@@ -10,10 +10,6 @@ namespace UserManager.Core.Interfaces
 {
     public interface IConsignmentRepository : IRepository<Consignment>
     {
-
-        void DeleteConsignment(int ConsignmentId);
-
-        ConsignmentDTO GetConsignment(int ConsignmentId);
         
         IEnumerable<ActiveConsignmentDTO> GetArchivedConsignments(string PersonId);
 
