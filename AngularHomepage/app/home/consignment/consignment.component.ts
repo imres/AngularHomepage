@@ -1,5 +1,6 @@
 ﻿import { Component, OnInit, Input, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { DialogService } from "ng2-bootstrap-modal";
 
@@ -32,6 +33,7 @@ export class ConsignmentComponent extends BasicComponent implements OnInit {
         private consignmentService: ConsignmentService,
         private toastrService: ToastrService,
         private pagerService: PagerService,
+        private router: Router,
     ) {
         super(pagerService);
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -79,5 +81,9 @@ export class ConsignmentComponent extends BasicComponent implements OnInit {
                 this.toastrService.ShowToastr(isConfirmed, false, true, "Inbjudan skickades");
 
             });
+    }
+
+    routeToConsignmentDetail(item: ActiveConsignment) {
+        this.router.navigate(['/consignment-detail', item.PackageId])
     }
 }

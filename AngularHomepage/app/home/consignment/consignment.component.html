@@ -68,7 +68,7 @@
                     <p class="card-text">
                         Paketet skickades {{item.DropOffDate}} från {{item.DropOffLocation?.city}}, {{item.DropOffLocation?.postcode}}
                     </p>
-                    <div class="btn btn-outline-primary btn-block" [routerLink]="['/consignment-detail']">Visa detaljer om försändelsen</div>
+                    <div class="btn btn-outline-primary btn-block" (click)="routeToConsignmentDetail(item)">Visa detaljer om försändelsen</div>
                 </div>
             </div>
         </div>

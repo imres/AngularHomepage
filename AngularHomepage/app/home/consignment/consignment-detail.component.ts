@@ -1,5 +1,6 @@
 ﻿import { Component, OnInit, Input, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { DialogService } from "ng2-bootstrap-modal";
 
@@ -18,8 +19,9 @@ import { InviteResponseComponent } from '../../_dialog/invite-response.component
 
 
 export class ConsignmentDetailComponent extends BasicComponent implements OnInit {
-    activeConsignments: ActiveConsignment[];
+    selectedConsignmentPackageId: string;
     consignments: ActiveConsignment[];
+    selectedConsignment: ActiveConsignment[];
 
     currentUser: Person;
     confirmResult: boolean = null;
@@ -30,6 +32,7 @@ export class ConsignmentDetailComponent extends BasicComponent implements OnInit
         private consignmentService: ConsignmentService,
         private toastrService: ToastrService,
         private pagerService: PagerService,
+        private activatedRoute: ActivatedRoute,
     ) {
         super(pagerService);
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -38,7 +41,7 @@ export class ConsignmentDetailComponent extends BasicComponent implements OnInit
 
     ngOnInit() {
         this.getConsignments();
-
+        
     }
 
     getConsignments() {
@@ -49,7 +52,16 @@ export class ConsignmentDetailComponent extends BasicComponent implements OnInit
             this.loading = false;
 
             console.log(res);
+
+            this.getSelectedConsignment();
         });
+    }
+
+    getSelectedConsignment() {
+        this.selectedConsignmentPackageId = this.activatedRoute.snapshot.params['PackageId'];
+
+        this.selectedConsignment = this.consignments.filter(x => { return x.PackageId == this.selectedConsignmentPackageId });
+        console.log(this.selectedConsignment);
     }
 
     showConfirm(event: any) {

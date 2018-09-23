@@ -4,10 +4,10 @@
     <div class="row">
         <sidebar class="col-lg-2 no-padding"></sidebar>
 
-        <div class="col-xl-6 col-lg-7 col-10 offset-1 p-2 pt-3">
+        <div class="col-xl-6 col-lg-7 col-10 offset-1 p-2 pt-3"  *ngFor="let item of selectedConsignment">
             <!--<loading-spinner *ngIf="loading"></loading-spinner>-->
                 
-                <h4 class="text-center mb-3">"Grand Frank Kingston White Chronograph"</h4>
+                <h4 class="text-center mb-3">"Paketnamn"<!--{{item.Title}}--></h4>
 
                 <div class="map-with-marker"></div>
 
@@ -50,13 +50,13 @@
                         </div>
                         <div class="card-body row">
                             <div class="col-md-5 offset-md-1">
-                                <p class="card-text"><strong>Avsändare:</strong> Grand Frank c/o Bonver Logistics</p>
-                                <p class="card-text"><strong>Mottagare:</strong> Anton Nystedt</p>
+                                <p class="card-text"><strong>Avsändare:</strong> {{item.Consignor.name}}</p>
+                                <p class="card-text"><strong>Mottagare:</strong> {{item.ReceiverPersonId}}</p>
                                 <p class="card-text"><strong>Vikt:</strong> 0.77kg</p>
                                 <p class="card-text"><strong>Mått (H x B x D):</strong> 180 cm x 35cm x 10cm</p>
                             </div>
                             <div class="col-md-5 offset-md-1">
-                                <p class="card-text"><strong>Kolli-ID:</strong> 69571469704SE</p>
+                                <p class="card-text"><strong>Kolli-ID:</strong> {{item.PackageId}}</p>
                                 <p class="card-text"><strong>Pakettyp:</strong> PostNord MyPack Collect</p>
                                 <p class="card-text"><strong>Tilläggstjänst(er):</strong> SMS-Avisering</p>
                             </div>
