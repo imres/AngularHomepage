@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Json;
@@ -48,6 +50,22 @@ namespace UserManager.DTO
             get
             {
                 return ShipmentInformation?.items?.LastOrDefault()?.events?.FirstOrDefault()?.location;
+            }
+        }
+
+        public IEnumerable<Event> Events
+        {
+            get
+            {
+                return ShipmentInformation?.items?.FirstOrDefault()?.events.ToList();
+            }
+        }
+
+        public Service Service
+        {
+            get
+            {
+                return ShipmentInformation?.service;
             }
         }
 
