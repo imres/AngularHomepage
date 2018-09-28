@@ -65,8 +65,11 @@
                     <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId && item.Consignee?.address?.city">Ditt paket är påväg till {{item.Consignee?.address?.city}}</p>
                     <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId && item.DropOffLocation?.city">Ett paket från {{item.DropOffLocation?.city}} är påväg till dig</p>
                     <p class="card-text">Paketet befinner sig just nu i {{item.LastSeenCity}}</p>
-                    <p class="card-text">
+                    <p class="card-text" *ngIf="item.DropOffLocation.city && item.DropOffLocation.postcode">
                         Paketet skickades {{item.DropOffDate}} från {{item.DropOffLocation?.city}}, {{item.DropOffLocation?.postcode}}
+                    </p>
+                    <p class="card-text" *ngIf="!item.DropOffLocation.city || !item.DropOffLocation.postcode">
+                        Paketet skickades {{item.DropOffDate}} från {{item.Consignor.address.city}}, {{item.Consignor.address.postCode}}
                     </p>
                     <div class="btn btn-outline-primary btn-block" (click)="routeToConsignmentDetail(item)">Visa detaljer om försändelsen</div>
                 </div>
