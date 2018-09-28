@@ -680,6 +680,16 @@ btn.btn-primary:active, .btn-primary:focus{
     box-shadow: var(--bottom-shadow-darker);
 }
 
+.shipment__info {
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
+    margin-top: 1rem;
+    padding-top: 1rem;
+}
+
+.consignment-detail-card__text {
+    margin-bottom: 0.5rem;
+}
+
 /* User Profile */
 .user-profile-header {
     background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
@@ -945,11 +955,11 @@ btn.btn-primary:active, .btn-primary:focus{
     box-shadow: var(--bottom-shadow);
 }
 
-.consignment-detail__card {
+.consignment-detail-card {
     margin-bottom: 1rem;
 }
 
-.consignment-detail__card h5 {
+.consignment-detail-card h5 {
     margin-bottom: 0rem;
 }
 

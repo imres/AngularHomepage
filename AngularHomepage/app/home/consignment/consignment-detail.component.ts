@@ -1,11 +1,13 @@
 ﻿import { Component, OnInit, Input, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs/Rx';
 import { DialogService } from "ng2-bootstrap-modal";
 
 import { BasicComponent } from '../../shared/basic.component';
 import { Person, Invitation, Consignment, ActiveConsignment, Pager } from '../../_models/index';
+import { PostNordEvent } from '../../_models/PostNord/index';
 import { UserService, InvitationService, ConsignmentService, ToastrService, PagerService } from '../../_services/index';
 import { ConfirmComponent } from '../../_dialog/confirm.component';
 import { InviteResponseComponent } from '../../_dialog/invite-response.component';
@@ -22,6 +24,7 @@ export class ConsignmentDetailComponent extends BasicComponent implements OnInit
     selectedConsignmentPackageId: string;
     consignments: ActiveConsignment[];
     selectedConsignment: ActiveConsignment[];
+    events: PostNordEvent[];
 
     currentUser: Person;
     confirmResult: boolean = null;
@@ -49,8 +52,6 @@ export class ConsignmentDetailComponent extends BasicComponent implements OnInit
         this.consignmentService.getConsignments(this.currentUser.PersonId).subscribe(res => {
             this.consignments = res;
 
-            this.loading = false;
-
             console.log(res);
 
             this.getSelectedConsignment();
@@ -62,6 +63,14 @@ export class ConsignmentDetailComponent extends BasicComponent implements OnInit
 
         this.selectedConsignment = this.consignments.filter(x => { return x.PackageId == this.selectedConsignmentPackageId });
         console.log(this.selectedConsignment);
+
+        if (this.selectedConsignment) {
+            var eventList = this.selectedConsignment.map(x => x.Events);
+            this.events = eventList[0];
+            this.events.sort((a, b) => a['eventTime'] > b['eventTime'] ? 1 : a['eventTime'] === b['eventTime'] ? 0 : -1).reverse();
+        }
+
+        this.loading = false;
     }
 
     showConfirm(event: any) {
