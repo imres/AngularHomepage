@@ -86,6 +86,11 @@
     box-shadow: var(--center-shadow);
 }
 
+#searchbar {
+    padding: 0;
+    width: 25rem;
+}
+
 a {
     cursor: pointer;
 }
@@ -883,7 +888,7 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 /*PhoneSidebar*/
-#phoneSidebar .active {
+#phone-sidebar .active {
     background: #f0f0f0;
 }
 
@@ -966,6 +971,12 @@ btn.btn-primary:active, .btn-primary:focus{
 .dropdown-menu {
     border: 0;
     box-shadow: var(--bottom-shadow);
+}
+
+#content {
+    padding: 0;
+    padding-top: 1rem;
+    padding-bottom: 0;
 }
 
 @keyframes slide-up {

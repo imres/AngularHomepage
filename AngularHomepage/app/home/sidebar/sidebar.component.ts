@@ -18,8 +18,6 @@ export class SidebarComponent implements OnInit {
 
     currentUser: Person;
     sidebarActive = true;
-    consignmentsToggled = false;
-    phoneConsignmentsToggled = false;
 
     constructor(private userService: UserService,
         private dialogService: DialogService,
@@ -44,21 +42,5 @@ export class SidebarComponent implements OnInit {
                 this.toastrService.ShowToastr(isConfirmed, false, "Inbjudan skickades");
 
             });
-    }
-
-    consignmentsToggle() {
-        if  (this.consignmentsToggled == false)
-            this.consignmentsToggled = true;
-        else
-            this.consignmentsToggled = false;
-
-    }
-
-    phoneConsingmentsToggle() {
-        if (this.phoneConsignmentsToggled == false)
-            this.phoneConsignmentsToggled = true;
-        else
-            this.phoneConsignmentsToggled = false;
-
     }
 }

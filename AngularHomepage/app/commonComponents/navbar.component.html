@@ -1,25 +1,46 @@
 ﻿<!-- Navbar till icke inloggad besökare -->
-<nav class="navbar navbar-expand-sm navbar-light fixed-top nav-main">
-    <a class="navbar-brand" id="logotype" href="" [routerLink]="['/front']">Logotype</a>
+<nav class="navbar navbar-expand-sm navbar-light fixed-top nav-main justify-content-between">
+    <a class="navbar-brand" id="logotype" href="#" [routerLink]="['/front']">Logotype</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    
 
-    <div class="navbar-collapse collapse justify-content-end" id="navbarSupportedContent">
-        <ul class="nav flex-column flex-sm-row align-items-end justify-content-center">
-            <li class="nav-item mx-1">
+    <div class="nav-item d-none d-sm-block">
+        <div id="searchbar">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Sök">
+            </div>
+        </div>
+    </div>
+    
+    <a href="" class="nav-item nav-link d-none d-sm-block" [routerLink]="['/login']">Logga in</a>
+
+    <div class="nav-item collapse w-100" id="navbarSupportedContent">
+        <ul class="nav flex-column align-items-end">
+            <!--<li class="nav-item mx-1">
                 <a href="" class="nav-link" [routerLink]="['/login']">Spåra paket</a>
             </li>
 
             <li class="nav-item mx-1">
                 <a href="" class="nav-link" [routerLink]="['/login']">Skapa försändelse</a>
-            </li>
+            </li>-->
 
             <li class="nav-item mx-1">
-                <a href="" class="nav-link" [routerLink]="['/login']">Logga in</a>
+                <a href="" class="nav-link pr-0" [routerLink]="['/login']">Logga in</a>
             </li>
-
+            <li class="nav-item">
+                <div id="searchbar">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Sök">
+                    </div>
+                </div>
+            </li>
         </ul>
     </div>
 </nav>

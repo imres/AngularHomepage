@@ -12,17 +12,6 @@
             Mina vänner
         </div>
 
-        <!--<div class="sidebar-link" (click)="consignmentsToggle()" href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" role="button">
-            <i class="fas fa-envelope fa-fw" aria-hidden="true"></i> Försändelser
-            <i *ngIf="!consignmentsToggled" class="fas fa-angle-down fa-pull-right sidebar-arrow" aria-hidden="true"></i>
-            <i *ngIf="consignmentsToggled" class="fas fa-angle-up fa-pull-right sidebar-arrow" aria-hidden="true"></i>
-            <div class="collapse list-unstyled pt-2" id="pageSubmenu">
-                <div href="#" role="button" class="sidebar-link sidebar-collapsed-link"><i class="fas fa-location-arrow fa-fw" aria-hidden="true"></i> Aktiva försändelser</div>
-                <div (click)=showConfirm($event) role="button" class="sidebar-link sidebar-collapsed-link"><i class="fas fa-plus fa-fw" aria-hidden="true"></i> Ny försändelse</div>
-                <div [routerLink]="['/history']" role="button" class="sidebar-link sidebar-link-last sidebar-collapsed-link"><i class="fas fa-envelope-open fa-fw" aria-hidden="true"></i> Historik</div>
-            </div>
-        </div>-->
-
         <div [routerLink]="['/history']" role="button" class="sidebar-link"><i class="fas fa-envelope-open fa-fw" aria-hidden="true"></i> Arkiverade försändelser</div>
 
         <div class="sidebar-link">
@@ -30,24 +19,27 @@
                 <i class="fas fa-plus fa-fw fa-pull-left" aria-hidden="true"></i> Ny försändelse
             </div>
         </div>
-
-        <div class="pb-2 col-12 sidebar-link" id="searchBar">
-            <div class="input-group">
-                
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
-                </div>
-                <input type="text" class="form-control" placeholder="Sök">
-            </div>
-        </div>  
     </nav>
 
-    <div id="content" class="d-lg-none offset-1 phone-sidebar">
-        <button href="#phoneSidebar" data-toggle="collapse" aria-expanded="false" type="button" role="button" id="sidebarCollapse" class="btn btn-outline-primary navbar-btn sidebar-btn mb-2">
-            <i class="fa fa-align-left" aria-hidden="true"></i>
-        </button>
+    <div id="content" class="d-lg-none offset-1 col-10 phone-sidebar">
+        <div class="row pr-0">
+            <div class="col-sm-1">
+                <button href="#phone-sidebar" data-toggle="collapse" aria-expanded="false" type="button" role="button" id="sidebarCollapse" class="btn btn-outline-primary navbar-btn sidebar-btn mb-2">
+                    <i class="fa fa-align-left" aria-hidden="true"></i>
+                </button>
+            </div>
 
-        <nav id="phoneSidebar" class="collapse">
+            <div class="col-sm-6 offset-sm-5">
+                <div class="input-group pr-1">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Sök">
+                </div>
+            </div>
+        </div>
+        
+        <nav id="phone-sidebar" class="collapse">
             <div class="phone-sidebar-link" [routerLink]="['/home']" role="button">
                 <i class="fa fa-home fa-fw" aria-hidden="true"></i>
                 Hem
@@ -61,19 +53,12 @@
             <div [routerLink]="['/history']" role="button" class="phone-sidebar-link"><i class="fas fa-envelope-open fa-fw" aria-hidden="true"></i> Arkiverade försändelser</div>
 
             <div class="phone-sidebar-link">
-                <div class="btn btn-primary btn-block" (click)=showConfirm($event)>
+                <div class="btn btn-primary btn-block-half" (click)=showConfirm($event)>
                     <i class="fas fa-plus fa-fw fa-pull-left" aria-hidden="true"></i> Ny försändelse
                 </div>
             </div>
 
-            <div class="pb-2 phone-sidebar-link" id="searchBarPhone">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
-                    </div>
-                    <input type="text" class="form-control" placeholder="Sök">
-                </div>
-            </div>  
+
         </nav>
     </div>
 
