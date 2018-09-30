@@ -1,6 +1,7 @@
 ﻿import { Component, OnInit, Input, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
+import { Router } from '@angular/router';
 import { DialogService } from "ng2-bootstrap-modal";
 
 import { BasicComponent } from '../../shared/basic.component';
@@ -28,6 +29,7 @@ export class ConsignmentNotificationComponent extends BasicComponent implements 
     constructor(
         private consignmentService: ConsignmentService,
         private pagerService: PagerService,
+        private router: Router,
     ) {
         super(pagerService)
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -44,5 +46,9 @@ export class ConsignmentNotificationComponent extends BasicComponent implements 
 
             this.orderBy('-EndDate', this.finishedConsignments);
         });
+    }
+
+    routeToConsignmentDetail(item: ActiveConsignment) {
+        this.router.navigate(['/consignment-detail', item.PackageId])
     }
 }

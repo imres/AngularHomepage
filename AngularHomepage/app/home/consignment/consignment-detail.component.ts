@@ -52,10 +52,16 @@ export class ConsignmentDetailComponent extends BasicComponent implements OnInit
         this.consignmentService.getConsignments(this.currentUser.PersonId).subscribe(res => {
             this.consignments = res;
 
-            console.log(res);
+            this.getArchivedConsignment();
+        });
+    }
+
+    getArchivedConsignment() {
+        this.consignmentService.getArchivedConsignments(this.currentUser.PersonId).subscribe(res => {
+            this.consignments = this.consignments.concat(res);
 
             this.getSelectedConsignment();
-        });
+        })
     }
 
     getSelectedConsignment() {
@@ -67,7 +73,8 @@ export class ConsignmentDetailComponent extends BasicComponent implements OnInit
         if (this.selectedConsignment) {
             var eventList = this.selectedConsignment.map(x => x.Events);
             this.events = eventList[0];
-            this.events.sort((a, b) => a['eventTime'] > b['eventTime'] ? 1 : a['eventTime'] === b['eventTime'] ? 0 : -1).reverse();
+            if(this.events)
+                this.events.sort((a, b) => a['eventTime'] > b['eventTime'] ? 1 : a['eventTime'] === b['eventTime'] ? 0 : -1).reverse();
         }
 
         this.loading = false;
