@@ -38,7 +38,8 @@
                 </div>
                 <div *ngIf="searchText" class="dropdown-menu dropdown-menu--searchbar show">
                     <div *ngFor="let item of users | filter: searchText" class="dropdown-item link">
-                        <i class="fas fa-user-circle"></i> {{item.firstName}} {{item.lastName}}
+                        <h6 class="mb-0" *ngIf="item === -1">Ingen användare matchar sökningen</h6>
+                        <ng-container *ngIf="item !== -1"><i class="fas fa-user-circle"></i> {{item.firstName}} {{item.lastName}}</ng-container>
                     </div>
                 </div>
             </div>
