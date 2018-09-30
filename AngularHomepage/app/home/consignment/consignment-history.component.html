@@ -87,6 +87,7 @@
                                     <p class="text-center mx-3"><i class="far fa-calendar-alt"></i> Paketet levererades {{item.EndDate | date:'yyyy-MM-dd, HH:mm'}}</p>
                             </div>
                             <div class="card-body">
+                                <h5 class="card-title title-border">{{item.Title}}</h5>
                                 <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId">Ditt paket är levererat till {{item.Consignee?.address.city}}!</p>
                                 <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId">Ett paket från {{item.Consignor?.address.city}} är levererat till dig i {{item.Consignee?.address.city}}!</p>
                                 <p class="card-text">

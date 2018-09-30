@@ -62,6 +62,7 @@
                     <p class="text-center"><i class="far fa-calendar-alt"></i> {{item.LastSeenTimeStamp}}</p>
                 </div>
                 <div class="card-body">
+                    <h5 class="card-title title-border">{{item.Title}}</h5>
                     <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId && item.Consignee?.address?.city">Ditt paket är påväg till {{item.Consignee?.address?.city}}</p>
                     <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId && item.DropOffLocation?.city">Ett paket från {{item.DropOffLocation?.city}} är påväg till dig</p>
                     <p class="card-text">Paketet befinner sig just nu i {{item.LastSeenCity}}</p>

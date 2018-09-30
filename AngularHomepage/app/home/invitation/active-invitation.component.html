@@ -36,8 +36,9 @@
             <div *ngFor="let item of pagedItems" class="col-sm-6 my-2 animate-enter">
                 <div class="card mb-3 h-100">
                     <div class="card-body" [ngClass]="{'card-border-receiver' : HasReceiverRole(item), 'card-border-sender' : !HasReceiverRole(item)}">
-                        <p class="card-title title-border" *ngIf="HasReceiverRole(item)"><strong class="receiver-color">Avsändare:</strong> {{item.SenderPersonId}}</p>
-                        <p class="card-title title-border" *ngIf="!HasReceiverRole(item)"><strong class="sender-color">Mottagare:</strong> {{item.ReceiverPersonId}}</p>
+                        <h5 class="card-title title-border">{{item.Title}}</h5>
+                        <p class="card-text" *ngIf="HasReceiverRole(item)"><strong class="receiver-color">Avsändare:</strong> {{item.SenderPersonId}}</p>
+                        <p class="card-text" *ngIf="!HasReceiverRole(item)"><strong class="sender-color">Mottagare:</strong> {{item.ReceiverPersonId}}</p>
                         <p class="card-text">Status: <strong>{{translateInvitationStatus(item)}}</strong></p>
                         <p class="card-text">Begärd summa: {{item.RequestedDepositAmount}} kronor</p>
                         <p class="card-text">Inbjudan skickad: {{item.StartDate | date:'yyyy-MM-dd, HH:mm'}}</p>
