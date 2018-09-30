@@ -11649,6 +11649,7 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="app\commonComponents\navbar.component.ts" />
     <TypeScriptCompile Include="app\commonComponents\user-guide.component.ts" />
+    <TypeScriptCompile Include="app\filter.pipe.ts" />
     <TypeScriptCompile Include="app\frontpage\front.component.ts" />
     <TypeScriptCompile Include="app\frontpage\index.ts" />
     <TypeScriptCompile Include="app\home\administrator\admin-panel.component.ts" />

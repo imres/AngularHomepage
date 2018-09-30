@@ -11,7 +11,12 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
                 </div>
-                <input type="text" class="form-control" placeholder="Sök">
+                <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Sök efter användare">
+            </div>
+        </div>
+        <div *ngIf="searchText" class="dropdown-menu dropdown-menu--searchbar show">
+            <div class="dropdown-item link" *ngFor="let item of users | filter: searchText">
+                <i class="fas fa-user-circle"></i> {{item.firstName}} {{item.lastName}}
             </div>
         </div>
     </div>
@@ -37,7 +42,12 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Sök">
+                        <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Sök efter användare">
+                    </div>
+                </div>
+                <div *ngIf="searchText" class="dropdown-menu dropdown-menu--searchbar show">
+                    <div class="dropdown-item link" *ngFor="let item of users | filter: searchText">
+                        <i class="fas fa-user-circle"></i> {{item.firstName}} {{item.lastName}}
                     </div>
                 </div>
             </li>

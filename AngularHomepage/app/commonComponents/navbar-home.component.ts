@@ -9,6 +9,7 @@ import { UserService, InvitationService, ToastrService, ConsignmentService, Page
 import { ConfirmComponent } from '../_dialog/confirm.component';
 import { InviteResponseComponent } from '../_dialog/invite-response.component';
 import { InvitationStatusEnum } from '../_models/enums/index';
+import { FilterPipe } from '../filter.pipe';
 
 
 @Component({

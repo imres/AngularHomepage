@@ -2,8 +2,9 @@
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { DialogService } from "ng2-bootstrap-modal";
 
+import { BasicComponent } from '../../shared/basic.component';
 import { Person, Invitation } from '../../_models/index';
-import { UserService, InvitationService, ToastrService, ConsignmentService } from '../../_services/index';
+import { UserService, InvitationService, ToastrService, ConsignmentService, PagerService } from '../../_services/index';
 import { ConfirmComponent } from '../../_dialog/confirm.component';
 import { InvitationStatusEnum } from '../../_models/enums/index';
 
@@ -14,7 +15,7 @@ import { InvitationStatusEnum } from '../../_models/enums/index';
     selector: 'sidebar',
 })
 
-export class SidebarComponent implements OnInit {
+export class SidebarComponent extends BasicComponent implements OnInit {
 
     currentUser: Person;
     sidebarActive = true;
@@ -22,7 +23,9 @@ export class SidebarComponent implements OnInit {
     constructor(private userService: UserService,
         private dialogService: DialogService,
         private invitationService: InvitationService,
-        private toastrService: ToastrService) {
+        private toastrService: ToastrService,
+        private pagerService: PagerService) {
+        super(pagerService);
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 

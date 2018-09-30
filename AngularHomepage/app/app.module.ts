@@ -44,6 +44,7 @@ import { AdminPanel } from './home/administrator/admin-panel.component';
 import { UserSettingsComponent } from './home/user-settings/user-settings.component';
 import { BasicComponent } from './shared/basic.component';
 import { FriendsComponent } from './user-profile/friends.component';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
     imports: [
@@ -81,7 +82,8 @@ import { FriendsComponent } from './user-profile/friends.component';
         AdminPanel,
         UserSettingsComponent,
         FriendsComponent,
-        BasicComponent
+        BasicComponent,
+        FilterPipe,
     ],
     providers: [
         AuthGuard,

@@ -1,9 +1,11 @@
 ﻿import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 
+import { BasicComponent } from '../shared/basic.component';
 import { Person, Invitation } from '../_models/index';
-import { UserService } from '../_services/index';
+import { UserService, PagerService } from '../_services/index';
 import { Directive, HostListener } from "@angular/core";
+import { FilterPipe } from '../filter.pipe';
 
 @Component({
     moduleId: module.id,
@@ -11,13 +13,14 @@ import { Directive, HostListener } from "@angular/core";
     templateUrl: 'navbar.component.html',
 })
 
-export class NavbarComponent{
+export class NavbarComponent extends BasicComponent implements OnInit{
 
-    constructor(private userService: UserService) {
+    constructor(private userService: UserService,
+                private pagerService: PagerService) {
 
-        
+        super(pagerService);
     }
-
+    
 
 
 }

@@ -57,4 +57,32 @@ export class BasicComponent
 
         return this.pagedItems;
     }
+
+    users = [
+        {
+            firstName: 'Anton',
+            lastName: 'Nystedt',
+            token: 'xaDwdadda-dgmimgioAfNFionifna9204fawmio',
+        },
+        {
+            firstName: 'Pontus',
+            lastName: 'Vikberg',
+            token: 'ddDAWIDNIdnianidadAiondnidANDIo',
+        },
+        {
+            firstName: 'Kalle',
+            lastName: 'Pettersson',
+            token: 'dLDIALdAnuinDAWNDUIN',
+        },
+        {
+            firstName: 'Elvira',
+            lastName: 'Nystedt',
+            token: 'LiNfionFAopfawOPAFwmpo',
+        },
+        {
+            firstName: 'Pontus',
+            lastName: 'Nystedt',
+            token: 'oPMFOMWPfoamfoamfpoawMfpoamwfpmO',
+        }
+    ]
 }

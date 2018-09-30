@@ -30,12 +30,20 @@
             </div>
 
             <div class="col-sm-6 offset-sm-5">
-                <div class="input-group pr-1">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
+                <div id="searchbar">
+                    <div class="input-group pr-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
+                        </div>
+                        <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Sök efter användare">
                     </div>
-                    <input type="text" class="form-control" placeholder="Sök">
                 </div>
+            </div>
+        </div>
+
+        <div [ngClass]="{'show' : (searchText)}" class="mt-3 card collapse">
+            <div class="dropdown-item link" *ngFor="let item of users | filter: searchText">
+                <i class="fas fa-user-circle"></i> {{item.firstName}} {{item.lastName}}
             </div>
         </div>
         
