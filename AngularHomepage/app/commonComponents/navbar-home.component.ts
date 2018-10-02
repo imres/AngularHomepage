@@ -2,6 +2,7 @@
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
 import { DialogService } from "ng2-bootstrap-modal";
+import { Router } from '@angular/router';
 
 import { BasicComponent } from '../shared/basic.component';
 import { Person, Invitation, ActiveConsignment } from '../_models/index';
@@ -40,6 +41,7 @@ export class NavbarHomeComponent extends BasicComponent implements OnInit {
         private consignmentService: ConsignmentService,
         private toastrService: ToastrService,
         private pagerService: PagerService,
+        private router: Router,
         )
     {
         super(pagerService);
@@ -50,6 +52,7 @@ export class NavbarHomeComponent extends BasicComponent implements OnInit {
     ngOnInit() {
         this.getInvitations();
         this.getFinishedConsignments();
+        this.getAllConsignments();
 
         this.invitationService.invitationList.subscribe(invitations => {
             this.invitations = invitations;
@@ -114,6 +117,10 @@ export class NavbarHomeComponent extends BasicComponent implements OnInit {
                 this.toastrService.ShowToastr(isConfirmed, false, "Inbjudan skickades");
 
             });
+    }
+
+    routeToConsignmentDetail(item: ActiveConsignment) {
+        this.router.navigate(['/consignment-detail', item.PackageId])
     }
 
     logOut() {

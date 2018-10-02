@@ -68,6 +68,17 @@ namespace UserManager.Controllers
 
         }
 
+        [ActionName("GetAllConsignments")]
+        [HttpGet]
+        public HttpResponseMessage GetAllConsignments()
+        {
+            //IEnumerable<InvitationDTO> invitations = _invitationRepository.GetInvitations(Id);
+            IEnumerable<ActiveConsignmentDTO> consignments = _consignmentService.GetAllConsignments();
+
+            return Request.CreateResponse(HttpStatusCode.OK, consignments);
+
+        }
+
         [ActionName("GetArchivedConsignments")]
         [HttpGet]
         public HttpResponseMessage GetArchivedConsignments(string Id)

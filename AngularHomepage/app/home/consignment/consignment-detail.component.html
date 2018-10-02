@@ -1,8 +1,11 @@
-﻿<navbar-home [invitations]="invitations" [invitationNotifications]="invitationNotifications"></navbar-home>
+﻿<navbar-home *ngIf="currentUser" [invitations]="invitations" [invitationNotifications]="invitationNotifications"></navbar-home>
+
+<navbar-front *ngIf="!currentUser"></navbar-front>
 
 <div class="container-fluid margin-navbar-top mb-3">
     <div class="row">
-        <sidebar class="col-lg-2 no-padding"></sidebar>
+        <sidebar *ngIf="currentUser" class="col-lg-2 no-padding"></sidebar>
+        <div *ngIf="!currentUser" class="col-lg-2 no-padding"></div>
 
         <div class="col-xl-6 col-lg-7 col-10 offset-1 p-2 pt-3"  *ngFor="let item of selectedConsignment">
                 <loading-spinner *ngIf="loading"></loading-spinner>

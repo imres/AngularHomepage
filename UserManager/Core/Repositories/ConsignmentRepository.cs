@@ -28,6 +28,18 @@ namespace UserManager.Core.Repositories
 
         }
 
+        public IEnumerable<ActiveConsignmentDTO> GetAllConsignments()
+        {
+            using (masterEntities context = new masterEntities())
+            {
+                IEnumerable<ActiveConsignment> allConsignments = context.ActiveConsignment;
+
+                var allConsignmentsDTO = Mapper.Map<IEnumerable<ActiveConsignmentDTO>>(allConsignments).ToList();
+
+                return allConsignmentsDTO;
+            }
+        }
+
         public IEnumerable<ActiveConsignmentDTO> GetArchivedConsignments(string PersonId)
         {
             using (masterEntities context = new masterEntities())

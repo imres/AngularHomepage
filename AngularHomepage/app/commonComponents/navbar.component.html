@@ -11,13 +11,18 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
                 </div>
-                <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Sök efter användare">
+                <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Sök efter användare eller försändelse">
             </div>
         </div>
-        <div *ngIf="searchText" class="dropdown-menu dropdown-menu--searchbar show">
-            <div class="dropdown-item link" *ngFor="let item of users | filter: searchText">
-                <h6 class="mb-0" *ngIf="item === -1">Ingen användare matchar sökningen</h6>
-                <ng-container *ngIf="item !== -1"><i class="fas fa-user-circle"></i> {{item.firstName}} {{item.lastName}}</ng-container>
+        <div *ngIf="searchText" class="dropdown-menu dropdown-menu--searchbar show py-0">
+            <div *ngFor="let item of users | filter: searchText" class="p-3">
+                <div class="mb-0" *ngIf="item === -1">
+                    <div *ngFor="let item of allConsignments | filter: searchText">
+                        <div *ngIf="item !== -1" class="link px-1" (click)="routeToConsignmentDetail(item)">{{item.Title}}</div>
+                        <div *ngIf="item === -1" class="px-1">Ingen användare eller försändelse matchar sökningen</div>
+                    </div>
+                </div>
+                <div *ngIf="item !== -1" class="link px-1"><i class="fas fa-user-circle"></i> {{item.firstName}} {{item.lastName}}</div>
             </div>
         </div>
     </div>
@@ -43,13 +48,18 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
                         </div>
-                        <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Sök efter användare">
+                        <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Sök efter användare eller försändelse">
                     </div>
                 </div>
-                <div *ngIf="searchText" class="dropdown-menu dropdown-menu--searchbar show">
-                    <div class="dropdown-item link" *ngFor="let item of users | filter: searchText">
-                        <h6 class="mb-0" *ngIf="item === -1">Ingen användare matchar sökningen</h6>
-                        <ng-container *ngIf="item !== -1"><i class="fas fa-user-circle"></i> {{item.firstName}} {{item.lastName}}</ng-container>
+                <div *ngIf="searchText" class="dropdown-menu dropdown-menu--searchbar show py-0">
+                    <div *ngFor="let item of users | filter: searchText" class="p-3">
+                        <div class="mb-0" *ngIf="item === -1">
+                            <div *ngFor="let item of allConsignments | filter: searchText">
+                                <div *ngIf="item !== -1" class="link px-1" (click)="routeToConsignmentDetail(item)">{{item.Title}}</div>
+                                <div *ngIf="item === -1" class="px-1">Ingen användare eller försändelse matchar sökningen</div>
+                            </div>
+                        </div>
+                        <div *ngIf="item !== -1" class="link px-1"><i class="fas fa-user-circle"></i> {{item.firstName}} {{item.lastName}}</div>
                     </div>
                 </div>
             </li>

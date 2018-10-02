@@ -37,6 +37,13 @@ export class ConsignmentService {
             );
     }
 
+    getAllConsignments() {
+        return this.http.get('http://localhost:65192/api/Consignment/GetAllConsignments/')
+            .map((response: Response) =>
+                response.json()
+            );
+    }
+
     getArchivedConsignments(personId: string) {
         return this.http.get('http://localhost:65192/api/Consignment/GetArchivedConsignments/' + personId)
             .map((response: Response) =>

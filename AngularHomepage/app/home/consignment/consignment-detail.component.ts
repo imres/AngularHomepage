@@ -43,31 +43,39 @@ export class ConsignmentDetailComponent extends BasicComponent implements OnInit
     }
 
     ngOnInit() {
-        this.getConsignments();
+        this.getAllConsignments();
         
     }
 
-    getConsignments() {
-        this.loading = true;
-        this.consignmentService.getConsignments(this.currentUser.PersonId).subscribe(res => {
-            this.consignments = res;
+    getAllConsignments() {
+        this.consignmentService.getAllConsignments().subscribe(res => {
+            this.allConsignments = res;
 
-            this.getArchivedConsignment();
+            this.getSelectedConsignment();
         });
     }
 
-    getArchivedConsignment() {
-        this.consignmentService.getArchivedConsignments(this.currentUser.PersonId).subscribe(res => {
-            this.consignments = this.consignments.concat(res);
+    //getConsignments() {
+    //    this.loading = true;
+    //    this.consignmentService.getConsignments(this.currentUser.PersonId).subscribe(res => {
+    //        this.consignments = res;
 
-            this.getSelectedConsignment();
-        })
-    }
+    //        this.getArchivedConsignment();
+    //    });
+    //}
+
+    //getArchivedConsignment() {
+    //    this.consignmentService.getArchivedConsignments(this.currentUser.PersonId).subscribe(res => {
+    //        this.consignments = this.consignments.concat(res);
+
+    //        this.getSelectedConsignment();
+    //    })
+    //}
 
     getSelectedConsignment() {
         this.selectedConsignmentPackageId = this.activatedRoute.snapshot.params['PackageId'];
 
-        this.selectedConsignment = this.consignments.filter(x => { return x.PackageId == this.selectedConsignmentPackageId });
+        this.selectedConsignment = this.allConsignments.filter(x => { return x.PackageId == this.selectedConsignmentPackageId });
         console.log(this.selectedConsignment);
 
         if (this.selectedConsignment) {

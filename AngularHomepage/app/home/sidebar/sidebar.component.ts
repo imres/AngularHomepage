@@ -1,12 +1,14 @@
 ﻿import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { DialogService } from "ng2-bootstrap-modal";
+import { Router } from '@angular/router';
 
 import { BasicComponent } from '../../shared/basic.component';
-import { Person, Invitation } from '../../_models/index';
+import { Person, Invitation, ActiveConsignment } from '../../_models/index';
 import { UserService, InvitationService, ToastrService, ConsignmentService, PagerService } from '../../_services/index';
 import { ConfirmComponent } from '../../_dialog/confirm.component';
 import { InvitationStatusEnum } from '../../_models/enums/index';
+import { FilterPipe } from '../../filter.pipe';
 
 
 @Component({
@@ -23,13 +25,16 @@ export class SidebarComponent extends BasicComponent implements OnInit {
     constructor(private userService: UserService,
         private dialogService: DialogService,
         private invitationService: InvitationService,
+        private consignmentService: ConsignmentService,
         private toastrService: ToastrService,
-        private pagerService: PagerService) {
+        private pagerService: PagerService,
+        private router: Router) {
         super(pagerService);
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
     ngOnInit() {
+        this.getAllConsignments();
 
     }
 
@@ -45,5 +50,9 @@ export class SidebarComponent extends BasicComponent implements OnInit {
                 this.toastrService.ShowToastr(isConfirmed, false, "Inbjudan skickades");
 
             });
+    }
+
+    routeToConsignmentDetail(item: ActiveConsignment) {
+        this.router.navigate(['/consignment-detail', item.PackageId])
     }
 }

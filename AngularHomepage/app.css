@@ -447,8 +447,12 @@ btn.btn-primary:active, .btn-primary:focus{
     border-radius: 0.25rem;
 }
 
-/* Cover */
+.dropdown-menu--searchbar__right {
+    right: 1rem;
+    left: auto;
+}
 
+/* Cover */
 .primary-gradient {
     background: #56CCF2; /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #2F80ED, #56CCF2); /* Chrome 10-25, Safari 5.1-6 */
@@ -925,6 +929,7 @@ btn.btn-primary:active, .btn-primary:focus{
 .phone-sidebar-link:hover {
     color: var(--primary);
     text-decoration: none;
+    cursor: pointer;
 }
 
 /*.phone-sidebar-link.disabled:hover {

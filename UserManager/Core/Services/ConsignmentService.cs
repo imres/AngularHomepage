@@ -15,6 +15,7 @@ namespace UserManager.Core.Services
     public class ConsignmentService : IConsignmentService
     {
         private UnitOfWork unitOfWork = new UnitOfWork(new masterEntities());
+        private object allConsignments;
 
         public Consignment CreateConsignmentFromInvitation(InvitationExtended invitation)
         {
@@ -76,6 +77,15 @@ namespace UserManager.Core.Services
             unitOfWork.Save();
 
             return activeConsignmentsDTO;
+        }
+
+        public IEnumerable<ActiveConsignmentDTO> GetAllConsignments()
+        {
+            IEnumerable<ActiveConsignment> consignments = unitOfWork.ActiveConsignment.GetAll();
+
+            var allConsignmentsDTO = Mapper.Map<IEnumerable<ActiveConsignmentDTO>>(consignments).ToList();
+
+            return allConsignmentsDTO;
         }
     }
 }

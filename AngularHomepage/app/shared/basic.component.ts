@@ -18,8 +18,11 @@ export class BasicComponent
 {
     pager: Pager = new Pager();
     pagedItems: any[];
+    allConsignments: ActiveConsignment[];
 
-    constructor(private pagerService: PagerService) {
+    constructor(private pagerService: PagerService,
+        private consignmentService: ConsignmentService,
+        ) {
 
     }
 
@@ -83,6 +86,27 @@ export class BasicComponent
             firstName: 'Pontus',
             lastName: 'Nystedt',
             token: 'oPMFOMWPfoamfoamfpoawMfpoamwfpmO',
-        }
+        },
+        {
+            firstName: 'Petter',
+            lastName: 'Brännström',
+            token: 'LiNfionFAopfawOPAFwmpoAdwadAWDAWddg3dmoaidmioawAMDIMWOIdm',
+        },
+        {
+            firstName: 'Elvira',
+            lastName: 'Larsson',
+            token: 'LiNfionFAopfawOPAFwmpoAIMIODMWAmfAkdOPkdoKPAKDpo',
+        },
+        {
+            firstName: 'Kalle',
+            lastName: 'Nyström',
+            token: 'LiNfionFAopfawOPAFwmpoAKDPOAKdakodPkawodnugnUIANDWu',
+        },
     ]
+
+    getAllConsignments() {
+        this.consignmentService.getAllConsignments().subscribe(res => {
+            this.allConsignments = res;
+        });
+    }
 }
