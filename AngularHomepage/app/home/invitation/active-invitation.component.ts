@@ -35,7 +35,8 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
     invitationStatus = InvitationStatusEnum;
     showPackageIdForm = false;
     unrespondedInvitations: Invitation[];
-    
+
+    showPopover = false;
     
     
     invitationExtended: InvitationExtended;

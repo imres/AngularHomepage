@@ -37,8 +37,25 @@
                 <div class="card mb-3 h-100">
                     <div class="card-body" [ngClass]="{'card-border-receiver' : HasReceiverRole(item), 'card-border-sender' : !HasReceiverRole(item)}">
                         <h5 class="card-title title-border">{{item.Title}}</h5>
-                        <p class="card-text" *ngIf="HasReceiverRole(item)"><strong class="receiver-color">Avsändare:</strong> {{item.SenderPersonId}}</p>
-                        <p class="card-text" *ngIf="!HasReceiverRole(item)"><strong class="sender-color">Mottagare:</strong> {{item.ReceiverPersonId}}</p>
+
+                        <div class="row pr-3 mb-3">
+                            <div class="col-10">
+                                <p class="card-text" *ngIf="HasReceiverRole(item)"><strong class="receiver-color">Avsändare:</strong> {{item.SenderPersonId}}</p>
+                                <p class="card-text" *ngIf="!HasReceiverRole(item)"><strong class="sender-color">Mottagare:</strong> {{item.ReceiverPersonId}}</p>
+                            </div>
+                            <div *ngIf="!HasReceiverRole(item)" class="col-2 no-padding dropleft text-right">
+                                <a data-toggle="dropdown" class="pl-2" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-info"></i></a>
+                                <div class="dropdown-menu text-left">
+                                    <a class="dropdown-item disabled">Anton Nystedt</a>
+                                    <a class="dropdown-item disabled">Hyttlidgatan 69B</a>
+                                    <a class="dropdown-item disabled">93137, Skellefteå</a>
+                                    <div class="px-3 py-2">
+                                        <button class="btn btn-primary">Skicka uppgifterna på mail</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <p class="card-text">Status: <strong>{{translateInvitationStatus(item)}}</strong></p>
                         <p class="card-text">Begärd summa: {{item.RequestedDepositAmount}} kronor</p>
                         <p class="card-text">Inbjudan skickad: {{item.StartDate | date:'yyyy-MM-dd, HH:mm'}}</p>
