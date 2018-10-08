@@ -52,7 +52,16 @@ namespace UserManager.Core.Repositories
             //Only hit PostNord api if one hour passed since last update
             if (!timeCheckEnabled || hourDifference > 0.05)
             {
-                var packageInformation = GetPackageInformation(consignment.PackageId).ToString();
+                var packageInformation = string.Empty;
+
+                try
+                {
+                    packageInformation = GetPackageInformation(consignment.PackageId).ToString();
+                }
+                catch (ArgumentNullException)
+                {
+                    packageInformation = PostNordResponseData.PostNordResponseMock;
+                }
 
                 entity.Content = packageInformation;
                 entity.LastUpdated = DateTime.Now;
@@ -73,7 +82,7 @@ namespace UserManager.Core.Repositories
             {
                 packageInformation = GetPackageInformation(consignment.PackageId).ToString();
             }
-            catch
+            catch (ArgumentNullException)
             {
                 packageInformation = PostNordResponseData.PostNordResponseMock;
             }
@@ -120,8 +129,10 @@ namespace UserManager.Core.Repositories
 
                     result = JsonConvert.DeserializeObject<Object>(respbody);
 
-                    //.trackingInformationResponse.shipments.Any()
-                    //var test = result.GetType().GetProperty("shipments").GetValue(result);
+                    var trackingInfo = JsonConvert.DeserializeObject<TrackingInformationResponse>(result.ToString());
+
+                    if (!trackingInfo.shipments.Any())
+                        throw new ArgumentNullException();
 
                     if (result != null)
                         i = 4;

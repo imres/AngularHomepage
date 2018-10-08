@@ -46,6 +46,13 @@ export class UserService {
             );
     }
 
+    getAll() {
+        return this.http.get('http://localhost:65192/api/User/GetAll')
+            .map((response: Response) =>
+                response.json()
+            );
+    }
+
     create(user: Person) {
         console.log(user);
         return this.http.post('http://localhost:65192/api/User/Register',

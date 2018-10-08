@@ -37,6 +37,17 @@ namespace UserManager.Controllers
             _userService = userService;
         }
 
+        [ActionName("GetAll")]
+        [HttpGet]
+        public HttpResponseMessage GetAll()
+        {
+            IEnumerable<Person> persons = unitOfWork.Person.GetAll();
+
+            var personsDto = Mapper.Map<IEnumerable<PersonDTO>>(persons).ToList();
+
+            return Request.CreateResponse(HttpStatusCode.OK, personsDto);
+        }
+
         //[Route("TSPRoute")]
         [ActionName("Register")]
         [HttpPost]
