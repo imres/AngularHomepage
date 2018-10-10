@@ -1,8 +1,8 @@
 ﻿import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
-import { User, Person } from '../../_models/index';
+import { User, Person } from '../_models/index';
 
-import { AlertService, UserService } from '../../_services/index';
+import { AlertService, UserService } from '../_services/index';
 
 @Component({
     moduleId: module.id,

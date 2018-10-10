@@ -65,8 +65,6 @@ export class BasicComponent
 
     getUsers() {
         this.userService.getAllUsers().subscribe(res => {
-            console.log(res);
-
             this.users = res;
         });
     }

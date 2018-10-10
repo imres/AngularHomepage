@@ -55,23 +55,6 @@ export class ConsignmentDetailComponent extends BasicComponent implements OnInit
         });
     }
 
-    //getConsignments() {
-    //    this.loading = true;
-    //    this.consignmentService.getConsignments(this.currentUser.PersonId).subscribe(res => {
-    //        this.consignments = res;
-
-    //        this.getArchivedConsignment();
-    //    });
-    //}
-
-    //getArchivedConsignment() {
-    //    this.consignmentService.getArchivedConsignments(this.currentUser.PersonId).subscribe(res => {
-    //        this.consignments = this.consignments.concat(res);
-
-    //        this.getSelectedConsignment();
-    //    })
-    //}
-
     getSelectedConsignment() {
         this.selectedConsignmentPackageId = this.activatedRoute.snapshot.params['PackageId'];
 

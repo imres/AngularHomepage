@@ -56,4 +56,12 @@ export class SidebarComponent extends BasicComponent implements OnInit {
     routeToConsignmentDetail(item: ActiveConsignment) {
         this.router.navigate(['/consignment-detail', item.PackageId])
     }
+
+    routeToUserProfile(item: Person) {
+        if (this.currentUser.PersonId != item.PersonId)
+            this.router.navigate(['/user', item.PersonId])
+
+        if (this.currentUser.PersonId == item.PersonId)
+            this.router.navigate(['/profile'])
+    }
 }

@@ -2,7 +2,7 @@
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
 import { DialogService } from "ng2-bootstrap-modal";
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { BasicComponent } from '../shared/basic.component';
 import { Person, Invitation, ActiveConsignment } from '../_models/index';
@@ -33,6 +33,7 @@ export class NavbarHomeComponent extends BasicComponent implements OnInit {
     isClassActive: boolean;
     invitationStatus = InvitationStatusEnum;
     notifications = 0; 
+    selectedUserPersonId: string;
 
     constructor(private userService: UserService,
         private invitationService: InvitationService,
@@ -42,6 +43,7 @@ export class NavbarHomeComponent extends BasicComponent implements OnInit {
         private toastrService: ToastrService,
         private pagerService: PagerService,
         private router: Router,
+        private activatedRoute: ActivatedRoute,
         )
     {
         super(pagerService);
@@ -121,7 +123,15 @@ export class NavbarHomeComponent extends BasicComponent implements OnInit {
     }
 
     routeToConsignmentDetail(item: ActiveConsignment) {
-        this.router.navigate(['/consignment-detail', item.PackageId])
+        this.router.navigate(['/consignment-detail', item.PackageId]);
+    }
+
+    routeToUserProfile(item: Person) {
+        if (this.currentUser.PersonId != item.PersonId)
+            this.router.navigate(['/user', item.PersonId])
+
+        if (this.currentUser.PersonId == item.PersonId)
+            this.router.navigate(['/profile'])
     }
 
     logOut() {
