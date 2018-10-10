@@ -269,7 +269,9 @@ img {
 .mb-2rem {
     margin-bottom: 2rem !important;
 }
-
+.ml-82 {
+    margin-left: 82px;
+}
 
 /*Egna padding*/
 .p-6 {
@@ -995,6 +997,10 @@ btn.btn-primary:active, .btn-primary:focus{
 .dropdown-menu {
     border: 0;
     box-shadow: var(--bottom-shadow);
+}
+
+.dropdown-menu .btn-outline-primary {
+    color: var(--primary);
 }
 
 #content {

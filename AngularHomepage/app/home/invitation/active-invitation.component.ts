@@ -142,4 +142,14 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
             return "Väntar på att avsändaren ska skicka paketet."
     }
 
+    copyMessage(val: string) {
+        let selBox = document.createElement('textarea');
+        selBox.value = val;
+        document.body.appendChild(selBox);
+        selBox.focus();
+        selBox.select();
+        document.execCommand('copy');
+        document.body.removeChild(selBox);
+    }
+
 }
