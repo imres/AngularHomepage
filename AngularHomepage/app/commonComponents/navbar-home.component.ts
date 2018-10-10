@@ -53,6 +53,7 @@ export class NavbarHomeComponent extends BasicComponent implements OnInit {
         this.getInvitations();
         this.getFinishedConsignments();
         this.getAllConsignments();
+        this.getUsers();
 
         this.invitationService.invitationList.subscribe(invitations => {
             this.invitations = invitations;

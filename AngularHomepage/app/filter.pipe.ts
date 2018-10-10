@@ -7,11 +7,11 @@ export class FilterPipe implements PipeTransform {
         if (!items) return [];
         if (!searchText) return items;
         let result = items.filter(it => {
-            if(it.firstName) {
-                return it.firstName.toLowerCase().startsWith(searchText.toLowerCase())
-                || it.lastName.toLowerCase().startsWith(searchText.toLowerCase())
-                || (it.firstName.toLowerCase() + ' ' + it.lastName.toLowerCase()).startsWith(searchText.toLowerCase())
-                || it.token == searchText;
+            if(it.FirstName) {
+                return it.FirstName.toLowerCase().startsWith(searchText.toLowerCase())
+                || it.LastName.toLowerCase().startsWith(searchText.toLowerCase())
+                || (it.FirstName.toLowerCase() + ' ' + it.LastName.toLowerCase()).startsWith(searchText.toLowerCase())
+                || it.Token == searchText;
             }
             if(it.PackageId) {
                 return it.PackageId.toLowerCase() == searchText.toLowerCase();

@@ -19,9 +19,11 @@ export class BasicComponent
     pager: Pager = new Pager();
     pagedItems: any[];
     allConsignments: ActiveConsignment[];
+    users: Person[];
 
     constructor(private pagerService: PagerService,
         private consignmentService: ConsignmentService,
+        private userService: UserService,
         ) {
 
     }
@@ -61,48 +63,13 @@ export class BasicComponent
         return this.pagedItems;
     }
 
-    users = [
-        {
-            firstName: 'Anton',
-            lastName: 'Nystedt',
-            token: 'xaDwdadda-dgmimgioAfNFionifna9204fawmio',
-        },
-        {
-            firstName: 'Pontus',
-            lastName: 'Vikberg',
-            token: 'ddDAWIDNIdnianidadAiondnidANDIo',
-        },
-        {
-            firstName: 'Kalle',
-            lastName: 'Pettersson',
-            token: 'dLDIALdAnuinDAWNDUIN',
-        },
-        {
-            firstName: 'Elvira',
-            lastName: 'Nystedt',
-            token: 'LiNfionFAopfawOPAFwmpo',
-        },
-        {
-            firstName: 'Pontus',
-            lastName: 'Nystedt',
-            token: 'oPMFOMWPfoamfoamfpoawMfpoamwfpmO',
-        },
-        {
-            firstName: 'Petter',
-            lastName: 'Brännström',
-            token: 'LiNfionFAopfawOPAFwmpoAdwadAWDAWddg3dmoaidmioawAMDIMWOIdm',
-        },
-        {
-            firstName: 'Elvira',
-            lastName: 'Larsson',
-            token: 'LiNfionFAopfawOPAFwmpoAIMIODMWAmfAkdOPkdoKPAKDpo',
-        },
-        {
-            firstName: 'Kalle',
-            lastName: 'Nyström',
-            token: 'LiNfionFAopfawOPAFwmpoAKDPOAKdakodPkawodnugnUIANDWu',
-        },
-    ]
+    getUsers() {
+        this.userService.getAllUsers().subscribe(res => {
+            console.log(res);
+
+            this.users = res;
+        });
+    }
 
     getAllConsignments() {
         this.consignmentService.getAllConsignments().subscribe(res => {

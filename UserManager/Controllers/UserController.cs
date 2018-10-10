@@ -37,9 +37,9 @@ namespace UserManager.Controllers
             _userService = userService;
         }
 
-        [ActionName("GetAll")]
+        [ActionName("GetAllUsers")]
         [HttpGet]
-        public HttpResponseMessage GetAll()
+        public HttpResponseMessage GetAllUsers()
         {
             IEnumerable<Person> persons = unitOfWork.Person.GetAll();
 
