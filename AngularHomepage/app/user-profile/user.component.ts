@@ -40,8 +40,7 @@ export class UserComponent implements OnInit {
         this.activatedRoute.params.subscribe(res => {
             this.selectedUserPersonId = res.PersonId;
             this.getSelectedUser();
-            console.log(this.selectedUserPersonId);
-        });    
+        });
     }
 
     getSelectedUser() {

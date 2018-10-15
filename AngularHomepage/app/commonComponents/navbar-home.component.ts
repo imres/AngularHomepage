@@ -34,6 +34,7 @@ export class NavbarHomeComponent extends BasicComponent implements OnInit {
     invitationStatus = InvitationStatusEnum;
     notifications = 0; 
     selectedUserPersonId: string;
+    searchText: string;
 
     constructor(private userService: UserService,
         private invitationService: InvitationService,
@@ -124,6 +125,7 @@ export class NavbarHomeComponent extends BasicComponent implements OnInit {
 
     routeToConsignmentDetail(item: ActiveConsignment) {
         this.router.navigate(['/consignment-detail', item.PackageId]);
+        this.searchText = '';
     }
 
     routeToUserProfile(item: Person) {
@@ -132,6 +134,8 @@ export class NavbarHomeComponent extends BasicComponent implements OnInit {
 
         if (this.currentUser.PersonId == item.PersonId)
             this.router.navigate(['/profile'])
+
+        this.searchText = '';
     }
 
     logOut() {
