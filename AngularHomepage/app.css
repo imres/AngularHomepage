@@ -6,6 +6,7 @@
     /*--blue: #0069d9;*/
     --red: #FF1930;
     --yellow: #EDE618;
+    --grey: #f7f9fa;
 }
 
 .color-primary {
@@ -975,6 +976,14 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 /* Prio 1 */
+.even {
+    background-color: var(--grey);
+}
+
+.odd{
+    background-color: white;
+}
+
 .disabled:hover {
     text-decoration: none;
     color: black;
