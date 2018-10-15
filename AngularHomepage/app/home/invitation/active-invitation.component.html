@@ -44,13 +44,12 @@
                                 <p class="card-text" *ngIf="!HasReceiverRole(item)"><strong class="sender-color">Mottagare:</strong> {{item.ReceiverPersonId}}</p>
                             </div>
                             <div *ngIf="!HasReceiverRole(item)" class="col-2 no-padding dropleft text-right">
-                                <a data-toggle="dropdown" class="pl-2" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-info"></i></a>
-                                <div class="dropdown-menu text-left">
-                                    <a class="dropdown-item disabled">Anton Nystedt</a>
-                                    <a class="dropdown-item disabled">Hyttlidgatan 69B</a>
-                                    <a class="dropdown-item disabled">93137 Skellefteå</a>
+                                <a data-toggle="dropdown" class="pl-2" role="button" aria-haspopup="true" aria-expanded="false" (click)="getUserById(item)"><i class="fas fa-info"></i></a>
+                                <div class="dropdown-menu text-left" *ngFor="let user of user">
+                                    <a class="dropdown-item disabled">{{user.FirstName}} {{user.LastName}}</a>
+                                    <a class="dropdown-item disabled">{{user.Address}}, {{user.PostalCode}}</a>
                                     <div class="px-3 py-2">                                        
-                                        <button class="btn btn-outline-primary btn-block mb-3" role="button" (click)="copyMessage('Anton Nystedt, Hyttlidgatan 69B, 93137 Skellefteå')" value="Click to copy">Kopiera uppgifterna</button>
+                                        <button class="btn btn-outline-primary btn-block mb-3" role="button" (click)="copyMessage(user)" value="Click to copy">Kopiera uppgifterna</button>
                                         <button class="btn btn-primary" role="button">Skicka uppgifterna på mail</button>
                                     </div>
                                 </div>

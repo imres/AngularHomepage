@@ -20,12 +20,14 @@ export class BasicComponent
     pagedItems: any[];
     allConsignments: ActiveConsignment[];
     users: Person[];
+    user: Person[];
+    currentUser: Person;
 
     constructor(private pagerService: PagerService,
         private consignmentService: ConsignmentService,
         private userService: UserService,
         ) {
-
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
     orderBySelection(event: any, itemList: any[]): any[] {
@@ -67,6 +69,10 @@ export class BasicComponent
         this.userService.getAllUsers().subscribe(res => {
             this.users = res;
         });
+    }
+
+    getUserById(item: any) {
+        this.user = this.users.filter(x => x.PersonId == item.ReceiverPersonId && x.PersonId != this.currentUser.PersonId || x.PersonId == item.SenderPersonId && x.PersonId != this.currentUser.PersonId);
     }
 
     getAllConsignments() {
