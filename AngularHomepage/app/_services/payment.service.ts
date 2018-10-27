@@ -15,7 +15,7 @@ export class PaymentService {
     
 
     processPayment(invitation: Invitation) {
-        return this.http.post('http://localhost:65192/api/Payment/MockPayment',
+        return this.http.post('http://localhost:65192/api/Payment/Payment',
             JSON.stringify(invitation),
             { headers: this.headers })
             .map((response: Response) =>

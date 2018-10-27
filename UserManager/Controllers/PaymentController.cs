@@ -31,6 +31,35 @@ namespace UserManager.Controllers
             _paymentService = paymentService;
         }
 
+        [ActionName("Payment")]
+        [HttpPost]
+        public HttpResponseMessage Payment(InvitationDTO invitation)
+        {
+
+            using (HttpClient http = new HttpClient())
+            {
+                this.Request.RequestUri = new Uri("http://localhost:65192");
+
+                if (this.Request.Method == HttpMethod.Get)
+                {
+                    this.Request.Content = null;
+                }
+
+                Payment payment;
+
+                try
+                {
+                    payment = _paymentService.ProcessPayment(invitation);
+                }
+                catch (InvalidOperationException)
+                {
+                    return Request.CreateResponse(HttpStatusCode.BadRequest);
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK, payment);
+            }
+        }
+
         [ActionName("MockPayment")]
         [HttpPost]
         public HttpResponseMessage MockPayment(InvitationDTO invitation)

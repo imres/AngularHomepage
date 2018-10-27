@@ -10,6 +10,7 @@ namespace UserManager.Core.Interfaces
 {
     public interface IPaymentService
     {
+        Payment ProcessPayment(InvitationDTO invitationDTO);
         bool MockProcessPayment(InvitationDTO invitationDTO);
     }
 }
