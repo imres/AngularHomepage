@@ -46,8 +46,8 @@ export class UserService {
             );
     }
 
-    getAll() {
-        return this.http.get('http://localhost:65192/api/User/GetAll')
+    getAllUsers() {
+        return this.http.get('http://localhost:65192/api/User/GetAllUsers')
             .map((response: Response) =>
                 response.json()
             );

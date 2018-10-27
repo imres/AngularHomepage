@@ -51,30 +51,18 @@ export class ConsignmentDetailComponent extends BasicComponent implements OnInit
         this.consignmentService.getAllConsignments().subscribe(res => {
             this.allConsignments = res;
 
-            this.getSelectedConsignment();
+            this.getSelectedConsignmentPackageId();
         });
     }
 
-    //getConsignments() {
-    //    this.loading = true;
-    //    this.consignmentService.getConsignments(this.currentUser.PersonId).subscribe(res => {
-    //        this.consignments = res;
-
-    //        this.getArchivedConsignment();
-    //    });
-    //}
-
-    //getArchivedConsignment() {
-    //    this.consignmentService.getArchivedConsignments(this.currentUser.PersonId).subscribe(res => {
-    //        this.consignments = this.consignments.concat(res);
-
-    //        this.getSelectedConsignment();
-    //    })
-    //}
+    getSelectedConsignmentPackageId() {
+        this.activatedRoute.params.subscribe(res => {
+            this.selectedConsignmentPackageId = res.PackageId;
+            this.getSelectedConsignment();
+        });   
+    }
 
     getSelectedConsignment() {
-        this.selectedConsignmentPackageId = this.activatedRoute.snapshot.params['PackageId'];
-
         this.selectedConsignment = this.allConsignments.filter(x => { return x.PackageId == this.selectedConsignmentPackageId });
         console.log(this.selectedConsignment);
 

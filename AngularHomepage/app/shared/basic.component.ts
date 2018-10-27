@@ -19,11 +19,15 @@ export class BasicComponent
     pager: Pager = new Pager();
     pagedItems: any[];
     allConsignments: ActiveConsignment[];
+    users: Person[];
+    user: Person[];
+    currentUser: Person;
 
     constructor(private pagerService: PagerService,
         private consignmentService: ConsignmentService,
+        private userService: UserService,
         ) {
-
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
     orderBySelection(event: any, itemList: any[]): any[] {
@@ -61,48 +65,15 @@ export class BasicComponent
         return this.pagedItems;
     }
 
-    users = [
-        {
-            firstName: 'Anton',
-            lastName: 'Nystedt',
-            token: 'xaDwdadda-dgmimgioAfNFionifna9204fawmio',
-        },
-        {
-            firstName: 'Pontus',
-            lastName: 'Vikberg',
-            token: 'ddDAWIDNIdnianidadAiondnidANDIo',
-        },
-        {
-            firstName: 'Kalle',
-            lastName: 'Pettersson',
-            token: 'dLDIALdAnuinDAWNDUIN',
-        },
-        {
-            firstName: 'Elvira',
-            lastName: 'Nystedt',
-            token: 'LiNfionFAopfawOPAFwmpo',
-        },
-        {
-            firstName: 'Pontus',
-            lastName: 'Nystedt',
-            token: 'oPMFOMWPfoamfoamfpoawMfpoamwfpmO',
-        },
-        {
-            firstName: 'Petter',
-            lastName: 'Brännström',
-            token: 'LiNfionFAopfawOPAFwmpoAdwadAWDAWddg3dmoaidmioawAMDIMWOIdm',
-        },
-        {
-            firstName: 'Elvira',
-            lastName: 'Larsson',
-            token: 'LiNfionFAopfawOPAFwmpoAIMIODMWAmfAkdOPkdoKPAKDpo',
-        },
-        {
-            firstName: 'Kalle',
-            lastName: 'Nyström',
-            token: 'LiNfionFAopfawOPAFwmpoAKDPOAKdakodPkawodnugnUIANDWu',
-        },
-    ]
+    getUsers() {
+        this.userService.getAllUsers().subscribe(res => {
+            this.users = res;
+        });
+    }
+
+    getUserById(item: any) {
+        this.user = this.users.filter(x => x.PersonId == item.ReceiverPersonId && x.PersonId != this.currentUser.PersonId || x.PersonId == item.SenderPersonId && x.PersonId != this.currentUser.PersonId);
+    }
 
     getAllConsignments() {
         this.consignmentService.getAllConsignments().subscribe(res => {

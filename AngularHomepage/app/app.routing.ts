@@ -7,7 +7,8 @@ import { RegisterComponent } from './register/index';
 import { AuthGuard } from './_guards/index';
 import { FrontComponent } from './frontpage/index';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { UserSettingsComponent } from './home/user-settings/user-settings.component';
+import { UserSettingsComponent } from './user-profile/user-settings.component';
+import { UserComponent } from './user-profile/user.component';
 import { ConsignmentHistoryComponent } from './home/consignment/consignment-history.component';
 import { ConsignmentDetailComponent } from './home/consignment/consignment-detail.component';
 
@@ -23,6 +24,7 @@ const appRoutes: Routes = [
     { path: 'user-settings', component: UserSettingsComponent },
     { path: 'history', component: ConsignmentHistoryComponent },
     { path: 'consignment-detail/:PackageId', component: ConsignmentDetailComponent },
+    { path: 'user/:PersonId', component: UserComponent },
 
 
     // otherwise redirect to home

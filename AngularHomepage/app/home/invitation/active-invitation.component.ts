@@ -35,8 +35,6 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
     invitationStatus = InvitationStatusEnum;
     showPackageIdForm = false;
     unrespondedInvitations: Invitation[];
-
-    showPopover = false;
     
     
     invitationExtended: InvitationExtended;
@@ -50,6 +48,7 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
         private paymentService: PaymentService,
         private filterService: FilterService,
         private pagerService: PagerService,
+        private userService: UserService,
     ) {
         super(pagerService)
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -58,6 +57,7 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
 
     ngOnInit() {
         this.getInvitations();
+        this.getUsers();
 
         this.invitationService.invitationList.subscribe(invitations => {
             if (!invitations) return;
@@ -140,6 +140,16 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
             return "Betala!"
         else if (this.currentUser.PersonId == invite.ReceiverPersonId && invite.Status == InvitationStatusEnum.AmountDeposited)
             return "Väntar på att avsändaren ska skicka paketet."
+    }
+
+    copyMessage(user: Person) {
+        let selBox = document.createElement('textarea');
+        selBox.value = user.FirstName + ' ' + user.LastName + ', ' + user.Address + ', ' + user.PostalCode;
+        document.body.appendChild(selBox);
+        selBox.focus();
+        selBox.select();
+        document.execCommand('copy');
+        document.body.removeChild(selBox);
     }
 
 }

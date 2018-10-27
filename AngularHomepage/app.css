@@ -6,6 +6,7 @@
     /*--blue: #0069d9;*/
     --red: #FF1930;
     --yellow: #EDE618;
+    --grey: #f7f9fa;
 }
 
 .color-primary {
@@ -269,7 +270,9 @@ img {
 .mb-2rem {
     margin-bottom: 2rem !important;
 }
-
+.ml-82 {
+    margin-left: 82px;
+}
 
 /*Egna padding*/
 .p-6 {
@@ -973,6 +976,14 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 /* Prio 1 */
+.even {
+    background-color: var(--grey);
+}
+
+.odd{
+    background-color: white;
+}
+
 .disabled:hover {
     text-decoration: none;
     color: black;
@@ -995,6 +1006,10 @@ btn.btn-primary:active, .btn-primary:focus{
 .dropdown-menu {
     border: 0;
     box-shadow: var(--bottom-shadow);
+}
+
+.dropdown-menu .btn-outline-primary {
+    color: var(--primary);
 }
 
 #content {

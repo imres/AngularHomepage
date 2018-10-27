@@ -38,10 +38,11 @@ import { NavbarHomeComponent } from './commonComponents/navbar-home.component';
 import { ClickStopPropagation } from './commonComponents/navbar.component';
 import { LoginSiteComponent } from './login/loginsite.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserComponent } from './user-profile/user.component';
 import { ActiveInvitationComponent } from './home/invitation/active-invitation.component';
 import { SidebarComponent } from './home/sidebar/sidebar.component';
 import { AdminPanel } from './home/administrator/admin-panel.component';
-import { UserSettingsComponent } from './home/user-settings/user-settings.component';
+import { UserSettingsComponent } from './user-profile/user-settings.component';
 import { BasicComponent } from './shared/basic.component';
 import { FriendsComponent } from './user-profile/friends.component';
 import { FilterPipe } from './filter.pipe';
@@ -75,6 +76,7 @@ import { FilterPipe } from './filter.pipe';
         ClickStopPropagation,
         LoginSiteComponent,
         UserProfileComponent,
+        UserComponent,
         NavbarHomeComponent,
         UserGuideComponent,
         ActiveInvitationComponent,

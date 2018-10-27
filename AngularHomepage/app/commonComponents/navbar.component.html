@@ -22,11 +22,10 @@
                         <div *ngIf="item === -1" class="px-1">Ingen användare eller försändelse matchar sökningen</div>
                     </div>
                 </div>
-                <div *ngIf="item !== -1" class="link px-1"><i class="fas fa-user-circle"></i> {{item.firstName}} {{item.lastName}}</div>
+                <div *ngIf="item !== -1" class="link px-1" data-toggle="modal" data-target="#loginModal"><i class="fas fa-user-circle"></i> {{item.FirstName}} {{item.LastName}}</div>
             </div>
         </div>
     </div>
-    
     <a href="" class="nav-item nav-link d-none d-sm-block" [routerLink]="['/login']">Logga in</a>
 
     <div class="nav-item collapse w-100" id="navbarSupportedContent">
@@ -66,3 +65,24 @@
         </ul>
     </div>
 </nav>
+
+
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog danger" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Begäran misslyckades</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Du måste logga in för att besöka en användare!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" [routerLink]="['/login']" data-dismiss="modal">Logga in</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Stäng</button>
+            </div>
+        </div>
+    </div>
+</div>

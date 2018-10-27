@@ -29,7 +29,7 @@
                                         <div class="col-sm-4 text-center"><strong>Händelse</strong></div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" *ngFor="let item of events">
+                                <div class="list-group-item" *ngFor="let item of events ; let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even }">
                                     <div class="row">
                                         <div class="col-sm-4 text-center">{{item.eventTime | date:'yyyy-MM-dd, HH:mm'}}</div>
                                         <div class="col-sm-4 text-center" *ngIf="item.location.name && item.location.country">{{item.location.name}}, {{item.location.country}}</div>

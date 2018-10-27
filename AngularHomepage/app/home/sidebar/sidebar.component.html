@@ -44,7 +44,7 @@
                                 <div *ngIf="item === -1" class="px-1">Ingen användare eller försändelse matchar sökningen</div>
                             </div>
                         </div>
-                        <div *ngIf="item !== -1" class="link px-1"><i class="fas fa-user-circle"></i> {{item.firstName}} {{item.lastName}}</div>
+                        <div *ngIf="item !== -1" class="link px-1" (click)="routeToUserProfile(item)"><i class="fas fa-user-circle"></i> {{item.FirstName}} {{item.LastName}}</div>
                     </div>
                 </div>
             </div>

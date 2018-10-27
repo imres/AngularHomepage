@@ -26,6 +26,7 @@ export class NavbarComponent extends BasicComponent implements OnInit{
 
     ngOnInit() {
         this.getAllConsignments();
+        this.getUsers();
     }
 
     routeToConsignmentDetail(item: ActiveConsignment) {
