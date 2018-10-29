@@ -60,6 +60,27 @@
       <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="DotNetCraft.Common.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetCraft.Common.1.0.5\lib\net40\DotNetCraft.Common.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetCraft.Common.Core.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetCraft.Common.1.0.5\lib\net40\DotNetCraft.Common.Core.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetCraft.Common.Core.Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetCraft.Common.1.0.5\lib\net40\DotNetCraft.Common.Core.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetCraft.Common.DataAccessLayer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetCraft.Common.1.0.5\lib\net40\DotNetCraft.Common.DataAccessLayer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetCraft.Common.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetCraft.Common.1.0.5\lib\net40\DotNetCraft.Common.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetCraft.Common.NinjectDependencyResolver, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetCraft.Common.NinjectDependencyResolver.2.0.0\lib\net40\DotNetCraft.Common.NinjectDependencyResolver.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetCraft.Common.Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetCraft.Common.1.0.5\lib\net40\DotNetCraft.Common.Utils.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -92,8 +113,21 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.0.1\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Stripe, Version=1.12.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stripe.1.12.0\lib\net40\Stripe.dll</HintPath>
+    </Reference>
+    <Reference Include="Stripe.net, Version=20.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stripe.net.20.2.0\lib\net45\Stripe.net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.1.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.1.4\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
