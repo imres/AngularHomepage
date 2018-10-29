@@ -1018,6 +1018,11 @@ btn.btn-primary:active, .btn-primary:focus{
     padding-bottom: 0;
 }
 
+.description {
+    color: black;
+    font-style: italic;
+}
+
 @keyframes slide-up {
     0% {
         opacity: 0;

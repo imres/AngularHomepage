@@ -3,7 +3,7 @@
         <div class="modal-content">
             <form name="form" (ngSubmit)="f.form.valid && acceptInvitation(currentInvitation)" #f="ngForm" novalidate>
                 <div class="modal-header">
-                    <h4 class="modal-title">{{title || 'Confirm'}}</h4>
+                    <h4 class="modal-title"><small class="text-muted">Din roll: </small>{{title || 'Confirm'}}</h4>
                     <button type="button" class="close" (click)="close()">&times;</button>
                 </div>
                 <div class="modal-body">
@@ -18,6 +18,17 @@
                             <p>Du har fått en inbjudan, för att gå vidare till nästa steg måste du ange den summa du begär för paketet.</p>
                             <p class="mb-0">Att acceptera denna inbjudan är inte bindande, du har valet att avbryta innan du skickar iväg paketet.</p>
                         </div>
+                        <h3>
+                            <small class="text-muted">Mottagare: </small>
+                            {{currentInvitation.ReceiverPersonId}}<span></span>
+                        </h3><hr />
+
+                        <h3><small class="text-muted">Paketinnehåll: </small>
+                            {{currentInvitation.Title}}
+                        </h3>
+                        <p *ngIf="currentInvitation.Description" class="description">{{currentInvitation.Description}}</p>
+                        <hr />
+
                         <div class="form-group" [ngClass]="{ 'has-error': requestedDepositAmount.dirty && !requestedDepositAmount.valid }">
                             <label for="requestedDepositAmount">Efterfrågad summa (kronor)</label>
                             <input type="text" class="form-control" name="requestedDepositAmount" placeholder="Pris för paket" pattern="\d{1,10}"
@@ -40,6 +51,14 @@
                             <small class="text-muted">Avsändare: </small>
                             {{currentInvitation.SenderPersonId}}<span></span>
                         </h3><hr />
+
+                        <h3>
+                            <small class="text-muted">Paketinnehåll: </small>
+                            {{currentInvitation.Title}}
+                        </h3>
+                        <p *ngIf="currentInvitation.Description" class="description">{{currentInvitation.Description}}</p>
+                        <hr />
+
                         <h3>
                             <small class="text-muted">Pris: </small>
                             {{currentInvitation.RequestedDepositAmount}}<span>:-</span>
