@@ -28,6 +28,7 @@ export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> imp
     payment = new PaymentMethod();
     selectedPaymentMethod = 0;
     currentUser: Person;
+    dialogStep = 1;
 
     constructor(dialogService: DialogService, private invitationService: InvitationService) {
         super(dialogService);
@@ -40,7 +41,9 @@ export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> imp
         this.invitationService.sendInvite(this.model)
             .subscribe(res => {
                 this.confirm();
-        });
+                
+            });
+        this.dialogStep = 1;
     }
 
     private setPersonId() {
@@ -56,6 +59,7 @@ export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> imp
 
     resetModel() {
         this.model = new Invitation();
+        this.dialogStep = 1;
     }
 
     confirm() {

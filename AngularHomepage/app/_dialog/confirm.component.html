@@ -16,7 +16,16 @@
                     </div><br />
 
                     <!--Sender personid-->
-                    <ng-container *ngIf="selectedRole == 1">
+                    <ng-container *ngIf="selectedRole == 1 && dialogStep == 1">
+                        <div class="form-group"  [ngClass]="{ 'has-error': receiverPersonId.dirty && !receiverPersonId.valid }">
+                            <label for="receiverPersonId">Mottagare</label>
+                            <input type="text" class="form-control" name="receiverPersonId" placeholder="Personnummer"
+                                   [(ngModel)]="model.ReceiverPersonId" #receiverPersonId="ngModel" required />
+                            <div *ngIf="receiverPersonId.dirty && !receiverPersonId.valid" class="help-block">Fyll i personnummer</div>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="selectedRole == 1 && dialogStep == 2">
                         <div class="form-group" [ngClass]="{ 'has-error': title.dirty && !title.valid }">
                             <label for="title">Paketnamn</label>
                             <input type="text" class="form-control" name="title"
@@ -27,13 +36,10 @@
                             <label for="description">Beskrivning</label>
                             <input type="text" class="form-control" name="description"
                                    [(ngModel)]="model.Description" #description="ngModel" />
-                        </div>
-                        <div class="form-group"  [ngClass]="{ 'has-error': receiverPersonId.dirty && !receiverPersonId.valid }">
-                            <label for="receiverPersonId">Mottagare</label>
-                            <input type="text" class="form-control" name="receiverPersonId" placeholder="Personnummer/namn"
-                                   [(ngModel)]="model.ReceiverPersonId" #receiverPersonId="ngModel" required />
-                            <div *ngIf="receiverPersonId.dirty && !receiverPersonId.valid" class="help-block">Fyll i personnummer</div>
-                        </div>
+                        </div>  
+                    </ng-container>
+
+                    <ng-container *ngIf="selectedRole == 1 && dialogStep == 3">
                         <div class="form-group" [ngClass]="{ 'has-error': paymentMethod.dirty && !paymentMethod.valid }">
                             <label>Utbetalningsmetod</label>
                             <select class="custom-select w-100" name="paymentMethod" [(ngModel)]="selectedPaymentMethod" id="paymentMethod" #paymentMethod="ngModel">
@@ -44,12 +50,20 @@
                             <label for="requestedDepositAmount">Begärd summa (kronor)</label>
                             <input type="text" class="form-control" name="requestedDepositAmount"
                                    [(ngModel)]="model.RequestedDepositAmount" #requestedDepositAmount="ngModel" />
-                            <div *ngIf="f.submitted && !requestedDepositAmount.valid" class="help-block">Fyll i giltigt personnummer</div>
+                            <div *ngIf="f.submitted && !requestedDepositAmount.valid" class="help-block">Fyll i begärd summa</div>
                         </div>
                     </ng-container>
 
                     <!--Receiver personid-->
-                    <ng-container *ngIf="selectedRole == 2" >
+                    <ng-container *ngIf="selectedRole == 2 && dialogStep == 1">
+                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !senderPersonId.valid }">
+                            <label for="senderPersonId">Avsändare</label>
+                            <input type="text" class="form-control" name="senderPersonId" placeholder="Personnummer"
+                                   [(ngModel)]="model.SenderPersonId" #senderPersonId="ngModel" />
+                            <div *ngIf="f.submitted && !senderPersonId.valid" class="help-block">Fyll i giltigt personnummer</div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="selectedRole == 2 && dialogStep == 2">
                         <div class="form-group" [ngClass]="{ 'has-error': title.dirty && !title.valid }">
                             <label for="title">Paketnamn</label>
                             <input type="text" class="form-control" name="title"
@@ -61,17 +75,12 @@
                             <input type="text" class="form-control" name="description"
                                    [(ngModel)]="model.Description" #description="ngModel" />
                         </div>
-                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !senderPersonId.valid }">
-                            <label for="senderPersonId">Avsändare</label>
-                            <input type="text" class="form-control" name="senderPersonId" placeholder="Personnummer/namn"
-                                   [(ngModel)]="model.SenderPersonId" #senderPersonId="ngModel" />
-                            <div *ngIf="f.submitted && !senderPersonId.valid" class="help-block">Fyll i giltigt personnummer</div>
-                        </div>
                     </ng-container>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" role="button" class="btn btn-primary">Skicka</button>
+                    <button *ngIf="selectedRole == 1 && dialogStep != 3 || selectedRole == 2 && dialogStep != 2" role="button" class="btn btn-primary" (click)="dialogStep = dialogStep + 1">Nästa</button>
+                    <button *ngIf="selectedRole == 1 && dialogStep == 3 || selectedRole == 2 && dialogStep == 2" type="submit" role="button" class="btn btn-primary">Skicka</button>
                     <button type="button" class="btn btn-default" (click)="cancel()">Avbryt</button>
                 </div>
 
