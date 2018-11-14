@@ -17,12 +17,12 @@
 
                     <!--Sender personid-->
                     <ng-container *ngIf="selectedRole == 1 && dialogStep == 1" class="transition">
-                        <div class="form-group"  [ngClass]="{ 'has-error': receiverPersonId.dirty && !receiverPersonId.valid || samePersonId }">
+                        <div class="form-group"  [ngClass]="{ 'has-error': receiverPersonId.dirty && !receiverPersonId.valid || receiverPersonId.value == currentUser.PersonId }">
                             <label for="receiverPersonId">Mottagare</label>
                             <input type="text" class="form-control" name="receiverPersonId" placeholder="Personnummer"
                                    [(ngModel)]="model.ReceiverPersonId" #receiverPersonId="ngModel" required />
                             <div *ngIf="receiverPersonId.dirty && !receiverPersonId.valid" class="help-block">Fyll i personnummer</div>
-                            <div *ngIf="samePersonId" class="help-block">Du får inte ange ditt eget personnummer</div>
+                            <div *ngIf="receiverPersonId.value == currentUser.PersonId" class="has-error mt-1">Du får inte ange ditt eget personnummer</div>
                         </div>
                     </ng-container>
 
@@ -57,12 +57,12 @@
 
                     <!--Receiver personid-->
                     <ng-container *ngIf="selectedRole == 2 && dialogStep == 1" class="transition">
-                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !senderPersonId.valid || samePersonId }">
+                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !senderPersonId.valid || senderPersonId.value == currentUser.PersonId }">
                             <label for="senderPersonId">Avsändare</label>
                             <input type="text" class="form-control" name="senderPersonId" placeholder="Personnummer"
                                    [(ngModel)]="model.SenderPersonId" #senderPersonId="ngModel" />
                             <div *ngIf="f.submitted && !senderPersonId.valid" class="help-block">Fyll i giltigt personnummer</div>
-                            <div *ngIf="samePersonId">Du får inte ange ditt eget personnummer</div>
+                            <div *ngIf="senderPersonId.value == currentUser.PersonId" class="has-error mt-1">Du får inte ange ditt eget personnummer</div>
                         </div>
                     </ng-container>
                     <ng-container *ngIf="selectedRole == 2 && dialogStep == 2" class="transition">
