@@ -29,6 +29,7 @@ export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> imp
     selectedPaymentMethod = 0;
     currentUser: Person;
     dialogStep = 1;
+    samePersonId = false;
 
     constructor(dialogService: DialogService, private invitationService: InvitationService) {
         super(dialogService);
@@ -38,13 +39,23 @@ export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> imp
     public sendInvite() {
         this.setPersonId();
 
-        this.invitationService.sendInvite(this.model)
-            .subscribe(res => {
-                this.confirm();
-                
-            });
+        if (this.model.SenderPersonId != this.model.ReceiverPersonId) {
+            this.samePersonId = false;
+
+            this.invitationService.sendInvite(this.model)
+                .subscribe(res => {
+                    this.confirm();
+
+                });
+        }
+        else {
+            this.result = false;
+            this.samePersonId = true;
+        }
+            
         this.dialogStep = 1;
     }
+
 
     private setPersonId() {
         //If one role have person id set, use currentuser to fill other
