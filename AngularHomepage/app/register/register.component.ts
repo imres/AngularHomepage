@@ -1,8 +1,8 @@
 ﻿import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { User, Person } from '../_models/index';
 
-import { AlertService, UserService } from '../_services/index';
+import { AlertService, UserService, AuthenticationService } from '../_services/index';
 
 @Component({
     moduleId: module.id,
@@ -12,11 +12,24 @@ import { AlertService, UserService } from '../_services/index';
 export class RegisterComponent {
     model: Person = new Person();
     loading = false;
+    returnUrl: string;
+    bankIdPending: boolean = false;
 
     constructor(
         private router: Router,
+        private route: ActivatedRoute,
         private userService: UserService,
-        private alertService: AlertService) { }
+        private alertService: AlertService,
+        private authenticationService: AuthenticationService,
+    ) { }
+
+    ngOnInit() {
+        // reset login status
+        this.authenticationService.logout();
+
+        // get return url from route parameters or default to '/'
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    }
 
     register() {
         this.loading = true;
@@ -31,5 +44,24 @@ export class RegisterComponent {
                     this.loading = false;
                 }
             );
+    }
+
+    bankIdAuth() {
+        this.authenticationService.bankIdAuth(this.model.PersonId)
+            .subscribe(
+            res => {
+                this.bankIdPending = true;
+
+                this.authenticationService.bankIdCollect(res).subscribe(data => {
+                    this.bankIdPending = false;
+                    this.router.navigate([this.returnUrl]);
+                }, error => {
+                    this.bankIdPending = false;
+                    this.alertService.error(error);
+                });
+
+            }, error => {
+                this.alertService.error(error);
+            });
     }
 }

@@ -52,6 +52,7 @@
                     <div class="section-content">
                         <div class="container">
                             <div class="row justify-content-center">
+                                <img src="img/bankid.png" alt="BankID"/>
                                 <form name="bankidform" class="px-4 py-3" (ngSubmit)="bankidform.form.valid && bankIdAuth()" #bankidform="ngForm" novalidate>
                                     <div *ngIf="bankIdPending">
                                         <loading-spinner></loading-spinner>
