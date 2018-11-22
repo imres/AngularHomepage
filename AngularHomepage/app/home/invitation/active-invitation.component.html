@@ -19,7 +19,7 @@
     </div>
 
     <div id="activeInvitesGrid" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#activeInvites">
-        <div class="no-padding d-flex flex-row-reverse">
+        <div *ngIf="activeInvitations?.length > 4" class="no-padding d-flex flex-row-reverse">
             <form #orderForm="ngForm" class="form-inline mb-3" (change)="orderBySelection($event.target.value, activeInvitations)">
                 <label class="mr-sm-2" for="orderBySelection">Sortera efter:</label>
                 <select class="custom-select mb-2 mb-sm-0" name="orderBySelection">
