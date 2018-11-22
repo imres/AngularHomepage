@@ -9,7 +9,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group mb-0">
-                        <label class="mr-sm-2" for="consignmentRoleSelect">Din roll</label>
+                        <!--<label class="mr-sm-2" for="consignmentRoleSelect">Din roll</label>-->
                         <select class="custom-select" name="roleDropdown" (change)="resetModel()" [(ngModel)]="selectedRole" id="consignmentRoleSelect">
                             <option *ngFor="let x of invitationRoles.roles" [value]="x.value" [selected]="selectedRole == x.value">{{x.text}}</option>
                         </select>
