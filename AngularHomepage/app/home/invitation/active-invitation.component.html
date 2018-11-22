@@ -40,8 +40,8 @@
 
                         <div class="row pr-3 mb-3">
                             <div class="col-10">
-                                <p class="card-text" *ngIf="HasReceiverRole(item)"><strong class="receiver-color">Avsändare:</strong> {{item.SenderPersonId}}</p>
-                                <p class="card-text" *ngIf="!HasReceiverRole(item)"><strong class="sender-color">Mottagare:</strong> {{item.ReceiverPersonId}}</p>
+                                <p class="card-text" *ngIf="HasReceiverRole(item)"><strong class="receiver-color">Säljare:</strong> {{item.SenderPersonId}}</p>
+                                <p class="card-text" *ngIf="!HasReceiverRole(item)"><strong class="sender-color">Köpare:</strong> {{item.ReceiverPersonId}}</p>
                             </div>
                             <div *ngIf="!HasReceiverRole(item)" class="col-2 no-padding dropleft text-right">
                                 <a data-toggle="dropdown" class="pl-2" role="button" aria-haspopup="true" aria-expanded="false" (click)="getUserById(item)"><i class="fas fa-info"></i></a>

@@ -133,13 +133,13 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
 
     translateInvitationStatus(invite: Invitation){
         if (this.currentUser.PersonId == invite.SenderPersonId && invite.Status == InvitationStatusEnum.Accepted)
-            return "Väntar på betalning från mottagaren.";
+            return "Väntar på betalning från köparen.";
         else if (this.currentUser.PersonId == invite.SenderPersonId && invite.Status == InvitationStatusEnum.AmountDeposited)
             return "Mata in kolli-id!";
         else if (this.currentUser.PersonId == invite.ReceiverPersonId && invite.Status == InvitationStatusEnum.Accepted)
             return "Betala!"
         else if (this.currentUser.PersonId == invite.ReceiverPersonId && invite.Status == InvitationStatusEnum.AmountDeposited)
-            return "Väntar på att avsändaren ska skicka paketet."
+            return "Väntar på att säljaren ska skicka paketet."
     }
 
     copyMessage(user: Person) {
