@@ -35,8 +35,8 @@
                         </div>
                         <div class="form-group" [ngClass]="{ 'has-error': description.dirty && !description.valid }">
                             <label for="description">Beskrivning</label>
-                            <input type="text" class="form-control" name="description"
-                                   [(ngModel)]="model.Description" #description="ngModel" />
+                            <textarea type="text" class="form-control" name="description"
+                                   [(ngModel)]="model.Description" #description="ngModel"></textarea>
                         </div>  
                     </ng-container>
 
@@ -74,8 +74,8 @@
                         </div>
                         <div class="form-group" [ngClass]="{ 'has-error': description.dirty && !description.valid }">
                             <label for="description">Beskrivning</label>
-                            <input type="text" class="form-control" name="description"
-                                   [(ngModel)]="model.Description" #description="ngModel" />
+                            <textarea type="text" class="form-control" name="description"
+                                   [(ngModel)]="model.Description" #description="ngModel"></textarea>
                         </div>
                     </ng-container>
 
