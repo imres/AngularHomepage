@@ -86,7 +86,7 @@
                     </div>
                     <div class="col-4 pr-0 text-right">
                         <!--<button type="button" class="btn btn-default" (click)="cancel()">Avbryt</button>-->
-                        <button *ngIf="selectedRole == 1 && dialogStep != 3 || selectedRole == 2 && dialogStep != 2" type="button" class="btn btn-primary" (click)="dialogStep = dialogStep + 1">Nästa</button>
+                        <button *ngIf="selectedRole == 1 && dialogStep != 3 || selectedRole == 2 && dialogStep != 2" type="button" class="btn btn-primary" (click)="dialogStep = dialogStep + 1" [disabled]="f.form.invalid">Nästa</button>
                         <button *ngIf="selectedRole == 1 && dialogStep == 3 || selectedRole == 2 && dialogStep == 2" type="submit" role="button" class="btn btn-primary">Skicka</button>
                     </div>
                 </div>

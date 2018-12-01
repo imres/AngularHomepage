@@ -10,8 +10,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { BasicComponent } from '../../shared/basic.component';
 import { Person, Invitation, InvitationExtended, PostNordSchema, Pager } from '../../_models/index';
 import { UserService, InvitationService, ConsignmentService, AlertService, ToastrService, PaymentService, FilterService, PagerService } from '../../_services/index';
-import { ConfirmComponent } from '../../_dialog/confirm.component';
-import { InviteResponseComponent } from '../../_dialog/invite-response.component';
+import { ConfirmComponent, StripeCheckout, InviteResponseComponent  } from '../../_dialog/index';
 import { InvitationStatusEnum } from '../../_models/enums/index';
 
 export interface InvitationWithPackageId {
@@ -35,6 +34,8 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
     invitationStatus = InvitationStatusEnum;
     showPackageIdForm = false;
     unrespondedInvitations: Invitation[];
+
+    showPopover = false;
     
     
     invitationExtended: InvitationExtended;
@@ -48,7 +49,6 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
         private paymentService: PaymentService,
         private filterService: FilterService,
         private pagerService: PagerService,
-        private userService: UserService,
     ) {
         super(pagerService)
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -57,7 +57,6 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
 
     ngOnInit() {
         this.getInvitations();
-        this.getUsers();
 
         this.invitationService.invitationList.subscribe(invitations => {
             if (!invitations) return;
@@ -67,6 +66,24 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
             this.orderBy('-StartDate', this.activeInvitations);
         }); 
     }
+
+    //openCheckout() {
+    //    var handler = (<any>window).StripeCheckout.configure({
+    //        key: 'pk_test_oi0sKPJYLGjdvOXOM8tE8cMa',
+    //        locale: 'auto',
+    //        token: function (token: any) {
+    //            // You can access the token ID with `token.id`.
+    //            // Get the token ID to your server-side code for use.
+    //        }
+    //    });
+
+    //    handler.open({
+    //        name: 'Demo Site',
+    //        description: '2 widgets',
+    //        amount: 2000
+    //    });
+
+    //}
 
     private getInvitations() {
         this.invitationService.getInvitations(this.currentUser.PersonId).subscribe(res => {
@@ -114,17 +131,21 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
     }
 
     processPayment(invitation: InvitationExtended) {
-        this.paymentService.processPayment(invitation).subscribe(res => {
+        this.dialogService.addDialog(StripeCheckout, {
+            title: 'Skicka inbjudan',
+            message: 'Bla bla confirm some action?'
+        })
+            .subscribe((isConfirmed) => {
+                //Get dialog result
+                //this.confirmResult = isConfirmed;
+                this.paymentService.processPayment(invitation).subscribe(res => {
+                    //Once payment have gone through, update the activeInvitation array
+                    //this.updateInvitationList(invitation, InvitationStatusEnum.AmountDeposited);
+                    this.filterService.updateInvitationStatus(this.invitations, invitation, InvitationStatusEnum.AmountDeposited);
 
-            //Mock loading time -- not working properly, try setting a object with invitation Id and loading bool
-            //setTimeout(() => {
-            //    this.loading = false;
-            //}, 3000);
-
-            //Once payment have gone through, update the activeInvitation array
-            //this.updateInvitationList(invitation, InvitationStatusEnum.AmountDeposited);
-            this.filterService.updateInvitationStatus(this.invitations, invitation, InvitationStatusEnum.AmountDeposited);
-        });
+                    this.toastrService.ShowToastr(isConfirmed, false, true, "Betalning skickades!");
+                });
+            });
     }
 
     HasReceiverRole(invitation: Invitation): boolean {
@@ -140,16 +161,6 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
             return "Betala!"
         else if (this.currentUser.PersonId == invite.ReceiverPersonId && invite.Status == InvitationStatusEnum.AmountDeposited)
             return "Väntar på att avsändaren ska skicka paketet."
-    }
-
-    copyMessage(user: Person) {
-        let selBox = document.createElement('textarea');
-        selBox.value = user.FirstName + ' ' + user.LastName + ', ' + user.Address + ', ' + user.PostalCode;
-        document.body.appendChild(selBox);
-        selBox.focus();
-        selBox.select();
-        document.execCommand('copy');
-        document.body.removeChild(selBox);
     }
 
 }

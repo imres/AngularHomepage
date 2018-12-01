@@ -25,8 +25,7 @@ import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 import { FrontComponent } from './frontpage/index';
 import { UserGuideComponent } from './commonComponents/user-guide.component';
-import { ConfirmComponent } from './_dialog/confirm.component';
-import { InviteResponseComponent } from './_dialog/invite-response.component';
+import { ConfirmComponent, InviteResponseComponent, StripeCheckout} from './_dialog/index';
 import { LoadingComponent } from './_directives/loading.component';
 import { InvitationComponent } from './home/invitation/invitation.component';
 import { ConsignmentComponent } from './home/consignment/consignment.component';
@@ -72,6 +71,7 @@ import { FilterPipe } from './filter.pipe';
         FrontComponent,
         ConfirmComponent,
         InviteResponseComponent,
+        StripeCheckout,
         NavbarComponent,
         ClickStopPropagation,
         LoginSiteComponent,
@@ -107,7 +107,8 @@ import { FilterPipe } from './filter.pipe';
     ],
     entryComponents: [
         ConfirmComponent,
-        InviteResponseComponent
+        InviteResponseComponent,
+        StripeCheckout
     ],
     bootstrap: [AppComponent]
 })
