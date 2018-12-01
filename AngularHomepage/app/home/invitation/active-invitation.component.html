@@ -19,7 +19,7 @@
     </div>
 
     <div id="activeInvitesGrid" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#activeInvites">
-        <div class="no-padding d-flex flex-row-reverse">
+        <div *ngIf="activeInvitations?.length > 4" class="no-padding d-flex flex-row-reverse">
             <form #orderForm="ngForm" class="form-inline mb-3" (change)="orderBySelection($event.target.value, activeInvitations)">
                 <label class="mr-sm-2" for="orderBySelection">Sortera efter:</label>
                 <select class="custom-select mb-2 mb-sm-0" name="orderBySelection">
@@ -40,8 +40,8 @@
 
                         <div class="row pr-3 mb-3">
                             <div class="col-10">
-                                <p class="card-text" *ngIf="HasReceiverRole(item)"><strong class="receiver-color">Avsändare:</strong> {{item.SenderPersonId}}</p>
-                                <p class="card-text" *ngIf="!HasReceiverRole(item)"><strong class="sender-color">Mottagare:</strong> {{item.ReceiverPersonId}}</p>
+                                <p class="card-text" *ngIf="HasReceiverRole(item)"><strong class="receiver-color">Säljare:</strong> {{item.SenderPersonId}}</p>
+                                <p class="card-text" *ngIf="!HasReceiverRole(item)"><strong class="sender-color">Köpare:</strong> {{item.ReceiverPersonId}}</p>
                             </div>
                             <div *ngIf="!HasReceiverRole(item)" class="col-2 no-padding dropleft text-right">
                                 <a data-toggle="dropdown" class="pl-2" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-info"></i></a>

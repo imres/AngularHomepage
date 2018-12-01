@@ -21,9 +21,13 @@
     color: var(--yellow);
 }
 
+.bg-grey {
+    background-color: var(--grey);
+}
+
 .link {
     color: #000;
-    text-decoration:none;
+    text-decoration: none;
 }
 
 .link:hover {
@@ -43,6 +47,10 @@
     box-shadow: var(--bottom-shadow-darker);
 }
 
+.btn-cover {
+    box-shadow: none;
+}
+
 .btn.btn-primary{
     background-color: var(--primary);
 }
@@ -60,6 +68,30 @@
     background-color: var(--primary);
     border-color: var(--primary);
 }
+
+.btn.btn-outline-primary-2 {
+    color: var(--primary);
+    background-color: white;
+    background-image: none;
+    border-color: var(--primary);
+}
+
+/*.btn.btn-outline-primary-2:hover {
+    color: white;
+    background-color: var(--blue);
+    border-color: var(--primary);
+}*/
+
+.btn.btn-primary.btn.btn-cover{
+    background-color: var(--blue);
+}
+
+/*.btn.btn-primary.btn.btn-cover:hover {
+    background-color: white;
+    color: var(--primary);
+}*/
+
+
 
 .card-border-sender {
     border-top: 3px #0AF solid;
@@ -393,8 +425,15 @@ btn.btn-primary:active, .btn-primary:focus{
     border-color: #33b799 !important;
 }*/
 
-/* Navbar */
 
+/* Frontpage */
+.frontpage--icons__info {
+    color: var(--primary);
+    opacity: 1 !important;
+}
+
+
+/* Navbar */
 .nav-main {
     background: white;
 }
@@ -493,10 +532,6 @@ btn.btn-primary:active, .btn-primary:focus{
 
 
 /*User Guide*/
-
-#guide {
-    background-color: white;
-}
 
 .guideImg {
     border: 0;
@@ -976,6 +1011,10 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 /* Prio 1 */
+.nav-tabs .nav-link.active{
+    background: transparent;
+}
+
 .even {
     background-color: var(--grey);
 }

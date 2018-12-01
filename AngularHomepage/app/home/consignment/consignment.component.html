@@ -40,7 +40,7 @@
     </div>
 </div>
 
-<div *ngIf="consignments?.length > 0" id="consignments">
+<div *ngIf="consignments?.length > 4" id="consignments">
     <div class="no-padding d-flex flex-row-reverse">
         <form #orderForm="ngForm" class="form-inline mb-3" (change)="orderBySelection($event.target.value, consignments)">
             <label class="mr-sm-2" for="orderBySelection">Sortera efter:</label>

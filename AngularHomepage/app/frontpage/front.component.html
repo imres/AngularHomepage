@@ -2,24 +2,66 @@
 
 <!-- Cover -->
    
-    <section class="center-flex cover primary-gradient">
-        <div id="cover-caption">
-            <div class="container">
-                <div class="col-sm-12 text-white">
-                    <h1 class="display-3 font-weight-bold">ProjektNamn</h1>
-                    <p>Säkra betalningar för privatpaket</p>
+<section class="center-flex cover primary-gradient">
+    <div id="cover-caption">
+        <div class="container">
+            <div class="col-sm-12 text-white">
+                <h1 class="display-3 font-weight-bold">ProjektNamn</h1>
+                <p>Säkra betalningar för privatpaket</p>
+                <div class="row">
+                    <div class="col-6 text-right">
+                        <div class="btn btn-outline-primary-2 btn-cover">Så här fungerar det</div>
+                    </div>
+                    <div class="col-6 text-left">
+                        <div [routerLink]="['/register']" role="button" class="btn btn-primary btn-cover">Registrera en användare</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-<!-- Guide -->
-<div class="py-5 my-3 container section-content">
-    <guide></guide>
-    <button [routerLink]="['/register']" role="button" class="btn btn-primary btn-lg btn-block margin-md-top">Kom igång!</button>
+<!-- Section 1 -->
+<div class="py-5 container section-content text-center">
+    <h3 class="card-title mb-3">ProjektNamn är för dig som köper eller säljer begagnat på internet.</h3>
+    <div class="row card-body">
+        <div class="card-deck justify-content-around">
+
+            <div class="card-block col-md-3 justify-content-center text-center">
+                <div class="text-center">
+                    <i class="fas fa-dollar-sign fa-5x mb-3 frontpage--icons__info"></i>
+                </div>
+                <h4 class="card-title hidden-md-up">Säljare</h4>
+                <p class="card-text">Som säljare slipper du oroa dig om du kommer att få betalt för ditt paket, du ser att köparen har betalat innan du behöver skicka paketet.</p>
+            </div>
+
+            <div class="card-block col-md-3 text-center">
+                <div class="text-center">
+                    <i class="fas fa-gift fa-5x mb-3 frontpage--icons__info"></i>
+                </div>
+                <h4 class="card-title hidden-md-up">Köpare</h4>
+                <p class="card-text">Som köpare kan du känna dig trygg att du inte betalat för ett paket du inte kommer att få, om säljaren inte skickar paketet inom 48h överförs pengarna automatiskt tillbaka till dig.</p>
+            </div>
+
+        </div>
+    </div>
 </div>
 
+<!-- Section 2 -->
+<div class="bg-grey py-5">
+    <h3 class="card-title text-center">ProjektNamn gör det enkelt och säkert för både säljare och köpare</h3>
+    <div class="container section-content">
+        <guide></guide> 
+    </div>
+</div>
 
+<!-- Section 3 -->
+<div class="py-5 container section-content text-center">
+    <h3 class="card-title mb-3">Kom igång med ProjektNamn nu!</h3>
+    <button [routerLink]="['/register']" role="button" class="btn btn-primary btn-lg margin-md-top">Skapa ett konto.</button>
+</div>
+
+<!-- Footer -->
 <footer id="myFooter">
     <div class="container">
         <div class="row">
@@ -58,9 +100,9 @@
         </div>
     </div>
     <div class="social-networks">
-        <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-        <a href="#" class="facebook"><i class="fa fa-facebook-official"></i></a>
-        <a href="#" class="google"><i class="fa fa-google-plus"></i></a>
+        <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="google"><i class="fab fa-google-plus-g"></i></a>
     </div>
     <div class="footer-copyright">
         <p>© 2016 Copyright Text </p>

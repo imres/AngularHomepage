@@ -9,7 +9,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group mb-0">
-                        <label class="mr-sm-2" for="consignmentRoleSelect">Din roll</label>
+                        <!--<label class="mr-sm-2" for="consignmentRoleSelect">Din roll</label>-->
                         <select class="custom-select" name="roleDropdown" (change)="resetModel()" [(ngModel)]="selectedRole" id="consignmentRoleSelect">
                             <option *ngFor="let x of invitationRoles.roles" [value]="x.value" [selected]="selectedRole == x.value">{{x.text}}</option>
                         </select>
@@ -18,7 +18,7 @@
                     <!--Sender personid-->
                     <ng-container *ngIf="selectedRole == 1 && dialogStep == 1" class="transition">
                         <div class="form-group"  [ngClass]="{ 'has-error': receiverPersonId.dirty && !receiverPersonId.valid || receiverPersonId.value == currentUser.PersonId }">
-                            <label for="receiverPersonId">Mottagare</label>
+                            <label for="receiverPersonId">Köpare</label>
                             <input type="text" class="form-control" name="receiverPersonId" placeholder="Personnummer"
                                    [(ngModel)]="model.ReceiverPersonId" #receiverPersonId="ngModel" required />
                             <div *ngIf="receiverPersonId.dirty && !receiverPersonId.valid" class="help-block">Fyll i personnummer</div>
@@ -35,8 +35,8 @@
                         </div>
                         <div class="form-group" [ngClass]="{ 'has-error': description.dirty && !description.valid }">
                             <label for="description">Beskrivning</label>
-                            <input type="text" class="form-control" name="description"
-                                   [(ngModel)]="model.Description" #description="ngModel" />
+                            <textarea type="text" class="form-control" name="description"
+                                   [(ngModel)]="model.Description" #description="ngModel"></textarea>
                         </div>  
                     </ng-container>
 
@@ -58,7 +58,7 @@
                     <!--Receiver personid-->
                     <ng-container *ngIf="selectedRole == 2 && dialogStep == 1" class="transition">
                         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !senderPersonId.valid || senderPersonId.value == currentUser.PersonId }">
-                            <label for="senderPersonId">Avsändare</label>
+                            <label for="senderPersonId">Säljare</label>
                             <input type="text" class="form-control" name="senderPersonId" placeholder="Personnummer"
                                    [(ngModel)]="model.SenderPersonId" #senderPersonId="ngModel" />
                             <div *ngIf="f.submitted && !senderPersonId.valid" class="help-block">Fyll i giltigt personnummer</div>
@@ -74,8 +74,8 @@
                         </div>
                         <div class="form-group" [ngClass]="{ 'has-error': description.dirty && !description.valid }">
                             <label for="description">Beskrivning</label>
-                            <input type="text" class="form-control" name="description"
-                                   [(ngModel)]="model.Description" #description="ngModel" />
+                            <textarea type="text" class="form-control" name="description"
+                                   [(ngModel)]="model.Description" #description="ngModel"></textarea>
                         </div>
                     </ng-container>
 
