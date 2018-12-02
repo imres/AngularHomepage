@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+﻿import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, Injector } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -17,11 +17,14 @@ import { FilterPipe } from '../filter.pipe';
 export class NavbarComponent extends BasicComponent implements OnInit{
 
 
-    constructor(private userService: UserService,
-                private pagerService: PagerService,
-                private router: Router,
-                private consignmentService: ConsignmentService,) {
-        super(pagerService);
+    constructor(
+        injector: Injector,
+        private userService: UserService,
+        private pagerService: PagerService,
+        private router: Router,
+        private consignmentService: ConsignmentService
+    ) {
+        super(injector);
     }
 
     ngOnInit() {

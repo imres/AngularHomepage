@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+﻿import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, Injector } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { DialogService } from "ng2-bootstrap-modal";
 import { Router } from '@angular/router';
@@ -22,14 +22,16 @@ export class SidebarComponent extends BasicComponent implements OnInit {
     currentUser: Person;
     sidebarActive = true;
 
-    constructor(private userService: UserService,
+    constructor(
+        injector: Injector,
+        private userService: UserService,
         private dialogService: DialogService,
         private invitationService: InvitationService,
         private consignmentService: ConsignmentService,
         private toastrService: ToastrService,
         private pagerService: PagerService,
         private router: Router) {
-        super(pagerService);
+        super(injector);
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 

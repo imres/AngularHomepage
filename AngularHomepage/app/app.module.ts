@@ -1,4 +1,4 @@
-﻿import { NgModule }      from '@angular/core';
+﻿import { NgModule, Injector }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -99,6 +99,7 @@ import { FilterPipe } from './filter.pipe';
         FilterService,
         AdministratorService,
         PagerService,
+        Injector
 
         // providers used to create fake backend
         //fakeBackendProvider,

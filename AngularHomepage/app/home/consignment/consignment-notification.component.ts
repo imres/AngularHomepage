@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges } from '@angular/core';
+﻿import { Component, OnInit, Input, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges, Injector } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
 import { Router } from '@angular/router';
@@ -27,11 +27,12 @@ export class ConsignmentNotificationComponent extends BasicComponent implements 
     loading = false;
 
     constructor(
+        injector: Injector,
         private consignmentService: ConsignmentService,
         private pagerService: PagerService,
         private router: Router,
     ) {
-        super(pagerService)
+        super(injector)
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 

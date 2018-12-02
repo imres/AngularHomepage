@@ -1,4 +1,4 @@
-﻿import { Component, Input, Output, EventEmitter, OnInit, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges, SimpleChanges  } from '@angular/core';
+﻿import { Component, Input, Output, EventEmitter, OnInit, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges, SimpleChanges, Injector } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
 import { DialogService } from "ng2-bootstrap-modal";
@@ -36,7 +36,9 @@ export class NavbarHomeComponent extends BasicComponent implements OnInit {
     selectedUserPersonId: string;
     searchText: string;
 
-    constructor(private userService: UserService,
+    constructor(
+        injector: Injector,
+        private userService: UserService,
         private invitationService: InvitationService,
         private cd: ChangeDetectorRef,
         private dialogService: DialogService,
@@ -47,7 +49,7 @@ export class NavbarHomeComponent extends BasicComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         )
     {
-        super(pagerService);
+        super(injector);
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.isClassActive = false;
     }

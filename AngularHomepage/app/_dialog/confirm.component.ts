@@ -1,4 +1,4 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, Injector } from '@angular/core';
 import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
 import { Person, Invitation } from '../_models/index';
 import { UserService, InvitationService } from '../_services/index';
@@ -31,7 +31,11 @@ export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> imp
     dialogStep = 1;
     samePersonId = false;
 
-    constructor(dialogService: DialogService, private invitationService: InvitationService) {
+    constructor(
+        injector: Injector,
+        dialogService: DialogService,
+        private invitationService: InvitationService
+    ) {
         super(dialogService);
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }

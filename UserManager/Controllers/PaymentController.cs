@@ -51,7 +51,7 @@ namespace UserManager.Controllers
                 {
                     payment = _paymentService.ProcessPayment(invitation);
                 }
-                catch (InvalidOperationException)
+                catch (InvalidOperationException ex)
                 {
                     return Request.CreateResponse(HttpStatusCode.BadRequest);
                 }

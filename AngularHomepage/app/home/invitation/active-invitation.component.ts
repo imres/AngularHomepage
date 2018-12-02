@@ -1,6 +1,6 @@
 ﻿import {
     Component, OnInit, Input, Output, EventEmitter, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA,
-    ChangeDetectionStrategy, ChangeDetectorRef, OnChanges, SimpleChanges, ViewContainerRef, Injectable
+    ChangeDetectionStrategy, ChangeDetectorRef, OnChanges, SimpleChanges, ViewContainerRef, Injectable, Injector
 } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
@@ -40,7 +40,9 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
     
     invitationExtended: InvitationExtended;
     
-    constructor(private cd: ChangeDetectorRef,
+    constructor(
+        injector: Injector,
+        private cd: ChangeDetectorRef,
         private dialogService: DialogService,
         private invitationService: InvitationService,
         private consignmentService: ConsignmentService,
@@ -50,7 +52,7 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
         private filterService: FilterService,
         private pagerService: PagerService,
     ) {
-        super(pagerService)
+        super(injector)
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.activeInvitations = this.invitations != null ? this.invitations : null;
     }

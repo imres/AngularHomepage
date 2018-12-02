@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges } from '@angular/core';
+﻿import { Component, OnInit, Input, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges, Injector} from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
 import { DialogService } from "ng2-bootstrap-modal";
@@ -32,14 +32,16 @@ export class ConsignmentHistoryComponent extends BasicComponent implements OnIni
     showConsignments = true;
     loading = false;
 
-    constructor(private cd: ChangeDetectorRef,
+    constructor(
+        injector: Injector,
+        private cd: ChangeDetectorRef,
         private dialogService: DialogService,
         private consignmentService: ConsignmentService,
         private toastrService: ToastrService,
         private pagerService: PagerService,
 
     ) {
-        super(pagerService);
+        super(injector);
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
     }

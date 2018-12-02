@@ -1,4 +1,4 @@
-﻿import { Component, ViewContainerRef } from '@angular/core';
+﻿import { Component, ViewContainerRef, Injector } from '@angular/core';
 import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
@@ -31,7 +31,9 @@ export class InviteResponseComponent extends DialogComponent<ConfirmModel, boole
     currentUser: Person;
     isReceiver: boolean = null;
 
-    constructor(dialogService: DialogService, private invitationService: InvitationService, private consignmentService: ConsignmentService,
+    constructor(
+        injector: Injector,
+        dialogService: DialogService, private invitationService: InvitationService, private consignmentService: ConsignmentService,
         private alertService: AlertService,
         public toastr: ToastsManager, vcr: ViewContainerRef) {
 

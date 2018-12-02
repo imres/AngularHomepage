@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges } from '@angular/core';
+﻿import { Component, OnInit, Input, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges, Injector} from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
 import { DialogService } from "ng2-bootstrap-modal";
@@ -16,6 +16,10 @@ import { InviteResponseComponent } from '../_dialog/invite-response.component';
 
 export class BasicComponent
 {
+    protected pagerService: PagerService;
+    protected consignmentService: ConsignmentService;
+    protected userService: UserService;
+
     pager: Pager = new Pager();
     pagedItems: any[];
     allConsignments: ActiveConsignment[];
@@ -23,11 +27,12 @@ export class BasicComponent
     user: Person[];
     currentUser: Person;
 
-    constructor(private pagerService: PagerService,
-        private consignmentService: ConsignmentService,
-        private userService: UserService,
-        ) {
+    constructor(injector: Injector) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+        this.pagerService = injector.get(PagerService);
+        this.consignmentService = injector.get(ConsignmentService);
+        this.userService = injector.get(UserService);
     }
 
     orderBySelection(event: any, itemList: any[]): any[] {

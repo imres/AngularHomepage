@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges } from '@angular/core';
+﻿import { Component, OnInit, Input, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges, Injector } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
@@ -28,14 +28,16 @@ export class ConsignmentComponent extends BasicComponent implements OnInit {
     showConsignments = true;
     loading = false;
 
-    constructor(private cd: ChangeDetectorRef,
+    constructor(
+        injector: Injector,
+        private cd: ChangeDetectorRef,
         private dialogService: DialogService,
         private consignmentService: ConsignmentService,
         private toastrService: ToastrService,
         private pagerService: PagerService,
         private router: Router,
     ) {
-        super(pagerService);
+        super(injector);
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         
     }

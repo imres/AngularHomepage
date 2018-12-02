@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Person, Invitation, Pager } from '../_models/index';
 import 'rxjs/add/operator/map';
 
+@Injectable()
 export class PagerService {
     getPager(TotalItems:number, CurrentPage: number = 1, PageSize: number = 4) {
         // calculate total pages
