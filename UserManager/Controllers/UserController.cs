@@ -62,6 +62,8 @@ namespace UserManager.Controllers
                     this.Request.Content = null;
                 }
 
+                User.Password = CryptographyService.Encrypt(User.Password);
+
                 var entity = Mapper.Map<Person>(User);
 
                 unitOfWork.Person.Add(entity);

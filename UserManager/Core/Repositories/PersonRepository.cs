@@ -7,6 +7,7 @@ using UserManager.Core;
 using UserManager.Core.Enums;
 using UserManager.Core.Interfaces;
 using UserManager.Core.Mappers;
+using UserManager.Core.Services;
 using UserManager.DTO;
 
 namespace UserManager.Core.Repositories
@@ -44,8 +45,9 @@ namespace UserManager.Core.Repositories
             //Hitta matchande användare. returnera res 200 & token
             using (masterEntities context = new masterEntities())
             {
-                //Users nullUser = null;
-                IEnumerable<Person> findPerson = context.Person.Where(x => x.Email == personDTO.Email && x.Password == personDTO.Password);
+                var encryptedPassword = CryptographyService.Encrypt(personDTO.Password);
+
+                IEnumerable<Person> findPerson = context.Person.Where(x => x.Email == personDTO.Email && x.Password == encryptedPassword);
 
                 var matchedPerson = findPerson != null && findPerson.Count() > 0 ? findPerson.FirstOrDefault() : null;
 

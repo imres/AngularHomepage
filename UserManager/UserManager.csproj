@@ -342,6 +342,7 @@
     <Compile Include="Core\Services\AdministratorService.cs" />
     <Compile Include="Core\Services\BankIdService.cs" />
     <Compile Include="Core\Services\ConsignmentService.cs" />
+    <Compile Include="Core\Services\CryptographyService.cs" />
     <Compile Include="Core\Services\InvitationService.cs" />
     <Compile Include="Core\Services\PackageInformationService.cs" />
     <Compile Include="Core\Services\PaymentService.cs" />
