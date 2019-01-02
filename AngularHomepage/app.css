@@ -1144,7 +1144,9 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 @media screen and (min-width: 992px) /*lg-up*/ {
-
+    .w-lg-768{
+        min-width: 768px;
+    }
 }
 
 @media screen and (min-width: 1327px) /*xl-up*/ {

@@ -4,7 +4,7 @@
 <!-- Inloggningsformulär -->
 <div class="primary-gradient h-100">
     <section id="loginform" class="col-12 d-flex center-flex h-100">
-        <div class="col-sm-8 col-md-6 col-lg-4 card no-padding">
+        <div class="col-sm-8 col-md-6 col-lg-4 card no-padding w-lg-768">
             <ul class="nav nav-tabs justify-content-center card-header card-header-custom pb-0">
                 <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#username" role="tab">Användarnamn</a>
@@ -31,12 +31,13 @@
                                             <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
                                         </div>
 
-                                        <div class="form-check">
+                                        <!--<div class="form-check">
                                             <label class="form-check-label">
                                                 <input type="checkbox" class="form-check-input">
                                                 Kom ihåg mig
                                             </label>
-                                        </div>
+                                        </div>-->
+
                                         <button [disabled]="loading" class="btn btn-primary" role="button">Logga in</button>
                                         <loading-spinner *ngIf="loading"></loading-spinner>
                                     </form>
@@ -51,8 +52,10 @@
                 <div class="tab-pane fade show  col-sm-12" id="bankid" role="tabpanel">
                     <div class="section-content">
                         <div class="container">
-                            <div class="row justify-content-center">
-                                <img src="img/bankid.png" alt="BankID"/>
+                            <div class="row justify-content-center align-items-center">
+                                <div class="col-md-6">
+                                    <img class="guideImg" src="img/undraw_confirmed_81ex.svg" alt="BankID" />
+                                </div>
                                 <form name="bankidform" class="px-4 py-3" (ngSubmit)="bankidform.form.valid && bankIdAuth()" #bankidform="ngForm" novalidate>
                                     <div *ngIf="bankIdPending">
                                         <loading-spinner></loading-spinner>
