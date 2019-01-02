@@ -16,7 +16,7 @@
                     <h3 class="mb-0">
                         {{item.FirstName}}
                     </h3>
-                    <div>
+                    <div *ngIf="item.DisplayName">
                         <i>@{{item.DisplayName}}</i>
                     </div>
                     <div class="user-profile-info">
