@@ -1114,6 +1114,10 @@ btn.btn-primary:active, .btn-primary:focus{
         background: #ffffff;
     }
 
+    .primary-gradient.minheight-100 {
+        background: #ffffff;
+    }
+
     #activeInvites .showActiveInvitesBtn {
         margin-top: 1rem;
     }
