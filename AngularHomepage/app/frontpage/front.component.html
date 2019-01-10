@@ -8,11 +8,21 @@
             <div class="col-sm-12 text-white">
                 <h1 class="display-3 font-weight-bold">ProjektNamn</h1>
                 <p>Säkra betalningar för privatpaket</p>
-                <div class="row">
-                    <div class="col-6 text-right">
+                <div class="d-none d-sm-block">
+                    <div class="row">
+                        <div class="col-6 text-right">
+                            <div class="btn btn-outline-primary-2 btn-cover p-3">Så här fungerar det</div>
+                        </div>
+                        <div class="col-6 text-left">
+                            <div [routerLink]="['/register']" role="button" class="btn btn-primary btn-cover p-3">Registrera en användare</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row d-sm-none">
+                    <div class="col-12 text-center mb-3">
                         <div class="btn btn-outline-primary-2 btn-cover p-3">Så här fungerar det</div>
                     </div>
-                    <div class="col-6 text-left">
+                    <div class="col-12 text-center">
                         <div [routerLink]="['/register']" role="button" class="btn btn-primary btn-cover p-3">Registrera en användare</div>
                     </div>
                 </div>

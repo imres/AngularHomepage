@@ -45,21 +45,24 @@
                         <input type="password" class="form-control" name="confirmPassword" [(ngModel)]="model.ConfirmPassword" #confirmPassword="ngModel" required />
                         <div *ngIf="f.submitted && password.value !== confirmPassword.value" class="help-block">Lösenorden matchar inte</div>
                     </div>
-                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !address.valid }">
-                        <label for="address">Gatuadress</label>
-                        <input type="text" class="form-control" name="address" [(ngModel)]="model.Address" #address="ngModel" />
-                        <div *ngIf="f.submitted && !address.valid" class="help-block">Fyll i giltig adress</div>
-                    </div>
                     <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !phoneMobile.valid }">
                         <label for="phoneMobile">Mobilnummer</label>
                         <input type="text" class="form-control" name="phoneMobile" [(ngModel)]="model.PhoneMobile" #phoneMobile="ngModel" />
                         <div *ngIf="f.submitted && !phoneMobile.valid" class="help-block">Fyll i giltigt mobilnummer</div>
+                    </div>
+
+                    <!-- Fields below will be deleted at launch, only here for developing purposes -->
+                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !address.valid }">
+                        <label for="address">Gatuadress</label>
+                        <input type="text" class="form-control" name="address" [(ngModel)]="model.Address" #address="ngModel" />
+                        <div *ngIf="f.submitted && !address.valid" class="help-block">Fyll i giltig adress</div>
                     </div>
                     <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !postalCode.valid }">
                         <label for="postalCode">Postkod</label>
                         <input type="text" class="form-control" name="postalCode" [(ngModel)]="model.PostalCode" #postalCode="ngModel" />
                         <div *ngIf="f.submitted && !postalCode.valid" class="help-block">Fyll i giltig postkod</div>
                     </div>
+
                     <!--<pre>{{model | json}}</pre>-->
                     <div class="form-group row">
                         <div class="col-6">
@@ -75,8 +78,10 @@
             <div class="tab-pane fade show active col-sm-12" id="bankid" role="tabpanel">
                 <div class="section-content">
                     <div class="container">
-                        <div class="row justify-content-center">
-                            <img class="guideImg" src="img/undraw_confirmed_81ex.svg" alt="BankID" />
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-md-6">
+                                <img class="guideImg" src="img/undraw_confirmed_81ex.svg" alt="BankID" />
+                            </div>
                             <form name="bankidform" class="px-4 py-3" (ngSubmit)="bankidform.form.valid && bankIdAuth()" #bankidform="ngForm" novalidate>
                                 <div *ngIf="bankIdPending">
                                     <loading-spinner></loading-spinner>

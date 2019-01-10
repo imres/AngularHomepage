@@ -533,7 +533,7 @@ btn.btn-primary:active, .btn-primary:focus{
 
 /*User Guide*/
 
-.guideImg {
+.guide-image {
     border: 0;
     margin-bottom: 1rem;
     width: 250px;
@@ -1114,6 +1114,10 @@ btn.btn-primary:active, .btn-primary:focus{
         background: #ffffff;
     }
 
+    .primary-gradient.minheight-100 {
+        background: #ffffff;
+    }
+
     #activeInvites .showActiveInvitesBtn {
         margin-top: 1rem;
     }
@@ -1144,7 +1148,9 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 @media screen and (min-width: 992px) /*lg-up*/ {
-
+    .w-lg-768{
+        min-width: 768px;
+    }
 }
 
 @media screen and (min-width: 1327px) /*xl-up*/ {
