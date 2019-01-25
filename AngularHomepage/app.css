@@ -324,6 +324,9 @@ img {
     padding-top: 102px !important;
 }
 
+.pl-1-25rem {
+    padding-left: 1.25rem;
+}
 .color-custom {
     color: #33b799;
 }
@@ -1062,6 +1065,15 @@ btn.btn-primary:active, .btn-primary:focus{
 .description {
     color: black;
     font-style: italic;
+}
+
+.input-group-text#basic-addon2 {
+    background: white;
+}
+
+.fas.fa-search {
+    background: white;
+
 }
 
 @keyframes slide-up {
