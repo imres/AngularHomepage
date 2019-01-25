@@ -35,7 +35,7 @@
         <div class="row">
             <div *ngFor="let item of pagedItems" class="col-sm-6 my-2 animate-enter">
                 <div class="card mb-3 h-100">
-                    <div class="card-body" [ngClass]="{'card-border-receiver' : HasReceiverRole(item), 'card-border-sender' : !HasReceiverRole(item)}">
+                    <div class="card-body" [ngClass]="{'card-border-receiver' : HasReceiverRole(item), 'card-border-sender' : !HasReceiverRole(item)}">                 
                         <h5 class="card-title title-border">{{item.Title}}</h5>
 
                         <div class="row pr-3 mb-3">
@@ -56,9 +56,9 @@
                             </div>
                         </div>
 
-                        <p class="card-text">Status: <strong>{{translateInvitationStatus(item)}}</strong></p>
-                        <p class="card-text">Begärd summa: {{item.RequestedDepositAmount}} kronor</p>
-                        <p class="card-text">Inbjudan skickad: {{item.StartDate | date:'yyyy-MM-dd, HH:mm'}}</p>
+                        <p *ngIf="!HasReceiverRole(item) && item.Status == 3" class="card-text"><strong><i class="far fa-check-square"></i> Köparen har betalat</strong></p> 
+                        <p class="card-text"><strong>{{translateInvitationStatus(item)}}</strong></p>
+                        <!--<p class="card-text">Inbjudan skickades {{item.StartDate | date:'yyyy-MM-dd, HH:mm'}}</p>-->
 
                         <div *ngIf="!HasReceiverRole(item) && matchesInvitationWithPackageId(item)" class="animate-enter">
                             <form name="packageIdForm" (ngSubmit)="f.form.valid && savePackageId()" #f="ngForm" novalidate>

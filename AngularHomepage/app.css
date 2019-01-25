@@ -714,6 +714,16 @@ btn.btn-primary:active, .btn-primary:focus{
     box-shadow: var(--bottom-shadow-darker);
 }
 
+/* Active Invitations */
+
+.active-invitation__card-header {
+    height: 3rem;
+    padding-top: 0.75rem;
+    width: 100%;
+    color: white;
+    box-shadow: var(--bottom-shadow-darker);
+}
+
 .firstAndLast {
     min-width: 4rem !important;
 }
