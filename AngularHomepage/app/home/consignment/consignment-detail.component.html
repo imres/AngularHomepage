@@ -10,68 +10,94 @@
         <div class="col-xl-6 col-lg-7 col-10 offset-1 p-2 pt-3"  *ngFor="let item of selectedConsignment">
                 <loading-spinner *ngIf="loading"></loading-spinner>
                 
-                <h4 class="text-center mb-3">{{item.Title}}</h4>
+                <!--<h4 class="text-center mb-3">{{item.Title}}</h4>-->
 
                 <!--<div class="map-with-marker"></div>-->
 
-                <div>
-                    <div class="card consignment-detail-card">
-                        <div class="card-header">
-                            <h5 class="text-center">Händelser</h5>
-                        </div>
-                        <div class="card-body py-0">
-                            <div class="list-group list-group-flush w-100 mb-3" >
-                                
-                                <div class="list-group-item">
-                                    <div class="row" >
-                                        <div class="col-sm-4 text-center"><strong>Datum, Tidpunkt</strong></div>
-                                        <div class="col-sm-4 text-center"><strong>Plats</strong></div>
-                                        <div class="col-sm-4 text-center"><strong>Händelse</strong></div>
-                                    </div>
+                <div class="row">      
+                    <div class="col-sm-8 pl-0">
+                        <div class="card consignment-detail-card__info mb-3">
+                            <div class="card-header bg-primary color-white">
+                                <h5 class="text-center mb-0">Mitt paket</h5>
+                            </div>
+                            <div class="card-body row">
+                                <div class="col-6">
+                                    <img *ngIf="item.Status == 1" src="img/undraw_on_the_way_ldaq.svg" alt="Accepterat" class="guide-image">
+                                    <img *ngIf="item.Status == 10" src="img/undraw_mail_cg1t.svg" alt="Accepterat" class="guide-image">
                                 </div>
-                                <div class="list-group-item" *ngFor="let item of events ; let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even }">
-                                    <div class="row">
-                                        <div class="col-sm-4 text-center">{{item.eventTime | date:'yyyy-MM-dd, HH:mm'}}</div>
-                                        <div class="col-sm-4 text-center" *ngIf="item.location.name && item.location.country">{{item.location.name}}, {{item.location.country}}</div>
-                                        <div class="col-sm-4 text-center" *ngIf="item.location.name && !item.location.country">{{item.location.name}}</div>
-                                        <div class="col-sm-4 text-center" *ngIf="!item.location.name">-</div>
-                                        <div class="col-sm-4 text-center">{{item.eventDescription}}</div>
-                                    </div>
+                                <div class="col-6 py-3">
+                                    <h4>{{item.Title}}</h4>
+                                    <p *ngIf="item.Status == 1">Paketet är på väg</p>
+                                    <p *ngIf="item.Status == 10">Paketet har levererats</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card consignment-detail-card__info">
+                            <div class="card-header">
+                                <h5 class="text-center mb-0">Försändelseinformation</h5>
+                            </div>
+                            <div class="card-body row">
+                                <div class="col-md-5 offset-md-1">
+                                    <h6>Avsändare</h6>
+                                    <p class="consignment-detail-card__text">{{item.Consignor.name}}</p>
+                                    <p class="consignment-detail-card__text">{{item.Consignor.address.postCode}} {{item.Consignor.address.city}}</p>
+                                    <p class="consignment-detail-card__text">{{item.Consignor.address.country}}</p>
+                                </div>
+                                <div class="col-md-5 offset-md-1">
+                                    <h6>Mottagare</h6>
+                                    <p class="consignment-detail-card__text">{{item.Consignee.address.postCode}} {{item.Consignee.address.city}}</p>
+                                    <p class="consignment-detail-card__text">{{item.Consignee.address.country}}</p>
+                                </div>
+                                <div class="col-10 offset-md-1 shipment__info">
+                                    <p class="consignment-detail-card__text"><strong>Försändelse-ID:</strong> {{item.PackageId}}</p>
+                                    <p class="consignment-detail-card__text"><strong>Pakettyp:</strong> {{item.Service.name}}</p>
+                                    <p class="consignment-detail-card__text"><strong>Tilläggstjänst(er):</strong> SMS-Avisering</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     
-                    <div class="card consignment-detail-card">
-                        <div class="card-header">
-                            <h5 class="text-center">Försändelseinformation</h5>
+                    <div class="col-sm-4 px-0">
+                        <div class="card consignment-detail-card__info mb-3">
+                            <div class="card-header">
+                                <h5 class="text-center mb-0">Mått & Vikt</h5>
+                            </div>
+                            <div class="card-body">
+                                    <p class="consignment-detail-card__text"><strong>Vikt:</strong> 0.77kg</p>
+                                    <p class="consignment-detail-card__text"><strong>Mått (H x B x D):</strong> 180 cm x 35cm x 10cm</p>
+                            </div>
                         </div>
-                        <div class="card-body row">
-                            <div class="col-md-5 offset-md-1">
-                                <h6>Avsändare</h6>
-                                <p class="consignment-detail-card__text">{{item.Consignor.name}}</p>
-                                <p class="consignment-detail-card__text">{{item.Consignor.address.postCode}} {{item.Consignor.address.city}}</p>
-                                <p class="consignment-detail-card__text">{{item.Consignor.address.country}}</p>
+
+                        <div class="card consignment-detail-card">
+                            <div class="card-header bg-primary color-white">
+                                <h5 class="text-center mb-0">Paketets resa</h5>
                             </div>
-                            <div class="col-md-5 offset-md-1">
-                                <h6>Mottagare</h6>
-                                <p class="consignment-detail-card__text">{{item.Consignee.address.postCode}} {{item.Consignee.address.city}}</p>
-                                <p class="consignment-detail-card__text">{{item.Consignee.address.country}}</p>
+                            <div class="list-group-item" *ngFor="let item of events ; let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even }">
+                                <i *ngIf="item.status == 'DELIVERED'" class="fas fa-check-square fa-fw fa-pull-left"></i>
+                                <i *ngIf="item.status !== 'DELIVERED'" class="fas fa-envelope fa-fw fa-pull-left"></i>
+                                <!--<i class="fas fa-info fa-fw fa-pull-left"></i>-->
+                                <h6 class="consignment-detail-card__info__header">{{item.location.name}}</h6>
+                                <p class="subheading">- {{item.eventTime | date:'yyyy-MM-dd, HH:mm'}}</p>
+                                <p class="event-description">{{item.eventDescription}}</p>
                             </div>
-                            <div class="col-md-5 offset-md-1 shipment__info">
-                                <p class="consignment-detail-card__text"><strong>Kolli-ID:</strong> {{item.PackageId}}</p>
-                                <p class="consignment-detail-card__text"><strong>Pakettyp:</strong> {{item.Service.name}}</p>
-                                <p class="consignment-detail-card__text"><strong>Tilläggstjänst(er):</strong> SMS-Avisering</p>
-                            </div>
-                            <div class="col-md-5 offset-md-1 shipment__info">
-                                <p class="consignment-detail-card__text"><strong>Vikt:</strong> 0.77kg</p>
-                                <p class="consignment-detail-card__text"><strong>Mått (H x B x D):</strong> 180 cm x 35cm x 10cm</p>
-                            </div>
+                            <!--<div class="card-body py-0">
+                <div class="list-group list-group-flush w-100 mb-3">
+                    <div class="list-group-item" *ngFor="let item of events ; let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even }">
+                        <div class="row">
+                            <div class="col-sm-4 text-center">{{item.eventTime | date:'yyyy-MM-dd, HH:mm'}}</div>
+                            <div class="col-sm-4 text-center" *ngIf="item.location.name && item.location.country">{{item.location.name}}, {{item.location.country}}</div>
+                            <div class="col-sm-4 text-center" *ngIf="item.location.name && !item.location.country">{{item.location.name}}</div>
+                            <div class="col-sm-4 text-center" *ngIf="!item.location.name">-</div>
+                            <div class="col-sm-4 text-center">{{item.eventDescription}}</div>
                         </div>
                     </div>
-
-                    <div class="btn btn-primary btn-block" [routerLink]="['/home']">Gå tillbaka till alla försändelser</div>
+                </div>
+            </div>-->
+                        </div>
+                    </div> 
+                    
+                    <div class="mt-3 btn btn-primary btn-block" [routerLink]="['/home']">Gå tillbaka till alla försändelser</div>
                 </div>
 
         </div>

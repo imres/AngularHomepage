@@ -22,7 +22,15 @@
 }
 
 .bg-grey {
-    background-color: var(--grey);
+    background-color: var(--grey) !important;
+}
+
+.bg-primary {
+    background-color: var(--primary) !important;
+}
+
+.color-white {
+    color: white;
 }
 
 .link {
@@ -755,7 +763,7 @@ btn.btn-primary:active, .btn-primary:focus{
     background-size: cover;
     background-position: center;
     height: 20rem;
-    width: 100&;
+    width: 100%;
     color: white;
     padding-top: 3rem;
     box-shadow: var(--bottom-shadow-darker);
@@ -769,6 +777,23 @@ btn.btn-primary:active, .btn-primary:focus{
 
 .consignment-detail-card__text {
     margin-bottom: 0.5rem;
+}
+
+.consignment-detail-card__info {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}
+
+.consignment-detail-card__info__header {
+    font-size: 0.85rem;
+}
+
+.subheading {
+    font-size: 0.75rem;
+}
+
+.event-description {
+    font-size: 0.8rem;
 }
 
 /* User Profile */
