@@ -1,7 +1,7 @@
 ﻿<!-- main app container -->
 <div class="col-12 h-100 no-padding">
     <alert></alert>
-    <router-outlet></router-outlet>
+    <router-outlet (activate)="onActivate($event)"></router-outlet>
 </div>
 <!--
 <div>
