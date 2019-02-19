@@ -7,6 +7,7 @@
     --red: #FF1930;
     --yellow: #EDE618;
     --grey: #f7f9fa;
+    --dashed-border: 1px #ddd dashed;
 }
 
 .color-primary {
@@ -120,7 +121,7 @@
 
 .card-body .title-border {
     padding-bottom: 5px;
-    border-bottom: 1px #ddd dashed;
+    border-bottom: var(--dashed-border);
 }
 
 .navbar {
@@ -655,6 +656,10 @@ btn.btn-primary:active, .btn-primary:focus{
 .width-70px {
     width: 70px;
 }
+
+.max-width-20 {
+    max-width: 20rem;
+}
 /* Notificationcenter */
 .notification {
     border-bottom: 1px solid rgba(0,0,0,.15);
@@ -730,6 +735,20 @@ btn.btn-primary:active, .btn-primary:focus{
     width: 100%;
     color: white;
     box-shadow: var(--bottom-shadow-darker);
+}
+
+.invitation-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.15rem;
+}
+
+.invitation-status {
+    margin-bottom: 0.5rem;
+}
+
+.package-description {
+    font-style: italic;
+    font-size: 0.9rem;
 }
 
 .firstAndLast {
@@ -1176,11 +1195,20 @@ btn.btn-primary:active, .btn-primary:focus{
     .user-profile-block {
         margin-top: 1rem;
     }
+    .invite-border {
+        border-bottom: var(--dashed-border);
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+    }
 }
 
 @media screen and (min-width: 576px) {
     .mh-cards-grid {
         min-height: 784px;
+    }
+
+    .invite-border {
+        border-right: var(--dashed-border);
     }
 }
 

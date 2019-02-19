@@ -24,17 +24,17 @@
 <!-- Om försändelser finns så visas dom här komponenterna -->
 <div class="card-header-custom col-12 animate-enter">
     <div *ngIf="consignments?.length > 0" class="row align-items-between">
-        <h4 class="m-0 col-sm-7" *ngIf="consignments?.length > 1">Du har {{consignments?.length}} försändelser</h4>
-        <h4 class="m-0 col-sm-7" *ngIf="consignments?.length == 1">Du har {{consignments?.length}} försändelse</h4>
+        <h4 class="m-0 col-sm-7" *ngIf="consignments?.length > 1">Du har {{consignments?.length}} aktiva försändelser</h4>
+        <h4 class="m-0 col-sm-7" *ngIf="consignments?.length == 1">Du har {{consignments?.length}} aktiv försändelse</h4>
             
         <p class="col-sm-5 m-0 text-sm-right">
             <a *ngIf="!showConsignments" (click)="showConsignments=true" class="hide-link"
                data-toggle="collapse" href="#consignments" role="button" aria-expanded="true" aria-controls="consignments">
-                Visa försändelser <i class="fa fa-angle-down" aria-hidden="true"></i>
+                Visa aktiva försändelser <i class="fa fa-angle-down" aria-hidden="true"></i>
             </a>
             <a *ngIf="showConsignments" (click)="showConsignments=false" class="hide-link"
                data-toggle="collapse" href="#consignments" role="button" aria-expanded="true" aria-controls="consignments">
-                Dölj försändelser <i class="fa fa-angle-up" aria-hidden="true"></i>
+                Dölj aktiva försändelser <i class="fa fa-angle-up" aria-hidden="true"></i>
             </a>
         </p>
     </div>

@@ -67,6 +67,8 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
 
             this.orderBy('-StartDate', this.activeInvitations);
         }); 
+
+        this.getUsers();
     }
 
     //openCheckout() {
@@ -157,12 +159,12 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
     translateInvitationStatus(invite: Invitation){
         if (this.currentUser.PersonId == invite.SenderPersonId && invite.Status == InvitationStatusEnum.Accepted)
             return "Väntar på betalning från köparen.";
-        //else if (this.currentUser.PersonId == invite.SenderPersonId && invite.Status == InvitationStatusEnum.AmountDeposited)
-        //    return "Mata in kolli-id!";
-        //else if (this.currentUser.PersonId == invite.ReceiverPersonId && invite.Status == InvitationStatusEnum.Accepted)
-        //    return "Betala!"
+        else if (this.currentUser.PersonId == invite.SenderPersonId && invite.Status == InvitationStatusEnum.AmountDeposited)
+            return "Köparen har betalat, skicka paketet och mata in kolli-id.";
+        else if (this.currentUser.PersonId == invite.ReceiverPersonId && invite.Status == InvitationStatusEnum.Accepted)
+            return "Säljaren väntar på din betalning."
         else if (this.currentUser.PersonId == invite.ReceiverPersonId && invite.Status == InvitationStatusEnum.AmountDeposited)
-            return "Väntar på att säljaren ska skicka paketet."
+            return "Paketet betalat, väntar på att säljaren ska skicka paketet och mata in kolli-id."
     }
 
 }
