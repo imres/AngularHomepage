@@ -71,7 +71,7 @@
                             </div>
                             <div class="list-group-item" *ngFor="let item of events ; let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even }">
                                 <i *ngIf="item.status == 'DELIVERED'" class="fas fa-check-square fa-fw fa-pull-left"></i>
-                                <i *ngIf="item.status !== 'DELIVERED'" class="fas fa-envelope fa-fw fa-pull-left"></i>
+                                <i *ngIf="item.status !== 'DELIVERED'" class="fas fa-truck fa-fw fa-pull-left"></i>
                                 <!--<i class="fas fa-info fa-fw fa-pull-left"></i>-->
                                 <h6 class="consignment-detail-card__info__header">{{item.location.name}}</h6>
                                 <p class="subheading">- {{item.eventTime | date:'yyyy-MM-dd, HH:mm'}}</p>
