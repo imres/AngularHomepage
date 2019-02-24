@@ -29,6 +29,7 @@
 
 .bg-primary {
     background-color: var(--primary) !important;
+    color: white;
 }
 
 .bg-grey-dark {
