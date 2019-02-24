@@ -17,14 +17,16 @@
                                 <h5 class="text-center mb-0">Mitt paket</h5>
                             </div>
                             <div class="card-body row">
-                                <div class="col-6">
+                                <div class="col-6 text-center">
                                     <img *ngIf="item.Status == 1" src="img/undraw_on_the_way_ldaq.svg" alt="Accepterat" class="guide-image">
                                     <img *ngIf="item.Status == 10" src="img/undraw_mail_cg1t.svg" alt="Accepterat" class="guide-image">
+                                    <p *ngIf="item.Status == 1"><strong>Paketet är på väg</strong></p>
+                                    <p *ngIf="item.Status == 10"><strong>Paketet har levererats</strong></p>
                                 </div>
                                 <div class="col-6 py-3">
                                     <h4>{{item.Title}}</h4>
-                                    <p *ngIf="item.Status == 1">Paketet är på väg</p>
-                                    <p *ngIf="item.Status == 10">Paketet har levererats</p>
+                                    <p class="package-description">{{item.Description}}</p>
+
                                 </div>
                             </div>
                         </div>
