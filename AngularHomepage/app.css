@@ -7,6 +7,7 @@
     --red: #FF1930;
     --yellow: #EDE618;
     --grey: #f7f9fa;
+    --grey-dark: #b3b3b3;
     --dashed-border: 1px #ddd dashed;
 }
 
@@ -28,6 +29,11 @@
 
 .bg-primary {
     background-color: var(--primary) !important;
+}
+
+.bg-grey-dark {
+    background-color: var(--grey-dark) !important;
+    color: white;
 }
 
 .color-white {
@@ -667,9 +673,14 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 .notification:hover {
-    color: var(--primary);
+    /*color: var(--primary);*/
     background: #f7f9fa;
     cursor: pointer;
+}
+
+.notification-header {
+    margin-right: -15px;
+    margin-left: -15px;
 }
 
 .badge {
