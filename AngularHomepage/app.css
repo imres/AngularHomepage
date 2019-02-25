@@ -746,6 +746,12 @@ btn.btn-primary:active, .btn-primary:focus{
     box-shadow: var(--bottom-shadow-darker);
 }
 
+.archived-consignment--card__header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
 /* Active Invitations */
 
 .active-invitation__card-header {
