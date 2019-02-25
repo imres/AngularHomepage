@@ -2,6 +2,7 @@
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
 import { DialogService } from "ng2-bootstrap-modal";
+import { Router } from '@angular/router';
 
 import { BasicComponent } from '../../shared/basic.component';
 import { Person, Invitation, Consignment, ActiveConsignment, Pager } from '../../_models/index';
@@ -39,6 +40,7 @@ export class ConsignmentHistoryComponent extends BasicComponent implements OnIni
         private consignmentService: ConsignmentService,
         private toastrService: ToastrService,
         private pagerService: PagerService,
+        private router: Router,
 
     ) {
         super(injector);
@@ -86,5 +88,9 @@ export class ConsignmentHistoryComponent extends BasicComponent implements OnIni
                 this.toastrService.ShowToastr(isConfirmed, false, true, "Inbjudan skickades");
 
             });
+    }
+
+    routeToConsignmentDetail(item: ActiveConsignment) {
+        this.router.navigate(['/consignment-detail', item.PackageId])
     }
 }
