@@ -12,11 +12,11 @@
             <div *ngIf="finishedConsignments?.length > 0">
                 <div *ngFor="let item of finishedConsignments" class="card mb-3">
                     <div class="card-body text-center">
-                        <h4 *ngIf="currentUser.PersonId == item.SenderPersonId">Sony 1DX Mark II är levererad till {{item.ReceiverPersonId}}!</h4>
-                        <h4 *ngIf="currentUser.PersonId == item.ReceiverPersonId">Nikon D5 från {{item.SenderPersonId}} är levererad till dig!</h4>
+                        <h4 *ngIf="currentUser.PersonId == item.SenderPersonId">{{item.Title}} II är levererad till {{item.ReceiverPersonId}}!</h4>
+                        <h4 *ngIf="currentUser.PersonId == item.ReceiverPersonId">{{item.Title}} från {{item.SenderPersonId}} är levererad till dig!</h4>
                         <div class="row">
                             <div class="col-6 text-right">
-                                <a href="" class="btn btn-primary">Gå till försändelsen</a>
+                                <a (click)="routeToConsignmentDetail(item)" class="btn btn-primary">Gå till försändelsen</a>
                             </div>
                             <div class="col-6 text-left">
                                 <a href="" class="btn btn-outline-primary">Arkivera</a>
@@ -28,22 +28,26 @@
 
             <!-- Om inga försändelser finns så visas den här rutan med länk till att skicka invites och guide för att förstå hur man gör -->
             <div *ngIf="archivedConsignments?.length == 0" class="mt-3">
-                <h4 class="pl-0 col-12">Du har inga arkiverade försändelser</h4>
+                <h4 class="pl-0 col-12 text-center">Du har inga arkiverade försändelser</h4>
                 <div class="container-fluid ">
                     <div class="row">
-                        <div class="card text-center col-md-12">
-                            <div class="card-body">
-                                <p class="card-text">
-                                    Läs mer hur du kommer igång på några minuter eller skicka en inbjudan.
-                                </p>
-                                <a href="#" class="btn btn-primary" (click)=showConfirm($event)>Skicka inbjudan</a>
+                        <div class="text-center col-md-12 card-body">
+                            <img src="img/undraw_empty_xct9.svg" alt="Accepterat" >
+                            <p class="card-text">
+                                Just nu har du inga arkiverade försändelser.<br />
+                                Gå tillbaka till startsidan för att se dina aktiva försändelser eller skicka en inbjudan nedan.
+                            </p>
+                            <div class="row">
+                                <div class="col-6">
+                                    <a [routerLink]="['/home']" class="btn btn-primary btn-block">Gå tillbaka till startsidan</a>
+                                </div>
+                                <div class="col-6">
+                                    <a class="btn btn-outline-primary btn-block"  (click)=showConfirm($event)>Skicka inbjudan</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <br>
-
-                <guide></guide>
             </div>
 
             <!-- Om arkiverade försändelser finns så visas dom här komponenterna -->

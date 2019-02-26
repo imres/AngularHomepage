@@ -22,10 +22,12 @@ export class BasicComponent
 
     pager: Pager = new Pager();
     pagedItems: any[];
+    consignments: ActiveConsignment[];
     allConsignments: ActiveConsignment[];
     users: Person[];
     user: Person[];
     currentUser: Person;
+    loading = false;
 
     constructor(injector: Injector) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
