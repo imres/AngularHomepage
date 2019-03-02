@@ -85,6 +85,16 @@
     border-color: var(--primary);
 }
 
+.card-body .btn.btn-outline-primary {
+    color: var(--primary);
+}
+
+.card-body .btn.btn-outline-primary:hover {
+    color: white;
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
 .btn.btn-outline-primary-2 {
     color: var(--primary);
     background-color: white;
