@@ -20,7 +20,7 @@ namespace UserManager.Core.Services
             var entity = unitOfWork.Person.Find(x => x.PersonId == user.PersonId).FirstOrDefault();
 
             entity.Email = user.Email;
-            entity.Password = user.Password.Length > 0 ? user.Password : entity.Password;
+            entity.Password = user.Password.Length > 0 ? CryptographyService.Encrypt(user.Password) : entity.Password;
             entity.PhoneMobile = user.PhoneMobile;
 
             unitOfWork.Save();

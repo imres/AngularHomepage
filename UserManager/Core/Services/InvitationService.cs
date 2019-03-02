@@ -98,19 +98,22 @@ namespace UserManager.Core.Services
                 entity.Status = InvitationStatus.ConsignmentActive;
                 entity.EndDate = DateTime.Now;
 
-                //TODO - Different dbcontext, need to use same
                 var consignment = _consignmentService.CreateConsignmentFromInvitation(invitation);
 
-                unitOfWork.Consignment.Add(consignment);
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    //TODO: Only keep one last unitOfWork.Save, so we can "rollback" if error"
+                    unitOfWork.Consignment.Add(consignment);
+                    unitOfWork.Save();
 
-                unitOfWork.Save();
+                    var consignmentDTO = Mapper.Map<ConsignmentDTO>(consignment);
 
-                var consignmentDTO = Mapper.Map<ConsignmentDTO>(consignment);
+                    var packageInformation = unitOfWork.PackageInformation.UpdatePackageInformation(consignmentDTO);
+                    unitOfWork.PackageInformation.Add(packageInformation);
+                    unitOfWork.Save();
 
-                var packageInformation = unitOfWork.PackageInformation.UpdatePackageInformation(consignmentDTO);
-
-                unitOfWork.PackageInformation.Add(packageInformation);
-                unitOfWork.Save();
+                    scope.Complete();
+                }
 
                 //Find and return active consignment containing package API data
                 if (consignment != null)
