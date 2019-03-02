@@ -2,8 +2,8 @@
 <div *ngIf="activeInvitations?.length > 0" id="activeInvites" role="tablist">
     <div class="card-header-custom col-12 animate-enter">
         <div class="row align-items-between">
-            <h4 class="m-0 col-sm-7" *ngIf="activeInvitations?.length > 1">Du har {{activeInvitations?.length}} accepterade försändelser</h4>
-            <h4 class="m-0 col-sm-7" *ngIf="activeInvitations?.length == 1">Du har {{activeInvitations?.length}} accepterad försändelse</h4>
+            <h5 class="m-0 col-sm-7" *ngIf="activeInvitations?.length > 1">Du har {{activeInvitations?.length}} accepterade försändelser</h5>
+            <h5 class="m-0 col-sm-7" *ngIf="activeInvitations?.length == 1">Du har {{activeInvitations?.length}} accepterad försändelse</h5>
 
             <p class="col-sm-5 m-0 text-sm-right">
                 <a *ngIf="!showInvitations" (click)="showInvitations=true" class="hide-link"

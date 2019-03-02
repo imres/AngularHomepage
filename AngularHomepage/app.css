@@ -178,6 +178,9 @@ app{
     height: 100vh;
 }
 
+.illustration{
+    max-width: 325px;
+}
 
 img {
     max-width: 100%;
