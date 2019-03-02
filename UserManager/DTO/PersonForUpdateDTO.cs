@@ -4,9 +4,9 @@ using UserManager.Core.Interfaces;
 
 namespace UserManager.DTO
 {
-    public class PersonDTO : IPerson
+    public class PersonForUpdateDTO : IPerson
     {
-        public PersonDTO()
+        public PersonForUpdateDTO()
         {
             RegisterDate = DateTime.Now;
             UserRights = PersonId?.Length > 4 ? PersonUserRights.Write : PersonUserRights.Read;
@@ -20,7 +20,7 @@ namespace UserManager.DTO
         public string PersonId { get; set; }
         public DateTime RegisterDate { get; set; }
         public string Address { get; set; }
-        //public string Password { get; set; }
+        public string Password { get; set; }
         public int UserRights { get; set; }
         public string Token { get; set; }
         public string PhoneMobile { get; set; }

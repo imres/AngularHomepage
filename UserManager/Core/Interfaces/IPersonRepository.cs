@@ -10,7 +10,7 @@ namespace UserManager.Core.Interfaces
     {
         Person AddPerson(IPerson personDTO);
 
-        PersonDTO Authenticate(PersonDTO personDTO);
+        PersonDTO Authenticate(PersonForUpdateDTO personDTO);
 
         PersonDTO AuthenticateBankId(BankIdCollectDto bankIdCollectDTO);
     }

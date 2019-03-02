@@ -13,9 +13,8 @@ namespace UserManager.Core.Services
     {
         private UnitOfWork unitOfWork = new UnitOfWork(new masterEntities());
 
-        public PersonDTO UpdateUser(PersonDTO user)
+        public PersonDTO UpdateUser(PersonForUpdateDTO user)
         {
-            ValidateUser(user);
 
             var entity = unitOfWork.Person.Find(x => x.PersonId == user.PersonId).FirstOrDefault();
 

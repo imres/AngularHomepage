@@ -51,7 +51,7 @@ namespace UserManager.Controllers
         //[Route("TSPRoute")]
         [ActionName("Register")]
         [HttpPost]
-        public HttpResponseMessage Register(PersonDTO User)
+        public HttpResponseMessage Register(PersonForUpdateDTO User)
         {
             using (HttpClient http = new HttpClient())
             {
@@ -75,7 +75,7 @@ namespace UserManager.Controllers
 
         [ActionName("Update")]
         [HttpPost]
-        public HttpResponseMessage Update(PersonDTO User)
+        public HttpResponseMessage Update(PersonForUpdateDTO User)
         {
             using (HttpClient http = new HttpClient())
             {
@@ -88,20 +88,21 @@ namespace UserManager.Controllers
 
                 try
                 {
-                    User = _userService.UpdateUser(User);
+                    var userDTO = _userService.UpdateUser(User);
+                    return Request.CreateResponse(HttpStatusCode.OK, userDTO);
                 }
                 catch (InvalidDataException)
                 {
                     return Request.CreateResponse(HttpStatusCode.BadRequest, Configuration.Formatters.JsonFormatter);
                 }
 
-                return Request.CreateResponse(HttpStatusCode.OK, User);
+                
             }
         }
 
         [ActionName("Auth")]
         [HttpPost]
-        public HttpResponseMessage Auth(PersonDTO User)
+        public HttpResponseMessage Auth(PersonForUpdateDTO User)
         {
             using (HttpClient http = new HttpClient())
             {
@@ -114,14 +115,15 @@ namespace UserManager.Controllers
 
                 try
                 {
-                    User = unitOfWork.Person.Authenticate(User);
+                    var userDTO = unitOfWork.Person.Authenticate(User);
+                    return Request.CreateResponse(HttpStatusCode.OK, userDTO);
                 }
                 catch (ArgumentException arg)
                 {
                     return Request.CreateResponse(HttpStatusCode.Forbidden, arg.Message);
                 }
 
-                return Request.CreateResponse(HttpStatusCode.OK, User);
+                
             }
         }
 

@@ -40,7 +40,7 @@ namespace UserManager.Core.Repositories
         /// </summary>
         /// <param name="personDTO"></param>
         /// <returns></returns>
-        public PersonDTO Authenticate(PersonDTO personDTO)
+        public PersonDTO Authenticate(PersonForUpdateDTO personDTO)
         {
             //Hitta matchande användare. returnera res 200 & token
             using (masterEntities context = new masterEntities())

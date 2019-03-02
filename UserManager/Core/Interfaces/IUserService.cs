@@ -9,6 +9,6 @@ namespace UserManager.Core.Interfaces
 {
     public interface IUserService
     {
-        PersonDTO UpdateUser(PersonDTO user);
+        PersonDTO UpdateUser(PersonForUpdateDTO user);
     }
 }

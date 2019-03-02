@@ -370,6 +370,7 @@
     <Compile Include="DTO\ConsignmentDTO.cs" />
     <Compile Include="DTO\InvitationDTO.cs" />
     <Compile Include="DTO\PersonDTO.cs" />
+    <Compile Include="DTO\PersonForUpdateDTO.cs" />
     <Compile Include="DTO\PostnordShipmentResponseDTO.cs" />
     <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="DTO\UserLinksDTO.cs" />

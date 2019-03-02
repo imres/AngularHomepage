@@ -43,7 +43,7 @@ namespace UserManager.Core.Mappers
                     ;
 
                 cfg.CreateMap<Person, PersonDTO>();
-                cfg.CreateMap<PersonDTO, Person>();
+                cfg.CreateMap<PersonDTO, Person>().ForMember(x => x.Password, opt => opt.Ignore());
 
                 cfg.CreateMap<BankIdPersonDTO, Person>()
                     .ForMember(x => x.Address, opt => opt.Ignore())
