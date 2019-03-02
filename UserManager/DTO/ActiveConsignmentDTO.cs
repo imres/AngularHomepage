@@ -19,7 +19,7 @@ namespace UserManager.DTO
         {
             get
             {
-                return LastSeenEventWithLocation?.eventTime.ToShortDateString();
+                return LastSeenEventWithLocation?.eventTime.Value.ToShortDateString();
             }
         }
 
@@ -27,7 +27,7 @@ namespace UserManager.DTO
         {
             get
             {
-                return ShipmentInformation?.items.LastOrDefault()?.dropOffDate.ToShortDateString();
+                return ShipmentInformation?.items.LastOrDefault()?.dropOffDate.Value.ToShortDateString();
             }
         }
 

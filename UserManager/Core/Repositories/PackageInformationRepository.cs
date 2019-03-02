@@ -25,7 +25,7 @@ namespace UserManager.Core.Repositories
 
         }
 
-        private bool timeCheckEnabled = true;
+        private bool timeCheckEnabled = false;
 
         public PackageInformation UpdatePackageInformation(ConsignmentDTO consignment)
         {
@@ -129,9 +129,9 @@ namespace UserManager.Core.Repositories
 
                     result = JsonConvert.DeserializeObject<Object>(respbody);
 
-                    var trackingInfo = JsonConvert.DeserializeObject<TrackingInformationResponse>(result.ToString());
+                    var trackingInfo = JsonConvert.DeserializeObject<PostnordShipmentResponseDTO>(result.ToString());
 
-                    if (!trackingInfo.shipments.Any())
+                    if (!trackingInfo.trackingInformationResponse.shipments.Any())
                         throw new ArgumentNullException();
 
                     if (result != null)

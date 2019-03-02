@@ -684,9 +684,9 @@ namespace UserManager.DTO
     public class SplitStatus
     {
         [DataMember]
-        public int noItemsWithStatus { get; set; }
+        public int? noItemsWithStatus { get; set; }
         [DataMember]
-        public int noItems { get; set; }
+        public int? noItems { get; set; }
         [DataMember]
         public string statusDescription { get; set; }
         [DataMember]
@@ -946,7 +946,7 @@ namespace UserManager.DTO
     public class Event
     {
         [DataMember]
-        public DateTime eventTime { get; set; }
+        public DateTime? eventTime { get; set; }
         [DataMember]
         public string eventCode { get; set; }
         [DataMember]
@@ -1002,9 +1002,9 @@ namespace UserManager.DTO
         [DataMember]
         public string realTimeOfArrival { get; set; }
         [DataMember]
-        public DateTime dropOffDate { get; set; }
+        public DateTime? dropOffDate { get; set; }
         [DataMember]
-        public DateTime deliveryDate { get; set; }
+        public DateTime? deliveryDate { get; set; }
         [DataMember]
         public string typeOfItem { get; set; }
         [DataMember]
@@ -1016,7 +1016,7 @@ namespace UserManager.DTO
         [DataMember]
         public string additionalInformation { get; set; }
         [DataMember]
-        public int noItems { get; set; }
+        public int? noItems { get; set; }
         [DataMember]
         public string numberOfPallets { get; set; }
         [DataMember]
@@ -1051,21 +1051,23 @@ namespace UserManager.DTO
         [DataMember]
         public string uri { get; set; }
         [DataMember]
-        public int assessedNumberOfItems { get; set; }
+        public int? assessedNumberOfItems { get; set; }
+        [DataMember]
+        public string[] customerNumbers { get; set; }
         [DataMember]
         public string cashOnDeliveryText { get; set; }
         [DataMember]
-        public DateTime deliveryDate { get; set; }
+        public DateTime? deliveryDate { get; set; }
         [DataMember]
-        public DateTime originEstimatedTimeOfArrival { get; set; }
+        public DateTime? originEstimatedTimeOfArrival { get; set; }
         [DataMember]
-        public DateTime estimatedTimeOfArrival { get; set; }
+        public DateTime? estimatedTimeOfArrival { get; set; }
         [DataMember]
-        public DateTime realTimeOfArrival { get; set; }
+        public DateTime? realTimeOfArrival { get; set; }
         [DataMember]
-        public DateTime requestedDeliveryDate { get; set; }
+        public DateTime? requestedDeliveryDate { get; set; }
         [DataMember]
-        public DateTime requestedProductionDate { get; set; }
+        public DateTime? requestedProductionDate { get; set; }
         [DataMember]
         public string notificationPhoneNumber { get; set; }
         [DataMember]
