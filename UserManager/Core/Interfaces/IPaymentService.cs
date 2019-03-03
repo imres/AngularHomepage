@@ -10,7 +10,7 @@ namespace UserManager.Core.Interfaces
 {
     public interface IPaymentService
     {
-        Payment ProcessPayment(InvitationDTO invitationDTO);
+        Payment ProcessPayment(InvitationDTO invitationDTO, string stripeEmail, string stripeToken);
         bool MockProcessPayment(InvitationDTO invitationDTO);
     }
 }

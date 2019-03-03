@@ -21,5 +21,6 @@ namespace UserManager
         public int InvitationId { get; set; }
         public int DepositAmount { get; set; }
         public int PaymentMethod { get; set; }
+        public string TransactionId { get; set; }
     }
 }

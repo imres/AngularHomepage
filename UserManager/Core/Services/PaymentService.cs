@@ -14,20 +14,30 @@ namespace UserManager.Core.Services
     {
         private UnitOfWork unitOfWork = new UnitOfWork(new masterEntities());
 
-        public Payment ProcessPayment(InvitationDTO invitationDTO)
+        public Payment ProcessPayment(InvitationDTO invitationDTO, string stripeEmail, string stripeToken)
         {
             var invitationToAccept = unitOfWork.Invitation.Get(invitationDTO.Id);
             invitationToAccept.Status = InvitationStatus.AmountDeposited;
 
             StripeConfiguration.SetApiKey("sk_test_epJ2E8spaOeuMhz9mdRabvi9");
 
+            var customers = new CustomerService();
+            var charges = new ChargeService();
+
+            //var customer = customers.Create(new CustomerCreateOptions
+            //{
+            //    Email = stripeEmail,
+            //    SourceToken = "tok_visa"
+            //});
+
             var options = new ChargeCreateOptions
             {
-                Amount = invitationDTO.RequestedDepositAmount.Value * 10,
+                Amount = invitationDTO.RequestedDepositAmount.Value * 100,
                 Currency = "sek",
-                SourceId = "tok_visa",
-                ReceiptEmail = "pontuswikberg_@hotmail.com",
+                SourceId = "tok_visa", //Should be stripeToken in live environment
+                ReceiptEmail = stripeEmail
             };
+
             var service = new ChargeService();
             Charge charge = service.Create(options);
 
@@ -38,7 +48,8 @@ namespace UserManager.Core.Services
                 PaymentReceiverPersonId = invitationDTO.SenderPersonId,
                 InvitationId = invitationDTO.Id,
                 DepositAmount = (int)charge.Amount,
-                PaymentMethod = invitationDTO.PaymentMethod.Value
+                PaymentMethod = invitationDTO.PaymentMethod.Value,
+                TransactionId = charge.Id
             };
 
             unitOfWork.Payment.Add(payment);

@@ -74,7 +74,7 @@
                                    (click)="enterPackageId(item);false" [class.disabled]="item.Status == invitationStatus.Accepted ? true : null">Ange kolli-id</a>
 
                                 <ng-container *ngIf="HasReceiverRole(item) && item.Status == invitationStatus.Accepted">
-                                    <a href="#" class="btn btn-primary col-md-6" (click)="processPayment(item)">Betala</a>
+                                    <a href="#" class="btn btn-primary col-md-6" (click)="openCheckout(item)">Betala</a>
                                 </ng-container>
                             </div>
                         </div>

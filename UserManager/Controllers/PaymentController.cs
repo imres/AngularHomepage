@@ -33,7 +33,7 @@ namespace UserManager.Controllers
 
         [ActionName("Payment")]
         [HttpPost]
-        public HttpResponseMessage Payment(InvitationDTO invitation)
+        public HttpResponseMessage Payment(InvitationDTO invitation, string stripeEmail, string stripeToken)
         {
 
             using (HttpClient http = new HttpClient())
@@ -49,7 +49,7 @@ namespace UserManager.Controllers
 
                 try
                 {
-                    payment = _paymentService.ProcessPayment(invitation);
+                    payment = _paymentService.ProcessPayment(invitation, stripeEmail, stripeToken);
                 }
                 catch (InvalidOperationException ex)
                 {

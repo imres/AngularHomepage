@@ -34,6 +34,8 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
     invitationStatus = InvitationStatusEnum;
     showPackageIdForm = false;
     unrespondedInvitations: Invitation[];
+    handler: any;
+    invitationToPay: InvitationExtended;
 
     showPopover = false;
     
@@ -62,32 +64,40 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
 
         this.invitationService.invitationList.subscribe(invitations => {
             if (!invitations) return;
-
             this.activeInvitations = invitations.filter(x => { return x.Status > InvitationStatusEnum.Created && x.Status < InvitationStatusEnum.ConsignmentActive });
-
             this.orderBy('-StartDate', this.activeInvitations);
         }); 
 
         this.getUsers();
+        this.ConfigStripeCheckout();
     }
 
-    //openCheckout() {
-    //    var handler = (<any>window).StripeCheckout.configure({
-    //        key: 'pk_test_oi0sKPJYLGjdvOXOM8tE8cMa',
-    //        locale: 'auto',
-    //        token: function (token: any) {
-    //            // You can access the token ID with `token.id`.
-    //            // Get the token ID to your server-side code for use.
-    //        }
-    //    });
+    openCheckout(invitation: InvitationExtended) {
+        this.invitationToPay = invitation;
 
-    //    handler.open({
-    //        name: 'Demo Site',
-    //        description: '2 widgets',
-    //        amount: 2000
-    //    });
+        this.handler.open({
+            name: invitation.Title,
+            description: invitation.Description,
+            amount: invitation.RequestedDepositAmount * 100
+        });
+    }
 
-    //}
+    private ConfigStripeCheckout(){
+        this.handler = (<any>window).StripeCheckout.configure({
+            key: 'pk_test_oi0sKPJYLGjdvOXOM8tE8cMa',
+            locale: 'auto',
+            currency: "sek",
+            token: (token: any) => {
+                // You can access the token ID with `token.id`.
+                // Get the token ID to your server-side code for use.
+                console.log("token", token);
+                 this.paymentService.processPayment(this.invitationToPay, token.email, token.id).subscribe(() => {
+                    this.filterService.updateInvitationStatus(this.invitations, this.invitationToPay, InvitationStatusEnum.AmountDeposited);
+                    this.toastrService.ShowToastr(true, false, true, "Betalning skickades!");
+                 });
+            }
+        });
+    }
 
     private getInvitations() {
         this.invitationService.getInvitations(this.currentUser.PersonId).subscribe(res => {
@@ -134,23 +144,20 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
         this.invitationExtended = invitation;
     }
 
-    processPayment(invitation: InvitationExtended) {
-        this.dialogService.addDialog(StripeCheckout, {
-            title: 'Skicka inbjudan',
-            message: 'Bla bla confirm some action?'
-        })
-            .subscribe((isConfirmed) => {
-                //Get dialog result
-                //this.confirmResult = isConfirmed;
-                this.paymentService.processPayment(invitation).subscribe(res => {
-                    //Once payment have gone through, update the activeInvitation array
-                    //this.updateInvitationList(invitation, InvitationStatusEnum.AmountDeposited);
-                    this.filterService.updateInvitationStatus(this.invitations, invitation, InvitationStatusEnum.AmountDeposited);
-
-                    this.toastrService.ShowToastr(isConfirmed, false, true, "Betalning skickades!");
-                });
-            });
-    }
+    // processPayment(invitation: InvitationExtended) {
+    //     this.dialogService.addDialog(StripeCheckout, {
+    //         title: 'Skicka inbjudan',
+    //         message: 'Bla bla confirm some action?'
+    //     })
+    //         .subscribe((isConfirmed) => {
+    //             if(!isConfirmed) return;
+    //             this.paymentService.processPayment(invitation).subscribe(res => {
+    //                 //this.updateInvitationList(invitation, InvitationStatusEnum.AmountDeposited);
+    //                 this.filterService.updateInvitationStatus(this.invitations, invitation, InvitationStatusEnum.AmountDeposited);
+    //                 this.toastrService.ShowToastr(isConfirmed, false, true, "Betalning skickades!");
+    //             });
+    //         });
+    // }
 
     HasReceiverRole(invitation: Invitation): boolean {
         return invitation.ReceiverPersonId == this.currentUser.PersonId ? true : false;

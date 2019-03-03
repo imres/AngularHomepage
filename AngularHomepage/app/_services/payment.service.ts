@@ -14,10 +14,12 @@ export class PaymentService {
     });
     
 
-    processPayment(invitation: Invitation) {
+    processPayment(invitation: Invitation, stripeEmail: string, stripeToken: string) {
+        var params = {stripeEmail: stripeEmail, stripeToken: stripeToken};
+
         return this.http.post('http://localhost:65192/api/Payment/Payment',
             JSON.stringify(invitation),
-            { headers: this.headers })
+            { headers: this.headers, params: params })
             .map((response: Response) =>
                 response.json()
             ).catch(error =>
