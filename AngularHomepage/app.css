@@ -3,8 +3,12 @@
     --center-shadow: #e0e0e0 0px 0px 8px;
     --bottom-shadow-darker: #e0e0e0 0px 5px 11px;
     --primary: #0AF;
+    --secondary: #FF8900;
     /*--blue: #0069d9;*/
-    --red: #FF1930;
+    --red: #FF001E;
+    --green: #35FF00;
+    --danger: #FF001E;
+    --success: #35FF00;
     --yellow: #EDE618;
     --grey: #f7f9fa;
     --grey-dark: #b3b3b3;
@@ -125,7 +129,7 @@
 }
 
 .card-border-receiver {
-    border-top: 3px #ff8100 solid;
+    border-top: 3px #ff8900 solid;
 }
 
 .receiver-color {
