@@ -57,7 +57,7 @@
                                 <h5 class="invitation-title">{{item.Title}}</h5>
                                 <p class="package-description">- {{item.Description}}</p>
 
-                                <p class="card-text invitation-status">{{translateInvitationStatus(item)}}</p>
+                                <p class="card-text invitation-status" [ngClass]="{'alert alert-info mb-3' : !HasReceiverRole(item) && item.Status == invitationStatus.AmountDeposited}">{{translateInvitationStatus(item)}}</p>
 
 
                                 <div *ngIf="!HasReceiverRole(item) && matchesInvitationWithPackageId(item)" class="animate-enter">
@@ -69,6 +69,14 @@
                                         <button type="button" role="button" class="btn btn-default" (click)="cancelPackageIdForm()">Avbryt</button>
                                     </form>
                                 </div>
+
+                                <!--<div *ngIf="!HasReceiverRole(item) && item.Status == invitationStatus.AmountDeposited" class="alert alert-info alert-dismissable" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h4 class="alert-heading">Skicka paketet</h4>
+                                    <p>Köparen har betalat för paketet och nu återstår det bara för dig att skicka det, tänk på att skicka paketet med PostNord och använda något fraktsätt som är spårbart.</p>
+                                </div>-->
 
                                 <a *ngIf="!HasReceiverRole(item) && !matchesInvitationWithPackageId(item)" href="#" class="btn btn-primary col-md-6 animate-enter"
                                    (click)="enterPackageId(item);false" [class.disabled]="item.Status == invitationStatus.Accepted ? true : null">Ange kolli-id</a>
