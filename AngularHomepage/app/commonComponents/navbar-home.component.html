@@ -40,8 +40,8 @@
         </li>
         <li class="nav-item">
             <div data-toggle="dropdown" class="notification-bell" role="button" aria-haspopup="true" aria-expanded="false">
-                <i class="far fa-bell fa-2x" aria-hidden="true" id="bell"></i>
-                <h6 *ngIf="notifications > 0" class="notification-counter">{{notifications}}</h6>
+                <i class="far fa-bell fa-2x" aria-hidden="true" id="bell"><span class="badge badge-pill badge-primary" *ngIf="notifications > 0">{{notifications}}</span></i>
+                <!-- <h6 *ngIf="notifications > 0" class="notification-counter">{{notifications}}</h6> -->
             </div>
             <div class="dropdown-menu dropdown-menu-right notification-dropdown">
                 <div class="width-25 text-center py-4" *ngIf="notifications == 0">  
