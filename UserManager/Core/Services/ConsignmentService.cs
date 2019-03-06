@@ -19,9 +19,9 @@ namespace UserManager.Core.Services
 
         private string GetDeliveryAdress(InvitationExtended invitation)
         {
-            if(invitation.CustomDeliveryAdress.Length > 0)
+            if(invitation.CustomDeliveryAddress.Length > 0)
             {
-                return invitation.CustomDeliveryAdress;
+                return invitation.CustomDeliveryAddress;
             }
 
             var person = unitOfWork.Person.Find(x => x.PersonId == invitation.ReceiverPersonId).FirstOrDefault();
@@ -41,7 +41,7 @@ namespace UserManager.Core.Services
                 DepositedAmount = invitation.RequestedDepositAmount,
                 Title = invitation.Title,
                 Description = invitation.Description,
-                DeliveryAdress = GetDeliveryAdress(invitation)
+                DeliveryAddress = GetDeliveryAdress(invitation)
             };
 
             return consignment;
