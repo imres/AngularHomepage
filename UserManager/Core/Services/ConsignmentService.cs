@@ -17,6 +17,17 @@ namespace UserManager.Core.Services
         private UnitOfWork unitOfWork = new UnitOfWork(new masterEntities());
         private object allConsignments;
 
+        private string GetDeliveryAdress(InvitationExtended invitation)
+        {
+            if(invitation.CustomDeliveryAddress.Length > 0)
+            {
+                return invitation.CustomDeliveryAddress;
+            }
+
+            var person = unitOfWork.Person.Find(x => x.PersonId == invitation.ReceiverPersonId).FirstOrDefault();
+            return person.Address;
+        }
+
         public Consignment CreateConsignmentFromInvitation(InvitationExtended invitation)
         {
             var consignment = new Consignment
@@ -29,7 +40,8 @@ namespace UserManager.Core.Services
                 PackageId = invitation.PackageId,
                 DepositedAmount = invitation.RequestedDepositAmount,
                 Title = invitation.Title,
-                Description = invitation.Description
+                Description = invitation.Description,
+                DeliveryAddress = GetDeliveryAdress(invitation)
             };
 
             return consignment;
