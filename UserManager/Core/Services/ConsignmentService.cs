@@ -19,13 +19,13 @@ namespace UserManager.Core.Services
 
         private string GetDeliveryAdress(InvitationExtended invitation)
         {
-            if(invitation.CustomDeliveryAddress.Length > 0)
+            if(invitation.CustomDeliveryAddress == null)
             {
-                return invitation.CustomDeliveryAddress;
+                var person = unitOfWork.Person.Find(x => x.PersonId == invitation.ReceiverPersonId).FirstOrDefault();
+                return person.Address;
             }
 
-            var person = unitOfWork.Person.Find(x => x.PersonId == invitation.ReceiverPersonId).FirstOrDefault();
-            return person.Address;
+            return invitation.CustomDeliveryAddress;
         }
 
         public Consignment CreateConsignmentFromInvitation(InvitationExtended invitation)
