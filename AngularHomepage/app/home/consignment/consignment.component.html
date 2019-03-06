@@ -56,8 +56,8 @@
     </div>
     <div class="row" [ngClass]="{'mh-cards-grid' : (consignments?.length >= 4)}">
         <div *ngFor="let item of pagedItems" [ngClass]="{'col-sm-6' : (consignments?.length > 1), 'col-sm-12' : (consignments?.length < 2)}">
-            <div class="card mb-3">
-                <div class="consignment-card-header" [ngClass]="{'primary-gradient' : (currentUser.PersonId == item.SenderPersonId), 'secondary-gradient' : (currentUser.PersonId == item.ReceiverPersonId)}">
+            <div class="card mb-3 consignment-card" (click)="routeToConsignmentDetail(item)">
+                <div class="consignment-card__header" [ngClass]="{'primary-gradient' : (currentUser.PersonId == item.SenderPersonId), 'secondary-gradient' : (currentUser.PersonId == item.ReceiverPersonId)}">
                     <h2 class="text-center"><i class="fas fa-map-marker-alt"></i> {{item.LastSeenCity}}</h2>
                     <p class="text-center"><i class="far fa-calendar-alt"></i> {{item.LastSeenTimeStamp}}</p>
                 </div>

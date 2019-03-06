@@ -752,6 +752,11 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 /* Consignments */
+.consignment-card:hover {
+    box-shadow: var(--bottom-shadow-darker);
+    cursor: pointer;
+}
+
 .consignment-card-img {
     width: 125px;
     height: 125px;
@@ -760,7 +765,7 @@ btn.btn-primary:active, .btn-primary:focus{
     top: 1rem;
 }
 
-.consignment-card-header {
+.consignment-card__header {
     height: 10rem;
     width: 100%;
     color: white;
@@ -774,8 +779,18 @@ btn.btn-primary:active, .btn-primary:focus{
     background-color: rgba(0, 0, 0, 0.03);
 }
 
-/* Active Invitations */
+.archived-consignment--card__header:hover {
+    box-shadow: var(--bottom-shadow-darker);
+    cursor: pointer;
+}
 
+.archived-consignment--card__img {
+    border: 0;
+    margin-bottom: 1rem;
+    width: 150px;
+    height: auto;
+}
+/* Active Invitations */
 .active-invitation__card-header {
     height: 3rem;
     padding-top: 0.75rem;
