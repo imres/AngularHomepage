@@ -46,7 +46,7 @@ export class ConsignmentComponent extends BasicComponent implements OnInit {
         this.getConsignments();
 
         this.consignmentService.consignmentList.subscribe(consignments => {
-            if (!consignments) return;  
+            if (!consignments || !this.consignments) return;  
 
             this.consignments = this.consignments.concat(consignments);
 
