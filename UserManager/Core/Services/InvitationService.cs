@@ -35,6 +35,9 @@ namespace UserManager.Core.Services
 
                 entity.Status = InvitationStatus.Accepted;
                 entity.RequestedDepositAmount = invitation.RequestedDepositAmount;
+                entity.CustomDeliveryAddress = invitation.CustomDeliveryAddress;
+                //entity.CustomDeliveryPostalCode = invitation.CustomDeliveryPostalCode;
+                //entity.CustomDeliveryCity = invitation.CustomDeliveryCity;
 
                 unitOfWork.Save();
             }

@@ -30,6 +30,8 @@ export class InviteResponseComponent extends DialogComponent<ConfirmModel, boole
 
     currentUser: Person;
     isReceiver: boolean = null;
+    dialogStep = 1;
+    showCustomAddress = false;
 
     constructor(
         injector: Injector,
@@ -63,6 +65,19 @@ export class InviteResponseComponent extends DialogComponent<ConfirmModel, boole
 
     resetModel() {
         this.model = new Invitation();
+        this.dialogStep = 1;
+    }
+
+    customAddressRadio(event: any) {
+        if (event == 'option2') {
+            this.showCustomAddress = true;
+            return this.showCustomAddress = true;
+        }
+            
+        if (event == 'option1') {
+            this.showCustomAddress = false;
+            return this.showCustomAddress = false;
+        }
     }
 
     acceptInvitation(invite: Invitation) {

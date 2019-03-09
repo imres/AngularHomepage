@@ -10,6 +10,7 @@
     public EndDate: Date;
     public Title: string;
     public Description: string;
-
+    public DeliveryAddress: string;
+    
     public Content: string = '';
 }
