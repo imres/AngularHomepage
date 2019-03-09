@@ -1,10 +1,14 @@
 ﻿:root {
+    /* Shadows and borders*/
     --bottom-shadow: #e0e0e0 0px 2px 8px;
     --center-shadow: #e0e0e0 0px 0px 8px;
     --bottom-shadow-darker: #e0e0e0 0px 5px 11px;
+    --dashed-border: 1px #ddd dashed;
+    /* Colors */
     --primary: #0AF;
     --secondary: #FF8900;
     /*--blue: #0069d9;*/
+    --black: #212121;
     --red: #FF001E;
     --green: #35FF00;
     --danger: #FF001E;
@@ -12,11 +16,16 @@
     --yellow: #EDE618;
     --grey: #f7f9fa;
     --grey-dark: #b3b3b3;
-    --dashed-border: 1px #ddd dashed;
+    --grey-light: #4A4A4A;
+    --secondary-gradient-hover: #f9bf72;
 }
 
 .color-primary {
     color: var(--primary);
+}
+
+.color-secondary {
+    color: var(--secondary);
 }
 
 .color-red {
@@ -791,17 +800,38 @@ btn.btn-primary:active, .btn-primary:focus{
     height: auto;
 }
 /* Active Invitations */
-.active-invitation__card-header {
-    height: 3rem;
-    padding-top: 0.75rem;
-    width: 100%;
+.active-invitation-card__header {
+    padding: 1.25rem;
+}
+
+.active-invitation-card__header-info {
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.active-invitation-card__header:hover {
+    cursor: pointer;
+}
+
+.primary-gradient.active-invitation-card__header:hover {
+    background: var(--primary);
     color: white;
-    box-shadow: var(--bottom-shadow-darker);
+}
+
+.secondary-gradient.active-invitation-card__header:hover {
+    background: var(--secondary-gradient-hover);
+    color: white;
+}
+
+.active-invitation-card__body {
+    padding: 1.25rem;
+    padding-left: 2.5rem;
 }
 
 .invitation-title {
+    font-weight: 700;
+    margin-bottom: 0;
     font-size: 1.2rem;
-    margin-bottom: 0.15rem;
 }
 
 .invitation-status {
@@ -809,8 +839,12 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 .package-description {
-    font-style: italic;
+    color: var(--grey-dark);
     font-size: 0.9rem;
+}
+
+.active-invitation-card__body .list-group-item {
+    border: none;
 }
 
 .firstAndLast {
@@ -1302,6 +1336,30 @@ btn.btn-primary:active, .btn-primary:focus{
         border-bottom: var(--dashed-border);
         margin-bottom: 1rem;
         padding-bottom: 1rem;
+    }
+    /*.active-invitation-card__header {
+        background: var(--grey);
+        margin-bottom: 0;
+        color: var(--black);
+        padding-bottom: 0.rem;
+        padding-top: 0.5rem;
+    }*/
+    .active-invitation-card__header-info {
+        font-weight: 400;
+        margin-bottom: 0;
+    }
+    .active-invitation-card__body {
+        padding-top: 1rem;
+        padding-bottom: 0;
+        padding-left: 1.25rem;
+    }
+    .active-invitation-card__body .btn {
+        margin-top: 1rem;
+    }
+    .invitation-status {
+        color: var(--black);
+        background: var(--grey);
+        font-weight: 500;
     }
 }
 

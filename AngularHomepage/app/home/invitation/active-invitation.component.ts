@@ -6,6 +6,7 @@ import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@a
 import { Observable } from 'rxjs/Rx';
 import { DialogService } from "ng2-bootstrap-modal";
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { BasicComponent } from '../../shared/basic.component';
 import { Person, Invitation, InvitationExtended, PostNordSchema, Pager } from '../../_models/index';
@@ -53,6 +54,8 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
         private paymentService: PaymentService,
         private filterService: FilterService,
         private pagerService: PagerService,
+        private router: Router,
+        private activatedRoute: ActivatedRoute,
     ) {
         super(injector)
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -172,6 +175,10 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
             return "Säljaren väntar på din betalning."
         else if (this.currentUser.PersonId == invite.ReceiverPersonId && invite.Status == InvitationStatusEnum.AmountDeposited)
             return "Paketet betalat, väntar på att säljaren ska skicka paketet och mata in kolli-id."
+    }
+
+    routeToUserProfile(user: Person) {
+        this.router.navigate(['/user', user.PersonId])
     }
 
 }
