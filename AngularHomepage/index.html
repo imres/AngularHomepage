@@ -44,6 +44,26 @@
     <link href="node_modules/ng2-toastr/bundles/ng2-toastr.min.css" rel="stylesheet" />
     <script src="node_modules/ng2-toastr/bundles/ng2-toastr.min.js"></script>
     
+    <!-- Logs out user (clears localStorage) after 10 minutes when you close the tab/browser -->
+    <script>
+        window.onbeforeunload = function (e) {
+            let date = Date.now();
+            localStorage.setItem("lastactivity", date);
+        };
+        window.onload = function () {
+            let date1 = localStorage.getItem('lastactivity');
+            let date2 = Date.now();
+            if (date1 !== undefined) {
+                let difference = date2 - date1;
+                let diff = ((difference) / 1000).toFixed(0);
+                if (diff > 600) {
+                    localStorage.clear();
+                    //localStorage.removeItem(key);  for removing a single item
+                    location.reload();
+                }
+            }
+        };
+    </script>
 </head>
 <body>
     <app>Loading...</app>
