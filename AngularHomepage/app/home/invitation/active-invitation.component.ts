@@ -166,6 +166,10 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
         return invitation.ReceiverPersonId == this.currentUser.PersonId ? true : false;
     }
 
+    HasCustomDeliveryAddress(inv: Invitation): boolean {
+        return inv.CustomDeliveryAddress ? true : false;
+    }
+
     translateInvitationStatus(invite: Invitation){
         if (this.currentUser.PersonId == invite.SenderPersonId && invite.Status == InvitationStatusEnum.Accepted)
             return "Väntar på betalning från köparen.";
