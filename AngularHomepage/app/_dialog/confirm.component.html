@@ -41,12 +41,12 @@
                     </ng-container>
 
                     <ng-container *ngIf="selectedRole == 1 && dialogStep == 3" class="transition">
-                        <div class="form-group" [ngClass]="{ 'has-error': paymentMethod.dirty && !paymentMethod.valid }">
+                        <!--<div class="form-group" [ngClass]="{ 'has-error': paymentMethod.dirty && !paymentMethod.valid }">
                             <label>Utbetalningsmetod</label>
                             <select class="custom-select w-100" name="paymentMethod" [(ngModel)]="selectedPaymentMethod" id="paymentMethod" #paymentMethod="ngModel">
                                 <option *ngFor="let x of payment.methods" [value]="x.value" [selected]="selectedPaymentMethod == x.value">{{x.text}}</option>
                             </select>
-                        </div>
+                        </div>-->
                         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !requestedDepositAmount }">
                             <label for="requestedDepositAmount">Begärd summa (kronor)</label>
                             <input type="text" class="form-control" name="requestedDepositAmount"
@@ -79,6 +79,39 @@
                         </div>
                     </ng-container>
 
+                    <ng-container *ngIf="selectedRole == 2 && dialogStep == 3" class="transition">
+                        <h3>
+                            <small class="text-muted">Leveransadress: </small>
+                        </h3>
+                        <div class="form-check" (change)="customAddressRadio($event.target.value)">
+                            <input class="form-check-input" type="radio" name="deliveryAddressRadios" id="defaultAddress" value="option1" checked>
+                            <label class="form-check-label" for="deliveryAddressRadios">
+                                Använd folkbokförd adress (<small>{{currentUser.Address}}, {{currentUser.PostalCode}}</small>)
+                            </label>
+                        </div>
+                        <div class="form-check" (change)="customAddressRadio($event.target.value)">
+                            <input class="form-check-input" type="radio" name="deliveryAddressRadios" id="customDeliveryAddress" value="option2">
+                            <label class="form-check-label" for="deliveryAddressRadios">
+                                Använd annan leveransadress
+                            </label>
+                        </div>
+
+                        <div *ngIf="showCustomAddress" id="customDeliveryAddressInput" class="form-group pt-2" [ngClass]="{ 'has-error': customDeliveryAddress.dirty && !customDeliveryAddress.valid}">
+                            <label for="customDeliveryAddress">Adress</label>
+                            <input type="text" class="form-control mb-2" name="customDeliveryAddress" placeholder="Adress"
+                                   [(ngModel)]="model.CustomDeliveryAddress" #customDeliveryAddress="ngModel" required />
+                            <div *ngIf="customDeliveryAddress.dirty && !customDeliveryAddress.valid" class="help-block">Fyll i adressen eller välj att använda din folkbokförda adress!</div>
+                            <label for="customDeliveryPostalCode">Postkod</label>
+                            <input type="text" class="form-control mb-2" name="customDeliveryPostalCode" placeholder="Postkod" pattern="\d{1,10}"
+                                   [(ngModel)]="model.CustomDeliveryPostalCode" #customDeliveryPostalCode="ngModel" required />
+                            <div *ngIf="customDeliveryPostalCode.dirty && !customDeliveryPostalCode.valid" class="help-block">Fyll i en giltig postkod eller välj att använda din folkbokförda adress!</div>
+                            <label for="customDeliveryCity">Postort</label>
+                            <input type="text" class="form-control" name="customDeliveryCity" placeholder="Postort"
+                                   [(ngModel)]="model.CustomDeliveryCity" #customDeliveryCity="ngModel" required />
+                            <div *ngIf="customDeliveryCity.dirty && !customDeliveryCity.valid" class="help-block">Fyll i en giltig postort eller välj att använda din folkbokförda adress!</div>
+                        </div>
+                    </ng-container>
+
                 </div>
                 <div class="modal-footer">
                     <div class="col-8">                    
@@ -86,8 +119,8 @@
                     </div>
                     <div class="col-4 pr-0 text-right">
                         <!--<button type="button" class="btn btn-default" (click)="cancel()">Avbryt</button>-->
-                        <button *ngIf="selectedRole == 1 && dialogStep != 3 || selectedRole == 2 && dialogStep != 2" type="button" class="btn btn-primary" (click)="dialogStep = dialogStep + 1" [disabled]="f.form.invalid">Nästa</button>
-                        <button *ngIf="selectedRole == 1 && dialogStep == 3 || selectedRole == 2 && dialogStep == 2" type="submit" role="button" class="btn btn-primary">Skicka</button>
+                        <button *ngIf="selectedRole == 1 && dialogStep != 3 || selectedRole == 2 && dialogStep != 3" type="button" class="btn btn-primary" (click)="dialogStep = dialogStep + 1" [disabled]="f.form.invalid">Nästa</button>
+                        <button *ngIf="selectedRole == 1 && dialogStep == 3 || selectedRole == 2 && dialogStep == 3" type="submit" role="button" class="btn btn-primary">Skicka</button>
                     </div>
                 </div>
 

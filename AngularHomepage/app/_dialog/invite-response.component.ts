@@ -70,12 +70,10 @@ export class InviteResponseComponent extends DialogComponent<ConfirmModel, boole
 
     customAddressRadio(event: any) {
         if (event == 'option2') {
-            this.showCustomAddress = true;
             return this.showCustomAddress = true;
         }
             
         if (event == 'option1') {
-            this.showCustomAddress = false;
             return this.showCustomAddress = false;
         }
     }

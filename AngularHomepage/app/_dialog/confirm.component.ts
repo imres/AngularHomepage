@@ -30,6 +30,7 @@ export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> imp
     currentUser: Person;
     dialogStep = 1;
     samePersonId = false;
+    showCustomAddress = false;
 
     constructor(
         injector: Injector,
@@ -70,6 +71,16 @@ export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> imp
         }
 
         this.model.InvitationInitiatorPersonId = this.currentUser.PersonId;
+    }
+
+    customAddressRadio(event: any) {
+        if (event == 'option2') {
+            return this.showCustomAddress = true;
+        }
+
+        if (event == 'option1') {
+            return this.showCustomAddress = false;
+        }
     }
 
     resetModel() {
