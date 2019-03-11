@@ -873,6 +873,8 @@ btn.btn-primary:active, .btn-primary:focus{
     text-decoration: none;
 }
 
+/* Consignment-detail Page */
+
 .map-with-marker {
     background: url(app/img/sverige-karta.png);
     background-size: cover;
@@ -909,6 +911,11 @@ btn.btn-primary:active, .btn-primary:focus{
 
 .event-description {
     font-size: 0.8rem;
+}
+
+.events-hide-link:hover {
+    background: var(--grey);
+    cursor: pointer;
 }
 
 /* User Profile */

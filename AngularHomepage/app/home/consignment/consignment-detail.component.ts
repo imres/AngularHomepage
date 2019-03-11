@@ -29,6 +29,8 @@ export class ConsignmentDetailComponent extends BasicComponent implements OnInit
     currentUser: Person;
     confirmResult: boolean = null;
     loading = false;
+    eventsLength = 3;
+    showEvents = false;
 
     constructor(
         injector: Injector,
@@ -90,5 +92,19 @@ export class ConsignmentDetailComponent extends BasicComponent implements OnInit
                 this.toastrService.ShowToastr(isConfirmed, false, true, "Inbjudan skickades");
 
             });
+    }
+
+    showAllEvents() {
+        if (this.showEvents){
+            this.eventsLength = 3;
+            this.showEvents = false;
+            return;
+        }
+
+        if (!this.showEvents){
+            this.eventsLength = this.events.length;
+            this.showEvents = true;
+            return;
+        }
     }
 }
