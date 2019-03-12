@@ -25,6 +25,8 @@ namespace UserManager
         public Nullable<System.DateTime> EndDate { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public string CustomDeliveryAddress { get; set; }
+        public string DeliveryAddress { get; set; }
+        public int DeliveryPostalCode { get; set; }
+        public string DeliveryCity { get; set; }
     }
 }
