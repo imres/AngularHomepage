@@ -86,7 +86,7 @@
                         <div class="form-check" (change)="customAddressRadio($event.target.value)">
                             <input class="form-check-input" type="radio" name="deliveryAddressRadios" id="defaultAddress" value="option1" checked>
                             <label class="form-check-label" for="deliveryAddressRadios">
-                                Använd folkbokförd adress (<small>{{currentUser.Address}}, {{currentUser.PostalCode}}</small>)
+                                Använd folkbokförd adress (<small>{{currentUser.Address}}, {{currentUser.PostalCode}} {{currentUser.City}}</small>)
                             </label>
                         </div>
                         <div class="form-check" (change)="customAddressRadio($event.target.value)">
@@ -99,15 +99,15 @@
                         <div *ngIf="showCustomAddress" id="customDeliveryAddressInput" class="form-group pt-2" [ngClass]="{ 'has-error': customDeliveryAddress.dirty && !customDeliveryAddress.valid}">
                             <label for="customDeliveryAddress">Adress</label>
                             <input type="text" class="form-control mb-2" name="customDeliveryAddress" placeholder="Adress"
-                                   [(ngModel)]="model.CustomDeliveryAddress" #customDeliveryAddress="ngModel" required />
+                                   [(ngModel)]="model.DeliveryAddress" #customDeliveryAddress="ngModel" required />
                             <div *ngIf="customDeliveryAddress.dirty && !customDeliveryAddress.valid" class="help-block">Fyll i adressen eller välj att använda din folkbokförda adress!</div>
                             <label for="customDeliveryPostalCode">Postkod</label>
                             <input type="text" class="form-control mb-2" name="customDeliveryPostalCode" placeholder="Postkod" pattern="\d{1,10}"
-                                   [(ngModel)]="model.CustomDeliveryPostalCode" #customDeliveryPostalCode="ngModel" required />
+                                   [(ngModel)]="model.DeliveryPostalCode" #customDeliveryPostalCode="ngModel" required />
                             <div *ngIf="customDeliveryPostalCode.dirty && !customDeliveryPostalCode.valid" class="help-block">Fyll i en giltig postkod eller välj att använda din folkbokförda adress!</div>
                             <label for="customDeliveryCity">Postort</label>
                             <input type="text" class="form-control" name="customDeliveryCity" placeholder="Postort"
-                                   [(ngModel)]="model.CustomDeliveryCity" #customDeliveryCity="ngModel" required />
+                                   [(ngModel)]="model.DeliveryCity" #customDeliveryCity="ngModel" required />
                             <div *ngIf="customDeliveryCity.dirty && !customDeliveryCity.valid" class="help-block">Fyll i en giltig postort eller välj att använda din folkbokförda adress!</div>
                         </div>
                     </ng-container>

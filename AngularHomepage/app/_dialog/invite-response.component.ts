@@ -81,6 +81,11 @@ export class InviteResponseComponent extends DialogComponent<ConfirmModel, boole
     acceptInvitation(invite: Invitation) {
         // on click on confirm button we set dialog result as true,
         // then we can get dialog result from caller code
+        if (!invite.DeliveryAddress) {
+            invite.DeliveryAddress = this.currentUser.Address;
+            invite.DeliveryPostalCode = this.currentUser.PostalCode;
+            invite.DeliveryCity = this.currentUser.City;
+        }
 
         this.invitationService.acceptInvite(invite).subscribe(res => {
             console.log(res);

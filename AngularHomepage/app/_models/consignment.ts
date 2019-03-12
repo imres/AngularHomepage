@@ -11,6 +11,8 @@
     public Title: string;
     public Description: string;
     public DeliveryAddress: string;
-    
+    public DeliveryPostalCode: number;
+    public DeliveryCity: string;
+
     public Content: string = '';
 }

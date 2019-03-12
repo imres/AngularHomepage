@@ -48,13 +48,9 @@
                                             <p class="active-invitation-card__header-info card-text">
                                                 {{user.FirstName}} {{user.LastName}}
                                             </p>
-                                            <p *ngIf="!HasCustomDeliveryAddress(item) && !HasReceiverRole(item)" class="active-invitation-card__header-info card-text">
-                                                {{user.Address}}
-                                                <br />{{user.PostalCode}}
-                                            </p>
-                                            <p *ngIf="HasCustomDeliveryAddress(item) && !HasReceiverRole(item)" class="active-invitation-card__header-info card-text">
-                                                {{item.CustomDeliveryAddress}}
-                                                <!--<br />{{item.CustomDeliveryPostalCode}}, {{item.CustomDeliveryCity}}-->
+                                            <p *ngIf="!HasReceiverRole(item)" class="active-invitation-card__header-info card-text">
+                                                {{item.DeliveryAddress}}
+                                                <br />{{item.DeliveryPostalCode}}, {{item.DeliveryCity}}
                                             </p>
                                         </div>
                                     </div>

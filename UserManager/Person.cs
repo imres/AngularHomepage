@@ -15,7 +15,6 @@ namespace UserManager
     public partial class Person
     {
         public int Id { get; set; }
-        public string DisplayName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -27,6 +26,7 @@ namespace UserManager
         public string Token { get; set; }
         public string PhoneMobile { get; set; }
         public string Alias { get; set; }
-        public Nullable<int> PostalCode { get; set; }
+        public int PostalCode { get; set; }
+        public string City { get; set; }
     }
 }
