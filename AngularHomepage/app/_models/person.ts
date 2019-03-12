@@ -1,6 +1,5 @@
 ﻿export class Person {
     public Id: number;
-    public DisplayName: "";
     public FirstName: string;
     public LastName: string;
     public Email: string;
@@ -13,4 +12,5 @@
     public PhoneMobile: string;
     public Alias: string;
     public PostalCode: number;
+    public City: string;
 }

@@ -30,6 +30,7 @@ export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> imp
     currentUser: Person;
     dialogStep = 1;
     samePersonId = false;
+    showCustomAddress = false;
 
     constructor(
         injector: Injector,
@@ -45,6 +46,12 @@ export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> imp
 
         if (this.model.SenderPersonId != this.model.ReceiverPersonId) {
             this.samePersonId = false;
+
+            if (!this.model.DeliveryAddress) {
+                this.model.DeliveryAddress = this.currentUser.Address;
+                this.model.DeliveryPostalCode = this.currentUser.PostalCode;
+                this.model.DeliveryCity = this.currentUser.City;
+            }
 
             this.invitationService.sendInvite(this.model)
                 .subscribe(res => {
@@ -70,6 +77,16 @@ export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> imp
         }
 
         this.model.InvitationInitiatorPersonId = this.currentUser.PersonId;
+    }
+
+    customAddressRadio(event: any) {
+        if (event == 'option2') {
+            return this.showCustomAddress = true;
+        }
+
+        if (event == 'option1') {
+            return this.showCustomAddress = false;
+        }
     }
 
     resetModel() {

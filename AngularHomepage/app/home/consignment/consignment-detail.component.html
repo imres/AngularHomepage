@@ -71,13 +71,18 @@
                             <div class="card-header bg-primary color-white">
                                 <h5 class="text-center mb-0">Paketets resa</h5>
                             </div>
-                            <div class="list-group-item" *ngFor="let item of events ; let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even }">
+                            <div class="list-group-item" *ngFor="let item of events | slice:0:eventsLength ; let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even, 'events-height': !showEvents}">
                                 <i *ngIf="item.status == 'DELIVERED'" class="fas fa-check-square fa-fw fa-pull-left"></i>
                                 <i *ngIf="item.status !== 'DELIVERED'" class="fas fa-truck fa-fw fa-pull-left"></i>
                                 <!--<i class="fas fa-info fa-fw fa-pull-left"></i>-->
-                                <h6 class="consignment-detail-card__info__header">{{item.location.name}}</h6>
+                                <h6 *ngIf="item.location.name" class="consignment-detail-card__info__header">{{item.location.name}}</h6>
+                                <br *ngIf="!item.location.name" />
                                 <p class="subheading">- {{item.eventTime | date:'yyyy-MM-dd, HH:mm'}}</p>
-                                <p class="event-description">{{item.eventDescription}}</p>
+                                <p class="event-description">{{item.eventDescription}}</p> 
+                            </div>
+                            <div class="list-group-item text-center events-hide-link" (click)="showAllEvents()">
+                                <a *ngIf="!showEvents" class="hide-link">Visa alla händelser <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                <a *ngIf="showEvents" class="hide-link">Visa bara de senaste händelserna <i class="fa fa-angle-up" aria-hidden="true"></i></a>
                             </div>
                         </div>
                     </div> 

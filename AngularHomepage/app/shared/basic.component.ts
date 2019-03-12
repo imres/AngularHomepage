@@ -87,4 +87,9 @@ export class BasicComponent
             this.allConsignments = res;
         });
     }
+
+    scrollToElement($element: any): void {
+        console.log($element);
+        $element.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+    }
 }

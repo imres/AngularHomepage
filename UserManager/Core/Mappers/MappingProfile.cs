@@ -45,13 +45,16 @@ namespace UserManager.Core.Mappers
                 cfg.CreateMap<Person, PersonDTO>();
                 cfg.CreateMap<PersonDTO, Person>().ForMember(x => x.Password, opt => opt.Ignore());
 
+                cfg.CreateMap<Person, PersonForUpdateDTO>();
+                cfg.CreateMap<PersonForUpdateDTO, Person>();
+
                 cfg.CreateMap<BankIdPersonDTO, Person>()
                     .ForMember(x => x.Address, opt => opt.Ignore())
                     .ForMember(x => x.Alias, opt => opt.Ignore())
-                    .ForMember(x => x.DisplayName, opt => opt.Ignore())
                     .ForMember(x => x.Password, opt => opt.Ignore())
                     .ForMember(x => x.PhoneMobile, opt => opt.Ignore())
                     .ForMember(x => x.PostalCode, opt => opt.Ignore())
+                    .ForMember(x => x.City, opt => opt.Ignore())
                     .ForMember(x => x.Token, opt => opt.Ignore())
                     .ForMember(x => x.Email, opt => opt.Ignore())
                     ;

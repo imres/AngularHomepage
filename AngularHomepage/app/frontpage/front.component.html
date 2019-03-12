@@ -8,22 +8,12 @@
             <div class="col-sm-12 text-white">
                 <h2 class="display-3 font-weight-bold">paysend</h2>
                 <p>Säkra betalningar för privatpaket</p>
-                <div class="d-none d-sm-block">
-                    <div class="row">
-                        <div class="col-6 text-right">
-                            <div class="btn btn-outline-primary-2 btn-cover p-3">Så här fungerar det</div>
-                        </div>
-                        <div class="col-6 text-left">
-                            <div [routerLink]="['/register']" role="button" class="btn btn-primary btn-cover p-3">Registrera en användare</div>
-                        </div>
+                <div class="row">
+                    <div class="col-sm-6 text-sm-right mt-3">
+                        <div (click)="scrollToElement(guide)" class="btn btn-outline-primary-2 btn-cover p-3 width-205px">Så här fungerar det</div>
                     </div>
-                </div>
-                <div class="row d-sm-none">
-                    <div class="col-12 text-center mb-3">
-                        <div class="btn btn-outline-primary-2 btn-cover p-3">Så här fungerar det</div>
-                    </div>
-                    <div class="col-12 text-center">
-                        <div [routerLink]="['/register']" role="button" class="btn btn-primary btn-cover p-3">Registrera en användare</div>
+                    <div class="col-sm-6 text-sm-left mt-3">
+                        <div [routerLink]="['/register']" role="button" class="btn btn-primary btn-cover p-3 width-205px">Registrera en användare</div>
                     </div>
                 </div>
             </div>
@@ -58,8 +48,8 @@
 </div>
 
 <!-- Section 2 -->
-<div class="bg-grey py-5">
-    <h3 class="card-title text-center">Enkelt och säkert för säljare och köpare</h3>
+<div #guide class="bg-grey py-navbar">
+    <h3 class="card-title text-center my-2">Enkelt och säkert för säljare och köpare</h3>
     <div class="container section-content">
         <guide></guide> 
     </div>

@@ -52,7 +52,7 @@
 }
 
 .color-white {
-    color: white;
+    color: white !important;
 }
 
 .link {
@@ -296,6 +296,10 @@ img {
 /*Egna Margin-klasser*/
 .margin-navbar-top {
     margin-top: 55px;
+}
+.py-navbar {
+    padding-top: 55px;
+    padding-bottom: 55px;
 }
 .margin-xs-top{
     margin-top: 5px;
@@ -691,6 +695,14 @@ btn.btn-primary:active, .btn-primary:focus{
     padding-top: 250px;
 }
 
+.width-200px {
+    width: 200px;
+}
+
+.width-205px {
+    width: 205px;
+}
+
 .width-335px {
     width: 335px;
 }
@@ -879,6 +891,8 @@ btn.btn-primary:active, .btn-primary:focus{
     text-decoration: none;
 }
 
+/* Consignment-detail Page */
+
 .map-with-marker {
     background: url(app/img/sverige-karta.png);
     background-size: cover;
@@ -915,6 +929,11 @@ btn.btn-primary:active, .btn-primary:focus{
 
 .event-description {
     font-size: 0.8rem;
+}
+
+.events-hide-link:hover {
+    background: var(--grey);
+    cursor: pointer;
 }
 
 /* User Profile */
@@ -1175,8 +1194,12 @@ btn.btn-primary:active, .btn-primary:focus{
     color: red;
 }
 
+.bankid-img {
+    max-width: 200px;
+}
+
 /* Prio 1 */
-.nav-tabs .nav-link.active{
+.nav-tabs .nav-link.active {
     background: transparent;
 }
 
@@ -1247,9 +1270,13 @@ btn.btn-primary:active, .btn-primary:focus{
     box-shadow: 0 0 0 rgba(204,169,44, 0.4);
     animation: pulse 2s infinite;
   }
-  .pulse:hover {
-    animation: none;
-  }
+.pulse:hover {
+animation: none;
+}
+
+label {
+    color: var(--black);
+}
   
   @-webkit-keyframes pulse {
     0% {

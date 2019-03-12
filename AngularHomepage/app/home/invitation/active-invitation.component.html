@@ -48,11 +48,10 @@
                                             <p class="active-invitation-card__header-info card-text">
                                                 {{user.FirstName}} {{user.LastName}}
                                             </p>
-                                            <p class="active-invitation-card__header-info card-text" *ngIf="!HasReceiverRole(item)">
-                                                {{user.Address}}
-                                                <br />{{user.PostalCode}}
+                                            <p *ngIf="!HasReceiverRole(item)" class="active-invitation-card__header-info card-text">
+                                                {{item.DeliveryAddress}}
+                                                <br />{{item.DeliveryPostalCode}}, {{item.DeliveryCity}}
                                             </p>
-
                                         </div>
                                     </div>
                                 </ng-container>
