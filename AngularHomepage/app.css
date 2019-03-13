@@ -71,6 +71,12 @@
     text-decoration: none;
 }
 
+.title {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
 .btn {
     border: none;
     border-radius: 0;
@@ -598,7 +604,7 @@ btn.btn-primary:active, .btn-primary:focus{
 .guide-image {
     border: 0;
     margin-bottom: 1rem;
-    width: 250px;
+    max-width: 200px;
     height: 210px;
 }
 
@@ -715,8 +721,16 @@ btn.btn-primary:active, .btn-primary:focus{
     width: 70px;
 }
 
+.max-width-15 {
+    max-width: 15rem;
+}
+
 .max-width-20 {
     max-width: 20rem;
+}
+
+.max-width-200px {
+    max-width: 200px;
 }
 /* Notificationcenter */
 .notification {
@@ -1254,9 +1268,13 @@ btn.btn-primary:active, .btn-primary:focus{
     background: white;
 }
 
+.input-group-prepend .input-group-text {
+    border: none;
+    box-shadow: var(--input-shadow);
+}
+
 .fas.fa-search {
     background: white;
-
 }
 
 .pulse {
