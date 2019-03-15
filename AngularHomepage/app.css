@@ -167,8 +167,7 @@
 
 #searchbar {
     padding: 0;
-    max-width: 25rem;
-    min-width: 20rem;
+    width: 25rem;
 }
 
 a {
@@ -647,7 +646,7 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 .width-20 {
-    width: 20rem;
+    width: 20rem !important;
 }
 
 .width-21 {
@@ -1295,16 +1294,11 @@ animation: none;
 
 label {
     color: var(--black);
-    font-weight: 300;
-    font-size: 1rem;
+    font-size: .9rem;
     margin-bottom: 0rem;
 }
 
-label:focus {
-    color: rgba(0, 123, 255, 0.8);
-}
-
-.form-control {
+#searchbar.width-20 input {
     font-size: .9rem;
 }
   
