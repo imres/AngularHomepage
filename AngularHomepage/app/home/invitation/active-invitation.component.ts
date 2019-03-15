@@ -110,6 +110,8 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
                 this.activeInvitations = this.invitations.filter(x => { return x.Status > InvitationStatusEnum.Created && x.Status < InvitationStatusEnum.ConsignmentActive });
 
             this.orderBy('-StartDate', this.activeInvitations);
+
+            console.log(this.activeInvitations);
         });
     }
 
@@ -147,21 +149,6 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
         this.invitationExtended = invitation;
     }
 
-    // processPayment(invitation: InvitationExtended) {
-    //     this.dialogService.addDialog(StripeCheckout, {
-    //         title: 'Skicka inbjudan',
-    //         message: 'Bla bla confirm some action?'
-    //     })
-    //         .subscribe((isConfirmed) => {
-    //             if(!isConfirmed) return;
-    //             this.paymentService.processPayment(invitation).subscribe(res => {
-    //                 //this.updateInvitationList(invitation, InvitationStatusEnum.AmountDeposited);
-    //                 this.filterService.updateInvitationStatus(this.invitations, invitation, InvitationStatusEnum.AmountDeposited);
-    //                 this.toastrService.ShowToastr(isConfirmed, false, true, "Betalning skickades!");
-    //             });
-    //         });
-    // }
-
     HasReceiverRole(invitation: Invitation): boolean {
         return invitation.ReceiverPersonId == this.currentUser.PersonId ? true : false;
     }
@@ -170,7 +157,7 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
         if (this.currentUser.PersonId == invite.SenderPersonId && invite.Status == InvitationStatusEnum.Accepted)
             return "Väntar på betalning från köparen.";
         else if (this.currentUser.PersonId == invite.SenderPersonId && invite.Status == InvitationStatusEnum.AmountDeposited)
-            return "Köparen har betalat för paketet och nu återstår det bara för dig att skicka det, tänk på att skicka paketet med PostNord och använda något fraktsätt som är spårbart.";
+            return "Köparen har betalat den begärda summan (" + invite.RequestedDepositAmount + "kr) för paketet och nu återstår det bara för dig att skicka det, tänk på att skicka paketet med PostNord och använda något fraktsätt som är spårbart.";
         else if (this.currentUser.PersonId == invite.ReceiverPersonId && invite.Status == InvitationStatusEnum.Accepted)
             return "Säljaren väntar på din betalning."
         else if (this.currentUser.PersonId == invite.ReceiverPersonId && invite.Status == InvitationStatusEnum.AmountDeposited)

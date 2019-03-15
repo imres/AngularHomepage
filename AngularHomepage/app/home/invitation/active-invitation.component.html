@@ -74,19 +74,11 @@
                                     </form>
                                 </div>
 
-                                <!--<div *ngIf="!HasReceiverRole(item) && item.Status == invitationStatus.AmountDeposited" class="alert alert-info alert-dismissable" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="alert-heading">Skicka paketet</h4>
-                    <p>Köparen har betalat för paketet och nu återstår det bara för dig att skicka det, tänk på att skicka paketet med PostNord och använda något fraktsätt som är spårbart.</p>
-                </div>-->
-
                                 <a *ngIf="!HasReceiverRole(item) && !matchesInvitationWithPackageId(item)" href="#" class="btn btn-primary col-md-6 animate-enter"
                                    (click)="enterPackageId(item);false" [class.disabled]="item.Status == invitationStatus.Accepted ? true : null">Ange kolli-id</a>
 
                                 <ng-container *ngIf="HasReceiverRole(item) && item.Status == invitationStatus.Accepted">
-                                    <a href="#" class="btn btn-primary col-md-6" (click)="openCheckout(item)">Betala</a>
+                                    <a href="#" class="btn btn-primary col-md-6" (click)="openCheckout(item)">Betala {{item.RequestedDepositAmount}}kr</a>
                                 </ng-container>
                             </div>
                         </div>
@@ -132,19 +124,11 @@
                                 </form>
                             </div>
 
-                            <!--<div *ngIf="!HasReceiverRole(item) && item.Status == invitationStatus.AmountDeposited" class="alert alert-info alert-dismissable" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="alert-heading">Skicka paketet</h4>
-                <p>Köparen har betalat för paketet och nu återstår det bara för dig att skicka det, tänk på att skicka paketet med PostNord och använda något fraktsätt som är spårbart.</p>
-            </div>-->
-
                             <a *ngIf="!HasReceiverRole(item) && !matchesInvitationWithPackageId(item)" href="#" class="btn btn-primary col-md-6 animate-enter"
                                (click)="enterPackageId(item);false" [class.disabled]="item.Status == invitationStatus.Accepted ? true : null">Ange kolli-id</a>
 
                             <ng-container *ngIf="HasReceiverRole(item) && item.Status == invitationStatus.Accepted">
-                                <a href="#" class="btn btn-primary col-md-6" (click)="openCheckout(item)">Betala</a>
+                                <a href="#" class="btn btn-primary col-md-6" (click)="openCheckout(item)">Betala {{item.RequestedDepositAmount}}kr</a>
                             </ng-container>
                         </div>
                     </div>
