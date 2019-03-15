@@ -167,7 +167,8 @@
 
 #searchbar {
     padding: 0;
-    width: 25rem;
+    max-width: 25rem;
+    min-width: 20rem;
 }
 
 a {
@@ -1294,6 +1295,17 @@ animation: none;
 
 label {
     color: var(--black);
+    font-weight: 300;
+    font-size: 1rem;
+    margin-bottom: 0rem;
+}
+
+label:focus {
+    color: rgba(0, 123, 255, 0.8);
+}
+
+.form-control {
+    font-size: .9rem;
 }
   
   @-webkit-keyframes pulse {

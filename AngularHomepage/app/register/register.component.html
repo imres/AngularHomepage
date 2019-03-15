@@ -18,41 +18,41 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
-                                <!--<label for="firstName">Förnamn *</label>-->
-                                <input type="text" class="form-control" name="firstName" [(ngModel)]="model.FirstName" #firstName="ngModel" placeholder="Förnamn *" required />
+                                <label for="firstName">Förnamn *</label>
+                                <input type="text" class="form-control" name="firstName" [(ngModel)]="model.FirstName" #firstName="ngModel" placeholder="Förnamn" required />
                                 <div *ngIf="f.submitted && !firstName.valid" class="help-block">Fyll i förnamn</div>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastName.valid }">
-                                <!--<label for="lastName">Efternamn *</label>-->
-                                <input type="text" class="form-control" name="lastName" [(ngModel)]="model.LastName" #lastName="ngModel" placeholder="Efternamn *" required />
+                                <label for="lastName">Efternamn *</label>
+                                <input type="text" class="form-control" name="lastName" [(ngModel)]="model.LastName" #lastName="ngModel" placeholder="Efternamn" required />
                                 <div *ngIf="f.submitted && !lastName.valid" class="help-block">Fyll i efternamn</div>
                             </div>
                         </div>
                     </div>
                     <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !personId.valid }">
-                        <!--<label for="personId">Personnummer *</label>-->
-                        <input type="text" class="form-control" name="personId" [(ngModel)]="model.PersonId" #personId="ngModel" placeholder="YYMMDD-XXXX *" required />
+                        <label for="personId">Personnummer (ååmmdd-xxxx)*</label>
+                        <input type="text" class="form-control" name="personId" [(ngModel)]="model.PersonId" #personId="ngModel" placeholder="ååmmdd-xxxx" required />
                         <div *ngIf="f.submitted && !personId.valid" class="help-block">Fyll i giltigt personnummer</div>
                     </div>
                     <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
-                        <!--<label for="email">E-post</label>-->
-                        <input type="text" class="form-control" name="email" [(ngModel)]="model.Email" #email="ngModel" placeholder="Email@example.com"/>
+                        <label for="email">E-post</label>
+                        <input type="text" class="form-control" name="email" [(ngModel)]="model.Email" #email="ngModel" placeholder="epost@exempel.se"/>
                         <div *ngIf="f.submitted && !email.valid" class="help-block">Fyll i giltig e-post</div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-                                <!--<label for="password">Lösenord *</label>-->
-                                <input type="password" class="form-control" name="password" [(ngModel)]="model.Password" #password="ngModel" placeholder="Lösenord *" required />
+                                <label for="password">Lösenord *</label>
+                                <input type="password" class="form-control" name="password" [(ngModel)]="model.Password" #password="ngModel" placeholder="Lösenord" required />
                                 <div *ngIf="f.submitted && !password.valid" class="help-block">Fyll i lösenord</div>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && password.value !== confirmPassword.value}">
-                                <!--<label for="confirmPassword">Bekräfta lösenord *</label>-->
-                                <input type="password" class="form-control" name="confirmPassword" [(ngModel)]="model.ConfirmPassword" #confirmPassword="ngModel" placeholder="Bekräfta lösenord *" required />
+                                <label for="confirmPassword">Bekräfta lösenord *</label>
+                                <input type="password" class="form-control" name="confirmPassword" [(ngModel)]="model.ConfirmPassword" #confirmPassword="ngModel" placeholder="Bekräfta lösenord" required />
                                 <div *ngIf="f.submitted && password.value !== confirmPassword.value" class="help-block">Lösenorden matchar inte</div>
                             </div>
                         </div>
@@ -60,8 +60,8 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !phoneMobile.valid }">
-                                <!--<label for="phoneMobile">Mobilnummer</label>-->
-                                <input type="text" class="form-control" name="phoneMobile" [(ngModel)]="model.PhoneMobile" #phoneMobile="ngModel" placeholder="Mobilnummer" />
+                                <label for="phoneMobile">Mobilnummer</label>
+                                <input type="text" class="form-control" name="phoneMobile" [(ngModel)]="model.PhoneMobile" #phoneMobile="ngModel" placeholder="07X-XXXXXXX" />
                                 <div *ngIf="f.submitted && !phoneMobile.valid" class="help-block">Fyll i giltigt mobilnummer</div>
                             </div>
                         </div>
@@ -69,22 +69,22 @@
                         <!-- Fields below will be deleted at launch, only here for developing purposes -->
                         <div class="col-sm-6">
                             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !address.valid }">
-                                <!--<label for="address">Gatuadress *</label>-->
-                                <input type="text" class="form-control" name="address" [(ngModel)]="model.Address" #address="ngModel" placeholder="Gatuadress *" required />
+                                <label for="address">Gatuadress *</label>
+                                <input type="text" class="form-control" name="address" [(ngModel)]="model.Address" #address="ngModel" placeholder="Gatuadress" required />
                                 <div *ngIf="f.submitted && !address.valid" class="help-block">Fyll i giltig adress</div>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !postalCode.valid }">
-                                <!--<label for="postalCode">Postkod *</label>-->
-                                <input type="text" class="form-control" name="postalCode" [(ngModel)]="model.PostalCode" #postalCode="ngModel" placeholder="Postkod *" required />
+                                <label for="postalCode">Postkod *</label>
+                                <input type="text" class="form-control" name="postalCode" [(ngModel)]="model.PostalCode" #postalCode="ngModel" placeholder="Postkod" required />
                                 <div *ngIf="f.submitted && !postalCode.valid" class="help-block">Fyll i giltig postkod</div>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !city.valid }">
-                                <!--<label for="city">Postort *</label>-->
-                                <input type="text" class="form-control" name="city" [(ngModel)]="model.City" #city="ngModel" placeholder="Postort *" required />
+                                <label for="city">Postort *</label>
+                                <input type="text" class="form-control" name="city" [(ngModel)]="model.City" #city="ngModel" placeholder="Postort" required />
                                 <div *ngIf="f.submitted && !city.valid" class="help-block">Fyll i giltig postort</div>
                             </div>
                         </div>
