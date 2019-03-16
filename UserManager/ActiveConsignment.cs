@@ -26,7 +26,7 @@ namespace UserManager
         public string Title { get; set; }
         public string Description { get; set; }
         public string DeliveryAddress { get; set; }
-        public Nullable<int> DeliveryPostalCode { get; set; }
+        public int DeliveryPostalCode { get; set; }
         public string DeliveryCity { get; set; }
         public string Content { get; set; }
     }
