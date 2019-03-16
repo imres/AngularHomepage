@@ -19,9 +19,9 @@
                             <div class="card-body row">
                                 <div class="col-6 text-center">
                                     <img *ngIf="item.Status == 1" src="img/undraw_on_the_way_ldaq.svg" alt="Accepterat" class="guide-image">
-                                    <img *ngIf="item.Status == 10" src="img/undraw_mail_cg1t.svg" alt="Accepterat" class="guide-image">
+                                    <img *ngIf="item.Status == 10 || item.Status == 9" src="img/undraw_mail_cg1t.svg" alt="Accepterat" class="guide-image">
                                     <p *ngIf="item.Status == 1"><strong>Paketet är på väg</strong></p>
-                                    <p *ngIf="item.Status == 10"><strong>Paketet har levererats</strong></p>
+                                    <p *ngIf="item.Status == 10 || item.Status == 9"><strong>Paketet har levererats</strong></p>
                                 </div>
                                 <div class="col-6 py-3">
                                     <h4>{{item.Title}}</h4>
@@ -88,7 +88,8 @@
                     </div> 
                     
                     <div *ngIf="!currentUser" class="mt-3 btn btn-primary btn-block" [routerLink]="['/front']">Gå tillbaka till startsidan</div>
-                    <div *ngIf="currentUser" class="mt-3 btn btn-primary btn-block" [routerLink]="['/home']">Gå tillbaka till alla försändelser</div>
+                    <div *ngIf="currentUser && item.Status != 9" class="mt-3 btn btn-primary btn-block" [routerLink]="['/home']">Gå tillbaka till alla försändelser</div>
+                    <div *ngIf="currentUser && item.Status == 9" class="mt-3 btn btn-primary btn-block" [routerLink]="['/home']">Arkivera försändelse</div>
                 </div>
 
         </div>

@@ -8,26 +8,10 @@
 
         <div class="col-xl-6 col-lg-7 col-10 offset-1 p-2 pt-3 mb-4">
 
-            <div *ngIf="finishedConsignments?.length == 1">
-                <div *ngFor="let item of finishedConsignments" class="card mb-3 col-12">
-                    <div class="card-body text-center">
-                        <h4 *ngIf="currentUser.PersonId == item.SenderPersonId">Nikon D5  är levererad till {{item.ReceiverPersonId}}!</h4>
-                        <h4 *ngIf="currentUser.PersonId == item.ReceiverPersonId">Nikon D5  från {{item.SenderPersonId}} är levererad till dig!</h4>
-                        <a href="" class="btn btn-primary">Arkivera</a>
-                    </div>
-                </div>
-            </div>
-
-            <div *ngIf="finishedConsignments?.length > 1" role="button" class="link" [routerLink]="['/history']">
-                <div class="card mb-3 col-12">
-                    <div class="card-body text-center">
-                        <h4>Du har {{finishedConsignments?.length}} försändelser som just avslutats!</h4>
-                    </div>
-                </div>
-            </div>
-
             <active-invitation class="mb-3"></active-invitation>
+
             <consignment></consignment>
+
         </div>
     </div>
 </div>

@@ -51,7 +51,7 @@
                 <div class="width-25">
                     <div class="container-fluid">
                         <invite-notifications *ngIf="invitationNotifications?.length > 0" [invitations]="invitations" [invitationNotifications]="invitationNotifications"></invite-notifications><!--Update child component with array, and receive event from child on change-->
-                        <consignment-notification *ngIf="archivedConsignments?.length > 0"></consignment-notification>
+                        <consignment-notification *ngIf="finishedConsignments?.length > 0"></consignment-notification>
                     </div>
                 </div>
             </div>
