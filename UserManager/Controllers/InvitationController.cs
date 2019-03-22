@@ -91,10 +91,18 @@ namespace UserManager.Controllers
                     this.Request.Content = null;
                 }
 
-                var consignmentAdded = _invitationService.SavePackageId(invitation);
+                var consignmentAdded = new ActiveConsignmentDTO();
 
-                if (consignmentAdded == null)
-                    return Request.CreateResponse(HttpStatusCode.Conflict, invitation);
+                try
+                {
+                    consignmentAdded = _invitationService.SavePackageId(invitation);
+                }
+                catch(Exception ex)
+                {
+                    return Request.CreateResponse(HttpStatusCode.Conflict, ex);
+                }
+                
+                    
 
                 return Request.CreateResponse(HttpStatusCode.OK, consignmentAdded);
             }

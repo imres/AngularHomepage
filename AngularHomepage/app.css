@@ -421,6 +421,11 @@ input{
     box-shadow: var(--bottom-shadow-darker);
 }
 
+textarea{
+    border: none !important;
+    box-shadow: var(--bottom-shadow-darker);
+}
+
 input[type="radio"], input[type="checkbox"]{
     box-shadow: none !important;
 }
@@ -478,6 +483,15 @@ svg rect{
   100% {
         transform: rotateY(0deg);
         opacity: 1;
+  }
+}
+
+@keyframes pulse{
+  0% {
+    box-shadow: 0 0 0 0 rgba(#1565c0, 1);
+  }
+  100% {
+    box-shadow: 0 0 0 20px rgba(#1565c0, 0);
   }
 }
 
@@ -891,6 +905,9 @@ btn.btn-primary:active, .btn-primary:focus{
 .active-invitation-card__body .list-group-item {
     border: none;
 }
+.list-group-item{
+    border: none;
+}
 
 .firstAndLast {
     min-width: 4rem !important;
@@ -932,7 +949,7 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 .shipment__info {
-    border-top: 1px solid rgba(0, 0, 0, 0.125);
+    border-top: 2px dashed rgba(0, 0, 0, 0.125);
     margin-top: 1rem;
     padding-top: 1rem;
 }
@@ -1071,6 +1088,10 @@ btn.btn-primary:active, .btn-primary:focus{
 
 .white-bg {
     background: #ffffff;
+}
+
+.card-header{
+    border: none !important;
 }
 
 .card-header-custom {

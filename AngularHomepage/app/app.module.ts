@@ -45,6 +45,7 @@ import { UserSettingsComponent } from './user-profile/user-settings.component';
 import { BasicComponent } from './shared/basic.component';
 import { FriendsComponent } from './user-profile/friends.component';
 import { FilterPipe } from './filter.pipe';
+import { BaseService } from './_services/base.service';
 
 @NgModule({
     imports: [
@@ -99,7 +100,6 @@ import { FilterPipe } from './filter.pipe';
         FilterService,
         AdministratorService,
         PagerService,
-        Injector
 
         // providers used to create fake backend
         //fakeBackendProvider,

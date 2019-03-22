@@ -47,9 +47,16 @@ namespace UserManager.Controllers
                     this.Request.Content = null;
                 }
 
-                var consignment = _consignmentService.CreateConsignmentFromInvitation(invitation);
-                unitOfWork.Consignment.Add(consignment);
-                unitOfWork.Save();
+                try
+                {
+                    var consignment = _consignmentService.CreateConsignmentFromInvitation(invitation);
+                    unitOfWork.Consignment.Add(consignment);
+                    unitOfWork.Save();
+                }
+                catch(Exception ex)
+                {
+                    return Request.CreateResponse(HttpStatusCode.Conflict);
+                }
 
                 _invitationService.EndInvitation(invitation.Id);
 

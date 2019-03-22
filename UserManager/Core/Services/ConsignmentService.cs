@@ -16,8 +16,15 @@ namespace UserManager.Core.Services
     {
         private UnitOfWork unitOfWork = new UnitOfWork(new masterEntities());
         private object allConsignments;
+
+
         public Consignment CreateConsignmentFromInvitation(InvitationExtended invitation)
         {
+            if (!ValidateInvitationExtended(invitation))
+            {
+                throw new Exception();
+            }
+
             var consignment = new Consignment
             {
                 PaymentMethod = invitation.PaymentMethod.GetValueOrDefault(),
@@ -88,6 +95,21 @@ namespace UserManager.Core.Services
             var allConsignmentsDTO = Mapper.Map<IEnumerable<ActiveConsignmentDTO>>(consignments).ToList();
 
             return allConsignmentsDTO;
+        }
+
+        private bool ValidateInvitationExtended(InvitationExtended invitation)
+        {
+            if (invitation.PackageId != null)
+            {
+                var packageIdAlreadyExists = unitOfWork.Consignment.Find(x => x.PackageId == invitation.PackageId).Any();
+
+                if (packageIdAlreadyExists)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }
