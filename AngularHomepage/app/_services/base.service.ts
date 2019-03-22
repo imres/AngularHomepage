@@ -6,7 +6,7 @@ import { Person, Invitation, InvitationExtended } from '../_models/index';
 import 'rxjs/add/operator/map';
 import { ToastrService } from './toastr.service';
 import { ToastsManager } from 'ng2-toastr';
-
+    
 export class BaseService {
     protected toastrService: ToastrService
 
