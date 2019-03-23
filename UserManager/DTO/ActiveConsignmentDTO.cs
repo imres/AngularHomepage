@@ -15,6 +15,12 @@ namespace UserManager.DTO
 
         public string LastSeenCity => LastSeenEventWithLocation?.location.city;
 
+        public Weight Weight => ShipmentInformation?.items.LastOrDefault()?.statedMeasurement?.weight;
+
+        public Width Width => ShipmentInformation?.items.LastOrDefault()?.statedMeasurement?.width;
+
+        public Height Height => ShipmentInformation?.items.LastOrDefault()?.statedMeasurement?.height;
+
         public string LastSeenTimeStamp
         {
             get

@@ -61,7 +61,7 @@ export class ConsignmentComponent extends BasicComponent implements OnInit {
 
             this.loading = false;
 
-            console.log(res);
+            console.log("consignments:", res);
 
             this.orderBy('-StartDate', this.consignments);
         });
