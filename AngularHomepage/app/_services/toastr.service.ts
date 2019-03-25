@@ -10,6 +10,10 @@ import { Person, Invitation } from '../_models/index';
 @Injectable()
 export class ToastrService {
 
+    private toastrOptions = {
+        showCloseButton: true
+    };
+
     constructor(public toastr: ToastsManager) {
     }
 
@@ -36,4 +40,15 @@ export class ToastrService {
             this.toastr.error(errorMessage);
         }
     }
+
+    Success(message: string, title: string){
+        // this.toastrService.ShowToastr(isConfirmed, false, "Inbjudan skickades");
+        this.toastr.success(message, title, this.toastrOptions);
+    }
+
+    Error(message: string, title: string){
+        this.toastr.error(message, title, this.toastrOptions);
+    }
+
+    
 }

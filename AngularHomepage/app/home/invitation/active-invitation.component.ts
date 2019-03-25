@@ -120,6 +120,7 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
 
         this.invitationService.savePackageId(this.invitationExtended).subscribe(res => {
             this.cancelPackageIdForm();
+            console.log("savePackageId res:", res);
 
             this.invitations = this.filterService.removeFromListByProperty(this.invitations, invitation);
 

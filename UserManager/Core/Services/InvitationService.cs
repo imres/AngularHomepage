@@ -93,57 +93,50 @@ namespace UserManager.Core.Services
 
         public ActiveConsignmentDTO SavePackageId(InvitationExtended invitation)
         {
-            ActiveConsignmentDTO activeConsignment = null;
 
-            try
+            var entity = unitOfWork.Invitation.Get(invitation.Id);
+            entity.Status = InvitationStatus.ConsignmentActive;
+            entity.EndDate = DateTime.Now;
+
+            var consignment = _consignmentService.CreateConsignmentFromInvitation(invitation);
+
+            using (TransactionScope scope = new TransactionScope())
             {
-                var entity = unitOfWork.Invitation.Get(invitation.Id);
-                entity.Status = InvitationStatus.ConsignmentActive;
-                entity.EndDate = DateTime.Now;
-
-                var consignment = _consignmentService.CreateConsignmentFromInvitation(invitation);
-
-                using (TransactionScope scope = new TransactionScope())
-                {
-                    //TODO: Only keep one last unitOfWork.Save, so we can "rollback" if error"
-                    unitOfWork.Consignment.Add(consignment);
-                    unitOfWork.Save();
-
-                    var consignmentDTO = Mapper.Map<ConsignmentDTO>(consignment);
-
-                    var packageInformation = unitOfWork.PackageInformation.UpdatePackageInformation(consignmentDTO);
-                    unitOfWork.PackageInformation.Add(packageInformation);
-                    unitOfWork.Save();
-
-                    scope.Complete();
-                }
-
-                //Find and return active consignment containing package API data
-                if (consignment != null)
-                {
-                    var consignmentEntity = unitOfWork.ActiveConsignment.Find(x => x.Id == consignment.Id).FirstOrDefault();
-
-                    var dto = Mapper.Map<ActiveConsignmentDTO>(consignmentEntity);
-
-                    activeConsignment = dto;
-                }
-
+                //TODO: Only keep one last unitOfWork.Save, so we can "rollback" if error"
+                unitOfWork.Consignment.Add(consignment);
                 unitOfWork.Save();
-            }
-            catch (ArgumentException)
-            {
-                return null;
+
+                var consignmentDTO = Mapper.Map<ConsignmentDTO>(consignment);
+
+                var packageInformation = unitOfWork.PackageInformation.UpdatePackageInformation(consignmentDTO);
+                unitOfWork.PackageInformation.Add(packageInformation);
+                unitOfWork.Save();
+
+                scope.Complete();
             }
 
-            return activeConsignment;
+            //Find and return active consignment containing package API data
+            if (consignment == null)
+            {
+                throw new ArgumentException();
+            }
+
+            var consignmentEntity = unitOfWork.ActiveConsignment.Find(x => x.Id == consignment.Id).FirstOrDefault();
+            var dto = Mapper.Map<ActiveConsignmentDTO>(consignmentEntity);
+
+            unitOfWork.Save();
+
+            return dto;
         }
 
-        public bool ValidateInvitation(InvitationDTO invitationToValidate)
+        public bool ValidateInvitation(InvitationDTO invitation)
         {
-            if (invitationToValidate.ReceiverPersonId == invitationToValidate.SenderPersonId)
+            if (invitation.ReceiverPersonId == invitation.SenderPersonId)
                 return false;
 
             return true;
         }
+
+        
     }
 }

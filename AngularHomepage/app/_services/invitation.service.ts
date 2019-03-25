@@ -1,19 +1,25 @@
-﻿import { Injectable, EventEmitter } from '@angular/core';
+﻿import { Injectable, EventEmitter, Injector } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Person, Invitation, InvitationExtended } from '../_models/index';
 import 'rxjs/add/operator/map';
+import { BaseService } from './base.service';
 
 @Injectable()
-export class InvitationService {
+export class InvitationService extends BaseService{
     private currentInviteSource = new BehaviorSubject<Invitation>(null);
     private invitationListSource = new BehaviorSubject<Invitation[]>(null);
 
     invitationList = this.invitationListSource.asObservable();
     currentInvite = this.currentInviteSource.asObservable();
 
-    constructor(private http: Http) { }
+    constructor(
+        injector: Injector,
+        private http: Http
+    ) { 
+        super(injector);
+    }
 
     headers = new Headers({
         'Content-Type': 'application/json'
@@ -55,11 +61,13 @@ export class InvitationService {
         return this.http.post('http://localhost:65192/api/Invitation/SavePackageId',
             JSON.stringify(invitation),
             { headers: this.headers })
-            .map((response: Response) =>
-                response.json()
-            ).catch(error =>
-                Observable.throw(false)
-            );
+            .map((response: Response) =>{
+                this.ToastrCreateSuccess("Försändelse skapad");
+                return response.json();
+            }).catch(error => {
+                this.ToastrCreateError("Kolli-ID redan i bruk");
+                return Observable.throw(false)
+            });
     }
 
     endInvite(id: number) {

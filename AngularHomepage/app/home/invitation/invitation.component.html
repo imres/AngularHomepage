@@ -1,6 +1,6 @@
-﻿<div class="py-2 px-0 primary-gradient notification-header">
-    <h5 *ngIf="invitationNotifications?.length == 1" class="card-title text-center m-0">1 ny inbjudan</h5>
-    <h5 *ngIf="invitationNotifications?.length > 1" class="card-title text-center m-0">{{invitationNotifications?.length}} nya inbjudningar</h5>
+﻿<div class="py-2 px-0 text-center primary-gradient notification-header">
+    <span *ngIf="invitationNotifications?.length == 1" class="card-title text-center m-0">1 ny inbjudan</span>
+    <span *ngIf="invitationNotifications?.length > 1" class="card-title text-center m-0">{{invitationNotifications?.length}} nya inbjudningar</span>
 </div>
 <div *ngFor="let inv of invitationNotifications" class="row notification no-padding">
     <div class="col-sm-11 no-padding" (click)="showInviteResponseDialog(inv)" role="button">
