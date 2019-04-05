@@ -17,6 +17,7 @@
     --danger: #FF001E;
     --success: #35FF00;
     --yellow: #EDE618;
+    --light-grey: #f1f1f1;
     --grey: #f7f9fa;
     --grey-dark: #b3b3b3;
     --grey-light: #4A4A4A;
@@ -1123,7 +1124,8 @@ btn.btn-primary:active, .btn-primary:focus{
 /* Sidebar */
 #sidebar {
     height: 100%;
-    background: linear-gradient(135deg,#8f75da 0,#727cf5 60%);
+    /* background: linear-gradient(135deg,#8f75da 0,#727cf5 60%); */
+    background: var(--grey);
     transition: all 0.3s;
     box-shadow: var(--center-shadow);
     position: fixed;
@@ -1168,14 +1170,19 @@ btn.btn-primary:active, .btn-primary:focus{
 .sidebar-link {
     width: 100%;
     padding: 1rem;
-    color: #ffffff;
+    /* color: #ffffff; */
     text-decoration: none;
     font-size: 0.98rem;
+    transition-property: all;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in;
 }
 
 .sidebar-link:hover {
     /* color: var(--primary); */
-    background: #7c74da;
+    /* background: #7c74da; */
+    border-right: 3px solid var(--secondary-gradient-hover);
+    background: var(--light-grey);
     text-decoration: none;
     cursor: pointer;
 }
