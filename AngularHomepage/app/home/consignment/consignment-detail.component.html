@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="col-10 offset-md-1 shipment__info">
                                     <p class="consignment-detail-card__text"><strong>Försändelse-ID:</strong> {{item.PackageId}}</p>
-                                    <p class="consignment-detail-card__text"><strong>Pakettyp:</strong> {{item.Service.name}}</p>
+                                    <p class="consignment-detail-card__text"><strong>Pakettyp:</strong> {{item.Service?.name}}</p>
                                     <p class="consignment-detail-card__text"><strong>Tilläggstjänst(er):</strong> SMS-Avisering</p>
                                 </div>
                             </div>
@@ -62,8 +62,8 @@
                                 <h5 class="text-center mb-0">Mått & Vikt</h5>
                             </div>
                             <div class="card-body">
-                                    <p class="consignment-detail-card__text"><strong>Vikt:</strong> 0.77kg</p>
-                                    <p class="consignment-detail-card__text"><strong>Mått (H x B x D):</strong> 180 cm x 35cm x 10cm</p>
+                                    <p class="consignment-detail-card__text"><strong>Vikt:</strong> {{item.Weight.value}} {{item.Weight.unit}}</p>
+                                    <p class="consignment-detail-card__text"><strong>Mått (L x B x H):</strong> {{item.Length.value}}{{item.Length.unit}} x {{item.Width.value}}{{item.Width.unit}} x {{item.Height.value}}{{item.Height.unit}}</p>
                             </div>
                         </div>
 

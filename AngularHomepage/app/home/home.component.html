@@ -8,7 +8,7 @@
 
         <div class="col-xl-6 col-lg-7 col-10 offset-1 p-2 pt-3 mb-4">
 
-            <div *ngIf="finishedConsignments?.length == 1">
+            <!--<div *ngIf="finishedConsignments?.length == 1">
                 <div *ngFor="let item of finishedConsignments" class="card mb-3 col-12">
                     <div class="card-body text-center">
                         <h4 *ngIf="currentUser.PersonId == item.SenderPersonId">Nikon D5  är levererad till {{item.ReceiverPersonId}}!</h4>
@@ -24,7 +24,7 @@
                         <h4>Du har {{finishedConsignments?.length}} försändelser som just avslutats!</h4>
                     </div>
                 </div>
-            </div>
+            </div>-->
 
             <active-invitation></active-invitation>
             <consignment></consignment>

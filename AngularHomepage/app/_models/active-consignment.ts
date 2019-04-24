@@ -3,6 +3,7 @@ import { PostNordConsignor, PostNordConsignee, PostNordLocation, PostNordEvent, 
 import { PostNordWidth } from './PostNord/postnord-width';
 import { PostNordHeight } from './PostNord/postnord-height';
 import { PostNordWeight } from './PostNord/postnord-weight';
+import { PostNordLength } from './PostNord/postnord-length';
 
 export class ActiveConsignment extends Consignment {
     public Content: string;
@@ -17,4 +18,5 @@ export class ActiveConsignment extends Consignment {
     public Width: PostNordWidth;
     public Height: PostNordHeight;
     public Weight: PostNordWeight;
+    public Lenght: PostNordLength;
 }

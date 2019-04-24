@@ -9,7 +9,7 @@
         <div class="col-xl-6 col-lg-7 col-10 offset-1 p-2 pt-3">
             <loading-spinner *ngIf="loading"></loading-spinner>
 
-            <div *ngIf="finishedConsignments?.length > 0">
+            <!--<div *ngIf="finishedConsignments?.length > 0">
                 <div *ngFor="let item of finishedConsignments" class="card mb-3">
                     <div class="card-body text-center">
                         <h4 *ngIf="currentUser.PersonId == item.SenderPersonId">{{item.Title}} II är levererad till {{item.ReceiverPersonId}}!</h4>
@@ -24,7 +24,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
 
             <!-- Om inga försändelser finns så visas den här rutan med länk till att skicka invites och guide för att förstå hur man gör -->
             <div *ngIf="archivedConsignments == null || archivedConsignments?.length == 0" class="mt-3">
@@ -51,8 +51,8 @@
             </div>
 
             <!-- Om arkiverade försändelser finns så visas dom här komponenterna -->
-            <div class="card-header-custom col-12 animate-enter">
-                <div *ngIf="archivedConsignments?.length > 0" class="row align-items-between">
+            <div *ngIf="archivedConsignments?.length > 0" class="card-header-custom col-12 animate-enter">
+                <div class="row align-items-between">
                     <h4 class="m-0 col-sm-7" *ngIf="archivedConsignments?.length > 1">Du har {{archivedConsignments?.length}} arkiverade försändelser</h4>
                     <h4 class="m-0 col-sm-7" *ngIf="archivedConsignments?.length == 1">Du har {{archivedConsignments?.length}} arkiverad försändelse</h4>
 

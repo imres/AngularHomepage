@@ -11728,6 +11728,7 @@
     <TypeScriptCompile Include="app\_models\PostNord\postnord-contact.ts" />
     <TypeScriptCompile Include="app\_models\PostNord\postnord-customer.ts" />
     <TypeScriptCompile Include="app\_models\PostNord\postnord-event.ts" />
+    <TypeScriptCompile Include="app\_models\PostNord\postnord-length.ts" />
     <TypeScriptCompile Include="app\_models\PostNord\postnord-location.ts" />
     <TypeScriptCompile Include="app\_models\user.ts" />
     <TypeScriptCompile Include="app\_models\user-link.ts" />
