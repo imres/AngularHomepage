@@ -39,6 +39,10 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
     invitationToPay: InvitationExtended;
 
     showPopover = false;
+
+    loadingPayment = false;
+    loadingPaymentId: number;
+
     
     
     invitationExtended: InvitationExtended;
@@ -85,7 +89,7 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
         });
     }
 
-    private ConfigStripeCheckout(){
+    private ConfigStripeCheckout() {
         this.handler = (<any>window).StripeCheckout.configure({
             key: 'pk_test_oi0sKPJYLGjdvOXOM8tE8cMa',
             locale: 'auto',
@@ -94,9 +98,14 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
                 // You can access the token ID with `token.id`.
                 // Get the token ID to your server-side code for use.
                 console.log("token", token);
+                this.loadingPayment = true;
+                this.loadingPaymentId = this.invitationToPay.Id;
+
                  this.paymentService.processPayment(this.invitationToPay, token.email, token.id).subscribe(() => {
                     this.filterService.updateInvitationStatus(this.invitations, this.invitationToPay, InvitationStatusEnum.AmountDeposited);
                     this.toastrService.ShowToastr(true, false, true, "Betalning skickades!");
+                    this.loadingPayment = false;
+                    this.loadingPaymentId = 0;
                  });
             }
         });
