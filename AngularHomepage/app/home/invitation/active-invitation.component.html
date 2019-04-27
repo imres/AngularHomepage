@@ -2,19 +2,8 @@
 <div *ngIf="activeInvitations?.length > 0" class="mb-5" id="activeInvites" role="tablist">
     <div class="card-header-custom col-12 animate-enter">
         <div class="row align-items-between">
-            <h5 class="m-0 col-sm-7" *ngIf="activeInvitations?.length > 1">Du har {{activeInvitations?.length}} accepterade försändelser</h5>
-            <h5 class="m-0 col-sm-7" *ngIf="activeInvitations?.length == 1">Du har {{activeInvitations?.length}} accepterad försändelse</h5>
-
-            <p class="col-sm-5 m-0 text-sm-right">
-                <a *ngIf="!showInvitations" (click)="showInvitations=true" class="hide-link"
-                    data-toggle="collapse" href="#activeInvitesGrid" role="button" aria-expanded="true" aria-controls="activeInvitesGrid">
-                    Visa accepterade försändelser <i class="fa fa-angle-down" aria-hidden="true"></i>
-                </a>
-                <a *ngIf="showInvitations" (click)="showInvitations=false" class="hide-link" 
-                    data-toggle="collapse" href="#activeInvitesGrid" role="button" aria-expanded="true" aria-controls="activeInvitesGrid">
-                    Dölj accepterade försändelser <i class="fa fa-angle-up" aria-hidden="true"></i>
-                </a>
-            </p>
+            <h5 class="m-0 col-12" *ngIf="activeInvitations?.length > 1">Du har {{activeInvitations?.length}} accepterade försändelser</h5>
+            <h5 class="m-0 col-12" *ngIf="activeInvitations?.length == 1">Du har {{activeInvitations?.length}} accepterad försändelse</h5>
         </div> 
     </div>
 
@@ -131,7 +120,10 @@
                                (click)="enterPackageId(item);false" [class.disabled]="item.Status == invitationStatus.Accepted ? true : null">Ange kolli-id</a>
 
                             <ng-container *ngIf="HasReceiverRole(item) && item.Status == invitationStatus.Accepted">
-                                <a href="#" class="btn btn-primary col-md-6" (click)="openCheckout(item)">Betala {{item.RequestedDepositAmount}}kr</a>
+                                <a href="#" class="btn btn-primary col-md-6" (click)="openCheckout(item)" [ngClass]="{'disabled': loadingPayment}">
+                                    <ng-container *ngIf="!loadingPayment">Betala {{item.RequestedDepositAmount}}kr</ng-container>
+                                    <img *ngIf="loadingPayment && item.Id == loadingPaymentId" src="../../img/spinner.svg" />
+                                </a>
                             </ng-container>
                         </div>
                     </div>

@@ -25,7 +25,6 @@ export class ConsignmentComponent extends BasicComponent implements OnInit {
 
     currentUser: Person;
     confirmResult: boolean = null;
-    showConsignments = true;
     loading = false;
 
     constructor(

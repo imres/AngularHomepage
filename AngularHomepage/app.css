@@ -863,6 +863,16 @@ btn.btn-primary:active, .btn-primary:focus{
     box-shadow: var(--bottom-shadow-darker);
 }
 
+.consignment-card__info {
+    min-height: 140px;
+    padding-bottom: 1rem;
+}
+
+.consignment-card__info {
+    min-height: 172px;
+    padding-bottom: 1rem;
+}
+
 .archived-consignment--card__header {
     padding: 0.75rem 1.25rem;
     margin-bottom: 0;
@@ -987,6 +997,13 @@ btn.btn-primary:active, .btn-primary:focus{
 
 .consignment-detail-card__info__header {
     font-size: 0.85rem;
+}
+
+.consignment-detail-card__img {
+    border: 0;
+    margin-bottom: 1rem;
+    max-width: 200px;
+    max-height: 210px;
 }
 
 .subheading {
@@ -1119,7 +1136,7 @@ btn.btn-primary:active, .btn-primary:focus{
 .card-header-custom {
     padding: .75rem 0;
     margin-bottom: 0;
-    background-color: #ffffff;
+    background-color: transparent;
 }
 
 .card-custom {
@@ -1201,6 +1218,11 @@ btn.btn-primary:active, .btn-primary:focus{
     cursor: pointer;
 }
 
+.sidebar-link.disabled:hover {
+    border-right: none;
+    background: transparent;
+}
+
 /*.animate-enter{
     animation: slide-up 0.4s ease;
 }*/
@@ -1214,6 +1236,10 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 /*PhoneSidebar*/
+#phone-sidebar{
+    padding-top: 0.5rem;
+}
+
 #phone-sidebar .active {
     background: #f0f0f0;
 }
@@ -1225,14 +1251,29 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 .phone-sidebar-link {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    width: 100%;
+    padding: 1rem;
+    /* color: #ffffff; */
+    text-decoration: none;
+    font-size: 0.98rem;
+    transition-property: all;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in;
 }
 
 .phone-sidebar-link:hover {
-    color: var(--primary);
+    /* color: var(--primary); */
+    /* background: #7c74da; */
+    border-right: 3px solid var(--secondary-gradient-hover);
+    background: var(--light-grey);
     text-decoration: none;
     cursor: pointer;
+}
+
+
+.phone-sidebar-link.disabled:hover {
+    border-right: none;
+    background: transparent;
 }
 
 /*.phone-sidebar-link.disabled:hover {
@@ -1406,8 +1447,14 @@ label {
         transform: translateY(0);
     }
 }
+@media screen and (max-width: 992px) /*md-down*/ {
+    .consignment-card__info {
+        min-height: 140px;
+        padding-bottom: 1rem;
+    }
+}
 
-@media screen and (max-width: 766px) /*md-down*/ {
+@media screen and (max-width: 766px) /*sm-down*/ {
     .sale-ads-title {
         margin-top: 0px;
     }
@@ -1430,9 +1477,21 @@ label {
         padding-right: 0rem;
         justify-content: center;
     }
+
+    .consignment-card__info {
+        min-height: 172px;
+        padding-bottom: 1rem;
+    }
+
+    .consignment-detail-card__img {
+        border: 0;
+        margin-bottom: 1rem;
+        max-width: 150px;
+        max-height: 150px;
+    }
 }
 
-@media screen and (max-width: 575px) /*sm-down*/ {
+@media screen and (max-width: 576px) /*xs-down*/ {
     #cover-caption .container .display-3 {
         font-size: 3.5rem;
     }
@@ -1489,6 +1548,27 @@ label {
         background: var(--grey);
         font-weight: 500;
     }
+
+    .consignment-detail__left-row {
+        padding-right: 0 !important;
+    }
+
+    .consignment-detail__right-row {
+        padding-top: 1rem;
+    }
+
+    .consignment-detail-card__img {
+        border: 0;
+        margin-bottom: 1rem;
+        max-width: 200px;
+        max-height: 210px;
+    }
+
+    .consignment-card__info {
+        min-height: 140px;
+        padding-bottom: 1rem;
+    }
+
 }
 
 @media screen and (min-width: 576px) {
@@ -1520,6 +1600,13 @@ label {
 @media screen and (min-width: 1327px) /*xl-up*/ {
     .mh-cards-grid {
         min-height: 688px;
+    }
+}
+
+@media screen and (min-width: 1327px) /*mellan lg och xl och upp*/ {
+    .consignment-card__info {
+        min-height: 140px;
+        padding-bottom: 1rem;
     }
 }
 

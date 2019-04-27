@@ -11,15 +11,15 @@
                 <loading-spinner *ngIf="loading"></loading-spinner>
 
                 <div class="row">  
-                    <div class="col-sm-8 pl-0">
+                    <div class="col-sm-8 pl-0 consignment-detail__left-row">
                         <div class="card consignment-detail-card__info mb-3">
                             <div class="card-header bg-primary color-white">
                                 <h5 class="text-center mb-0">Mitt paket</h5>
                             </div>
                             <div class="card-body row">
                                 <div class="col-6 text-center">
-                                    <img *ngIf="item.Status == 1" src="img/undraw_on_the_way_ldaq.svg" alt="Accepterat" class="guide-image">
-                                    <img *ngIf="item.Status == 10 || item.Status == 9" src="img/undraw_mail_cg1t.svg" alt="Accepterat" class="guide-image">
+                                    <img *ngIf="item.Status == 1" src="img/undraw_on_the_way_ldaq.svg" alt="Accepterat" class="consignment-detail-card__img">
+                                    <img *ngIf="item.Status == 10 || item.Status == 9" src="img/undraw_mail_cg1t.svg" alt="Accepterat" class="consignment-detail-card__img">
                                     <p *ngIf="item.Status == 1"><strong>Paketet är på väg</strong></p>
                                     <p *ngIf="item.Status == 10 || item.Status == 9"><strong>Paketet har levererats</strong></p>
                                 </div>
@@ -56,7 +56,7 @@
                         </div>
                     </div>
                     
-                    <div class="col-sm-4 px-0">
+                    <div class="col-sm-4 px-0 consignment-detail__right-row">
                         <div class="card consignment-detail-card__info mb-3">
                             <div class="card-header">
                                 <h5 class="text-center mb-0">Mått & Vikt</h5>

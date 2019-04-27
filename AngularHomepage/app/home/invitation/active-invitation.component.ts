@@ -30,7 +30,6 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
     invitations: Invitation[];
     activeInvitations: Invitation[];
 
-    showInvitations = true;
     currentUser: Person;
     invitationStatus = InvitationStatusEnum;
     showPackageIdForm = false;
