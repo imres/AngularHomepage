@@ -44,15 +44,16 @@
         </form>
     </div>
     <div class="row" [ngClass]="{'mh-cards-grid' : (consignments?.length >= 4)}">
-        <div *ngFor="let item of pagedItems" [ngClass]="{'col-sm-6' : (consignments?.length > 1), 'col-sm-12' : (consignments?.length < 2)}">
-            <div class="card mb-3 consignment-card" (click)="routeToConsignmentDetail(item)">
+        <div *ngFor="let item of pagedItems" [ngClass]="{'col-md-6' : (consignments?.length > 1), 'col-sm-12' : (consignments?.length < 2)}">
+            <div class="card consignment-card h-100 mb-3" (click)="routeToConsignmentDetail(item)">
                 <div class="consignment-card__header" [ngClass]="{'primary-gradient' : (currentUser.PersonId == item.SenderPersonId), 'secondary-gradient' : (currentUser.PersonId == item.ReceiverPersonId)}">
                     <h2 class="text-center"><i class="fas fa-map-marker-alt"></i> {{item.LastSeenCity}}</h2>
                     <p class="text-center"><i class="far fa-calendar-alt"></i> {{item.LastSeenTimeStamp}}</p>
                 </div>
                 <div class="card-body">
+                    
                     <p class="invitation-title">{{item.Title}}</p>
-                    <p class="package-description">{{item.Description}}</p>
+                    <p class="package-description ellipsis">{{item.Description}}</p>
                     <div class="consignment-card__info">
                         <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId && item.Consignee?.address?.city">Ditt paket är påväg till {{item.Consignee?.address?.city}}</p>
                         <p class="card-text" *ngIf="currentUser.PersonId == item.ReceiverPersonId && item.DropOffLocation?.city">Ett paket från {{item.DropOffLocation?.city}} är påväg till dig</p>
@@ -64,7 +65,6 @@
                         <p class="card-text" *ngIf="!item.DropOffLocation.city || !item.DropOffLocation.postcode">
                             Paketet skickades {{item.DropOffDate}} från {{item.Consignor.address.city}}, {{item.Consignor.address.postCode}}
                         </p>
-                        
                     </div>
                     <div class="btn btn-outline-primary btn-block" (click)="routeToConsignmentDetail(item)">Visa försändelsen</div>
                 </div>

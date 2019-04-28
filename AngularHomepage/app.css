@@ -1,12 +1,16 @@
 ﻿:root {
     /* Shadows and borders*/
-    /* --bottom-shadow: #e0e0e0 0px 2px 8px; */
-    --bottom-shadow: 0 1px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
-    --center-shadow: #e0e0e0 0px 0px 8px;
+    /* --bottom-shadow: #e0e0e0 0px 2px 8px; */ 
     /* --bottom-shadow-darker: #e0e0e0 0px 5px 11px; */
-    --bottom-shadow-darker: 0 1px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
-    --input-shadow: #c1c1c1 0px 2px 12px;
+    --bottom-shadow: 1px 1px 4px -1px rgba(0,0,0,.2), 1px 4px 5px 0 rgba(0,0,0,.14), 1px 1px 10px 0 rgba(0,0,0,.12);
+    --center-shadow: #e0e0e0 0px 0px 8px;
+    --bottom-shadow-darker: 1px 3px 4px 0 rgba(0,0,0,.2), 2px 5px 6px 0 rgba(0,0,0,.14), 2px 2px 13px 0 rgba(0,0,0,.12);
+    /*--bottom-shadow: 0 1px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+    --center-shadow: #e0e0e0 0px 0px 8px;
+    --bottom-shadow-darker: 0 1px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);*/
+    --input-shadow: 1px 4px 12px #c1c1c1;
     --dashed-border: 1px #ddd dashed;
+    
     /* Colors */
     --primary: #0AF;
     --secondary: #FF8900;
@@ -425,7 +429,7 @@ select{
 }
 input{
     border: none !important;
-    box-shadow: var(--bottom-shadow-darker);
+    box-shadow: var(--input-shadow);
 }
 
 textarea{
@@ -542,7 +546,7 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 .nav-main a {
-    color:black;
+    color: black;
 }
 
 .nav-main a.nav-link:hover {
@@ -550,9 +554,27 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 .nav-main a.dropdown-item:hover {
-    color: var(--primary);
-    background-color: white;
+    /* color: var(--primary); */
+    /* background: #7c74da; */
+    border-right: 3px solid var(--primary);
+    background: var(--light-grey);
+    text-decoration: none;
+    cursor: pointer;
 }
+
+.dropdown-item {
+    height: 100%;
+    width: 100%;
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    /* color: #ffffff; */
+    text-decoration: none;
+    font-size: 0.98rem;
+    transition-property: all;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in;
+}
+
 
 .dropdown h5 {
     text-align: center;
@@ -688,6 +710,10 @@ btn.btn-primary:active, .btn-primary:focus{
 
 .height-2  {
     height: 2rem;
+}
+
+.mh-15 {
+    min-height: 15%;
 }
 
 .width-15 {
@@ -842,6 +868,10 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 /* Consignments */
+.consignment-card {
+    height: 97% !important;
+}
+
 .consignment-card:hover {
     box-shadow: var(--bottom-shadow-darker);
     cursor: pointer;
@@ -863,9 +893,10 @@ btn.btn-primary:active, .btn-primary:focus{
     box-shadow: var(--bottom-shadow-darker);
 }
 
-.consignment-card__info {
-    min-height: 140px;
-    padding-bottom: 1rem;
+.ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .consignment-card__info {
@@ -1212,7 +1243,7 @@ btn.btn-primary:active, .btn-primary:focus{
 .sidebar-link:hover {
     /* color: var(--primary); */
     /* background: #7c74da; */
-    border-right: 3px solid var(--secondary-gradient-hover);
+    border-right: 3px solid var(--primary);
     background: var(--light-grey);
     text-decoration: none;
     cursor: pointer;
@@ -1264,7 +1295,7 @@ btn.btn-primary:active, .btn-primary:focus{
 .phone-sidebar-link:hover {
     /* color: var(--primary); */
     /* background: #7c74da; */
-    border-right: 3px solid var(--secondary-gradient-hover);
+    border-right: 3px solid var(--primary);
     background: var(--light-grey);
     text-decoration: none;
     cursor: pointer;
@@ -1321,6 +1352,22 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 /* Prio 1 */
+input:focus {
+    border: none !important;
+    box-shadow: var(--bottom-shadow-darker) !important;
+}
+
+:focus {
+    border: none;
+    outline: none;
+}
+
+.nav-tabs .nav-link:focus {
+    color: #0AF;
+    border: none;
+    border-bottom: 3px #0AF solid;
+}
+
 .nav-tabs .nav-link.active {
     background: transparent;
 }
@@ -1449,7 +1496,7 @@ label {
 }
 @media screen and (max-width: 992px) /*md-down*/ {
     .consignment-card__info {
-        min-height: 140px;
+        min-height: 155px;
         padding-bottom: 1rem;
     }
 }
@@ -1477,12 +1524,10 @@ label {
         padding-right: 0rem;
         justify-content: center;
     }
-
     .consignment-card__info {
-        min-height: 172px;
+        min-height: 10px;
         padding-bottom: 1rem;
     }
-
     .consignment-detail-card__img {
         border: 0;
         margin-bottom: 1rem;
@@ -1563,12 +1608,10 @@ label {
         max-width: 200px;
         max-height: 210px;
     }
-
     .consignment-card__info {
         min-height: 140px;
         padding-bottom: 1rem;
     }
-
 }
 
 @media screen and (min-width: 576px) {
