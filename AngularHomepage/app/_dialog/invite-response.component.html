@@ -2,10 +2,16 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <form name="form" (ngSubmit)="f.form.valid && acceptInvitation(currentInvitation)" #f="ngForm" novalidate>
-                <div class="modal-header">
-                    <h4 class="modal-title"><small class="text-muted">Din roll: </small>{{title || 'Confirm'}}</h4>
-                    <button type="button" class="close" (click)="close()">&times;</button>
+                <div class="no-padding" [ngClass]="{'primary-gradient' : (currentInvitation.ReceiverPersonId == currentUser.PersonId), 'secondary-gradient' : currentInvitation.SenderPersonId == currentUser.PersonId}">
+                    <div class="modal-header pb-0">
+                        <p class="mb-0">Din roll:</p>
+                        <button type="button" class="close" (click)="close()">&times;</button>
+                    </div>
+                    <div class="modal-header__custom">
+                        <h4 class="mb-0 pb-3">{{title || 'Confirm'}}</h4>
+                    </div>
                 </div>
+                <hr class="no-padding mb-0 mt-0"/>
                 <div class="modal-body">
                     {{isReceiver}}
                     <!--Send Role-->
@@ -18,12 +24,13 @@
                             <p>Du har fått en inbjudan, för att gå vidare till nästa steg måste du ange den summa du begär för paketet.</p>
                             <p class="mb-0">Att acceptera denna inbjudan är inte bindande, du har valet att avbryta innan du skickar iväg paketet.</p>
                         </div>
+                        <p class="text-muted mb-0">Köpare</p>
                         <h3>
-                            <small class="text-muted">Mottagare: </small>
                             {{currentInvitation.ReceiverPersonId}}<span></span>
                         </h3><hr />
 
-                        <h3><small class="text-muted">Paketinnehåll: </small>
+                        <p class="text-muted mb-0">Paketinnehåll:</p>
+                        <h3>
                             {{currentInvitation.Title}}
                         </h3>
                         <p *ngIf="currentInvitation.Description" class="description">{{currentInvitation.Description}}</p>
@@ -48,20 +55,20 @@
                                 <p>Du har fått en inbjudan, för att gå vidare till nästa steg måste du ange en av de tillgängliga betalningsmetoderna</p>
                                 <p class="mb-0">Att acceptera denna inbjudan är inte bindande, du har valet att avbryta innan du sätter in summan.</p>
                             </div>
+                            <p class="text-muted mb-0">Säljare:</p>
                             <h3>
-                                <small class="text-muted">Avsändare: </small>
                                 {{currentInvitation.SenderPersonId}}<span></span>
                             </h3><hr />
 
+                            <p class="text-muted mb-0">Paketinnehåll:</p>
                             <h3>
-                                <small class="text-muted">Paketinnehåll: </small>
                                 {{currentInvitation.Title}}
                             </h3>
                             <p *ngIf="currentInvitation.Description" class="text-muted">{{currentInvitation.Description}}</p>
                             <hr />
 
+                            <p class="text-muted mb-0">Pris:</p>
                             <h3>
-                                <small class="text-muted">Pris: </small>
                                 {{currentInvitation.RequestedDepositAmount}}<span>:-</span>
                             </h3>
                         </ng-container>

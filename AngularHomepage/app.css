@@ -319,6 +319,12 @@ img {
     padding: 0 !important;
 }
 
+/* Dialog */
+
+.modal-header__custom {
+    padding-left: 1rem;
+}
+
 /*Egna Margin-klasser*/
 .margin-navbar-top {
     margin-top: 55px;
@@ -1355,6 +1361,10 @@ btn.btn-primary:active, .btn-primary:focus{
 input:focus {
     border: none !important;
     box-shadow: var(--bottom-shadow-darker) !important;
+}
+
+input[type="radio"]:focus {
+    box-shadow: none !important;
 }
 
 :focus {
