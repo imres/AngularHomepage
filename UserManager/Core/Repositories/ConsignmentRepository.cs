@@ -66,9 +66,9 @@ namespace UserManager.Core.Repositories
         }
         public ActiveConsignmentDTO ArchiveConsignment(string PackageId)
         {
-            using (masterEntities context = new masterEntities())
+            using (masterEntitiesMYSQL context = new masterEntitiesMYSQL())
             {
-                var consignmentToArchive = context.ActiveConsignment.Where(x => x.PackageId == PackageId).First();
+                var consignmentToArchive = context.activeconsignment.Where(x => x.PackageId == PackageId).First();
 
                 consignmentToArchive.Status = 10;
 
