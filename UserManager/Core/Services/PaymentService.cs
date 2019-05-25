@@ -12,9 +12,9 @@ namespace UserManager.Core.Services
 {
     public class PaymentService : IPaymentService
     {
-        private UnitOfWork unitOfWork = new UnitOfWork(new masterEntities());
+        private UnitOfWork unitOfWork = new UnitOfWork(new masterEntitiesMYSQL());
 
-        public Payment ProcessPayment(InvitationDTO invitationDTO, string stripeEmail, string stripeToken)
+        public payment ProcessPayment(InvitationDTO invitationDTO, string stripeEmail, string stripeToken)
         {
             var invitationToAccept = unitOfWork.Invitation.Get(invitationDTO.Id);
             invitationToAccept.Status = InvitationStatus.AmountDeposited;
@@ -41,7 +41,7 @@ namespace UserManager.Core.Services
             var service = new ChargeService();
             Charge charge = service.Create(options);
 
-            var payment = new Payment()
+            var payment = new payment()
             {
                 PaymentDate = DateTime.Now,
                 PaymentSenderPersonId = invitationDTO.ReceiverPersonId,
@@ -79,9 +79,9 @@ namespace UserManager.Core.Services
             return true;
         }
 
-        private Payment BuildPaymentObject(InvitationDTO invitation)
+        private payment BuildPaymentObject(InvitationDTO invitation)
         {
-            var payment = new Payment()
+            var payment = new payment()
             {
                 PaymentDate = DateTime.Now,
                 PaymentSenderPersonId = invitation.ReceiverPersonId,

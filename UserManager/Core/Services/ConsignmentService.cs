@@ -14,18 +14,16 @@ namespace UserManager.Core.Services
 {
     public class ConsignmentService : IConsignmentService
     {
-        private UnitOfWork unitOfWork = new UnitOfWork(new masterEntities());
-        private object allConsignments;
+        private UnitOfWork unitOfWork = new UnitOfWork(new masterEntitiesMYSQL());
 
-
-        public Consignment CreateConsignmentFromInvitation(InvitationExtended invitation)
+        public consignment CreateConsignmentFromInvitation(InvitationExtended invitation)
         {
             if (!ValidateInvitationExtended(invitation))
             {
                 throw new Exception();
             }
 
-            var consignment = new Consignment
+            var consignment = new consignment
             {
                 PaymentMethod = invitation.PaymentMethod.GetValueOrDefault(),
                 ReceiverPersonId = invitation.ReceiverPersonId,
@@ -66,9 +64,9 @@ namespace UserManager.Core.Services
 
         public IEnumerable<ActiveConsignmentDTO> GetActiveConsignments(string PersonId)
         {
-            var packageInformations = new List<PackageInformation>();
+            var packageInformations = new List<packageinformation>();
 
-            IEnumerable<ActiveConsignment> consignments = unitOfWork.ActiveConsignment
+            IEnumerable<activeconsignment> consignments = unitOfWork.ActiveConsignment
                 .Find(x => (x.ReceiverPersonId == PersonId || x.SenderPersonId == PersonId) && x.Status == ConsignmentStatus.Active).ToList();
             
             var activeConsignmentsDTO = Mapper.Map<IEnumerable<ActiveConsignmentDTO>>(consignments).ToList();
@@ -90,7 +88,7 @@ namespace UserManager.Core.Services
 
         public IEnumerable<ActiveConsignmentDTO> GetAllConsignments()
         {
-            IEnumerable<ActiveConsignment> consignments = unitOfWork.ActiveConsignment.GetAll();
+            IEnumerable<activeconsignment> consignments = unitOfWork.ActiveConsignment.GetAll();
 
             var allConsignmentsDTO = Mapper.Map<IEnumerable<ActiveConsignmentDTO>>(consignments).ToList();
 

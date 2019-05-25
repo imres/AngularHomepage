@@ -12,7 +12,7 @@ namespace UserManager
     using System;
     using System.Collections.Generic;
     
-    public partial class PackageInformation
+    public partial class packageinformation
     {
         public int Id { get; set; }
         public int ConsignmentId { get; set; }

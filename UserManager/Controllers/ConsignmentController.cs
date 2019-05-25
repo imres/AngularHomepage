@@ -20,7 +20,7 @@ namespace UserManager.Controllers
 {
     public class ConsignmentController: ApiController
     {
-        public UnitOfWork unitOfWork = new UnitOfWork(new masterEntities());
+        public UnitOfWork unitOfWork = new UnitOfWork(new masterEntitiesMYSQL());
         private IInvitationService _invitationService;
         private IConsignmentService _consignmentService;
 

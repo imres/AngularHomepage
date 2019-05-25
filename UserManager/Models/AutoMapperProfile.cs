@@ -14,8 +14,8 @@ namespace UserManager.Models
        public AutoMapperProfile()
         {
             var config = new MapperConfiguration(cfg => {
-                cfg.CreateMap<Person, PersonDTO>();
-                cfg.CreateMap<PersonDTO, Person>();
+                cfg.CreateMap<person, PersonDTO>();
+                cfg.CreateMap<PersonDTO, person>();
             });
             IMapper mapper = config.CreateMapper();
         }

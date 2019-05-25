@@ -11,9 +11,9 @@ namespace UserManager.Core.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        protected readonly masterEntities Context;
+        protected readonly masterEntitiesMYSQL Context;
 
-        public Repository(masterEntities context)
+        public Repository(masterEntitiesMYSQL context)
         {
             Context = context;
         }

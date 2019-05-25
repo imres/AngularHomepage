@@ -19,7 +19,7 @@ namespace UserManager.Controllers
 {
     public class InvitationController : ApiController
     {
-        private UnitOfWork unitOfWork = new UnitOfWork(new masterEntities());
+        private UnitOfWork unitOfWork = new UnitOfWork(new masterEntitiesMYSQL());
 
         private IInvitationService _invitationService;
 

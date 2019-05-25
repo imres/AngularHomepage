@@ -18,14 +18,14 @@ namespace UserManager.Core.Mappers
 {
     public class PersonMapper
     {
-        public virtual Person DtoToEntityMapping(PersonDTO personDTO)
+        public virtual person DtoToEntityMapping(PersonDTO personDTO)
         {
             var config = new MapperConfiguration(cfg => {
-                cfg.CreateMap<PersonDTO, Person>();
+                cfg.CreateMap<PersonDTO, person>();
             });
             IMapper mapper = config.CreateMapper();
 
-            return mapper.Map<PersonDTO, Person>(personDTO);
+            return mapper.Map<PersonDTO, person>(personDTO);
         }
 
         //public virtual PersonDTO EntityToDtoMapping(Person person)

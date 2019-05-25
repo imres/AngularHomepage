@@ -11,7 +11,7 @@ namespace UserManager.Core.Services
 {
     public class UserService : IUserService
     {
-        private UnitOfWork unitOfWork = new UnitOfWork(new masterEntities());
+        private UnitOfWork unitOfWork = new UnitOfWork(new masterEntitiesMYSQL());
 
         public PersonDTO UpdateUser(PersonForUpdateDTO user)
         {

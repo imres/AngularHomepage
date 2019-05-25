@@ -7,7 +7,7 @@ using UserManager.Models;
 
 namespace UserManager.Core.Interfaces
 {
-    public interface IInvitationRepository : IRepository<Invitation>
+    public interface IInvitationRepository : IRepository<invitation>
     {
 
         void EndInvitation(InvitationExtended invitation);

@@ -52,7 +52,7 @@ namespace UserManager.Core.Mappers
 
         public int GetMaxInteger<TEntity>(Func<TEntity, int> condition) where TEntity : class
         {
-            using (var db = new masterEntities())
+            using (var db = new masterEntitiesMYSQL())
             {
                 var context = db.Set<TEntity>();
                 var maxValue = context.Any() ? context.Max(condition) + 1 : 0;

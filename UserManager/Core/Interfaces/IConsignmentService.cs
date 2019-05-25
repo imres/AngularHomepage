@@ -9,6 +9,6 @@ namespace UserManager.Core.Interfaces
         IEnumerable<ActiveConsignmentDTO> GetActiveConsignments(string PersonId);
         IEnumerable<ActiveConsignmentDTO> GetAllConsignments();
         ConsignmentDTO AddConsignment(InvitationExtended invitation);
-        Consignment CreateConsignmentFromInvitation(InvitationExtended invitation);
+        consignment CreateConsignmentFromInvitation(InvitationExtended invitation);
     }
 }

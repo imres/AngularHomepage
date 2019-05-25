@@ -14,7 +14,7 @@ namespace UserManager.Core.Services
 {
     public class InvitationService : IInvitationService
     {
-        private UnitOfWork unitOfWork = new UnitOfWork(new masterEntities());
+        private UnitOfWork unitOfWork = new UnitOfWork(new masterEntitiesMYSQL());
         private IConsignmentService _consignmentService;
 
         public InvitationService() : this(new ConsignmentService())
@@ -59,7 +59,7 @@ namespace UserManager.Core.Services
                 invitationDTO.Status = InvitationStatus.Created;
                 invitationDTO.StartDate = DateTime.Now;
 
-                var entity = Mapper.Map<Invitation>(invitationDTO);
+                var entity = Mapper.Map<invitation>(invitationDTO);
 
                 unitOfWork.Invitation.Add(entity);
                 

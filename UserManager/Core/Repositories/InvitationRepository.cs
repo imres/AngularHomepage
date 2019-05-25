@@ -11,9 +11,9 @@ using UserManager.Models;
 
 namespace UserManager.Core.Repositories
 {
-    public class InvitationRepository : Repository<Invitation>, IInvitationRepository
+    public class InvitationRepository : Repository<invitation>, IInvitationRepository
     {
-        public InvitationRepository(masterEntities context)
+        public InvitationRepository(masterEntitiesMYSQL context)
             : base(context)
         {
 
@@ -37,10 +37,10 @@ namespace UserManager.Core.Repositories
         /// <returns></returns>
         public IEnumerable<InvitationDTO> GetInvitations(string personId)
         {
-            using (masterEntities context = new masterEntities())
+            using (masterEntitiesMYSQL context = new masterEntitiesMYSQL())
             {
                 //Where personId exists and is active invitation OR if invitation is status created and personid doesnt match initiator
-                IEnumerable<Invitation> invitations = context.Invitation
+                IEnumerable<invitation> invitations = context.invitation
                     .Where(x => (x.EndDate == null && (x.ReceiverPersonId == personId || x.SenderPersonId == personId)) &&
                     
                     ((x.Status > InvitationStatus.Created && x.Status < InvitationStatus.ConsignmentActive) ||
@@ -55,9 +55,9 @@ namespace UserManager.Core.Repositories
 
         public IEnumerable<InvitationDTO> GetUnrespondedInvitations(string personId)
         {
-            using (masterEntities context = new masterEntities())
+            using (masterEntitiesMYSQL context = new masterEntitiesMYSQL())
             {
-                IEnumerable<Invitation> unrespondedInvitations = context.Invitation.Where(x => x.EndDate == null &&
+                IEnumerable<invitation> unrespondedInvitations = context.invitation.Where(x => x.EndDate == null &&
                 (x.ReceiverPersonId == personId || x.SenderPersonId == personId));
 
                 var unrespondedInvitationsDTO = Mapper.Map<IEnumerable<InvitationDTO>>(unrespondedInvitations);
@@ -71,9 +71,9 @@ namespace UserManager.Core.Repositories
         /// </summary>
         public void EndInvitation(InvitationExtended invitation)
         {
-            using (var context = new masterEntities())
+            using (var context = new masterEntitiesMYSQL())
             {
-                var invitationToEnd = context.Invitation.Where(x => x.Id == invitation.Id).First();
+                var invitationToEnd = context.invitation.Where(x => x.Id == invitation.Id).First();
 
                 invitationToEnd.Status = InvitationStatus.ConsignmentActive;
                 invitationToEnd.EndDate = DateTime.Now;

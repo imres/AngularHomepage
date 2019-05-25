@@ -18,18 +18,18 @@ using UserManager.Models;
 
 namespace UserManager.Core.Repositories
 {
-    public class PackageInformationRepository : Repository<PackageInformation>, IPackageInformationRepository
+    public class PackageInformationRepository : Repository<packageinformation>, IPackageInformationRepository
     {
-        public PackageInformationRepository(masterEntities context) : base (context)
+        public PackageInformationRepository(masterEntitiesMYSQL context) : base (context)
         {
 
         }
 
         private bool timeCheckEnabled = false;
 
-        public PackageInformation UpdatePackageInformation(ConsignmentDTO consignment)
+        public packageinformation UpdatePackageInformation(ConsignmentDTO consignment)
         {
-            var packageInformationExist = Context.PackageInformation.Any(x => x.ConsignmentId == consignment.Id);
+            var packageInformationExist = Context.packageinformation.Any(x => x.ConsignmentId == consignment.Id);
 
             if (packageInformationExist)
             {
@@ -43,9 +43,9 @@ namespace UserManager.Core.Repositories
         /// Handle Package ID found in PackageInformation row in database, just update existing row
         /// </summary>
         /// <returns>Updated row</returns>
-        private PackageInformation UpdatePackageInformationRow(ConsignmentDTO consignment)
+        private packageinformation UpdatePackageInformationRow(ConsignmentDTO consignment)
         {
-            var entity = Context.PackageInformation.Where(x => x.ConsignmentId == consignment.Id).First();
+            var entity = Context.packageinformation.Where(x => x.ConsignmentId == consignment.Id).First();
 
             var hourDifference = (DateTime.Now - entity.LastUpdated).TotalHours;
 
@@ -74,7 +74,7 @@ namespace UserManager.Core.Repositories
         /// Handle Package ID not registered in database
         /// </summary>
         /// <returns>Created row in PackageInformation table</returns>
-        private PackageInformation CreatePackageInformationRow(ConsignmentDTO consignment)
+        private packageinformation CreatePackageInformationRow(ConsignmentDTO consignment)
         {
             string packageInformation = string.Empty;
 
@@ -87,7 +87,7 @@ namespace UserManager.Core.Repositories
                 packageInformation = PostNordResponseData.PostNordResponseMock;
             }
 
-            var entity = new PackageInformation
+            var entity = new packageinformation
             {
                 Content = packageInformation,
                 ConsignmentId = consignment.Id,

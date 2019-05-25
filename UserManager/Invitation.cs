@@ -12,7 +12,7 @@ namespace UserManager
     using System;
     using System.Collections.Generic;
     
-    public partial class Invitation
+    public partial class invitation
     {
         public int Id { get; set; }
         public string SenderPersonId { get; set; }

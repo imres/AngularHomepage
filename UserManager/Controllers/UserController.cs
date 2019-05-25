@@ -23,7 +23,7 @@ namespace UserManager.Controllers
     //[RoutePrefix("api/books")]
     public class UserController : ApiController
     {
-        private UnitOfWork unitOfWork = new UnitOfWork(new masterEntities());
+        private UnitOfWork unitOfWork = new UnitOfWork(new masterEntitiesMYSQL());
 
         private IUserService _userService;
 
@@ -41,7 +41,7 @@ namespace UserManager.Controllers
         [HttpGet]
         public HttpResponseMessage GetAllUsers()
         {
-            IEnumerable<Person> persons = unitOfWork.Person.GetAll();
+            IEnumerable<person> persons = unitOfWork.Person.GetAll();
 
             var personsDto = Mapper.Map<IEnumerable<PersonDTO>>(persons).ToList();
 
@@ -64,7 +64,7 @@ namespace UserManager.Controllers
 
                 User.Password = CryptographyService.Encrypt(User.Password);
 
-                var entity = Mapper.Map<Person>(User);
+                var entity = Mapper.Map<person>(User);
 
                 unitOfWork.Person.Add(entity);
                 unitOfWork.Save();

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UserManager.Core.Interfaces
 {
-    public interface IActiveConsignmentRepository : IRepository<ActiveConsignment>
+    public interface IActiveConsignmentRepository : IRepository<activeconsignment>
     {
     }
 }

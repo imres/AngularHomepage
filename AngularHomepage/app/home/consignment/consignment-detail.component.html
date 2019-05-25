@@ -13,15 +13,15 @@
                 <div class="row">  
                     <div class="col-sm-8 pl-0 consignment-detail__left-row">
                         <div class="card consignment-detail-card__info mb-3">
-                            <div class="card-header bg-primary color-white">
-                                <h5 class="text-center mb-0">Mitt paket</h5>
+                            <div class="card-header bg-primary text-center color-white">
+                                <span>Mitt paket</span>
                             </div>
                             <div class="card-body row">
                                 <div class="col-6 text-center">
                                     <img *ngIf="item.Status == 1" src="img/undraw_on_the_way_ldaq.svg" alt="Accepterat" class="consignment-detail-card__img">
                                     <img *ngIf="item.Status == 10 || item.Status == 9" src="img/undraw_mail_cg1t.svg" alt="Accepterat" class="consignment-detail-card__img">
                                     <p *ngIf="item.Status == 1"><strong>Paketet är på väg</strong></p>
-                                    <p *ngIf="item.Status == 10 || item.Status == 9"><strong>Paketet har levererats</strong></p>
+                                    <p *ngIf="item.Status == 10 || item.Status == 9" class="color-primary"><strong>Paketet har levererats</strong></p>
                                 </div>
                                 <div class="col-6 py-3">
                                     <h4>{{item.Title}}</h4>
@@ -32,8 +32,8 @@
                         </div>
 
                         <div class="card consignment-detail-card__info">
-                            <div class="card-header">
-                                <h5 class="text-center mb-0">Försändelseinformation</h5>
+                            <div class="card-header text-center">
+                                <span>Försändelseinformation</span>
                             </div>
                             <div class="card-body row">
                                 <div class="col-md-5 offset-md-1">
@@ -58,8 +58,8 @@
                     
                     <div class="col-sm-4 px-0 consignment-detail__right-row">
                         <div class="card consignment-detail-card__info mb-3">
-                            <div class="card-header">
-                                <h5 class="text-center mb-0">Mått & Vikt</h5>
+                            <div class="card-header text-center">
+                                <span>Mått & Vikt</span>
                             </div>
                             <div class="card-body">
                                     <p class="consignment-detail-card__text"><strong>Vikt:</strong> 
@@ -78,8 +78,8 @@
                         </div>
 
                         <div class="card consignment-detail-card">
-                            <div class="card-header bg-primary color-white">
-                                <h5 class="text-center mb-0">Paketets resa</h5>
+                            <div class="card-header bg-primary text-center color-white">
+                                <span>Paketets resa</span>
                             </div>
                             <div class="list-group-item" *ngFor="let item of events | slice:0:eventsLength ; let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even, 'events-height': !showEvents}">
                                 <i *ngIf="item.status == 'DELIVERED'" class="fas fa-check-square fa-fw fa-pull-left"></i>

@@ -19,13 +19,13 @@ namespace UserManager.Core.Mappers
         public static void InitializeMappings()
         {
             Mapper.Initialize(cfg => {
-                cfg.CreateMap<Invitation, InvitationDTO>();
-                cfg.CreateMap<InvitationDTO, Invitation>();
+                cfg.CreateMap<invitation, InvitationDTO>();
+                cfg.CreateMap<InvitationDTO, invitation>();
 
-                cfg.CreateMap<Consignment, ConsignmentDTO>();
-                cfg.CreateMap<ConsignmentDTO, Consignment>();
+                cfg.CreateMap<consignment, ConsignmentDTO>();
+                cfg.CreateMap<ConsignmentDTO, consignment>();
 
-                cfg.CreateMap<ActiveConsignment, ActiveConsignmentDTO>()
+                cfg.CreateMap<activeconsignment, ActiveConsignmentDTO>()
                     .ForMember(x => x.LastSeenCity, opt => opt.Ignore())
                     .ForMember(x => x.LastSeenTimeStamp, opt => opt.Ignore())
                     .ForMember(x => x.Consignor, opt => opt.Ignore())
@@ -33,7 +33,7 @@ namespace UserManager.Core.Mappers
                     .ForMember(x => x.DropOffDate, opt => opt.Ignore())
                     .ForMember(x => x.DropOffLocation, opt => opt.Ignore())
                     .IgnoreAllPropertiesWithAnInaccessibleSetter();
-                cfg.CreateMap<ActiveConsignmentDTO, ActiveConsignment>()
+                cfg.CreateMap<ActiveConsignmentDTO, activeconsignment>()
                     .ForSourceMember(x => x.LastSeenCity, opt => opt.Ignore())
                     .ForSourceMember(x => x.LastSeenTimeStamp, opt => opt.Ignore())
                     .ForSourceMember(x => x.Consignor, opt => opt.Ignore())
@@ -42,13 +42,13 @@ namespace UserManager.Core.Mappers
                     .ForSourceMember(x => x.DropOffLocation, opt => opt.Ignore())
                     ;
 
-                cfg.CreateMap<Person, PersonDTO>();
-                cfg.CreateMap<PersonDTO, Person>().ForMember(x => x.Password, opt => opt.Ignore());
+                cfg.CreateMap<person, PersonDTO>();
+                cfg.CreateMap<PersonDTO, person>().ForMember(x => x.Password, opt => opt.Ignore());
 
-                cfg.CreateMap<Person, PersonForUpdateDTO>();
-                cfg.CreateMap<PersonForUpdateDTO, Person>();
+                cfg.CreateMap<person, PersonForUpdateDTO>();
+                cfg.CreateMap<PersonForUpdateDTO, person>();
 
-                cfg.CreateMap<BankIdPersonDTO, Person>()
+                cfg.CreateMap<BankIdPersonDTO, person>()
                     .ForMember(x => x.Address, opt => opt.Ignore())
                     .ForMember(x => x.Alias, opt => opt.Ignore())
                     .ForMember(x => x.Password, opt => opt.Ignore())

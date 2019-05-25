@@ -14,7 +14,7 @@ namespace UserManager.Core.Listeners
 {
     public class UpdatePostnordDataJob : IJob
     {
-        private UnitOfWork unitOfWork = new UnitOfWork(new masterEntities());
+        private UnitOfWork unitOfWork = new UnitOfWork(new masterEntitiesMYSQL());
         private IConsignmentService _consignmentService;
 
         public UpdatePostnordDataJob() : this(new ConsignmentService())

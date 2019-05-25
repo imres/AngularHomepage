@@ -11,16 +11,16 @@ namespace UserManager.Core.Services
 {
     public class PackageInformationService : IPackageInformationService
     {
-        private UnitOfWork unitOfWork = new UnitOfWork(new masterEntities());
+        private UnitOfWork unitOfWork = new UnitOfWork(new masterEntitiesMYSQL());
 
         public bool SavePackageInformation(ConsignmentDTO consignment)
         {
             try
             {
-                using(var context = new masterEntities())
+                using(var context = new masterEntitiesMYSQL())
                 {
                     var packageInformation = unitOfWork.PackageInformation.UpdatePackageInformation(consignment);
-                    context.PackageInformation.Add(packageInformation);
+                    context.packageinformation.Add(packageInformation);
                     context.SaveChanges();
                 }
             }

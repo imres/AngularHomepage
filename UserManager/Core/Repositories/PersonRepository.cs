@@ -12,11 +12,11 @@ using UserManager.DTO;
 
 namespace UserManager.Core.Repositories
 {
-    public class PersonRepository : Repository<Person>, IPersonRepository
+    public class PersonRepository : Repository<person>, IPersonRepository
     {
         protected PersonCrypography _personCryptography = new PersonCrypography();
 
-        public PersonRepository(masterEntities context) : base(context)
+        public PersonRepository(masterEntitiesMYSQL context) : base(context)
         {
 
         }
@@ -25,11 +25,11 @@ namespace UserManager.Core.Repositories
         /// Add new Person
         /// </summary>
         /// <param name="personDTO"></param>
-        public Person AddPerson(IPerson personDTO)
+        public person AddPerson(IPerson personDTO)
         {
-            var entity = Mapper.Map<Person>(personDTO);
+            var entity = Mapper.Map<person>(personDTO);
 
-            Context.Person.Add(entity);
+            Context.person.Add(entity);
             Context.SaveChanges();
 
             return entity;
@@ -43,11 +43,11 @@ namespace UserManager.Core.Repositories
         public PersonDTO Authenticate(PersonForUpdateDTO personDTO)
         {
             //Hitta matchande användare. returnera res 200 & token
-            using (masterEntities context = new masterEntities())
+            using (masterEntitiesMYSQL context = new masterEntitiesMYSQL())
             {
                 var encryptedPassword = CryptographyService.Encrypt(personDTO.Password);
 
-                IEnumerable<Person> findPerson = context.Person.Where(x => x.Email == personDTO.Email && x.Password == encryptedPassword);
+                IEnumerable<person> findPerson = context.person.Where(x => x.Email == personDTO.Email && x.Password == encryptedPassword);
 
                 var matchedPerson = findPerson != null && findPerson.Count() > 0 ? findPerson.FirstOrDefault() : null;
 
@@ -63,7 +63,7 @@ namespace UserManager.Core.Repositories
         public PersonDTO AuthenticateBankId(BankIdCollectDto collectDto)
         {
             //Users nullUser = null;
-            Person findPerson = Context.Person.Where(x => x.PersonId == collectDto.completionData.user.personalNumber).FirstOrDefault();
+            var findPerson = Context.person.Where(x => x.PersonId == collectDto.completionData.user.personalNumber).FirstOrDefault();
 
             //var matchedPerson = findPerson != null ? findPerson : null;
             if (findPerson == null)
