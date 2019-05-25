@@ -21,6 +21,8 @@ namespace UserManager.DTO
 
         public Height Height => ShipmentInformation?.items.LastOrDefault()?.statedMeasurement?.height;
 
+        public Length Length => ShipmentInformation?.items.LastOrDefault()?.statedMeasurement?.length;
+
         public string LastSeenTimeStamp
         {
             get

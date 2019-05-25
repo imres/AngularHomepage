@@ -1,12 +1,16 @@
 ﻿:root {
     /* Shadows and borders*/
-    /* --bottom-shadow: #e0e0e0 0px 2px 8px; */
-    --bottom-shadow: 0 1px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
-    --center-shadow: #e0e0e0 0px 0px 8px;
+    /* --bottom-shadow: #e0e0e0 0px 2px 8px; */ 
     /* --bottom-shadow-darker: #e0e0e0 0px 5px 11px; */
-    --bottom-shadow-darker: 0 1px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
-    --input-shadow: #c1c1c1 0px 2px 12px;
+    --bottom-shadow: 1px 1px 4px -1px rgba(0,0,0,.2), 1px 4px 5px 0 rgba(0,0,0,.14), 1px 1px 10px 0 rgba(0,0,0,.12);
+    --center-shadow: #e0e0e0 0px 0px 8px;
+    --bottom-shadow-darker: 1px 3px 4px 0 rgba(0,0,0,.2), 2px 5px 6px 0 rgba(0,0,0,.14), 2px 2px 13px 0 rgba(0,0,0,.12);
+    /*--bottom-shadow: 0 1px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+    --center-shadow: #e0e0e0 0px 0px 8px;
+    --bottom-shadow-darker: 0 1px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);*/
+    --input-shadow: 1px 4px 12px #c1c1c1;
     --dashed-border: 1px #ddd dashed;
+    
     /* Colors */
     --primary: #0AF;
     --secondary: #FF8900;
@@ -70,6 +74,12 @@
 }
 
 
+
+.title {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
 
 .btn {
     border: none;
@@ -309,6 +319,12 @@ img {
     padding: 0 !important;
 }
 
+/* Dialog */
+
+.modal-header__custom {
+    padding-left: 1rem;
+}
+
 /*Egna Margin-klasser*/
 .margin-navbar-top {
     margin-top: 55px;
@@ -419,7 +435,7 @@ select{
 }
 input{
     border: none !important;
-    box-shadow: var(--bottom-shadow-darker);
+    box-shadow: var(--input-shadow);
 }
 
 textarea{
@@ -536,7 +552,7 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 .nav-main a {
-    color:black;
+    color: black;
 }
 
 .nav-main a.nav-link:hover {
@@ -544,9 +560,27 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 .nav-main a.dropdown-item:hover {
-    color: var(--primary);
-    background-color: white;
+    /* color: var(--primary); */
+    /* background: #7c74da; */
+    border-right: 3px solid var(--primary);
+    background: var(--light-grey);
+    text-decoration: none;
+    cursor: pointer;
 }
+
+.dropdown-item {
+    height: 100%;
+    width: 100%;
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    /* color: #ffffff; */
+    text-decoration: none;
+    font-size: 0.98rem;
+    transition-property: all;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in;
+}
+
 
 .dropdown h5 {
     text-align: center;
@@ -647,7 +681,7 @@ btn.btn-primary:active, .btn-primary:focus{
 .guide-image {
     border: 0;
     margin-bottom: 1rem;
-    width: 250px;
+    max-width: 200px;
     height: 210px;
 }
 
@@ -684,12 +718,16 @@ btn.btn-primary:active, .btn-primary:focus{
     height: 2rem;
 }
 
+.mh-15 {
+    min-height: 15%;
+}
+
 .width-15 {
     width: 15rem;
 }
 
 .width-20 {
-    width: 20rem;
+    width: 20rem !important;
 }
 
 .width-21 {
@@ -764,8 +802,16 @@ btn.btn-primary:active, .btn-primary:focus{
     width: 70px;
 }
 
+.max-width-15 {
+    max-width: 15rem;
+}
+
 .max-width-20 {
     max-width: 20rem;
+}
+
+.max-width-200px {
+    max-width: 200px;
 }
 /* Notificationcenter */
 .notification {
@@ -828,6 +874,10 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 /* Consignments */
+.consignment-card {
+    height: 97% !important;
+}
+
 .consignment-card:hover {
     box-shadow: var(--bottom-shadow-darker);
     cursor: pointer;
@@ -847,6 +897,17 @@ btn.btn-primary:active, .btn-primary:focus{
     color: white;
     padding-top: 3rem;
     box-shadow: var(--bottom-shadow-darker);
+}
+
+.ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.consignment-card__info {
+    min-height: 172px;
+    padding-bottom: 1rem;
 }
 
 .archived-consignment--card__header {
@@ -973,6 +1034,13 @@ btn.btn-primary:active, .btn-primary:focus{
 
 .consignment-detail-card__info__header {
     font-size: 0.85rem;
+}
+
+.consignment-detail-card__img {
+    border: 0;
+    margin-bottom: 1rem;
+    max-width: 200px;
+    max-height: 210px;
 }
 
 .subheading {
@@ -1105,7 +1173,7 @@ btn.btn-primary:active, .btn-primary:focus{
 .card-header-custom {
     padding: .75rem 0;
     margin-bottom: 0;
-    background-color: #ffffff;
+    background-color: transparent;
 }
 
 .card-custom {
@@ -1181,10 +1249,15 @@ btn.btn-primary:active, .btn-primary:focus{
 .sidebar-link:hover {
     /* color: var(--primary); */
     /* background: #7c74da; */
-    border-right: 3px solid var(--secondary-gradient-hover);
+    border-right: 3px solid var(--primary);
     background: var(--light-grey);
     text-decoration: none;
     cursor: pointer;
+}
+
+.sidebar-link.disabled:hover {
+    border-right: none;
+    background: transparent;
 }
 
 /*.animate-enter{
@@ -1200,6 +1273,10 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 /*PhoneSidebar*/
+#phone-sidebar{
+    padding-top: 0.5rem;
+}
+
 #phone-sidebar .active {
     background: #f0f0f0;
 }
@@ -1211,14 +1288,29 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 .phone-sidebar-link {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    width: 100%;
+    padding: 1rem;
+    /* color: #ffffff; */
+    text-decoration: none;
+    font-size: 0.98rem;
+    transition-property: all;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in;
 }
 
 .phone-sidebar-link:hover {
-    color: var(--primary);
+    /* color: var(--primary); */
+    /* background: #7c74da; */
+    border-right: 3px solid var(--primary);
+    background: var(--light-grey);
     text-decoration: none;
     cursor: pointer;
+}
+
+
+.phone-sidebar-link.disabled:hover {
+    border-right: none;
+    background: transparent;
 }
 
 /*.phone-sidebar-link.disabled:hover {
@@ -1266,6 +1358,26 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 /* Prio 1 */
+input:focus {
+    border: none !important;
+    box-shadow: var(--bottom-shadow-darker) !important;
+}
+
+input[type="radio"]:focus {
+    box-shadow: none !important;
+}
+
+:focus {
+    border: none;
+    outline: none;
+}
+
+.nav-tabs .nav-link:focus {
+    color: #0AF;
+    border: none;
+    border-bottom: 3px #0AF solid;
+}
+
 .nav-tabs .nav-link.active {
     background: transparent;
 }
@@ -1321,9 +1433,13 @@ btn.btn-primary:active, .btn-primary:focus{
     background: white;
 }
 
+.input-group-prepend .input-group-text {
+    border: none;
+    box-shadow: var(--input-shadow);
+}
+
 .fas.fa-search {
     background: white;
-
 }
 
 .pulse {
@@ -1343,6 +1459,12 @@ animation: none;
 
 label {
     color: var(--black);
+    font-size: .9rem;
+    margin-bottom: 0rem;
+}
+
+#searchbar.width-20 input {
+    font-size: .9rem;
 }
   
   @-webkit-keyframes pulse {
@@ -1382,8 +1504,14 @@ label {
         transform: translateY(0);
     }
 }
+@media screen and (max-width: 992px) /*md-down*/ {
+    .consignment-card__info {
+        min-height: 155px;
+        padding-bottom: 1rem;
+    }
+}
 
-@media screen and (max-width: 766px) /*md-down*/ {
+@media screen and (max-width: 766px) /*sm-down*/ {
     .sale-ads-title {
         margin-top: 0px;
     }
@@ -1406,9 +1534,19 @@ label {
         padding-right: 0rem;
         justify-content: center;
     }
+    .consignment-card__info {
+        min-height: 10px;
+        padding-bottom: 1rem;
+    }
+    .consignment-detail-card__img {
+        border: 0;
+        margin-bottom: 1rem;
+        max-width: 150px;
+        max-height: 150px;
+    }
 }
 
-@media screen and (max-width: 575px) /*sm-down*/ {
+@media screen and (max-width: 576px) /*xs-down*/ {
     #cover-caption .container .display-3 {
         font-size: 3.5rem;
     }
@@ -1465,6 +1603,25 @@ label {
         background: var(--grey);
         font-weight: 500;
     }
+
+    .consignment-detail__left-row {
+        padding-right: 0 !important;
+    }
+
+    .consignment-detail__right-row {
+        padding-top: 1rem;
+    }
+
+    .consignment-detail-card__img {
+        border: 0;
+        margin-bottom: 1rem;
+        max-width: 200px;
+        max-height: 210px;
+    }
+    .consignment-card__info {
+        min-height: 140px;
+        padding-bottom: 1rem;
+    }
 }
 
 @media screen and (min-width: 576px) {
@@ -1496,6 +1653,13 @@ label {
 @media screen and (min-width: 1327px) /*xl-up*/ {
     .mh-cards-grid {
         min-height: 688px;
+    }
+}
+
+@media screen and (min-width: 1327px) /*mellan lg och xl och upp*/ {
+    .consignment-card__info {
+        min-height: 140px;
+        padding-bottom: 1rem;
     }
 }
 

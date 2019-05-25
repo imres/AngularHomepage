@@ -5,6 +5,6 @@
 <div *ngFor="let item of pagedItems" class="row notification no-padding">
     <div class="col-sm-11 no-padding" (click)="routeToConsignmentDetail(item)" role="button">
         <div class="text-center ml-3 py-3" *ngIf="currentUser.PersonId == item.SenderPersonId"><strong>{{item.Title}}</strong> har nu nått <strong>{{item.ReceiverPersonId}}</strong>!</div>
-        <div class="text-center ml-3 py-3" *ngIf="currentUser.PersonId == item.ReceiverPersonId">Grattis!! Du har just hämtat ut ett paket från <strong>{{item.SenderPersonId}}</strong></div>
+        <div class="text-center ml-3 py-3" *ngIf="currentUser.PersonId == item.ReceiverPersonId">Grattis! Du har just hämtat ut ett paket från <strong>{{item.SenderPersonId}}</strong></div>
     </div>
 </div>

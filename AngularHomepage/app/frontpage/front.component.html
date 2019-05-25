@@ -10,10 +10,10 @@
                 <p>Säkra betalningar för privatpaket</p>
                 <div class="row">
                     <div class="col-sm-6 text-sm-right mt-3">
-                        <div (click)="scrollToElement(guide)" class="btn btn-outline-primary-2 btn-cover p-3 width-205px">Så här fungerar det</div>
+                        <div [routerLink]="['/register']" role="button" class="btn btn-primary btn-cover p-3 width-205px">Registrera en användare</div>
                     </div>
                     <div class="col-sm-6 text-sm-left mt-3">
-                        <div [routerLink]="['/register']" role="button" class="btn btn-primary btn-cover p-3 width-205px">Registrera en användare</div>
+                        <div (click)="scrollToElement(guide)" class="btn btn-outline-primary-2 btn-cover p-3 width-205px">Så här fungerar det</div>
                     </div>
                 </div>
             </div>
@@ -22,33 +22,36 @@
 </section>
 
 <!-- Section 1 -->
-<div class="py-5 container section-content text-center">
-    <h3 class="card-title mb-3">Paysend är för dig som köper eller säljer begagnat på internet.</h3>
-    <div class="row card-body">
-        <div class="card-deck justify-content-around">
-
-            <div class="card-block col-md-3 justify-content-center text-center">
-                <div class="text-center">
-                    <i class="fas fa-dollar-sign fa-5x mb-3 frontpage--icons__info"></i>
+<div class="py-navbar">
+    <div class="container section-content text-center">
+        <h3 class="card-title my-2">Trygghet för dig som köper eller säljer begagnat på internet</h3>
+        <div class="row justify-content-center py-2">
+            <div class="card text-center width-15 mx-5 my-3">
+                <!--<div class="text-center">
+                    <img src="img/undraw_envelope_n8lc.svg" alt="Säljare" class="guide-image">
+                </div>-->
+                <img src="img/woman-package.jpg" class="card-img-top frontpage-card-img" alt="Woman receiving a package">
+                <div class="card-body">
+                    <p class="title">Köpare</p>
+                    <p class="card-text">Som köpare kan du känna dig trygg att du kommer att få paketet du betalat för. För om säljaren inte skickar paketet inom 48h överförs pengarna automatiskt tillbaka till dig.</p>
                 </div>
-                <h4 class="card-title hidden-md-up">Säljare</h4>
-                <p class="card-text">Som säljare slipper du oroa dig om du kommer att få betalt för ditt paket, du ser att köparen har betalat innan du behöver skicka paketet.</p>
             </div>
-
-            <div class="card-block col-md-3 text-center">
-                <div class="text-center">
-                    <i class="fas fa-gift fa-5x mb-3 frontpage--icons__info"></i>
+            <div class="card text-center width-15 mx-5 my-3">
+                <!--<div class="text-center">
+                    <img src="img/undraw_make_it_rain_iwk4.svg" alt="Säljare" class="guide-image">
+                </div>-->
+                <img src="img/macbook-paysend.jpg" class="card-img-top frontpage-card-img" alt="Man with MacBook">
+                <div class="card-body">
+                    <p class="title">Säljare</p>
+                    <p class="card-text">Som säljare slipper du oroa dig om ifall du kommer att få betalt för ditt paket, du ser att köparen har betalat innan du behöver skicka paketet.</p>
                 </div>
-                <h4 class="card-title hidden-md-up">Köpare</h4>
-                <p class="card-text">Som köpare kan du känna dig trygg att du inte betalat för ett paket du inte kommer att få, om säljaren inte skickar paketet inom 48h överförs pengarna automatiskt tillbaka till dig.</p>
             </div>
-
         </div>
     </div>
 </div>
 
 <!-- Section 2 -->
-<div #guide class="bg-grey py-navbar">
+<div #guide class="py-navbar bg-grey">
     <h3 class="card-title text-center my-2">Enkelt och säkert för säljare och köpare</h3>
     <div class="container section-content">
         <guide></guide> 
@@ -56,7 +59,7 @@
 </div>
 
 <!-- Section 3 -->
-<div class="p-6 container-fluid section-content text-center pattern-waves mb-5">
+<div class="p-6 text-center pattern-waves">
     <h3 class="card-title mb-3">Kom igång med Paysend nu!</h3>
     <button [routerLink]="['/register']" role="button" class="btn btn-primary btn-lg margin-md-top">Skapa ett konto.</button>
 </div>

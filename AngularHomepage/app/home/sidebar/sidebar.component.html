@@ -2,7 +2,7 @@
 
     <nav id="sidebar" class="d-none d-lg-block list-unstyled components h-100">
 
-        <div class="sidebar-link mt-4" role="button" [routerLink]="['/home']">
+        <div class="sidebar-link" role="button" [routerLink]="['/home']">
             <i class="fas fa-home fa-fw" aria-hidden="true"></i>
             Hem
         </div>
@@ -14,9 +14,9 @@
 
         <div [routerLink]="['/history']" role="button" class="sidebar-link"><i class="fas fa-envelope-open fa-fw" aria-hidden="true"></i> Arkiverade försändelser</div>
 
-        <div class="p-4">
+        <div class="p-3 sidebar-link disabled">
             <div class="btn btn-primary btn-block" (click)=showConfirm($event)>
-                <i class="fas fa-plus fa-fw fa-pull-left" aria-hidden="true"></i> Ny försändelse
+                <i class="fas fa-plus fa-pull-left"></i> Ny försändelse
             </div>
         </div>
     </nav>
@@ -63,7 +63,7 @@
 
             <div [routerLink]="['/history']" role="button" class="phone-sidebar-link"><i class="fas fa-envelope-open fa-fw" aria-hidden="true"></i> Arkiverade försändelser</div>
 
-            <div class="phone-sidebar-link">
+            <div class="phone-sidebar-link disabled">
                 <div class="btn btn-primary btn-block-half" (click)=showConfirm($event)>
                     <i class="fas fa-plus fa-fw fa-pull-left" aria-hidden="true"></i> Ny försändelse
                 </div>

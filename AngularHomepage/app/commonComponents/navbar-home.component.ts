@@ -104,11 +104,10 @@ export class NavbarHomeComponent extends BasicComponent implements OnInit {
     }
 
     getFinishedConsignments() {
-        this.consignmentService.getArchivedConsignments(this.currentUser.PersonId).subscribe((res: any) => {
-            this.archivedConsignments = res;
-            this.finishedConsignments = this.archivedConsignments.filter(x => { return x.Status == 10 }); /*Sätt en filtrering som bara visar dom som inte blivit sedda*/
+        this.consignmentService.getFinishedConsignments(this.currentUser.PersonId).subscribe((res: any) => {
+            this.finishedConsignments = res;
 
-            this.orderBy('-EndDate', this.finishedConsignments);
+            this.orderBy('-EndDate', res);
             this.notificationCounter();
         });
     }

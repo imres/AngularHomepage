@@ -27,14 +27,14 @@
     <ul class="nav flex-row">
         <li class="nav-item">
             <a class="navbar-brand" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle"></i> {{currentUser.FirstName}} {{currentUser.LastName}} <i class="fas fa-angle-down" aria-hidden="true"></i></a>
-            <div class="dropdown-menu dropdown-menu-right width-15">
+            <div class="dropdown-menu dropdown-menu-right width-15 py-0">
                 <a href="#" class="dropdown-item" [routerLink]="['/profile']"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i> Min profil</a>
 
                 <ng-container *ngIf="currentUser.UserRights == 10">
-                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-divider m-0"></div>
                     <a href="#" class="dropdown-item" [routerLink]="['/admin-panel']"><i class="fas fa-database fa-fw" aria-hidden="true"></i> Administratörsverktyg</a>
                 </ng-container>
-                <div class="dropdown-divider"></div>
+                <div class="dropdown-divider m-0"></div>
                 <a href="#" class="dropdown-item" (click)="logOut()"  [routerLink]="['/front']" role="button"><i class="fas fa-sign-out-alt fa-fw" aria-hidden="true"></i> Logga ut</a>
             </div>
         </li>
@@ -51,7 +51,7 @@
                 <div class="width-25">
                     <div class="container-fluid">
                         <invite-notifications *ngIf="invitationNotifications?.length > 0" [invitations]="invitations" [invitationNotifications]="invitationNotifications"></invite-notifications><!--Update child component with array, and receive event from child on change-->
-                        <consignment-notification *ngIf="archivedConsignments?.length > 0"></consignment-notification>
+                        <consignment-notification *ngIf="finishedConsignments?.length > 0"></consignment-notification>
                     </div>
                 </div>
             </div>

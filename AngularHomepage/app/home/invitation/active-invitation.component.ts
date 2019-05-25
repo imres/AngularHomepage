@@ -30,7 +30,6 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
     invitations: Invitation[];
     activeInvitations: Invitation[];
 
-    showInvitations = true;
     currentUser: Person;
     invitationStatus = InvitationStatusEnum;
     showPackageIdForm = false;
@@ -39,6 +38,10 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
     invitationToPay: InvitationExtended;
 
     showPopover = false;
+
+    loadingPayment = false;
+    loadingPaymentId: number;
+
     
     
     invitationExtended: InvitationExtended;
@@ -85,7 +88,7 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
         });
     }
 
-    private ConfigStripeCheckout(){
+    private ConfigStripeCheckout() {
         this.handler = (<any>window).StripeCheckout.configure({
             key: 'pk_test_oi0sKPJYLGjdvOXOM8tE8cMa',
             locale: 'auto',
@@ -94,9 +97,14 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
                 // You can access the token ID with `token.id`.
                 // Get the token ID to your server-side code for use.
                 console.log("token", token);
+                this.loadingPayment = true;
+                this.loadingPaymentId = this.invitationToPay.Id;
+
                  this.paymentService.processPayment(this.invitationToPay, token.email, token.id).subscribe(() => {
                     this.filterService.updateInvitationStatus(this.invitations, this.invitationToPay, InvitationStatusEnum.AmountDeposited);
                     this.toastrService.ShowToastr(true, false, true, "Betalning skickades!");
+                    this.loadingPayment = false;
+                    this.loadingPaymentId = 0;
                  });
             }
         });
@@ -110,6 +118,8 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
                 this.activeInvitations = this.invitations.filter(x => { return x.Status > InvitationStatusEnum.Created && x.Status < InvitationStatusEnum.ConsignmentActive });
 
             this.orderBy('-StartDate', this.activeInvitations);
+
+            console.log(this.activeInvitations);
         });
     }
 
@@ -148,21 +158,6 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
         this.invitationExtended = invitation;
     }
 
-    // processPayment(invitation: InvitationExtended) {
-    //     this.dialogService.addDialog(StripeCheckout, {
-    //         title: 'Skicka inbjudan',
-    //         message: 'Bla bla confirm some action?'
-    //     })
-    //         .subscribe((isConfirmed) => {
-    //             if(!isConfirmed) return;
-    //             this.paymentService.processPayment(invitation).subscribe(res => {
-    //                 //this.updateInvitationList(invitation, InvitationStatusEnum.AmountDeposited);
-    //                 this.filterService.updateInvitationStatus(this.invitations, invitation, InvitationStatusEnum.AmountDeposited);
-    //                 this.toastrService.ShowToastr(isConfirmed, false, true, "Betalning skickades!");
-    //             });
-    //         });
-    // }
-
     HasReceiverRole(invitation: Invitation): boolean {
         return invitation.ReceiverPersonId == this.currentUser.PersonId ? true : false;
     }
@@ -171,7 +166,7 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
         if (this.currentUser.PersonId == invite.SenderPersonId && invite.Status == InvitationStatusEnum.Accepted)
             return "Väntar på betalning från köparen.";
         else if (this.currentUser.PersonId == invite.SenderPersonId && invite.Status == InvitationStatusEnum.AmountDeposited)
-            return "Köparen har betalat för paketet och nu återstår det bara för dig att skicka det, tänk på att skicka paketet med PostNord och använda något fraktsätt som är spårbart.";
+            return "Köparen har betalat den begärda summan (" + invite.RequestedDepositAmount + "kr) för paketet och nu återstår det bara för dig att skicka det, tänk på att skicka paketet med PostNord och använda något fraktsätt som är spårbart.";
         else if (this.currentUser.PersonId == invite.ReceiverPersonId && invite.Status == InvitationStatusEnum.Accepted)
             return "Säljaren väntar på din betalning."
         else if (this.currentUser.PersonId == invite.ReceiverPersonId && invite.Status == InvitationStatusEnum.AmountDeposited)
