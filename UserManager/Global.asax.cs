@@ -10,6 +10,7 @@ using System.Net.Http.Formatting;
 using AutoMapper;
 using UserManager.Models;
 using UserManager.DTO;
+using UserManager.Core.Listeners;
 
 namespace UserManager
 {
@@ -23,6 +24,7 @@ namespace UserManager
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            JobScheduler.Start();
         }
     }
 }
