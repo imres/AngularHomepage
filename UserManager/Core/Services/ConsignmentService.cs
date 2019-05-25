@@ -97,6 +97,20 @@ namespace UserManager.Core.Services
             return allConsignmentsDTO;
         }
 
+        public ConsignmentDTO ArchiveConsignment(string PackageId)
+        {
+            var entity = unitOfWork.Consignment.Find(x => (x.PackageId == PackageId)).FirstOrDefault();
+
+            entity.Status = 10;
+
+            unitOfWork.Save();
+
+            var dto = Mapper.Map<ConsignmentDTO>(entity);
+
+            return dto;
+
+        }
+
         private bool ValidateInvitationExtended(InvitationExtended invitation)
         {
             if (invitation.PackageId != null)

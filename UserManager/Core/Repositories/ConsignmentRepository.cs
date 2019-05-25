@@ -64,5 +64,20 @@ namespace UserManager.Core.Repositories
                 return finishedConsignmentsDTO;
             }
         }
+        public ActiveConsignmentDTO ArchiveConsignment(string PackageId)
+        {
+            using (masterEntities context = new masterEntities())
+            {
+                var consignmentToArchive = context.ActiveConsignment.Where(x => x.PackageId == PackageId).First();
+
+                consignmentToArchive.Status = 10;
+
+                context.SaveChanges();
+
+                var dto = Mapper.Map<ActiveConsignmentDTO>(consignmentToArchive);
+
+                return dto;
+            }
+        }
     }
 }

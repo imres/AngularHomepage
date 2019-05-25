@@ -106,5 +106,33 @@ namespace UserManager.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, consignments);
 
         }
+        [ActionName("ArchiveConsignment")]
+        [HttpGet]
+        public HttpResponseMessage ArchiveConsignment(string Id)
+        {
+            using (HttpClient http = new HttpClient())
+            {
+                this.Request.RequestUri = new Uri("http://localhost:65192");
+
+                if (this.Request.Method == HttpMethod.Get)
+                {
+                    this.Request.Content = null;
+                }
+
+                try
+                {
+                    var dto = _consignmentService.ArchiveConsignment(Id);
+                    return Request.CreateResponse(HttpStatusCode.OK, dto);
+                }
+                catch (InvalidDataException)
+                {
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, Configuration.Formatters.JsonFormatter);
+                }
+
+
+            }
+
+        }
+
     }
 }

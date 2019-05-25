@@ -43,7 +43,7 @@
             </select>
         </form>
     </div>
-    <div class="row" [ngClass]="{'mh-cards-grid' : (consignments?.length >= 4)}">
+    <div class="row">
         <div *ngFor="let item of pagedItems" [ngClass]="{'col-md-6' : (consignments?.length > 1), 'col-sm-12' : (consignments?.length < 2)}">
             <div class="card consignment-card h-100 mb-3" (click)="routeToConsignmentDetail(item)">
                 <div class="consignment-card__header" [ngClass]="{'primary-gradient' : (currentUser.PersonId == item.SenderPersonId), 'secondary-gradient' : (currentUser.PersonId == item.ReceiverPersonId)}">

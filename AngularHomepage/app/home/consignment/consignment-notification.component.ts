@@ -49,6 +49,16 @@ export class ConsignmentNotificationComponent extends BasicComponent implements 
     }
 
     routeToConsignmentDetail(item: ActiveConsignment) {
-        this.router.navigate(['/consignment-detail', item.PackageId])
+        this.archiveConsignment(item);
+        this.router.navigate(['/consignment-detail', item.PackageId]);
+        
     }
+
+    archiveConsignment(item: ActiveConsignment) {
+        this.consignmentService.archiveConsignment(item.PackageId).subscribe((res: any) => {
+            console.log("archive res: ", res);
+            this.getFinishedConsignments();
+        });
+    }
+
 }
