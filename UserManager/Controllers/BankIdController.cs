@@ -23,7 +23,7 @@ namespace UserManager.Controllers
 {
     public class BankIdController : ApiController
     {
-        private UnitOfWork unitOfWork = new UnitOfWork(new masterEntities());
+        private UnitOfWork unitOfWork = new UnitOfWork(new masterEntitiesMYSQL());
         protected PersonCrypography _personCryptography = new PersonCrypography();
         private IBankIdService _bankIdService;
 

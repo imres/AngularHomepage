@@ -20,9 +20,9 @@ using UserManager.Models;
 namespace UserManager.Core.Repositories
 {
 
-    public class ConsignmentRepository : Repository<Consignment>, IConsignmentRepository
+    public class ConsignmentRepository : Repository<consignment>, IConsignmentRepository
     {
-        public ConsignmentRepository(masterEntities context)
+        public ConsignmentRepository(masterEntitiesMYSQL context)
             : base(context)
         {
 
@@ -30,9 +30,9 @@ namespace UserManager.Core.Repositories
 
         public IEnumerable<ActiveConsignmentDTO> GetAllConsignments()
         {
-            using (masterEntities context = new masterEntities())
+            using (masterEntitiesMYSQL context = new masterEntitiesMYSQL())
             {
-                IEnumerable<ActiveConsignment> allConsignments = context.ActiveConsignment;
+                IEnumerable<activeconsignment> allConsignments = context.activeconsignment;
 
                 var allConsignmentsDTO = Mapper.Map<IEnumerable<ActiveConsignmentDTO>>(allConsignments).ToList();
 
@@ -42,9 +42,9 @@ namespace UserManager.Core.Repositories
 
         public IEnumerable<ActiveConsignmentDTO> GetArchivedConsignments(string PersonId)
         {
-            using (masterEntities context = new masterEntities())
+            using (masterEntitiesMYSQL context = new masterEntitiesMYSQL())
             {
-                IEnumerable<ActiveConsignment> archivedConsignments = context.ActiveConsignment
+                IEnumerable<activeconsignment> archivedConsignments = context.activeconsignment
                     .Where(x => (x.ReceiverPersonId == PersonId || x.SenderPersonId == PersonId) && x.Status == ConsignmentStatus.Archived);
 
                 var archivedConsignmentsDTO = Mapper.Map<IEnumerable<ActiveConsignmentDTO>>(archivedConsignments).ToList();
@@ -54,9 +54,9 @@ namespace UserManager.Core.Repositories
         }
         public IEnumerable<ActiveConsignmentDTO> GetFinishedConsignments(string PersonId)
         {
-            using (masterEntities context = new masterEntities())
+            using (masterEntitiesMYSQL context = new masterEntitiesMYSQL())
             {
-                IEnumerable<ActiveConsignment> finishedConsignments = context.ActiveConsignment
+                IEnumerable<activeconsignment> finishedConsignments = context.activeconsignment
                     .Where(x => (x.ReceiverPersonId == PersonId || x.SenderPersonId == PersonId) && x.Status == 9);
 
                 var finishedConsignmentsDTO = Mapper.Map<IEnumerable<ActiveConsignmentDTO>>(finishedConsignments).ToList();

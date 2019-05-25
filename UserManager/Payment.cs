@@ -12,7 +12,7 @@ namespace UserManager
     using System;
     using System.Collections.Generic;
     
-    public partial class Payment
+    public partial class payment
     {
         public int Id { get; set; }
         public System.DateTime PaymentDate { get; set; }

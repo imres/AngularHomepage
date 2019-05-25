@@ -12,7 +12,7 @@ namespace UserManager
     using System;
     using System.Collections.Generic;
     
-    public partial class Consignment
+    public partial class consignment
     {
         public int Id { get; set; }
         public Nullable<int> DepositedAmount { get; set; }

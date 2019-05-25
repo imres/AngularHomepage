@@ -45,7 +45,7 @@ namespace UserManager.Controllers
                     this.Request.Content = null;
                 }
 
-                Payment payment;
+                payment payment;
 
                 try
                 {

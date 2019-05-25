@@ -262,7 +262,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActiveConsignment.cs">
+    <Compile Include="activeconsignment.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -299,7 +299,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Consignment.cs">
+    <Compile Include="consignment.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AdministratorController.cs" />
@@ -391,7 +391,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Invitation.cs">
+    <Compile Include="invitation.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -404,13 +404,13 @@
     <Compile Include="Models\JwtPayload.cs" />
     <Compile Include="Models\Personasdad.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="PackageInformation.cs">
+    <Compile Include="packageinformation.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Payment.cs">
+    <Compile Include="payment.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Person.cs">
+    <Compile Include="person.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

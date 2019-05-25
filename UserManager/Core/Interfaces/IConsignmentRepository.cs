@@ -8,7 +8,7 @@ using UserManager.Models;
 
 namespace UserManager.Core.Interfaces
 {
-    public interface IConsignmentRepository : IRepository<Consignment>
+    public interface IConsignmentRepository : IRepository<consignment>
     {
         
         IEnumerable<ActiveConsignmentDTO> GetArchivedConsignments(string PersonId);

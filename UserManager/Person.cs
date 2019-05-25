@@ -12,7 +12,7 @@ namespace UserManager
     using System;
     using System.Collections.Generic;
     
-    public partial class Person
+    public partial class person
     {
         public int Id { get; set; }
         public string FirstName { get; set; }

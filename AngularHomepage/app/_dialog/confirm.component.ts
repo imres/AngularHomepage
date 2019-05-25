@@ -53,11 +53,9 @@ export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> imp
                 this.model.DeliveryCity = this.currentUser.City;
             }
 
-            this.invitationService.sendInvite(this.model)
-                .subscribe(res => {
-                    this.confirm();
-
-                });
+            this.invitationService.sendInvite(this.model).subscribe(res => {
+                this.confirm();
+            });
         }
         else {
             this.result = false;

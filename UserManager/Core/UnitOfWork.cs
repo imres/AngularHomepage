@@ -8,9 +8,9 @@ namespace UserManager.Core
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly masterEntities _context;
+        private readonly masterEntitiesMYSQL _context;
 
-        public UnitOfWork(masterEntities context)
+        public UnitOfWork(masterEntitiesMYSQL context)
         {
             _context = context;
 

@@ -1,6 +1,6 @@
-﻿<div class="py-2 px-0 success-gradient notification-header">
-    <h5 *ngIf="pagedItems?.length == 1" class="card-title text-center m-0">1 nyligen avslutad försändelse</h5>
-    <h5 *ngIf="pagedItems?.length > 1" class="card-title text-center m-0">{{pagedItems?.length}} nyligen avslutade försändelser</h5>
+﻿<div class="py-2 px-0 text-center notification-header">
+    <span *ngIf="pagedItems?.length == 1" class="card-title m-0">1 nyligen avslutad försändelse</span>
+    <span *ngIf="pagedItems?.length > 1" class="card-title m-0">{{pagedItems?.length}} nyligen avslutade försändelser</span>
 </div>
 <div *ngFor="let item of pagedItems" class="row notification no-padding">
     <div class="col-sm-11 no-padding" (click)="routeToConsignmentDetail(item)" role="button">

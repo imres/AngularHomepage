@@ -8,9 +8,9 @@ using UserManager.DTO;
 
 namespace UserManager.Core.Repositories
 {
-    public class PaymentRepository : Repository<Payment>, IPayment
+    public class PaymentRepository : Repository<payment>, IPayment
     {
-        public PaymentRepository(masterEntities context) : base(context)
+        public PaymentRepository(masterEntitiesMYSQL context) : base(context)
         {
 
         }

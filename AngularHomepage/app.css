@@ -84,7 +84,7 @@
 .btn {
     border: none;
     border-radius: 0;
-    box-shadow: var(--bottom-shadow-darker);
+    /* box-shadow: var(--bottom-shadow-darker); */
 }
 
 .btn-cover {
@@ -430,17 +430,17 @@ img {
     color: #ffffff;
 }*/
 select{
-    box-shadow: 0 1px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
-    border: none !important;
+    /* box-shadow: 0 1px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+    border: none !important; */
 }
 input{
-    border: none !important;
-    box-shadow: var(--input-shadow);
+    /* border: none !important;
+    box-shadow: var(--input-shadow); */
 }
 
 textarea{
-    border: none !important;
-    box-shadow: var(--bottom-shadow-darker);
+    /* border: none !important;
+    box-shadow: var(--bottom-shadow-darker); */
 }
 
 input[type="radio"], input[type="checkbox"]{
@@ -452,8 +452,8 @@ input[type="radio"], input[type="checkbox"]{
     border-color: #d2d2d2 !important;
 }
 .input-group-text{
-    box-shadow: 0 1px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
-    border: none;
+    /* box-shadow: 0 1px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+    border: none; */
 }
 .input-group-addon .fa {
     width: 18px;
@@ -830,6 +830,10 @@ btn.btn-primary:active, .btn-primary:focus{
     margin-left: -15px;
 }
 
+.notification-header span{
+    font-weight: 500;
+}
+
 .badge {
     padding: .50em .7em;
 }
@@ -1039,8 +1043,8 @@ btn.btn-primary:active, .btn-primary:focus{
 .consignment-detail-card__img {
     border: 0;
     margin-bottom: 1rem;
-    max-width: 200px;
-    max-height: 210px;
+    max-width: 120px;
+    max-height: 130px;
 }
 
 .subheading {
@@ -1359,8 +1363,8 @@ btn.btn-primary:active, .btn-primary:focus{
 
 /* Prio 1 */
 input:focus {
-    border: none !important;
-    box-shadow: var(--bottom-shadow-darker) !important;
+    /* border: none !important;
+    box-shadow: var(--bottom-shadow-darker) !important; */
 }
 
 input[type="radio"]:focus {
@@ -1434,8 +1438,8 @@ input[type="radio"]:focus {
 }
 
 .input-group-prepend .input-group-text {
-    border: none;
-    box-shadow: var(--input-shadow);
+    /* border: none;
+    box-shadow: var(--input-shadow); */
 }
 
 .fas.fa-search {

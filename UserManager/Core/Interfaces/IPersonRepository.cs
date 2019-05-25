@@ -8,7 +8,7 @@ namespace UserManager.Core.Interfaces
 {
     public interface IPersonRepository
     {
-        Person AddPerson(IPerson personDTO);
+        person AddPerson(IPerson personDTO);
 
         PersonDTO Authenticate(PersonForUpdateDTO personDTO);
 

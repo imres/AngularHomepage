@@ -6,9 +6,9 @@ using UserManager.Core.Interfaces;
 
 namespace UserManager.Core.Repositories
 {
-    public class ActiveConsignmentRepository : Repository<ActiveConsignment>, IActiveConsignmentRepository
+    public class ActiveConsignmentRepository : Repository<activeconsignment>, IActiveConsignmentRepository
     {
-        public ActiveConsignmentRepository(masterEntities context) : base(context)
+        public ActiveConsignmentRepository(masterEntitiesMYSQL context) : base(context)
         {
 
         }

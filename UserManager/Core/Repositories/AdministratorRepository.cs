@@ -13,7 +13,7 @@ namespace UserManager.Core.Repositories
         /// <param name="TableName">Enter name of table to truncate</param>
         public void CleanTable(string TableName)
         {
-            using (var context = new masterEntities())
+            using (var context = new masterEntitiesMYSQL())
             {
                 var tableType = context.GetType().GetProperty(TableName).GetType();
                 var query = string.Format("TRUNCATE TABLE [{0}]", TableName);
