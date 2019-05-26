@@ -96,12 +96,7 @@
                             </div>
                         </div>
                     </div> 
-                    
-                    <div *ngIf="!currentUser" class="mt-3 btn btn-primary btn-block" [routerLink]="['/front']">Gå tillbaka till startsidan</div>
-                    <div *ngIf="currentUser && item.Status != 9" class="mt-3 btn btn-primary btn-block" [routerLink]="['/home']">Gå tillbaka till alla försändelser</div>
-                    <div *ngIf="currentUser && item.Status == 9" class="mt-3 btn btn-primary btn-block" [routerLink]="['/home']">Arkivera försändelse</div>
                 </div>
-
         </div>
 
     </div>

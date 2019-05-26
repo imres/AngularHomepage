@@ -816,7 +816,10 @@ btn.btn-primary:active, .btn-primary:focus{
 /* Notificationcenter */
 .notification {
     border-bottom: 1px solid rgba(0,0,0,.15);
-    border-top: 1px solid rgba(0,0,0,.15);
+}
+
+.notification.invitation {
+    border-left: 4px solid var(--primary);
 }
 
 .notification:hover {
@@ -839,6 +842,7 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 .notification-dropdown {
+    animation: 0.1s ease-out 0s 1 slideInFromTop;
     padding: 0 0;
     border-radius: 0;
 }
@@ -1416,6 +1420,7 @@ input[type="radio"]:focus {
 .dropdown-menu {
     border: 0;
     box-shadow: var(--bottom-shadow);
+    animation: 0.1s ease-out 0s 1 slideInFromTop;
 }
 
 .dropdown-menu .btn-outline-primary {
@@ -1508,6 +1513,26 @@ label {
         transform: translateY(0);
     }
 }
+
+@keyframes slideInFromRight {
+    0% {
+        margin-right: -430px;
+    }
+    100% {
+        margin-right: 0px;
+    }
+}
+@keyframes slideInFromTop {
+    0% {
+        opacity: 0;
+        margin-top: -30px;
+    }
+    100% {
+        opacity: 1;
+        margin-top: 0px;
+    }
+}
+
 @media screen and (max-width: 992px) /*md-down*/ {
     .consignment-card__info {
         min-height: 155px;
