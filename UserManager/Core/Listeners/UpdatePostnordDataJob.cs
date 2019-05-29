@@ -35,10 +35,9 @@ namespace UserManager.Core.Listeners
                 var consignmentDTO = Mapper.Map<ConsignmentDTO>(consignment);
                 var packageInformation = unitOfWork.PackageInformation.UpdatePackageInformation(consignmentDTO);
 
-                consignment.Status = ConsignmentStatus.Finished;
+                //consignment.Status = ConsignmentStatus.Finished;
                 //TODO: Skapa en vettig service som kan hantera postnord respons och sätta rätt consignmentstatus
 
-                unitOfWork.PackageInformation.Add(packageInformation);
                 unitOfWork.Save();
             });
 
