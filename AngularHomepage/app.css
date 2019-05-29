@@ -101,6 +101,7 @@
 
 .btn.btn-outline-primary {
     color: var(--primary);
+    box-shadow: var(--bottom-shadow);
 }
 
 .btn.btn-outline-primary:hover {
