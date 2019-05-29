@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Web;
 using UserManager.Core.Enums;
 using UserManager.Core.Interfaces;
 using UserManager.Core.Repositories;
+using UserManager.Core.Translations;
 using UserManager.DTO;
 using UserManager.Models;
 
@@ -93,32 +95,31 @@ namespace UserManager.Core.Services
 
         public ActiveConsignmentDTO SavePackageId(InvitationExtended invitation)
         {
-
             var entity = unitOfWork.Invitation.Get(invitation.Id);
             entity.Status = InvitationStatus.ConsignmentActive;
             entity.EndDate = DateTime.Now;
 
+            ValidatePackageIdIsUnused(invitation);
             var consignment = _consignmentService.CreateConsignmentFromInvitation(invitation);
 
             using (TransactionScope scope = new TransactionScope())
             {
-                //TODO: Only keep one last unitOfWork.Save, so we can "rollback" if error"
                 unitOfWork.Consignment.Add(consignment);
                 unitOfWork.Save();
 
                 var consignmentDTO = Mapper.Map<ConsignmentDTO>(consignment);
-
-                var packageInformation = unitOfWork.PackageInformation.UpdatePackageInformation(consignmentDTO);
+                var packageInformation = unitOfWork.PackageInformation.UpdatePackageInformation(consignmentDTO, true);
                 unitOfWork.PackageInformation.Add(packageInformation);
                 unitOfWork.Save();
 
+                ValidatePackageDeliveryPostCode(invitation, packageInformation);
                 scope.Complete();
             }
 
             //Find and return active consignment containing package API data
             if (consignment == null)
             {
-                throw new ArgumentException();
+                throw new ArgumentNullException();
             }
 
             var consignmentEntity = unitOfWork.ActiveConsignment.Find(x => x.Id == consignment.Id).FirstOrDefault();
@@ -137,6 +138,31 @@ namespace UserManager.Core.Services
             return true;
         }
 
-        
+        private void ValidatePackageDeliveryPostCode(InvitationExtended invitation, packageinformation packageInformation)
+        {
+            var result = JsonConvert.DeserializeObject<Object>(packageInformation.Content);
+            var trackingInfo = JsonConvert.DeserializeObject<PostnordShipmentResponseDTO>(result.ToString());
+            int destinationPostCode = int.Parse(trackingInfo.trackingInformationResponse.shipments.FirstOrDefault().consignee.address.postCode.Replace(" ", string.Empty));
+
+            if (invitation.DeliveryPostalCode != destinationPostCode)
+            {
+                throw new ArgumentException(ValidationTranslations.Invalid_PostCode);
+            }
+        }
+
+        private void ValidatePackageIdIsUnused(InvitationExtended invitation)
+        {
+            if (invitation.PackageId != null)
+            {
+                var packageIdAlreadyExists = unitOfWork.Consignment.Find(x => x.PackageId == invitation.PackageId).Any();
+
+                if (packageIdAlreadyExists)
+                {
+                    throw new ArgumentException(ValidationTranslations.Invalid_PackageID_AlreadyUsed);
+                }
+            }
+        }
+
+
     }
 }

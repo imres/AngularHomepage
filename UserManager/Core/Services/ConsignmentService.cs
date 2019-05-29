@@ -18,11 +18,6 @@ namespace UserManager.Core.Services
 
         public consignment CreateConsignmentFromInvitation(InvitationExtended invitation)
         {
-            if (!ValidateInvitationExtended(invitation))
-            {
-                throw new Exception();
-            }
-
             var consignment = new consignment
             {
                 PaymentMethod = invitation.PaymentMethod.GetValueOrDefault(),
@@ -97,19 +92,6 @@ namespace UserManager.Core.Services
 
         }
 
-        private bool ValidateInvitationExtended(InvitationExtended invitation)
-        {
-            if (invitation.PackageId != null)
-            {
-                var packageIdAlreadyExists = unitOfWork.Consignment.Find(x => x.PackageId == invitation.PackageId).Any();
-
-                if (packageIdAlreadyExists)
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
+        
     }
 }

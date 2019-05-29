@@ -37,7 +37,6 @@ namespace UserManager.Controllers
         [HttpPost]
         public HttpResponseMessage Invitation(InvitationDTO invitation)
         {
-
             using (HttpClient http = new HttpClient())
             {
                 this.Request.RequestUri = new Uri("http://localhost:65192");
@@ -97,12 +96,10 @@ namespace UserManager.Controllers
                 {
                     consignmentAdded = _invitationService.SavePackageId(invitation);
                 }
-                catch(Exception ex)
+                catch (ArgumentException ex)
                 {
-                    return Request.CreateResponse(HttpStatusCode.Conflict, ex);
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
                 }
-                
-                    
 
                 return Request.CreateResponse(HttpStatusCode.OK, consignmentAdded);
             }
@@ -151,4 +148,5 @@ namespace UserManager.Controllers
         }
     }
 }
+ 
  

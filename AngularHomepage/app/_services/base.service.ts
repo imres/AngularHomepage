@@ -6,9 +6,10 @@ import { Person, Invitation, InvitationExtended } from '../_models/index';
 import 'rxjs/add/operator/map';
 import { ToastrService } from './toastr.service';
 import { ToastsManager } from 'ng2-toastr';
+import { HttpStatusCode } from '../_models/enums';
     
 export class BaseService {
-    protected toastrService: ToastrService
+    protected toastrService: ToastrService;
 
     constructor(injector: Injector) {
         this.toastrService = injector.get(ToastrService);

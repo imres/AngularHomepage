@@ -27,12 +27,17 @@ namespace UserManager.Core.Repositories
 
         private bool timeCheckEnabled = false;
 
-        public packageinformation UpdatePackageInformation(ConsignmentDTO consignment)
+        public packageinformation UpdatePackageInformation(ConsignmentDTO consignment, bool isFirstTimeUpdate = false)
         {
             var packageInformationExist = Context.packageinformation.Any(x => x.ConsignmentId == consignment.Id);
 
             if (packageInformationExist)
             {
+                if (isFirstTimeUpdate)
+                {
+                    throw new InvalidOperationException();
+                }
+
                 return UpdatePackageInformationRow(consignment);
             }
 

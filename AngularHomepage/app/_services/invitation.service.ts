@@ -1,15 +1,17 @@
 ﻿import { Injectable, EventEmitter, Injector } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Headers, Response, ResponseType } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Person, Invitation, InvitationExtended } from '../_models/index';
 import 'rxjs/add/operator/map';
 import { BaseService } from './base.service';
+import { HttpStatusCode } from '../_models/enums/http-status-code.enum';
 
 @Injectable()
 export class InvitationService extends BaseService{
     private currentInviteSource = new BehaviorSubject<Invitation>(null);
     private invitationListSource = new BehaviorSubject<Invitation[]>(null);
+    
 
     invitationList = this.invitationListSource.asObservable();
     currentInvite = this.currentInviteSource.asObservable();
@@ -64,8 +66,11 @@ export class InvitationService extends BaseService{
             .map((response: Response) =>{
                 this.ToastrCreateSuccess("Försändelse skapad");
                 return response.json();
-            }).catch(error => {
-                this.ToastrCreateError("Kolli-ID redan i bruk");
+            }).catch((error: Response) => {
+                if(error.status === HttpStatusCode.BAD_REQUEST){
+                    this.ToastrCreateError(JSON.parse(error.text()));
+                }
+                
                 return Observable.throw(false)
             });
     }

@@ -915,7 +915,7 @@ btn.btn-primary:active, .btn-primary:focus{
     width: 100%;
     color: white;
     padding-top: 3rem;
-    box-shadow: var(--bottom-shadow-darker);
+    /* box-shadow: var(--bottom-shadow-darker); */
 }
 
 .ellipsis {
@@ -1429,10 +1429,11 @@ input[type="radio"]:focus {
     margin-bottom: 0rem;
 }
 
-.dropdown-menu {
+.dropdown-menu{
     border: 0;
     box-shadow: var(--bottom-shadow);
     animation: 0.1s ease-out 0s 1 slideInFromTop;
+    
 }
 
 .dropdown-menu .btn-outline-primary {
@@ -1540,6 +1541,17 @@ label {
         margin-top: -30px;
     }
     100% {
+        opacity: 1;
+        margin-top: 0px;
+    }
+}
+
+@keyframes slideOutFromTop {
+    100% {
+        opacity: 0;
+        margin-top: -30px;
+    }
+    0% {
         opacity: 1;
         margin-top: 0px;
     }

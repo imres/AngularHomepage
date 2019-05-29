@@ -362,6 +362,11 @@
     <Compile Include="Core\Services\PackageInformationService.cs" />
     <Compile Include="Core\Services\PaymentService.cs" />
     <Compile Include="Core\Services\UserService.cs" />
+    <Compile Include="Core\Translations\ValidationTranslations.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ValidationTranslations.resx</DependentUpon>
+    </Compile>
     <Compile Include="Core\UnitOfWork.cs" />
     <Compile Include="DBModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -526,6 +531,10 @@
     <EmbeddedResource Include="Core\Mock\PostNordResponseData.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>PostNordResponseData.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Translations\ValidationTranslations.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ValidationTranslations.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
