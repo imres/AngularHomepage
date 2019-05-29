@@ -2,9 +2,10 @@
     /* Shadows and borders*/
     /* --bottom-shadow: #e0e0e0 0px 2px 8px; */ 
     /* --bottom-shadow-darker: #e0e0e0 0px 5px 11px; */
-    --bottom-shadow: 1px 1px 4px -1px rgba(0,0,0,.2), 1px 4px 5px 0 rgba(0,0,0,.14), 1px 1px 10px 0 rgba(0,0,0,.12);
+    /* --bottom-shadow: 1px 1px 4px -1px rgba(0,0,0,.2), 1px 4px 5px 0 rgba(0,0,0,.14), 1px 1px 10px 0 rgba(0,0,0,.12); */
+    --bottom-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     --center-shadow: #e0e0e0 0px 0px 8px;
-    --bottom-shadow-darker: 1px 3px 4px 0 rgba(0,0,0,.2), 2px 5px 6px 0 rgba(0,0,0,.14), 2px 2px 13px 0 rgba(0,0,0,.12);
+    --bottom-shadow-darker: 0 7px 10px rgba(0,0,0,0.25), 0 5px 3px rgba(0, 0, 0, 0.17);
     /*--bottom-shadow: 0 1px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
     --center-shadow: #e0e0e0 0px 0px 8px;
     --bottom-shadow-darker: 0 1px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);*/
@@ -19,7 +20,7 @@
     --red: #FF001E;
     --green: #35FF00;
     --danger: #FF001E;
-    --success: #29dc15;
+    --success: #4bbb1f;
     --yellow: #EDE618;
     --light-grey: #f1f1f1;
     --grey: #f7f9fa;
@@ -909,8 +910,8 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 .consignment-card:hover {
-    box-shadow: var(--bottom-shadow-darker);
     cursor: pointer;
+    box-shadow: var(--bottom-shadow-darker);
 }
 
 .consignment-card-img {
@@ -943,12 +944,12 @@ btn.btn-primary:active, .btn-primary:focus{
 .archived-consignment--card__header {
     padding: 0.75rem 1.25rem;
     margin-bottom: 0;
-    background-color: rgba(0, 0, 0, 0.03);
+    /* background-color: rgba(0, 0, 0, 0.03); */
 }
 
 .archived-consignment--card__header:hover {
-    box-shadow: var(--bottom-shadow-darker);
     cursor: pointer;
+    box-shadow: var(--bottom-shadow-darker);
 }
 
 .archived-consignment--card__img {
@@ -1160,6 +1161,26 @@ btn.btn-primary:active, .btn-primary:focus{
     box-shadow: #777777 0px 2px 8px;
 }
 
+.sales-ad  {
+    overflow: hidden;
+}
+
+.sales-ad .row{
+    opacity: 0;
+    height: 100%;
+    background: #00000047;
+    transition: all 0.3s;
+}
+
+.sales-ad:hover .row{
+    transition: all 0.3s;
+    opacity: 1;
+}
+
+.sales-ad i{
+    color: white;
+}
+
 .sales-ads-img {
     background: url(app/img/fotbollsskor.jpg);
     background-size: cover;
@@ -1186,6 +1207,12 @@ btn.btn-primary:active, .btn-primary:focus{
     background-size: cover;
     background-position: center;
     height: 15rem;
+}
+
+.sticky{
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
 }
 
 .noborder{
@@ -1430,6 +1457,10 @@ input[type="radio"]:focus {
 .card {
     border: 0;
     box-shadow: var(--bottom-shadow);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.card:hover {
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
 .consignment-detail-card {

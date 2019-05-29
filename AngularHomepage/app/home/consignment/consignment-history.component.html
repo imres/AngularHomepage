@@ -69,7 +69,7 @@
                 <div class="row" [ngClass]="{'mh-cards-grid' : (archivedConsignments?.length >= 4)}">
                     <div *ngFor="let item of pagedItems" class="col-12">
                         <div class="card mb-3">
-                            <div class="archived-consignment--card__header" (click)="routeToConsignmentDetail(item)">
+                            <div class="card archived-consignment--card__header" (click)="routeToConsignmentDetail(item)">
                                 <div class="row">
                                     <div class="col-4 text-center">
                                         <img src="img/undraw_mail_cg1t.svg" alt="Accepterat" class="archived-consignment--card__img">

@@ -68,7 +68,7 @@ export class InvitationService extends BaseService{
                 return response.json();
             }).catch((error: Response) => {
                 if(error.status === HttpStatusCode.BAD_REQUEST){
-                    this.ToastrCreateError(JSON.parse(error.text()));
+                    this.ToastrCreateError(error.text());
                 }
                 
                 return Observable.throw(false)

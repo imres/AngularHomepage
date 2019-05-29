@@ -12,45 +12,47 @@
 
                 <div class="row">  
                     <div class="col-sm-8 pl-0 consignment-detail__left-row">
-                        <div class="card consignment-detail-card__info mb-3">
-                            <div class="card-header bg-primary text-center color-white">
-                                <span>Mitt paket</span>
+                        <div class="sticky">
+                            <div class="card consignment-detail-card__info mb-3">
+                                <div class="card-header bg-primary text-center color-white">
+                                    <span>Mitt paket</span>
+                                </div>
+                                <div class="card-body row">
+                                    <div class="col-6 text-center">
+                                        <img *ngIf="item.Status == 1" src="img/undraw_on_the_way_ldaq.svg" alt="Accepterat" class="consignment-detail-card__img">
+                                        <img *ngIf="item.Status == 10 || item.Status == 9" src="img/undraw_mail_cg1t.svg" alt="Accepterat" class="consignment-detail-card__img">
+                                        <p *ngIf="item.Status == 1"><strong>Paketet är på väg</strong></p>
+                                        <p *ngIf="item.Status == 10 || item.Status == 9" class="color-primary"><strong>Paketet har levererats</strong></p>
+                                    </div>
+                                    <div class="col-6 py-3">
+                                        <h4>{{item.Title}}</h4>
+                                        <p class="package-description">{{item.Description}}</p>
+    
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-body row">
-                                <div class="col-6 text-center">
-                                    <img *ngIf="item.Status == 1" src="img/undraw_on_the_way_ldaq.svg" alt="Accepterat" class="consignment-detail-card__img">
-                                    <img *ngIf="item.Status == 10 || item.Status == 9" src="img/undraw_mail_cg1t.svg" alt="Accepterat" class="consignment-detail-card__img">
-                                    <p *ngIf="item.Status == 1"><strong>Paketet är på väg</strong></p>
-                                    <p *ngIf="item.Status == 10 || item.Status == 9" class="color-primary"><strong>Paketet har levererats</strong></p>
+    
+                            <div class="card consignment-detail-card__info">
+                                <div class="card-header text-center">
+                                    <span>Försändelseinformation</span>
                                 </div>
-                                <div class="col-6 py-3">
-                                    <h4>{{item.Title}}</h4>
-                                    <p class="package-description">{{item.Description}}</p>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card consignment-detail-card__info">
-                            <div class="card-header text-center">
-                                <span>Försändelseinformation</span>
-                            </div>
-                            <div class="card-body row">
-                                <div class="col-md-5 offset-md-1">
-                                    <h6 class="color-primary">Avsändare</h6>
-                                    <p class="consignment-detail-card__text">{{item.Consignor.name}}</p>
-                                    <p class="consignment-detail-card__text">{{item.Consignor.address.postCode}} {{item.Consignor.address.city}}</p>
-                                    <p class="consignment-detail-card__text">{{item.Consignor.address.country}}</p>
-                                </div>
-                                <div class="col-md-5 offset-md-1">
-                                    <h6 class="color-secondary">Mottagare</h6>
-                                    <p class="consignment-detail-card__text">{{item.Consignee.address.postCode}} {{item.Consignee.address.city}}</p>
-                                    <p class="consignment-detail-card__text">{{item.Consignee.address.country}}</p>
-                                </div>
-                                <div class="col-10 offset-md-1 shipment__info">
-                                    <p class="consignment-detail-card__text"><strong>Försändelse-ID:</strong> {{item.PackageId}}</p>
-                                    <p class="consignment-detail-card__text"><strong>Pakettyp:</strong> {{item.Service.name}}</p>
-                                    <p class="consignment-detail-card__text"><strong>Tilläggstjänst(er):</strong> SMS-Avisering</p>
+                                <div class="card-body row">
+                                    <div class="col-md-5 offset-md-1">
+                                        <h6 class="color-primary">Avsändare</h6>
+                                        <p class="consignment-detail-card__text">{{item.Consignor.name}}</p>
+                                        <p class="consignment-detail-card__text">{{item.Consignor.address.postCode}} {{item.Consignor.address.city}}</p>
+                                        <p class="consignment-detail-card__text">{{item.Consignor.address.country}}</p>
+                                    </div>
+                                    <div class="col-md-5 offset-md-1">
+                                        <h6 class="color-secondary">Mottagare</h6>
+                                        <p class="consignment-detail-card__text">{{item.Consignee.address.postCode}} {{item.Consignee.address.city}}</p>
+                                        <p class="consignment-detail-card__text">{{item.Consignee.address.country}}</p>
+                                    </div>
+                                    <div class="col-10 offset-md-1 shipment__info">
+                                        <p class="consignment-detail-card__text"><strong>Försändelse-ID:</strong> {{item.PackageId}}</p>
+                                        <p class="consignment-detail-card__text"><strong>Pakettyp:</strong> {{item.Service.name}}</p>
+                                        <p class="consignment-detail-card__text"><strong>Tilläggstjänst(er):</strong> SMS-Avisering</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +87,7 @@
                                 <i *ngIf="item.status == 'DELIVERED'" class="fas fa-check-square fa-fw fa-pull-left color-success"></i>
                                 <i *ngIf="item.status !== 'DELIVERED'" class="fas fa-truck fa-fw fa-pull-left"></i>
                                 <!--<i class="fas fa-info fa-fw fa-pull-left"></i>-->
-                                <h6 *ngIf="item.location.name" class="consignment-detail-card__info__header" [ngClass]="{'color-success' : (item.status == 'DELIVERED')}">{{item.location.name}}</h6>
+                                <h6 *ngIf="item.location.name" class="consignment-detail-card__info__header">{{item.location.name}}</h6>
                                 <br *ngIf="!item.location.name" />
                                 <p class="subheading">- {{item.eventTime | date:'yyyy-MM-dd, HH:mm'}}</p>
                                 <p class="event-description">{{item.eventDescription}}</p> 
