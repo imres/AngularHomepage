@@ -19,7 +19,7 @@
     --red: #FF001E;
     --green: #35FF00;
     --danger: #FF001E;
-    --success: #35FF00;
+    --success: #29dc15;
     --yellow: #EDE618;
     --light-grey: #f1f1f1;
     --grey: #f7f9fa;
@@ -42,6 +42,10 @@
 
 .color-yellow {
     color: var(--yellow);
+}
+
+.color-success {
+    color: var(--success);
 }
 
 .bg-grey {

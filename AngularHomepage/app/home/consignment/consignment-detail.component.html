@@ -37,13 +37,13 @@
                             </div>
                             <div class="card-body row">
                                 <div class="col-md-5 offset-md-1">
-                                    <h6>Avsändare</h6>
+                                    <h6 class="color-primary">Avsändare</h6>
                                     <p class="consignment-detail-card__text">{{item.Consignor.name}}</p>
                                     <p class="consignment-detail-card__text">{{item.Consignor.address.postCode}} {{item.Consignor.address.city}}</p>
                                     <p class="consignment-detail-card__text">{{item.Consignor.address.country}}</p>
                                 </div>
                                 <div class="col-md-5 offset-md-1">
-                                    <h6>Mottagare</h6>
+                                    <h6 class="color-secondary">Mottagare</h6>
                                     <p class="consignment-detail-card__text">{{item.Consignee.address.postCode}} {{item.Consignee.address.city}}</p>
                                     <p class="consignment-detail-card__text">{{item.Consignee.address.country}}</p>
                                 </div>
@@ -82,10 +82,10 @@
                                 <span>Paketets resa</span>
                             </div>
                             <div class="list-group-item" *ngFor="let item of events | slice:0:eventsLength ; let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even, 'events-height': !showEvents}">
-                                <i *ngIf="item.status == 'DELIVERED'" class="fas fa-check-square fa-fw fa-pull-left"></i>
+                                <i *ngIf="item.status == 'DELIVERED'" class="fas fa-check-square fa-fw fa-pull-left color-success"></i>
                                 <i *ngIf="item.status !== 'DELIVERED'" class="fas fa-truck fa-fw fa-pull-left"></i>
                                 <!--<i class="fas fa-info fa-fw fa-pull-left"></i>-->
-                                <h6 *ngIf="item.location.name" class="consignment-detail-card__info__header">{{item.location.name}}</h6>
+                                <h6 *ngIf="item.location.name" class="consignment-detail-card__info__header" [ngClass]="{'color-success' : (item.status == 'DELIVERED')}">{{item.location.name}}</h6>
                                 <br *ngIf="!item.location.name" />
                                 <p class="subheading">- {{item.eventTime | date:'yyyy-MM-dd, HH:mm'}}</p>
                                 <p class="event-description">{{item.eventDescription}}</p> 
