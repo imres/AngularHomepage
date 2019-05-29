@@ -22,8 +22,11 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
     <script src="https://checkout.stripe.com/checkout.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    
     <script type="text/javascript">
-        var stripe = Stripe('sk_test_epJ2E8spaOeuMhz9mdRabvi9'); // use your test publishable key
+        var stripe = Stripe('pk_test_8KkoVLMTzkhfC13XXvKHEuMO'); // use your test publishable key
+        console.log("stripe:", stripe);
         var elements = stripe.elements();
     </script>
     <!-- application css -->

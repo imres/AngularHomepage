@@ -17,7 +17,7 @@ namespace UserManager.Core.Listeners
             ITrigger trigger = TriggerBuilder.Create()
                 .StartNow()
                 .WithSimpleSchedule(x => x
-                    .WithIntervalInSeconds(25)
+                    .WithIntervalInSeconds(24)
                     .RepeatForever())
                 .Build();
 

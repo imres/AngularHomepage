@@ -2,7 +2,7 @@
 
     <nav id="sidebar" class="d-none d-lg-block list-unstyled components h-100">
 
-        <div class="sidebar-link" role="button" [routerLink]="['/home']">
+        <div class="sidebar-link" role="button" [routerLink]="['/home']" routerLinkActive="active">
             <i class="fas fa-home fa-fw" aria-hidden="true"></i>
             Hem
         </div>
@@ -12,7 +12,10 @@
             Mina vänner
         </div>
 
-        <div [routerLink]="['/history']" role="button" class="sidebar-link"><i class="fas fa-envelope-open fa-fw" aria-hidden="true"></i> Arkiverade försändelser</div>
+        <div role="button" class="sidebar-link" [routerLink]="['/history']" routerLinkActive="active">
+            <i class="fas fa-envelope-open fa-fw" aria-hidden="true"></i>
+             Arkiverade försändelser
+        </div>
 
         <div class="p-3 sidebar-link disabled">
             <div class="btn btn-primary btn-block" (click)=showConfirm($event)>

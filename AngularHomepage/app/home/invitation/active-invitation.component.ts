@@ -90,7 +90,7 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
 
     private ConfigStripeCheckout() {
         this.handler = (<any>window).StripeCheckout.configure({
-            key: 'pk_test_oi0sKPJYLGjdvOXOM8tE8cMa',
+            key: 'pk_test_8KkoVLMTzkhfC13XXvKHEuMO',
             locale: 'auto',
             currency: "sek",
             token: (token: any) => {

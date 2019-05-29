@@ -70,19 +70,7 @@ namespace UserManager.Core.Services
                 .Find(x => (x.ReceiverPersonId == PersonId || x.SenderPersonId == PersonId) && x.Status == ConsignmentStatus.Active).ToList();
             
             var activeConsignmentsDTO = Mapper.Map<IEnumerable<ActiveConsignmentDTO>>(consignments).ToList();
-
-            activeConsignmentsDTO.ForEach(consignment =>
-            {
-                var packageInfo = unitOfWork.PackageInformation.UpdatePackageInformation(consignment);
-
-                if(packageInfo.Id == 0)
-                    unitOfWork.PackageInformation.Add(packageInfo);
-                //packageInformations.Add(packageInfo);
-            });
-
-            //unitOfWork.PackageInformation.AddRange(packageInformations);
-            unitOfWork.Save();
-
+            
             return activeConsignmentsDTO;
         }
 

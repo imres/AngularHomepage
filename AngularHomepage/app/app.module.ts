@@ -46,6 +46,7 @@ import { BasicComponent } from './shared/basic.component';
 import { FriendsComponent } from './user-profile/friends.component';
 import { FilterPipe } from './filter.pipe';
 import { BaseService } from './_services/base.service';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     imports: [
@@ -55,7 +56,8 @@ import { BaseService } from './_services/base.service';
         HttpModule,
         routing,
         BootstrapModalModule,
-        ToastModule.forRoot()
+        ToastModule.forRoot(),
+        RouterModule
     ],
     declarations: [
         AppComponent,
