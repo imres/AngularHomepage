@@ -5,6 +5,10 @@ using System.Web;
 
 namespace UserManager.Core.Enums
 {
+    public static class PostNordStatus
+    {
+        public const string Delivered = "21";
+    }
     public static class ConsignmentStatus
     {
         public const int Active = 1;

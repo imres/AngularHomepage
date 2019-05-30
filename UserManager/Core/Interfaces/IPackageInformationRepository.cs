@@ -9,10 +9,6 @@ namespace UserManager.Core.Interfaces
 {
     public interface IPackageInformationRepository
     {
-        /// <summary>
-        /// If package information does not exist on consignment id, create new row. Otherwise update existing row with new content 
-        /// </summary>
-        /// <returns>Updated/Created PackageInformation row</returns>
-        packageinformation UpdatePackageInformation(ConsignmentDTO consignment, bool isFirstTimeUpdate = false);
+        object GetPackageInformation(string PackageId);
     }
 }

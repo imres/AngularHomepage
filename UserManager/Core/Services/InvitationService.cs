@@ -18,15 +18,17 @@ namespace UserManager.Core.Services
     {
         private UnitOfWork unitOfWork = new UnitOfWork(new masterEntitiesMYSQL());
         private IConsignmentService _consignmentService;
+        private IPackageInformationService _packageInformationService;
 
-        public InvitationService() : this(new ConsignmentService())
+        public InvitationService() : this(new ConsignmentService(), new PackageInformationService())
         {
 
         }
 
-        public InvitationService(IConsignmentService consignmentService)
+        public InvitationService(IConsignmentService consignmentService, IPackageInformationService packageInformationService)
         {
             _consignmentService = consignmentService;
+            _packageInformationService = packageInformationService;
         }
 
         public bool AcceptInvitation(InvitationDTO invitation)
@@ -108,10 +110,11 @@ namespace UserManager.Core.Services
                 unitOfWork.Save();
 
                 var consignmentDTO = Mapper.Map<ConsignmentDTO>(consignment);
-                var packageInformation = unitOfWork.PackageInformation.UpdatePackageInformation(consignmentDTO, true);
+                var packageInformation = _packageInformationService.UpdatePackageInformation(consignmentDTO, true);
                 unitOfWork.PackageInformation.Add(packageInformation);
                 unitOfWork.Save();
 
+                _consignmentService.UpdateConsignmentStatus(consignmentDTO);
                 ValidatePackageDeliveryPostCode(invitation, packageInformation);
                 scope.Complete();
             }

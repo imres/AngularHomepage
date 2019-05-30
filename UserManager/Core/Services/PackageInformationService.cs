@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using UserManager.Core.Interfaces;
+using UserManager.Core.Mock;
 using UserManager.Core.Repositories;
 using UserManager.DTO;
 using UserManager.Models;
@@ -12,6 +13,7 @@ namespace UserManager.Core.Services
     public class PackageInformationService : IPackageInformationService
     {
         private UnitOfWork unitOfWork = new UnitOfWork(new masterEntitiesMYSQL());
+        private bool timeCheckEnabled = false;
 
         public bool SavePackageInformation(ConsignmentDTO consignment)
         {
@@ -19,7 +21,7 @@ namespace UserManager.Core.Services
             {
                 using(var context = new masterEntitiesMYSQL())
                 {
-                    var packageInformation = unitOfWork.PackageInformation.UpdatePackageInformation(consignment);
+                    var packageInformation = UpdatePackageInformation(consignment);
                     context.packageinformation.Add(packageInformation);
                     context.SaveChanges();
                 }
@@ -30,6 +32,83 @@ namespace UserManager.Core.Services
             }
 
             return true;
+        }
+
+        
+
+        public packageinformation UpdatePackageInformation(ConsignmentDTO consignment, bool isFirstTimeUpdate = false)
+        {
+            var packageInformationExist = unitOfWork.PackageInformation.Find(x => x.ConsignmentId == consignment.Id).Any();
+
+            if (packageInformationExist)
+            {
+                if (isFirstTimeUpdate)
+                {
+                    throw new InvalidOperationException();
+                }
+
+                return UpdatePackageInformationRow(consignment);
+            }
+
+            return CreatePackageInformationRow(consignment);
+        }
+
+        /// <summary>
+        /// Handle Package ID found in PackageInformation row in database, just update existing row
+        /// </summary>
+        /// <returns>Updated row</returns>
+        private packageinformation UpdatePackageInformationRow(ConsignmentDTO consignment)
+        {
+            var entity = unitOfWork.PackageInformation.Find(x => x.ConsignmentId == consignment.Id).First();
+
+            var hourDifference = (DateTime.Now - entity.LastUpdated).TotalHours;
+
+            //Only hit PostNord api if one hour passed since last update
+            if (!timeCheckEnabled || hourDifference > 0.05)
+            {
+                var packageInformation = string.Empty;
+
+                try
+                {
+                    packageInformation = unitOfWork.PackageInformation.GetPackageInformation(consignment.PackageId).ToString();
+                }
+                catch (ArgumentNullException)
+                {
+                    packageInformation = PostNordResponseData.PostNordResponseMock;
+                }
+
+                entity.Content = packageInformation;
+                entity.LastUpdated = DateTime.Now;
+            }
+
+            return entity;
+        }
+
+        /// <summary>
+        /// Handle Package ID not registered in database
+        /// </summary>
+        /// <returns>Created row in PackageInformation table</returns>
+        private packageinformation CreatePackageInformationRow(ConsignmentDTO consignment)
+        {
+            string packageInformation = string.Empty;
+
+            try
+            {
+                packageInformation = unitOfWork.PackageInformation.GetPackageInformation(consignment.PackageId).ToString();
+            }
+            catch (ArgumentNullException)
+            {
+                packageInformation = PostNordResponseData.PostNordResponseMock;
+            }
+
+            var entity = new packageinformation
+            {
+                Content = packageInformation,
+                ConsignmentId = consignment.Id,
+                LastUpdated = DateTime.Now
+            };
+
+            return entity;
         }
     }
 }
