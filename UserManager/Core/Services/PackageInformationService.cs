@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,13 +16,24 @@ namespace UserManager.Core.Services
         private UnitOfWork unitOfWork = new UnitOfWork(new masterEntitiesMYSQL());
         private bool timeCheckEnabled = false;
 
-        public bool SavePackageInformation(ConsignmentDTO consignment)
+        public string GetLatestPostNordEventCode(ConsignmentDTO consignmentDTO)
+        {
+            var consignment = unitOfWork.Consignment.Get(consignmentDTO.Id);
+            var packageInformation = unitOfWork.PackageInformation.Find(x => x.ConsignmentId == consignmentDTO.Id).FirstOrDefault();
+            var result = JsonConvert.DeserializeObject<Object>(packageInformation.Content);
+            var trackingInfo = JsonConvert.DeserializeObject<PostnordShipmentResponseDTO>(result.ToString());
+            var eventCode = trackingInfo.trackingInformationResponse.shipments.FirstOrDefault().items.FirstOrDefault().events.LastOrDefault().eventCode;
+
+            return eventCode;
+        }
+
+        public bool SavePackageInformation(ConsignmentDTO consignmentDTO)
         {
             try
             {
                 using(var context = new masterEntitiesMYSQL())
                 {
-                    var packageInformation = UpdatePackageInformation(consignment);
+                    var packageInformation = UpdatePackageInformation(consignmentDTO);
                     context.packageinformation.Add(packageInformation);
                     context.SaveChanges();
                 }

@@ -116,6 +116,7 @@ namespace UserManager.Core.Services
 
                 _consignmentService.UpdateConsignmentStatus(consignmentDTO);
                 ValidatePackageDeliveryPostCode(invitation, packageInformation);
+                ValidatePackageIsNotDelivered(consignmentDTO);
                 scope.Complete();
             }
 
@@ -141,6 +142,22 @@ namespace UserManager.Core.Services
             return true;
         }
 
+        /// <summary>
+        /// Make sure user is not entering a package-id which has already been delivered
+        /// </summary>
+        private void ValidatePackageIsNotDelivered(ConsignmentDTO consignmentDTO)
+        {
+            var eventCode = _packageInformationService.GetLatestPostNordEventCode(consignmentDTO);
+
+            if (eventCode == PostNordStatus.Delivered)
+            {
+                throw new ArgumentException(ValidationTranslations.Invalid_PostNordStatus_AlreadyDelivered);
+            }
+        }
+
+        /// <summary>
+        /// Make sure the package is being delivered to the buyers post code
+        /// </summary>
         private void ValidatePackageDeliveryPostCode(InvitationExtended invitation, packageinformation packageInformation)
         {
             var result = JsonConvert.DeserializeObject<Object>(packageInformation.Content);
@@ -153,6 +170,9 @@ namespace UserManager.Core.Services
             }
         }
 
+        /// <summary>
+        ///  Make sure package id has not already been used on this site
+        /// </summary>
         private void ValidatePackageIdIsUnused(InvitationExtended invitation)
         {
             if (invitation.PackageId != null)
