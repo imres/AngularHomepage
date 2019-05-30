@@ -104,6 +104,7 @@ namespace UserManager.Core.Services
             if (eventCode == PostNordStatus.Delivered)
             {
                 consignment.Status = ConsignmentStatus.Finished;
+                consignment.EndDate = DateTime.Now;
             }
 
             unitOfWork.Save();
