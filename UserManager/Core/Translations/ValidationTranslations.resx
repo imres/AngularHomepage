@@ -123,4 +123,7 @@
   <data name="Invalid_PostCode" xml:space="preserve">
     <value>Felaktig postkod på försändelse</value>
   </data>
+  <data name="Invalid_PostNordStatus_AlreadyDelivered" xml:space="preserve">
+    <value>Gammalt Kolli-ID, paketet är redan levererat</value>
+  </data>
 </root>

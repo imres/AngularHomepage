@@ -77,5 +77,14 @@ namespace UserManager.Core.Translations {
                 return ResourceManager.GetString("Invalid_PostCode", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gammalt Kolli-ID, paketet är redan levererat.
+        /// </summary>
+        internal static string Invalid_PostNordStatus_AlreadyDelivered {
+            get {
+                return ResourceManager.GetString("Invalid_PostNordStatus_AlreadyDelivered", resourceCulture);
+            }
+        }
     }
 }
