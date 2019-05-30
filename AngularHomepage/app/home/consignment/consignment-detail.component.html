@@ -87,7 +87,7 @@
                                 <i *ngIf="item.status == 'DELIVERED'" class="fas fa-check-square fa-fw fa-pull-left color-success"></i>
                                 <i *ngIf="item.status !== 'DELIVERED'" class="fas fa-truck fa-fw fa-pull-left"></i>
                                 <!--<i class="fas fa-info fa-fw fa-pull-left"></i>-->
-                                <h6 *ngIf="item.location.name" class="consignment-detail-card__info__header">{{item.location.name}}</h6>
+                                <h6 *ngIf="item.location.name" class="consignment-detail-card__info__header" [ngClass]="{ 'color-success': (item.status == 'DELIVERED')}">{{item.location.name}}</h6>
                                 <br *ngIf="!item.location.name" />
                                 <p class="subheading">- {{item.eventTime | date:'yyyy-MM-dd, HH:mm'}}</p>
                                 <p class="event-description">{{item.eventDescription}}</p> 
