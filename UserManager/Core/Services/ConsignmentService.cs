@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -90,6 +91,22 @@ namespace UserManager.Core.Services
 
             return dto;
 
+        }
+
+        public void UpdateConsignmentStatus(ConsignmentDTO consignmentDTO)
+        {
+            var consignment = unitOfWork.Consignment.Get(consignmentDTO.Id);
+            var packageInformation = unitOfWork.PackageInformation.Find(x => x.ConsignmentId == consignmentDTO.Id).FirstOrDefault();
+            var result = JsonConvert.DeserializeObject<Object>(packageInformation.Content);
+            var trackingInfo = JsonConvert.DeserializeObject<PostnordShipmentResponseDTO>(result.ToString());
+            var eventCode = trackingInfo.trackingInformationResponse.shipments.FirstOrDefault().items.FirstOrDefault().events.LastOrDefault().eventCode;
+
+            if (eventCode == PostNordStatus.Delivered)
+            {
+                consignment.Status = ConsignmentStatus.Finished;
+            }
+
+            unitOfWork.Save();
         }
 
         

@@ -11,5 +11,6 @@ namespace UserManager.Core.Interfaces
         ConsignmentDTO ArchiveConsignment(string PackageId);
         ConsignmentDTO AddConsignment(InvitationExtended invitation);
         consignment CreateConsignmentFromInvitation(InvitationExtended invitation);
+        void UpdateConsignmentStatus(ConsignmentDTO consignmentDTO);
     }
 }

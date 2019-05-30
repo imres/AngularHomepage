@@ -25,88 +25,11 @@ namespace UserManager.Core.Repositories
 
         }
 
-        private bool timeCheckEnabled = false;
-
-        public packageinformation UpdatePackageInformation(ConsignmentDTO consignment, bool isFirstTimeUpdate = false)
-        {
-            var packageInformationExist = Context.packageinformation.Any(x => x.ConsignmentId == consignment.Id);
-
-            if (packageInformationExist)
-            {
-                if (isFirstTimeUpdate)
-                {
-                    throw new InvalidOperationException();
-                }
-
-                return UpdatePackageInformationRow(consignment);
-            }
-
-            return CreatePackageInformationRow(consignment);
-        }
-
-        /// <summary>
-        /// Handle Package ID found in PackageInformation row in database, just update existing row
-        /// </summary>
-        /// <returns>Updated row</returns>
-        private packageinformation UpdatePackageInformationRow(ConsignmentDTO consignment)
-        {
-            var entity = Context.packageinformation.Where(x => x.ConsignmentId == consignment.Id).First();
-
-            var hourDifference = (DateTime.Now - entity.LastUpdated).TotalHours;
-
-            //Only hit PostNord api if one hour passed since last update
-            if (!timeCheckEnabled || hourDifference > 0.05)
-            {
-                var packageInformation = string.Empty;
-
-                try
-                {
-                    packageInformation = GetPackageInformation(consignment.PackageId).ToString();
-                }
-                catch (ArgumentNullException)
-                {
-                    packageInformation = PostNordResponseData.PostNordResponseMock;
-                }
-
-                entity.Content = packageInformation;
-                entity.LastUpdated = DateTime.Now;
-            }
-
-            return entity;
-        }
-
-        /// <summary>
-        /// Handle Package ID not registered in database
-        /// </summary>
-        /// <returns>Created row in PackageInformation table</returns>
-        private packageinformation CreatePackageInformationRow(ConsignmentDTO consignment)
-        {
-            string packageInformation = string.Empty;
-
-            try
-            {
-                packageInformation = GetPackageInformation(consignment.PackageId).ToString();
-            }
-            catch (ArgumentNullException)
-            {
-                packageInformation = PostNordResponseData.PostNordResponseMock;
-            }
-
-            var entity = new packageinformation
-            {
-                Content = packageInformation,
-                ConsignmentId = consignment.Id,
-                LastUpdated = DateTime.Now
-            };
-
-            return entity;
-        }
-        
         /// <summary>
         /// Get package information from PostNord
         /// </summary>
         /// <returns>Package information</returns>
-        private object GetPackageInformation(string PackageId)
+        public object GetPackageInformation(string PackageId)
         {
             //RR747540648SE
 
