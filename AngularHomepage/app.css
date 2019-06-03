@@ -348,6 +348,10 @@ img {
     padding-left: 1rem;
 }
 
+#customDeliveryAddressInput {
+    animation: 0.2s ease-out 0s 1 easeIn;
+}
+
 /*Egna Margin-klasser*/
 .margin-navbar-top {
     margin-top: 55px;
@@ -1588,14 +1592,14 @@ label {
     }
 }
 
-@keyframes slideOutFromTop {
-    100% {
-        opacity: 0;
-        margin-top: -30px;
-    }
+@keyframes easeIn {
     0% {
+        opacity: 0;
+
+    }
+    100% {
         opacity: 1;
-        margin-top: 0px;
+
     }
 }
 

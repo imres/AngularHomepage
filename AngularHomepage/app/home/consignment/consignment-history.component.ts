@@ -60,7 +60,7 @@ export class ConsignmentHistoryComponent extends BasicComponent implements OnIni
             this.archivedConsignments = res;
 
             // initialize pager to page 1
-            this.orderBy('-StartDate', this.archivedConsignments);
+            this.orderBy('-EndDate', this.archivedConsignments);
         });
     }
 
