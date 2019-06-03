@@ -104,6 +104,16 @@
                                        [(ngModel)]="currentInvitation.DeliveryCity" #customDeliveryCity="ngModel" required />
                                 <div *ngIf="customDeliveryCity.dirty && !customDeliveryCity.valid" class="help-block">Fyll i en giltig postort eller välj att använda din folkbokförda adress!</div>
                             </div>
+                            
+                            <h3 class="mt-2">
+                                <small class="text-muted">Mobilnummer för SMS-avisering: </small>
+                            </h3>
+                            <div>
+                                <!-- <label for="customDeliveryAddress">Mobilnummer för SMS-avisering</label> -->
+                                <input type="text" class="form-control mb-2" name="receiverPhoneNumber" placeholder="Mobilnummer (valfritt)"
+                                       [(ngModel)]="currentInvitation.ReceiverPhoneNumber" #receiverPhoneNumber="ngModel"/>
+                            </div>
+
                         </ng-container>
                     </ng-container>
 

@@ -13,6 +13,7 @@
     public DeliveryAddress: string;
     public DeliveryPostalCode: number;
     public DeliveryCity: string;
-
+    public ReceiverPhoneNumber: string;
+    
     public Content: string = '';
 }

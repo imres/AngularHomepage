@@ -42,6 +42,7 @@ namespace UserManager.Core.Services
                 entity.DeliveryAddress = invitation.DeliveryAddress;
                 entity.DeliveryPostalCode = invitation.DeliveryPostalCode;
                 entity.DeliveryCity = invitation.DeliveryCity;
+                entity.ReceiverPhoneNumber = invitation.ReceiverPhoneNumber;
 
                 unitOfWork.Save();
             }

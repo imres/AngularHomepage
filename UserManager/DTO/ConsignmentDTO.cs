@@ -18,5 +18,7 @@ namespace UserManager.DTO
         public string DeliveryAddress { get; set; }
         public int DeliveryPostalCode { get; set; }
         public string DeliveryCity { get; set; }
+        public string ReceiverPhoneNumber { get; set; }
+
     }
 }

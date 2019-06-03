@@ -28,6 +28,7 @@ namespace UserManager
         public string DeliveryAddress { get; set; }
         public int DeliveryPostalCode { get; set; }
         public string DeliveryCity { get; set; }
+        public string ReceiverPhoneNumber { get; set; }
         public string Content { get; set; }
     }
 }

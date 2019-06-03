@@ -37,10 +37,15 @@
                                             <p class="active-invitation-card__header-info card-text">
                                                 {{user.FirstName}} {{user.LastName}}
                                             </p>
-                                            <p *ngIf="!HasReceiverRole(item)" class="active-invitation-card__header-info card-text">
-                                                {{item.DeliveryAddress}}
-                                                <br />{{item.DeliveryPostalCode}}, {{item.DeliveryCity}}
-                                            </p>
+                                            <ng-container *ngIf="!HasReceiverRole(item)">
+                                                <p class="active-invitation-card__header-info card-text">
+                                                    {{item.DeliveryAddress}}
+                                                    <br />{{item.DeliveryPostalCode}}, {{item.DeliveryCity}}
+                                                </p>
+                                                <p *ngIf="item.ReceiverPhoneNumber" class="active-invitation-card__header-info card-text">
+                                                    {{item.ReceiverPhoneNumber}}
+                                                </p>
+                                            </ng-container>
                                         </div>
                                     </div>
                                 </ng-container>
@@ -67,8 +72,8 @@
                                    (click)="enterPackageId(item);false" [class.disabled]="item.Status == invitationStatus.Accepted ? true : null">Ange kolli-id</a>
 
                                 <ng-container *ngIf="HasReceiverRole(item) && item.Status == invitationStatus.Accepted">
-                                    <a href="#" class="btn btn-primary col-md-6" (click)="openCheckout(item)" [ngClass]="{'disabled': loadingPayment}">
-                                        <ng-container *ngIf="!loadingPayment">Betala {{item.RequestedDepositAmount}}kr</ng-container>
+                                    <a href="#" class="btn btn-primary col-md-6" (click)="openCheckout(item)" [ngClass]="{'disabled': (loadingPayment && item.Id == loadingPaymentId)}">
+                                        <ng-container *ngIf="!loadingPayment || loadingPayment && item.Id !== loadingPaymentId">Betala {{item.RequestedDepositAmount}}kr</ng-container>
                                         <img *ngIf="loadingPayment && item.Id == loadingPaymentId" src="../../img/spinner.svg" />
                                     </a>
                                 </ng-container>

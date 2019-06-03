@@ -13,4 +13,5 @@
     public DeliveryAddress: string;
     public DeliveryPostalCode: number;
     public DeliveryCity: string;
+    public ReceiverPhoneNumber: string;
 }
