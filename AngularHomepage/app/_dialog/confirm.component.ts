@@ -28,7 +28,7 @@ export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> imp
     payment = new PaymentMethod();
     selectedPaymentMethod = 0;
     currentUser: Person;
-    dialogStep = 1;
+    // dialogStep = 1;
     samePersonId = false;
     showCustomAddress = false;
 
@@ -62,7 +62,7 @@ export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> imp
             this.samePersonId = true;
         }
             
-        this.dialogStep = 1;
+        // this.dialogStep = 1;
     }
 
 
@@ -89,7 +89,7 @@ export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> imp
 
     resetModel() {
         this.model = new Invitation();
-        this.dialogStep = 1;
+        // this.dialogStep = 1;
     }
 
     confirm() {
