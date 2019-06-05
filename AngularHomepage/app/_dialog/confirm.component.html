@@ -23,6 +23,13 @@
                         <div *ngIf="receiverPersonId.value == currentUser.PersonId" class="has-error mt-1">Du får inte ange ditt eget personnummer</div>
                     </div>
 
+                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !requestedDepositAmount }">
+                        <label for="requestedDepositAmount">Pris för paket (kronor)</label>
+                        <input type="text" class="form-control" name="requestedDepositAmount"
+                                [(ngModel)]="model.RequestedDepositAmount" #requestedDepositAmount="ngModel" />
+                        <div *ngIf="f.submitted && !requestedDepositAmount" class="help-block">Fyll i begärd summa</div>
+                    </div>
+
                     <div class="form-group" [ngClass]="{ 'has-error': title.dirty && !title.valid }">
                         <label for="title">Paketnamn</label>
                         <input type="text" class="form-control" name="title"
@@ -34,13 +41,6 @@
                         <textarea type="text" class="form-control" name="description"
                                 [(ngModel)]="model.Description" #description="ngModel"></textarea>
                     </div>  
-                
-                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !requestedDepositAmount }">
-                        <label for="requestedDepositAmount">Pris för paket (kronor)</label>
-                        <input type="text" class="form-control" name="requestedDepositAmount"
-                                [(ngModel)]="model.RequestedDepositAmount" #requestedDepositAmount="ngModel" />
-                        <div *ngIf="f.submitted && !requestedDepositAmount" class="help-block">Fyll i begärd summa</div>
-                    </div>
 
 
                     <!--Receiver personid-->
