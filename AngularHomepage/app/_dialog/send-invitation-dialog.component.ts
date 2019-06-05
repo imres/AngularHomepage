@@ -28,7 +28,7 @@ export class SendInvitationDialogComponent extends DialogComponent<ConfirmModel,
     payment = new PaymentMethod();
     selectedPaymentMethod = 0;
     currentUser: Person;
-    dialogStep = 1;
+    // dialogStep = 1;
     samePersonId = false;
     showCustomAddress = false;
 
@@ -62,7 +62,7 @@ export class SendInvitationDialogComponent extends DialogComponent<ConfirmModel,
             this.samePersonId = true;
         }
             
-        this.dialogStep = 1;
+        // this.dialogStep = 1;
     }
 
 
@@ -89,7 +89,7 @@ export class SendInvitationDialogComponent extends DialogComponent<ConfirmModel,
 
     resetModel() {
         this.model = new Invitation();
-        this.dialogStep = 1;
+        // this.dialogStep = 1;
     }
 
     confirm() {

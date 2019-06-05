@@ -154,8 +154,6 @@
     color: var(--primary);
 }*/
 
-
-
 .card-border-sender {
     border-top: 3px #0AF solid;
     
@@ -234,6 +232,7 @@ img {
 .modal-header{
     border: none;
 }
+
 .modal-content{
     border: none;
     box-shadow: #545453 0px 8px 45px;
@@ -945,23 +944,28 @@ btn.btn-primary:active, .btn-primary:focus{
     padding-bottom: 1rem;
 }
 
-.archived-consignment--card__header {
+.archived-consignment--card {
+    height: auto;
     padding: 0.75rem 1.25rem;
-    margin-bottom: 0;
-    /* background-color: rgba(0, 0, 0, 0.03); */
+    margin-bottom: 1rem;
 }
 
-.archived-consignment--card__header:hover {
+.archived-consignment--card:hover {
     cursor: pointer;
     box-shadow: var(--bottom-shadow-darker);
 }
 
 .archived-consignment--card__img {
     border: 0;
-    margin-bottom: 1rem;
     width: 150px;
     height: auto;
 }
+
+.archived-consignment--card__date {
+    margin-bottom: -1rem;
+    margin-top: auto;
+}
+
 /* Active Invitations */
 .active-invitation-card__header {
     padding: 1.25rem;
@@ -1074,8 +1078,8 @@ btn.btn-primary:active, .btn-primary:focus{
 .consignment-detail-card__img {
     border: 0;
     margin-bottom: 1rem;
-    max-width: 120px;
-    max-height: 130px;
+    max-width: 100px;
+    max-height: 105px;
 }
 
 .subheading {
@@ -1637,12 +1641,12 @@ label {
         min-height: 10px;
         padding-bottom: 1rem;
     }
-    .consignment-detail-card__img {
+    /* .consignment-detail-card__img {
         border: 0;
         margin-bottom: 1rem;
         max-width: 150px;
         max-height: 150px;
-    }
+    } */
 }
 
 @media screen and (max-width: 576px) /*xs-down*/ {
@@ -1711,12 +1715,12 @@ label {
         padding-top: 1rem;
     }
 
-    .consignment-detail-card__img {
+    /* .consignment-detail-card__img {
         border: 0;
         margin-bottom: 1rem;
-        max-width: 200px;
-        max-height: 210px;
-    }
+        max-width: 100px;
+        max-height: 105px;
+    } */
     .consignment-card__info {
         min-height: 140px;
         padding-bottom: 1rem;

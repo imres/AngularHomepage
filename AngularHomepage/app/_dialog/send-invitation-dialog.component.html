@@ -2,61 +2,49 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <form name="form" (ngSubmit)="f.form.valid && sendInvite()" #f="ngForm" novalidate>
-                <div class="modal-header">
-                    <h4 class="modal-title">{{title || 'Confirm'}}</h4>
+                <div class="modal-header bg-grey">
+                    <h4 class="modal-title">Sälj paket</h4>
                     <button type="button" class="close" (click)="close()">&times;</button>
-                    
                 </div>
                 <div class="modal-body">
-                    <div class="form-group mb-0">
-                        <!--<label class="mr-sm-2" for="consignmentRoleSelect">Din roll</label>-->
+                    <!-- <div class="form-group mb-0">
                         <select class="custom-select" name="roleDropdown" (change)="resetModel()" [(ngModel)]="selectedRole" id="consignmentRoleSelect">
                             <option *ngFor="let x of invitationRoles.roles" [value]="x.value" [selected]="selectedRole == x.value">{{x.text}}</option>
                         </select>
-                    </div><br />
+                    </div><br /> -->
 
                     <!--Sender personid-->
-                    <ng-container *ngIf="selectedRole == 1 && dialogStep == 1" class="transition">
-                        <div class="form-group"  [ngClass]="{ 'has-error': receiverPersonId.dirty && !receiverPersonId.valid || receiverPersonId.value == currentUser.PersonId }">
-                            <label for="receiverPersonId">Köpare</label>
-                            <input type="text" class="form-control" name="receiverPersonId" placeholder="Personnummer"
-                                   [(ngModel)]="model.ReceiverPersonId" #receiverPersonId="ngModel" required />
-                            <div *ngIf="receiverPersonId.dirty && !receiverPersonId.valid" class="help-block">Fyll i personnummer</div>
-                            <div *ngIf="receiverPersonId.value == currentUser.PersonId" class="has-error mt-1">Du får inte ange ditt eget personnummer</div>
-                        </div>
-                    </ng-container>
 
-                    <ng-container *ngIf="selectedRole == 1 && dialogStep == 2" class="transition">
-                        <div class="form-group" [ngClass]="{ 'has-error': title.dirty && !title.valid }">
-                            <label for="title">Paketnamn</label>
-                            <input type="text" class="form-control" name="title"
-                                   [(ngModel)]="model.Title" #title="ngModel" required />
-                            <div *ngIf="title.dirty && !title.valid" class="help-block">Fyll i paketnamn</div>
-                        </div>
-                        <div class="form-group" [ngClass]="{ 'has-error': description.dirty && !description.valid }">
-                            <label for="description">Beskrivning</label>
-                            <textarea type="text" class="form-control" name="description"
-                                   [(ngModel)]="model.Description" #description="ngModel"></textarea>
-                        </div>  
-                    </ng-container>
+                    <div class="form-group"  [ngClass]="{ 'has-error': receiverPersonId.dirty && !receiverPersonId.valid || receiverPersonId.value == currentUser.PersonId }">
+                        <label for="receiverPersonId">Ange köpare</label>
+                        <input type="text" class="form-control" name="receiverPersonId"
+                                [(ngModel)]="model.ReceiverPersonId" #receiverPersonId="ngModel" required />
+                        <div *ngIf="receiverPersonId.dirty && !receiverPersonId.valid" class="help-block">Fyll i personnummer</div>
+                        <div *ngIf="receiverPersonId.value == currentUser.PersonId" class="has-error mt-1">Du får inte ange ditt eget personnummer</div>
+                    </div>
 
-                    <ng-container *ngIf="selectedRole == 1 && dialogStep == 3" class="transition">
-                        <!--<div class="form-group" [ngClass]="{ 'has-error': paymentMethod.dirty && !paymentMethod.valid }">
-                            <label>Utbetalningsmetod</label>
-                            <select class="custom-select w-100" name="paymentMethod" [(ngModel)]="selectedPaymentMethod" id="paymentMethod" #paymentMethod="ngModel">
-                                <option *ngFor="let x of payment.methods" [value]="x.value" [selected]="selectedPaymentMethod == x.value">{{x.text}}</option>
-                            </select>
-                        </div>-->
-                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !requestedDepositAmount }">
-                            <label for="requestedDepositAmount">Begärd summa (kronor)</label>
-                            <input type="text" class="form-control" name="requestedDepositAmount"
-                                   [(ngModel)]="model.RequestedDepositAmount" #requestedDepositAmount="ngModel" />
-                            <div *ngIf="f.submitted && !requestedDepositAmount" class="help-block">Fyll i begärd summa</div>
-                        </div>
-                    </ng-container>
+                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !requestedDepositAmount }">
+                        <label for="requestedDepositAmount">Pris för paket (kronor)</label>
+                        <input type="text" class="form-control" name="requestedDepositAmount"
+                                [(ngModel)]="model.RequestedDepositAmount" #requestedDepositAmount="ngModel" />
+                        <div *ngIf="f.submitted && !requestedDepositAmount" class="help-block">Fyll i begärd summa</div>
+                    </div>
+
+                    <div class="form-group" [ngClass]="{ 'has-error': title.dirty && !title.valid }">
+                        <label for="title">Paketnamn</label>
+                        <input type="text" class="form-control" name="title"
+                                [(ngModel)]="model.Title" #title="ngModel" required />
+                        <div *ngIf="title.dirty && !title.valid" class="help-block">Fyll i paketnamn</div>
+                    </div>
+                    <div class="form-group" [ngClass]="{ 'has-error': description.dirty && !description.valid }">
+                        <label for="description">Beskrivning</label>
+                        <textarea type="text" class="form-control" name="description"
+                                [(ngModel)]="model.Description" #description="ngModel"></textarea>
+                    </div>  
+
 
                     <!--Receiver personid-->
-                    <ng-container *ngIf="selectedRole == 2 && dialogStep == 1" class="transition">
+                    <!-- <ng-container *ngIf="selectedRole == 2 && dialogStep == 1" class="transition">
                         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !senderPersonId.valid || senderPersonId.value == currentUser.PersonId }">
                             <label for="senderPersonId">Säljare</label>
                             <input type="text" class="form-control" name="senderPersonId" placeholder="Personnummer"
@@ -110,17 +98,18 @@
                                    [(ngModel)]="model.DeliveryCity" #customDeliveryCity="ngModel" required />
                             <div *ngIf="customDeliveryCity.dirty && !customDeliveryCity.valid" class="help-block">Fyll i en giltig postort eller välj att använda din folkbokförda adress!</div>
                         </div>
-                    </ng-container>
+                    </ng-container> -->
 
                 </div>
                 <div class="modal-footer">
                     <div class="col-8">                    
-                        <button *ngIf="dialogStep != 1" type="button" class="btn btn-outline-primary" (click)="dialogStep = dialogStep - 1">Tillbaka</button>
+                        <!-- <button *ngIf="dialogStep != 1" type="button" class="btn btn-outline-primary" (click)="dialogStep = dialogStep - 1">Tillbaka</button> -->
+                        <button type="button" class="btn btn-outline-primary" (click)="cancel()">Avbryt</button>
                     </div>
-                    <div class="col-4 pr-0 text-right">
-                        <!--<button type="button" class="btn btn-default" (click)="cancel()">Avbryt</button>-->
-                        <button *ngIf="selectedRole == 1 && dialogStep != 3 || selectedRole == 2 && dialogStep != 3" type="button" class="btn btn-primary" (click)="dialogStep = dialogStep + 1" [disabled]="f.form.invalid">Nästa</button>
-                        <button *ngIf="selectedRole == 1 && dialogStep == 3 || selectedRole == 2 && dialogStep == 3" type="submit" role="button" class="btn btn-primary">Skicka</button>
+                    <div class="col-4 offset-8 pr-0 text-right">
+                        <!--<button type="button" class="btn btn-default" (click)="cancel()">Avbryt</button>
+                        <button *ngIf="selectedRole == 1 && dialogStep != 3 || selectedRole == 2 && dialogStep != 3" type="button" class="btn btn-primary" (click)="dialogStep = dialogStep + 1" [disabled]="f.form.invalid">Nästa</button> -->
+                        <button type="submit" role="button" class="btn btn-primary">Skicka</button>
                     </div>
                 </div>
 
