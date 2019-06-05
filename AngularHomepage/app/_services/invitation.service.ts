@@ -37,7 +37,7 @@ export class InvitationService extends BaseService{
     }
 
     sendInvite(invitation: Invitation) {
-        return this.http.post(this.apiRoute + 'api/Invitation/Invite',
+        return this.http.post(this.apiRoute + 'Invitation/Invite',
             JSON.stringify(invitation),
             { headers: this.headers })
             .map((response: Response) =>
