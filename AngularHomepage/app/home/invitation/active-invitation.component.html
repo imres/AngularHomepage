@@ -111,10 +111,10 @@
                                     </ng-container>
                                 </ng-container>
 
-                                <p class="card-text invitation-status"><i class="fas fa-check-square fa-fw color-success" *ngIf="item.Status == invitationStatus.AmountDeposited"></i> {{translatePaymentStatus(item)}}</p>
+                                <p class="card-text invitation-status pt-3 px-3 pb-0 mb-0"><i class="fas fa-check-square fa-fw color-success" *ngIf="item.Status == invitationStatus.AmountDeposited"></i> {{translatePaymentStatus(item)}}</p>
 
-                                <p class="card-text invitation-status mb-3 package-description" *ngIf="HasReceiverRole(item) && item.Status == invitationStatus.AmountDeposited">Väntar på att säljaren ska skicka paketet och mata in kolli-id</p>
-                                <p class="card-text invitation-status alert alert-info mb-3" *ngIf="!HasReceiverRole(item) && item.Status == invitationStatus.AmountDeposited">Nu återstår det bara för dig att skicka paketet, tänk på att skicka paketet med PostNord samt använda ett spårbart fraktsätt</p>
+                                <p class="card-text invitation-status p-3 package-description" *ngIf="HasReceiverRole(item) && item.Status == invitationStatus.AmountDeposited">Väntar på att säljaren ska skicka paketet och mata in kolli-id</p>
+                                <p class="card-text invitation-status alert alert-info p-3" *ngIf="!HasReceiverRole(item) && item.Status == invitationStatus.AmountDeposited">Nu återstår det bara för dig att skicka paketet, tänk på att skicka paketet med PostNord samt använda ett spårbart fraktsätt</p>
                             </div>
 
                             <div *ngIf="!HasReceiverRole(item) && matchesInvitationWithPackageId(item)" class="animate-enter">

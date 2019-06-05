@@ -1703,7 +1703,6 @@ label {
     }
     .invitation-status {
         color: var(--black);
-        background: var(--grey);
         font-weight: 500;
     }
 
