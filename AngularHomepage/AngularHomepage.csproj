@@ -174,7 +174,6 @@
     <Content Include="app\home\invitation\invitation.component.html" />
     <Content Include="app\home\invitation\active-invitation.component.html" />
     <Content Include="app\home\sidebar\sidebar.component.html" />
-    <Content Include="app\_dialog\stripe-checkout.component.html" />
     <Content Include="app\user-profile\user.component.html" />
     <Content Include="app\user-profile\user-settings.component.html" />
     <Content Include="app\img\noise.0e9cf16a17adb19690cd31312cdaa809.png" />
@@ -189,9 +188,11 @@
     <Content Include="app\register\index.js" />
     <Content Include="app\register\register.component.html" />
     <Content Include="app\register\register.component.js" />
-    <Content Include="app\_dialog\dialog.component.css" />
-    <Content Include="app\_dialog\confirm.component.html" />
-    <Content Include="app\_dialog\invite-response.component.html" />
+    <Content Include="app\_dialog\base-dialog.component.css" />
+    <Content Include="app\_dialog\base-dialog.component.html" />
+    <Content Include="app\_dialog\invitation-response-dialog.component.html" />
+    <Content Include="app\_dialog\send-invitation-dialog.component.html" />
+    <Content Include="app\_dialog\stripe-checkout-dialog.component.html" />
     <Content Include="app\_directives\alert.component.html" />
     <Content Include="app\_directives\alert.component.js" />
     <Content Include="app\_directives\index.js" />
@@ -11673,10 +11674,8 @@
       <DependentUpon>invitation.component.html</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="app\home\sidebar\sidebar.component.ts" />
+    <TypeScriptCompile Include="app\_dialog\base-dialog.component.ts" />
     <TypeScriptCompile Include="app\_dialog\index.ts" />
-    <TypeScriptCompile Include="app\_dialog\stripe-checkout.component.ts">
-      <DependentUpon>stripe-checkout.component.html</DependentUpon>
-    </TypeScriptCompile>
     <TypeScriptCompile Include="app\user-profile\user-settings.component.ts" />
     <TypeScriptCompile Include="app\login\index.ts" />
     <TypeScriptCompile Include="app\login\login.component.ts">
@@ -11692,13 +11691,9 @@
       <DependentUpon>register.component.html</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="app\user-profile\user.component.ts" />
-    <TypeScriptCompile Include="app\_dialog\confirm.component.ts">
-      <DependentUpon>confirm.component.html</DependentUpon>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="app\_dialog\invite-response.component.ts">
-      <SubType>Code</SubType>
-      <DependentUpon>invite-response.component.html</DependentUpon>
-    </TypeScriptCompile>
+    <TypeScriptCompile Include="app\_dialog\invitation-response-dialog.component.ts" />
+    <TypeScriptCompile Include="app\_dialog\send-invitation-dialog.component.ts" />
+    <TypeScriptCompile Include="app\_dialog\stripe-checkout-dialog.component.ts" />
     <TypeScriptCompile Include="app\_directives\alert.component.ts" />
     <TypeScriptCompile Include="app\_directives\index.ts" />
     <TypeScriptCompile Include="app\_directives\loading.component.ts" />

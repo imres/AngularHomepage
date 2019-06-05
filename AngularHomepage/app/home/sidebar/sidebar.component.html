@@ -26,13 +26,13 @@
 
     <div id="content" class="d-lg-none offset-1 col-10 phone-sidebar">
         <div class="row pr-0">
-            <div class="col-sm-1">
+            <div class="col-2">
                 <button href="#phone-sidebar" data-toggle="collapse" aria-expanded="false" type="button" role="button" id="sidebarCollapse" class="btn btn-outline-primary navbar-btn sidebar-btn mb-2">
                     <i class="fa fa-align-left" aria-hidden="true"></i>
                 </button>
             </div>
 
-            <div class="col-sm-8 offset-sm-3">  
+            <div class="col-10">  
                 <div class="input-group pr-1">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
@@ -67,8 +67,8 @@
             <div [routerLink]="['/history']" role="button" class="phone-sidebar-link"><i class="fas fa-envelope-open fa-fw" aria-hidden="true"></i> Historik</div>
 
             <div class="phone-sidebar-link disabled">
-                <div class="btn btn-primary btn-block-half" (click)=showConfirm($event)>
-                    <i class="fas fa-plus fa-fw fa-pull-left" aria-hidden="true"></i> Ny försändelse
+                <div class="btn btn-primary btn-block" (click)=showConfirm($event)>
+                    <i class="fas fa-plus fa-fw fa-pull-left" aria-hidden="true"></i> Sälj paket
                 </div>
             </div>
 

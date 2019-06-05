@@ -47,6 +47,9 @@ import { FriendsComponent } from './user-profile/friends.component';
 import { FilterPipe } from './filter.pipe';
 import { BaseService } from './_services/base.service';
 import { RouterModule } from '@angular/router';
+import { SendInvitationDialogComponent } from './_dialog/send-invitation-dialog.component';
+import { InvitationResponseDialogComponent } from './_dialog/invitation-response-dialog.component';
+import { StripeCheckoutDialogComponent } from './_dialog/stripe-checkout-dialog.component';
 
 @NgModule({
     imports: [
@@ -109,9 +112,9 @@ import { RouterModule } from '@angular/router';
         //BaseRequestOptions
     ],
     entryComponents: [
-        ConfirmComponent,
-        InviteResponseComponent,
-        StripeCheckout
+        SendInvitationDialogComponent,
+        InvitationResponseDialogComponent,
+        StripeCheckoutDialogComponent
     ],
     bootstrap: [AppComponent]
 })
