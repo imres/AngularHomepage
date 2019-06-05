@@ -55,7 +55,11 @@
                                 <p class="invitation-title">{{item.Title}}</p>
                                 <p class="package-description">{{item.Description}}</p>
 
-                                <p class="card-text invitation-status" [ngClass]="{'alert alert-info mb-3' : !HasReceiverRole(item) && item.Status == invitationStatus.AmountDeposited}">{{translateInvitationStatus(item)}}</p>
+                                <p class="card-text invitation-status"><i class="fas fa-check-square fa-fw color-success" *ngIf="item.Status == invitationStatus.AmountDeposited"></i> {{translatePaymentStatus(item)}}</p>
+
+                                <p class="card-text invitation-status mb-3 package-description" *ngIf="HasReceiverRole(item) && item.Status == invitationStatus.AmountDeposited">Väntar på att säljaren ska skicka paketet och mata in kolli-id</p>
+                                <p class="card-text invitation-status alert alert-info mb-3" *ngIf="!HasReceiverRole(item) && item.Status == invitationStatus.AmountDeposited">Nu återstår det bara för dig att skicka paketet, tänk på att skicka paketet med PostNord samt använda ett spårbart fraktsätt</p>
+                                
 
 
                                 <div *ngIf="!HasReceiverRole(item) && matchesInvitationWithPackageId(item)" class="animate-enter">
@@ -82,7 +86,6 @@
                     </div>
 
                     <div class="row mx-0 h-100 d-block d-sm-none">
-
                         <div class="col-12 active-invitation-card__body">
                             <p class="invitation-title text-center">{{item.Title}}</p>
                             <p class="package-description text-center">{{item.Description}}</p>
@@ -108,7 +111,10 @@
                                     </ng-container>
                                 </ng-container>
 
-                                <p class="list-group-item invitation-status" [ngClass]="{'alert alert-info mb-3' : !HasReceiverRole(item) && item.Status == invitationStatus.AmountDeposited}">{{translateInvitationStatus(item)}}</p>
+                                <p class="card-text invitation-status"><i class="fas fa-check-square fa-fw color-success" *ngIf="item.Status == invitationStatus.AmountDeposited"></i> {{translatePaymentStatus(item)}}</p>
+
+                                <p class="card-text invitation-status mb-3 package-description" *ngIf="HasReceiverRole(item) && item.Status == invitationStatus.AmountDeposited">Väntar på att säljaren ska skicka paketet och mata in kolli-id</p>
+                                <p class="card-text invitation-status alert alert-info mb-3" *ngIf="!HasReceiverRole(item) && item.Status == invitationStatus.AmountDeposited">Nu återstår det bara för dig att skicka paketet, tänk på att skicka paketet med PostNord samt använda ett spårbart fraktsätt</p>
                             </div>
 
                             <div *ngIf="!HasReceiverRole(item) && matchesInvitationWithPackageId(item)" class="animate-enter">

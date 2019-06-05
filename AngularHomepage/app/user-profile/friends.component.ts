@@ -2,7 +2,7 @@
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { DialogService } from "ng2-bootstrap-modal";
 import { User, Person } from '../_models/index';
-import { ConfirmComponent } from '../_dialog/confirm.component';
+import { SendInvitationDialogComponent } from '../_dialog/send-invitation-dialog.component';
 import { AlertService, UserService, InvitationService, ToastrService } from '../_services/index';
 
 @Component({
@@ -29,7 +29,7 @@ export class FriendsComponent implements OnInit {
     }
 
     showConfirm(event: any) {
-        this.dialogService.addDialog(ConfirmComponent, {
+        this.dialogService.addDialog(SendInvitationDialogComponent, {
             title: 'Skicka inbjudan',
             message: 'Bla bla confirm some action?'
         })

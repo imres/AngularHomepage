@@ -5,8 +5,8 @@ import { DialogService } from "ng2-bootstrap-modal";
 
 import { Person, Invitation, Consignment, ActiveConsignment, Pager } from '../_models/index';
 import { UserService, InvitationService, ConsignmentService, ToastrService, PagerService } from '../_services/index';
-import { ConfirmComponent } from '../_dialog/confirm.component';
-import { InviteResponseComponent } from '../_dialog/invite-response.component';
+import { SendInvitationDialogComponent } from '../_dialog/send-invitation-dialog.component';
+import { InvitationResponseDialogComponent } from '../_dialog/invitation-response-dialog.component';
 
 @Component({
     moduleId: module.id,

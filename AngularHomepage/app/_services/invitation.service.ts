@@ -17,8 +17,7 @@ export class InvitationService extends BaseService{
     currentInvite = this.currentInviteSource.asObservable();
 
     constructor(
-        injector: Injector,
-        private http: Http
+        injector: Injector
     ) { 
         super(injector);
     }
@@ -38,7 +37,7 @@ export class InvitationService extends BaseService{
     }
 
     sendInvite(invitation: Invitation) {
-        return this.http.post('http://localhost:65192/api/Invitation/Invite',
+        return this.http.post(this.apiRoute + 'api/Invitation/Invite',
             JSON.stringify(invitation),
             { headers: this.headers })
             .map((response: Response) =>
@@ -49,7 +48,7 @@ export class InvitationService extends BaseService{
     }
 
     acceptInvite(invitation: Invitation) {
-        return this.http.post('http://localhost:65192/api/Invitation/AcceptInvitation',
+        return this.http.post(this.apiRoute + 'Invitation/AcceptInvitation',
             JSON.stringify(invitation),
             { headers: this.headers })
             .map((response: Response) =>
@@ -60,7 +59,7 @@ export class InvitationService extends BaseService{
     }
 
     savePackageId(invitation: InvitationExtended) {
-        return this.http.post('http://localhost:65192/api/Invitation/SavePackageId',
+        return this.http.post(this.apiRoute + 'Invitation/SavePackageId',
             JSON.stringify(invitation),
             { headers: this.headers })
             .map((response: Response) =>{
@@ -76,7 +75,7 @@ export class InvitationService extends BaseService{
     }
 
     endInvite(id: number) {
-        return this.http.get('http://localhost:65192/api/Invitation/EndInvitation/' + id)
+        return this.http.get(this.apiRoute + 'Invitation/EndInvitation/' + id)
             .map((response: Response) => 
                 response.text()
             ).catch(error => 
@@ -85,7 +84,7 @@ export class InvitationService extends BaseService{
     }
 
     getInvitations(personId: string) {
-        return this.http.get('http://localhost:65192/api/Invitation/GetInvitations/' + personId)
+        return this.http.get(this.apiRoute + 'Invitation/GetInvitations/' + personId)
             .map((response: Response) =>
                 response.json()
             ).catch(error => 
@@ -94,7 +93,7 @@ export class InvitationService extends BaseService{
     }
 
     getUnrespondedInvitations(personId: string) {
-        return this.http.get('http://localhost:65192/api/Invitation/GetUnrespondedInvitations/' + personId)
+        return this.http.get(this.apiRoute + 'Invitation/GetUnrespondedInvitations/' + personId)
             .map((response: Response) =>
                 response.json()
             ).catch(error =>

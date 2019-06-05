@@ -9,8 +9,8 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { Person, Invitation } from '../../_models/index';
 import { UserService, InvitationService, AlertService, ToastrService, FilterService} from '../../_services/index';
-import { ConfirmComponent } from '../../_dialog/confirm.component';
-import { InviteResponseComponent } from '../../_dialog/invite-response.component';
+import { SendInvitationDialogComponent } from '../../_dialog/send-invitation-dialog.component';
+import { InvitationResponseDialogComponent } from '../../_dialog/invitation-response-dialog.component';
 import { InvitationStatusEnum } from '../../_models/enums/index';
 
 @Component({
@@ -49,7 +49,7 @@ export class InvitationComponent implements OnInit {
     
     showInviteResponseDialog(invitation: Invitation) {
 
-        this.dialogService.addDialog(InviteResponseComponent, {
+        this.dialogService.addDialog(InvitationResponseDialogComponent, {
             title: this.HasReceiverRole(invitation) ? "Mottagare" : "Avsändare",
             message: 'Bla bla confirm some action?',
             currentInvitation: invitation

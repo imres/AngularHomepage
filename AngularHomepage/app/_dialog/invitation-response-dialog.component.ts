@@ -1,4 +1,4 @@
-﻿import { Component, ViewContainerRef, Injector } from '@angular/core';
+﻿import { Component, ViewContainerRef, Injector, OnInit } from '@angular/core';
 import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
@@ -14,7 +14,7 @@ export interface ConfirmModel {
 
 @Component({
     selector: 'invite-response',
-    templateUrl: './app/_dialog/invite-response.component.html',
+    templateUrl: './app/_dialog/invitation-response-dialog.component.html',
     styles: [`#backgroundColorBlur { 
                 background-color: rgba(0, 0, 0, 0.27);
                 position: fixed;
@@ -22,7 +22,7 @@ export interface ConfirmModel {
                 width: 100%; }`]
 })
 
-export class InviteResponseComponent extends DialogComponent<ConfirmModel, boolean> implements ConfirmModel {
+export class InvitationResponseDialogComponent extends DialogComponent<ConfirmModel, boolean> implements ConfirmModel, OnInit {
     title: string;
     message: string;
     model: Invitation = new Invitation();
@@ -35,13 +35,19 @@ export class InviteResponseComponent extends DialogComponent<ConfirmModel, boole
 
     constructor(
         injector: Injector,
-        dialogService: DialogService, private invitationService: InvitationService, private consignmentService: ConsignmentService,
+        dialogService: DialogService,
+        private invitationService: InvitationService,
+        private consignmentService: ConsignmentService,
         private alertService: AlertService,
         public toastr: ToastsManager, vcr: ViewContainerRef) {
 
         super(dialogService);
 
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    }
+
+    ngOnInit() {
+        this.currentInvitation.ReceiverPhoneNumber = this.currentUser.PhoneMobile;
     }
 
     private setPersonId() {

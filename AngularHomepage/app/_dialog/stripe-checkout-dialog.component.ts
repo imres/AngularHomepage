@@ -12,7 +12,7 @@ export interface ConfirmModel {
 
 @Component({
     selector: 'stripe-checkout',
-    templateUrl: './app/_dialog/stripe-checkout.component.html',
+    templateUrl: './app/_dialog/stripe-checkout-dialog.component.html',
     styles: [`#backgroundColorBlur { 
                 background-color: rgba(0, 0, 0, 0.27);
                 position: fixed;
@@ -20,7 +20,7 @@ export interface ConfirmModel {
                 width: 100%; }`]
 })
 
-export class StripeCheckout extends DialogComponent<ConfirmModel, boolean> implements ConfirmModel
+export class StripeCheckoutDialogComponent extends DialogComponent<ConfirmModel, boolean> implements ConfirmModel
 {
     title: string;
     message: string;

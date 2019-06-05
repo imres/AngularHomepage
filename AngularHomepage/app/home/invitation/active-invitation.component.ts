@@ -162,15 +162,14 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
         return invitation.ReceiverPersonId == this.currentUser.PersonId ? true : false;
     }
 
-    translateInvitationStatus(invite: Invitation){
-        if (this.currentUser.PersonId == invite.SenderPersonId && invite.Status == InvitationStatusEnum.Accepted)
-            return "Väntar på betalning från köparen.";
-        else if (this.currentUser.PersonId == invite.SenderPersonId && invite.Status == InvitationStatusEnum.AmountDeposited)
-            return "Köparen har betalat den begärda summan (" + invite.RequestedDepositAmount + "kr) för paketet och nu återstår det bara för dig att skicka det, tänk på att skicka paketet med PostNord och använda något fraktsätt som är spårbart.";
-        else if (this.currentUser.PersonId == invite.ReceiverPersonId && invite.Status == InvitationStatusEnum.Accepted)
-            return "Säljaren väntar på din betalning."
-        else if (this.currentUser.PersonId == invite.ReceiverPersonId && invite.Status == InvitationStatusEnum.AmountDeposited)
-            return "Paketet betalat, väntar på att säljaren ska skicka paketet och mata in kolli-id."
+    translatePaymentStatus(invite: Invitation){
+        if (this.HasReceiverRole(invite) && invite.Status == this.invitationStatus.Accepted) {
+            return 'Säljaren väntar på din betalning';
+        } else if (!this.HasReceiverRole(invite) && invite.Status == this.invitationStatus.Accepted) {
+            return 'Väntar på betalning från köparen';
+        } else if (invite.Status == this.invitationStatus.AmountDeposited) { 
+            return 'Betald';
+        }
     }
 
     routeToUserProfile(user: Person) {

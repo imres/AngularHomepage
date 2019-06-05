@@ -11,7 +11,7 @@ export interface ConfirmModel {
 
 @Component({
     selector: 'confirm',
-    templateUrl: './app/_dialog/confirm.component.html',
+    templateUrl: './app/_dialog/send-invitation-dialog.component.html',
     styles: [`#backgroundColorBlur {
                 background-color: rgba(0, 0, 0, 0.27);
                 position: fixed;
@@ -19,7 +19,7 @@ export interface ConfirmModel {
                 width: 100%; }`]
 })
 
-export class ConfirmComponent extends DialogComponent<ConfirmModel, boolean> implements ConfirmModel {
+export class SendInvitationDialogComponent extends DialogComponent<ConfirmModel, boolean> implements ConfirmModel {
     title:string;
     message:string;
     model: Invitation = new Invitation();

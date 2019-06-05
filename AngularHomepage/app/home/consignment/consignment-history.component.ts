@@ -7,8 +7,8 @@ import { Router } from '@angular/router';
 import { BasicComponent } from '../../shared/basic.component';
 import { Person, Invitation, Consignment, ActiveConsignment, Pager } from '../../_models/index';
 import { UserService, InvitationService, ConsignmentService, ToastrService, PagerService } from '../../_services/index';
-import { ConfirmComponent } from '../../_dialog/confirm.component';
-import { InviteResponseComponent } from '../../_dialog/invite-response.component';
+import { SendInvitationDialogComponent } from '../../_dialog/send-invitation-dialog.component';
+import { InvitationResponseDialogComponent } from '../../_dialog/invitation-response-dialog.component';
 
 
 @Component({
@@ -77,7 +77,7 @@ export class ConsignmentHistoryComponent extends BasicComponent implements OnIni
     }
 
     showConfirm(event: any) {
-        this.dialogService.addDialog(ConfirmComponent, {
+        this.dialogService.addDialog(SendInvitationDialogComponent, {
             title: 'Skicka inbjudan',
             message: 'Bla bla confirm some action?'
         })

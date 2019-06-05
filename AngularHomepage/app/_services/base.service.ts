@@ -10,11 +10,14 @@ import { HttpStatusCode } from '../_models/enums';
     
 export class BaseService {
     protected toastrService: ToastrService;
+    protected http: Http;
 
     constructor(injector: Injector) {
         this.toastrService = injector.get(ToastrService);
+        this.http = injector.get(Http);
      }
 
+     protected apiRoute = 'http://192.168.0.172:65192/api/';
     headers = new Headers({
         'Content-Type': 'application/json'
     });

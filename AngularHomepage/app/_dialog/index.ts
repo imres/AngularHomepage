@@ -1,3 +1,3 @@
-﻿export { ConfirmComponent } from '../_dialog/confirm.component';
-export { InviteResponseComponent } from '../_dialog/invite-response.component';
-export { StripeCheckout } from '../_dialog/stripe-checkout.component';
+﻿export { SendInvitationDialogComponent as ConfirmComponent } from './send-invitation-dialog.component';
+export { InvitationResponseDialogComponent as InviteResponseComponent } from './invitation-response-dialog.component';
+export { StripeCheckoutDialogComponent as StripeCheckout } from './stripe-checkout-dialog.component';

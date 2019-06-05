@@ -1,17 +1,20 @@
-﻿import { Injectable } from '@angular/core';
+﻿import { Injectable, Injector } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Person, Invitation, Consignment, ActiveConsignment } from '../_models/index';
 import 'rxjs/add/operator/map';
+import { BaseService } from './base.service';
 
 @Injectable()
-export class ConsignmentService {
+export class ConsignmentService extends BaseService {
     private consignmentListSource = new BehaviorSubject<ActiveConsignment>(null);
 
     consignmentList = this.consignmentListSource.asObservable();
 
-    constructor(private http: Http) { }
+    constructor(injector: Injector) {
+        super(injector);
+    }
 
     headers = new Headers({
         'Content-Type': 'application/json'
@@ -22,7 +25,7 @@ export class ConsignmentService {
     }
 
     acceptInvite(invitation: Invitation) {
-        return this.http.post('http://localhost:65192/api/Consignment/AddConsignment',
+        return this.http.post(this.apiRoute + 'Consignment/AddConsignment',
             JSON.stringify(invitation),
             { headers: this.headers })
             .map((response: Response) =>
@@ -31,28 +34,28 @@ export class ConsignmentService {
     }
 
     getConsignments(personId: string) {
-        return this.http.get('http://localhost:65192/api/Consignment/GetConsignments/' + personId)
+        return this.http.get(this.apiRoute + 'Consignment/GetConsignments/' + personId)
             .map((response: Response) =>
                 response.json()
             );
     }
 
     getAllConsignments() {
-        return this.http.get('http://localhost:65192/api/Consignment/GetAllConsignments/')
+        return this.http.get(this.apiRoute + 'Consignment/GetAllConsignments/')
             .map((response: Response) =>
                 response.json()
             );
     }
 
     getArchivedConsignments(personId: string) {
-        return this.http.get('http://localhost:65192/api/Consignment/GetArchivedConsignments/' + personId)
+        return this.http.get(this.apiRoute + 'Consignment/GetArchivedConsignments/' + personId)
             .map((response: Response) =>
                 response.json()
             );
     }
 
     getFinishedConsignments(personId: string) {
-        return this.http.get('http://localhost:65192/api/Consignment/GetFinishedConsignments/' + personId)
+        return this.http.get(this.apiRoute + 'Consignment/GetFinishedConsignments/' + personId)
             .map((response: Response) =>
                 response.json()
             );
@@ -60,7 +63,7 @@ export class ConsignmentService {
 
     archiveConsignment(packageId: string) {
         console.log("archive service call: ", packageId);
-        return this.http.get('http://localhost:65192/api/Consignment/ArchiveConsignment/' + packageId)
+        return this.http.get(this.apiRoute + 'Consignment/ArchiveConsignment/' + packageId)
             .map((response: Response) => {
                 response.json();
             });

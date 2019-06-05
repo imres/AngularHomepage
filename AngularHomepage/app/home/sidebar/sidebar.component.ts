@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { BasicComponent } from '../../shared/basic.component';
 import { Person, Invitation, ActiveConsignment } from '../../_models/index';
 import { UserService, InvitationService, ToastrService, ConsignmentService, PagerService } from '../../_services/index';
-import { ConfirmComponent } from '../../_dialog/confirm.component';
+import { SendInvitationDialogComponent } from '../../_dialog/send-invitation-dialog.component';
 import { InvitationStatusEnum } from '../../_models/enums/index';
 import { FilterPipe } from '../../filter.pipe';
 
@@ -42,7 +42,7 @@ export class SidebarComponent extends BasicComponent implements OnInit {
     }
 
     showConfirm(event: any) {
-        this.dialogService.addDialog(ConfirmComponent, {
+        this.dialogService.addDialog(SendInvitationDialogComponent, {
             title: 'Skicka inbjudan',
             message: 'Bla bla confirm some action?'
         })

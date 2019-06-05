@@ -1,20 +1,23 @@
-﻿import { Injectable } from '@angular/core';
+﻿import { Injectable, Injector } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 import { HttpStatusCode } from '../_models/enums/index';
+import { BaseService } from './base.service';
 
 @Injectable()
-export class AuthenticationService {
-    constructor(private http: Http) { }
+export class AuthenticationService extends BaseService {
+    constructor(injector: Injector) {
+        super(injector);
+    }
 
     headers = new Headers({
         'Content-Type': 'application/json'
     });
 
     bankIdAuth(personId: string) {
-        return this.http.get('http://localhost:65192/api/BankId/BankIdAuth/' + personId)
+        return this.http.get(this.apiRoute + 'BankId/BankIdAuth/' + personId)
             .map((response: Response) =>
                 response.json()
             ).catch(err => {
@@ -23,7 +26,7 @@ export class AuthenticationService {
     }
 
     bankIdCollect(bankIdAuthResponse: JSON) {
-        return this.http.post('http://localhost:65192/api/BankId/BankIdCollect',
+        return this.http.post(this.apiRoute + 'BankId/BankIdCollect',
             bankIdAuthResponse,
             { headers: this.headers })
             .map((response: Response) => {
@@ -44,7 +47,7 @@ export class AuthenticationService {
     }
 
     login(email: string, password: string) {
-        return this.http.post('http://localhost:65192/api/User/Auth',
+        return this.http.post(this.apiRoute + 'User/Auth',
             JSON.stringify({ Email: email, Password: password }),
             { headers: this.headers })
             .map((response: Response) => {
