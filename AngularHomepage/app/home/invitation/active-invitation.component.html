@@ -31,8 +31,8 @@
                                 <ng-container *ngIf="user.PersonId != currentUser.PersonId">
                                     <div *ngIf="user.PersonId == item.ReceiverPersonId || user.PersonId == item.SenderPersonId" class="col-4 active-invitation-card__header" [ngClass]="{'secondary-gradient' : HasReceiverRole(item), 'primary-gradient' : !HasReceiverRole(item)}">
                                         <div class="w-100 h-100" (click)="routeToUserProfile(user)">
-                                            <p class="invitation-title" *ngIf="HasReceiverRole(item)">Säljare</p>
-                                            <p class="invitation-title" *ngIf="!HasReceiverRole(item)">Köpare</p>
+                                            <h6 *ngIf="HasReceiverRole(item)">Säljare</h6>
+                                            <h6 *ngIf="!HasReceiverRole(item)">Köpare</h6>
 
                                             <p class="active-invitation-card__header-info card-text">
                                                 {{user.FirstName}} {{user.LastName}}
@@ -52,7 +52,7 @@
                             </ng-container>
 
                             <div class="col-8 active-invitation-card__body">
-                                <p class="invitation-title">{{item.Title}}</p>
+                                <h6>{{item.Title}}</h6>
                                 <p class="package-description">{{item.Description}}</p>
 
                                 <p class="card-text invitation-status" [ngClass]="{'alert alert-info mb-3' : !HasReceiverRole(item) && item.Status == invitationStatus.AmountDeposited}">{{translateInvitationStatus(item)}}</p>

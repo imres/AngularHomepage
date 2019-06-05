@@ -57,19 +57,17 @@
                 </div>
                 <div class="row">
                     <div *ngFor="let item of pagedItems" class="col-lg-6">
-                        <div class="card mb-3">
-                            <div class="card archived-consignment--card__header" (click)="routeToConsignmentDetail(item)">
-                                <div class="row">
-                                    <div class="col-4 text-center">
-                                        <img src="img/undraw_mail_cg1t.svg" alt="Accepterat" class="archived-consignment--card__img">
-                                    </div>
-                                    <div class="col-8 py-3 d-flex flex-column">
-                                        <h4>{{item.Title}}</h4>
-                                        <p class="package-description">{{item.Description}}</p>
-                                        <p class="package-description text-right">{{item.EndDate | date: 'yyyy-MM-dd hh:mm'}}</p>
+                        <div class="card archived-consignment--card" (click)="routeToConsignmentDetail(item)">
+                            <div class="row">
+                                <div class="col-4 text-center">
+                                    <img src="img/undraw_mail_cg1t.svg" alt="Accepterat" class="archived-consignment--card__img">
+                                </div>
+                                <div class="col-8 py-3 d-flex flex-column">
+                                    <h6>{{item.Title}}</h6>
+                                    <p class="package-description ellipsis">{{item.Description}}</p><br *ngIf="!item.Description">
+                                    <p class="package-description text-right archived-consignment--card__date">{{item.EndDate | date: 'yyyy-MM-dd hh:mm'}}</p>
 
-                                        <!--<div class="btn btn-primary btn-block mt-auto" ">Visa detaljer om försändelsen</div>-->
-                                    </div>
+                                    <!--<div class="btn btn-primary btn-block mt-auto" ">Visa detaljer om försändelsen</div>-->
                                 </div>
                             </div>
                         </div>

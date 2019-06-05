@@ -51,32 +51,32 @@
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
-                                <h4 class="alert-heading">Acceptera inbjudan</h4>
+                                <h6 class="alert-heading">Acceptera inbjudan</h6>
                                 <p>Du har fått en inbjudan, för att gå vidare till nästa steg måste du ange en av de tillgängliga betalningsmetoderna</p>
                                 <p class="mb-0">Att acceptera denna inbjudan är inte bindande, du har valet att avbryta innan du sätter in summan.</p>
                             </div>
-                            <p class="text-muted mb-0">Säljare:</p>
-                            <h3>
+                            <p class="text-muted mb-1">Säljare:</p>
+                            <h6>
                                 {{currentInvitation.SenderPersonId}}<span></span>
-                            </h3><hr />
+                            </h6><hr />
 
-                            <p class="text-muted mb-0">Paketinnehåll:</p>
-                            <h3>
+                            <p class="text-muted mb-1">Paketinnehåll:</p>
+                            <h6 class="mb-0">
                                 {{currentInvitation.Title}}
-                            </h3>
-                            <p *ngIf="currentInvitation.Description" class="text-muted">{{currentInvitation.Description}}</p>
+                            </h6>
+                            <p *ngIf="currentInvitation.Description" class="package-description mt-0">{{currentInvitation.Description}}</p>
                             <hr />
 
-                            <p class="text-muted mb-0">Pris:</p>
-                            <h3>
+                            <p class="text-muted mb-1">Pris:</p>
+                            <h6>
                                 {{currentInvitation.RequestedDepositAmount}}<span>:-</span>
-                            </h3>
+                            </h6>
                         </ng-container>
 
                         <ng-container *ngIf="dialogStep == 2">
-                            <h3>
-                                <small class="text-muted">Leveransadress: </small>
-                            </h3>
+                            <p class="text-muted mb-0">
+                                Leveransadress:
+                            </p>
                             <div class="form-check" (change)="customAddressRadio($event.target.value)">
                                 <input  class="form-check-input" type="radio" name="deliveryAddressRadios" id="defaultAddress" value="option1" checked>
                                 <label class="form-check-label" for="deliveryAddressRadios">
@@ -105,9 +105,9 @@
                                 <div *ngIf="customDeliveryCity.dirty && !customDeliveryCity.valid" class="help-block">Fyll i en giltig postort eller välj att använda din folkbokförda adress!</div>
                             </div>
                             
-                            <h3 class="mt-2">
-                                <small class="text-muted">Mobilnummer för SMS-avisering: </small>
-                            </h3>
+                            <p class="text-muted mb-0 mt-3">
+                                Mobilnummer för SMS-avisering:
+                            </p>
                             <div>
                                 <!-- <label for="customDeliveryAddress">Mobilnummer för SMS-avisering</label> -->
                                 <input type="text" class="form-control mb-2" name="receiverPhoneNumber" placeholder="Mobilnummer (valfritt)"

@@ -11,7 +11,7 @@
                     <p class="card-text">
                         Läs mer hur du kommer igång på några minuter eller skicka en inbjudan.
                     </p>
-                    <a href="#" class="btn btn-primary" (click)=showConfirm($event)>Skicka inbjudan</a>
+                    <a href="#" class="btn btn-primary" (click)=showConfirm($event)>Sälj paket</a>
                 </div>  
             </div>
         </div>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="card-body">
                     
-                    <p class="invitation-title">{{item.Title}}</p>
+                    <h6>{{item.Title}}</h6>
                     <p class="package-description ellipsis">{{item.Description}}</p>
                     <div class="consignment-card__info">
                         <p class="card-text" *ngIf="currentUser.PersonId == item.SenderPersonId && item.Consignee?.address?.city">Ditt paket är påväg till {{item.Consignee?.address?.city}}</p>
