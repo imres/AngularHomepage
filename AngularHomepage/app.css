@@ -646,10 +646,10 @@ btn.btn-primary:active, .btn-primary:focus{
     border-radius: 0.25rem;
 }
 
-.dropdown-menu--searchbar__right {
+/* .dropdown-menu--searchbar__right {
     right: 1rem;
     left: auto;
-}
+} */
 
 /* Cover */
 .primary-gradient {
@@ -1704,10 +1704,6 @@ label {
     .invitation-status {
         color: var(--black);
         font-weight: 500;
-    }
-
-    .consignment-detail__left-row {
-        padding-right: 0 !important;
     }
 
     .consignment-detail__right-row {

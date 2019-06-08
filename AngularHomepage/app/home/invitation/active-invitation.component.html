@@ -94,7 +94,7 @@
                                 <ng-container *ngFor="let user of users">
                                     <ng-container *ngIf="user.PersonId != currentUser.PersonId">
                                         <div *ngIf="user.PersonId == item.ReceiverPersonId || user.PersonId == item.SenderPersonId" class="list-group-item list-group-item-action list-group-item-primary active-invitation-card__header" [ngClass]="{'secondary-gradient' : HasReceiverRole(item), 'primary-gradient' : !HasReceiverRole(item)}">
-                                            <div class="w-100 h-100" (click)="routeToUserProfile(user)">
+                                            <div class="w-100 h-100 text-center" (click)="routeToUserProfile(user)">
                                                 <p class="invitation-title" *ngIf="HasReceiverRole(item)">Säljare</p>
                                                 <p class="invitation-title" *ngIf="!HasReceiverRole(item)">Köpare</p>
 
