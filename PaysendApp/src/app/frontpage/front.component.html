@@ -1,0 +1,113 @@
+﻿<navbar-front></navbar-front>
+
+<!-- Cover -->
+   
+<section class="center-flex cover primary-gradient">
+    <div id="cover-caption">
+        <div class="container">
+            <div class="col-sm-12 text-white">
+                <h2 class="display-3 font-weight-bold">paysend</h2>
+                <p>Säkra betalningar för privatpaket</p>
+                <div class="row">
+                    <div class="col-sm-6 text-sm-right mt-3">
+                        <div [routerLink]="['/register']" role="button" class="btn btn-primary btn-cover p-3 width-205px">Registrera en användare</div>
+                    </div>
+                    <div class="col-sm-6 text-sm-left mt-3">
+                        <div (click)="scrollToElement(guide)" class="btn btn-outline-primary-2 btn-cover p-3 width-205px">Så här fungerar det</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section 1 -->
+<div class="py-navbar">
+    <div class="container section-content text-center">
+        <h4 class="card-title my-2">Trygghet för dig som köper eller säljer begagnat på internet</h4>
+        <div class="row justify-content-center py-2">
+            <div class="card text-center width-15 mx-5 my-3">
+                <!--<div class="text-center">
+                    <img src="img/undraw_envelope_n8lc.svg" alt="Säljare" class="guide-image">
+                </div>-->
+                <img src="../../assets/img/woman-package.jpg" class="card-img-top frontpage-card-img" alt="Woman receiving a package">
+                <div class="card-body">
+                    <h6>Köpare</h6>
+                    <p class="card-text">Som köpare kan du känna dig trygg att du kommer att få paketet du betalat för. För om säljaren inte skickar paketet inom 48h överförs pengarna automatiskt tillbaka till dig.</p>
+                </div>
+            </div>
+            <div class="card text-center width-15 mx-5 my-3">
+                <!--<div class="text-center">
+                    <img src="img/undraw_make_it_rain_iwk4.svg" alt="Säljare" class="guide-image">
+                </div>-->
+                <img src="../../assets/img/macbook-paysend.jpg" class="card-img-top frontpage-card-img" alt="Man with MacBook">
+                <div class="card-body">
+                    <h6>Säljare</h6>
+                    <p class="card-text">Som säljare slipper du oroa dig om ifall du kommer att få betalt för ditt paket, du ser att köparen har betalat innan du behöver skicka paketet.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Section 2 -->
+<div #guide class="py-navbar bg-grey">
+    <h4 class="card-title text-center my-2">Enkelt och säkert för säljare och köpare</h4>
+    <div class="container section-content">
+        <guide></guide> 
+    </div>
+</div>
+
+<!-- Section 3 -->
+<div class="p-6 text-center pattern-waves">
+    <h4 class="card-title mb-3">Kom igång med Paysend nu!</h4>
+    <button [routerLink]="['/register']" role="button" class="btn btn-primary btn-lg margin-md-top">Skapa ett konto.</button>
+</div>
+
+<!-- Footer -->
+<footer id="myFooter">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 myCols">
+                <h5>Get started</h5>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Sign up</a></li>
+                    <li><a href="#">Downloads</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-3 myCols">
+                <h5>About us</h5>
+                <ul>
+                    <li><a href="#">Company Information</a></li>
+                    <li><a href="#">Contact us</a></li>
+                    <li><a href="#">Reviews</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-3 myCols">
+                <h5>Support</h5>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Help desk</a></li>
+                    <li><a href="#">Forums</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-3 myCols">
+                <h5>Legal</h5>
+                <ul>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="social-networks">
+        <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="google"><i class="fab fa-google-plus-g"></i></a>
+    </div>
+    <div class="footer-copyright">
+        <p>© 2016 Copyright Text </p>
+    </div>
+</footer>

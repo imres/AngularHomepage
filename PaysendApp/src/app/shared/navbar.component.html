@@ -1,0 +1,88 @@
+﻿<!-- Navbar till icke inloggad besökare -->
+<nav class="navbar navbar-expand-sm navbar-light fixed-top nav-main justify-content-between">
+    <a class="navbar-brand" id="logotype" href="#" [routerLink]="['/front']">paysend</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="nav-item d-none d-sm-block">
+        <div id="searchbar">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
+                </div>
+                <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Sök efter användare eller försändelse">
+            </div>
+        </div>
+        <div *ngIf="searchText" class="dropdown-menu dropdown-menu--searchbar show py-0">
+            <!-- <div *ngFor="let item of users | filter: searchText" class="p-3">
+                <div class="mb-0" *ngIf="item === -1">
+                    <div *ngFor="let item of allConsignments | filter: searchText">
+                        <div *ngIf="item !== -1" class="link px-1" (click)="routeToConsignmentDetail(item)">{{item.Title}}</div>
+                        <div *ngIf="item === -1" class="px-1">Ingen användare eller försändelse matchar sökningen</div>
+                    </div>
+                </div>
+                <div *ngIf="item !== -1" class="link px-1" data-toggle="modal" data-target="#loginModal"><i class="fas fa-user-circle"></i> {{item.FirstName}} {{item.LastName}}</div>
+            </div> -->
+        </div>
+    </div>
+    <a href="" class="nav-item nav-link d-none d-sm-block" [routerLink]="['/login']"><i class="fas fa-sign-in-alt fa-fww"></i>Logga in</a>
+
+    <div class="nav-item collapse w-100" id="navbarSupportedContent">
+        <ul class="nav flex-column">
+            <!--<li class="nav-item mx-1">
+                <a href="" class="nav-link" [routerLink]="['/login']">Spåra paket</a>
+            </li>
+
+            <li class="nav-item mx-1">
+                <a href="" class="nav-link" [routerLink]="['/login']">Skapa försändelse</a>
+            </li>-->
+
+            <li class="nav-item">
+                <button href="" class="btn btn-block btn-primary my-3 pl-0" [routerLink]="['/login']"><i class="fas fa-sign-in-alt fa-fww"></i>Logga in</button>
+            </li>
+            <li class="nav-item">
+                <div id="searchbar">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
+                        </div>
+                        <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Sök efter användare eller försändelse">
+                    </div>
+                </div>
+                <div *ngIf="searchText" class="dropdown-menu dropdown-menu--searchbar show py-0">
+                    <!-- <div *ngFor="let item of users | filter: searchText" class="p-3">
+                        <div class="mb-0" *ngIf="item === -1">
+                            <div *ngFor="let item of allConsignments | filter: searchText">
+                                <div *ngIf="item !== -1" class="link px-1" (click)="routeToConsignmentDetail(item)">{{item.Title}}</div>
+                                <div *ngIf="item === -1" class="px-1">Ingen användare eller försändelse matchar sökningen</div>
+                            </div>
+                        </div>
+                        <div *ngIf="item !== -1" class="link px-1"><i class="fas fa-user-circle"></i> {{item.firstName}} {{item.lastName}}</div>
+                    </div> -->
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog danger" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Begäran misslyckades</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Du måste logga in för att besöka en användare!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" [routerLink]="['/login']" data-dismiss="modal">Logga in</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Stäng</button>
+            </div>
+        </div>
+    </div>
+</div>

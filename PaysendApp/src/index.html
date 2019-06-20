@@ -1,14 +1,74 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>PaysendApp</title>
-  <base href="/">
+    <base href="/" />
+    <title>Angular 2 User Registration and Login Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <!-- bootstrap css -->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">-->
+    <link href="/assets/bootstrap-css/bootstrap.css" rel="stylesheet" />
+    <link href="/assets/Content/Footer-with-social-icons.css" rel="stylesheet" />
+    
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>-->
+    <script src="/assets/bootstrap-js/bootstrap.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>-->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    
+    <script type="text/javascript">
+        var stripe = Stripe('pk_test_8KkoVLMTzkhfC13XXvKHEuMO'); // use your test publishable key
+        console.log("stripe:", stripe);
+        var elements = stripe.elements();
+    </script>
+    <!-- application css -->
+    <link href="styles.css" rel="stylesheet" />
+    <!--<link href="/fonts/fontawesome/css/fontawesome.min.css" rel="stylesheet" />-->
+
+    
+
+    <!-- polyfill(s) for older browsers -->
+    <!-- <script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+
+    <script src="systemjs.config.js"></script> -->
+    <!-- <script>
+        System.import('app').catch(function (err) { console.error(err); });
+    </script> -->
+    <!-- <link href="node_modules/ng2-toastr/bundles/ng2-toastr.min.css" rel="stylesheet" />
+    <script src="node_modules/ng2-toastr/bundles/ng2-toastr.min.js"></script> -->
+    
+    <!-- Logs out user (clears localStorage) after 10 minutes when you close the tab/browser -->
+    <!-- <script>
+        window.onbeforeunload = function (e) {
+            let date = Date.now();
+            localStorage.setItem("lastactivity", date);
+        };
+        window.onload = function () {
+            let date1 = localStorage.getItem('lastactivity');
+            let date2 = Date.now();
+            if (date1 !== undefined) {
+                let difference = date2 - date1;
+                let diff = ((difference) / 1000).toFixed(0);
+                if (diff > 600) {
+                    localStorage.clear();
+                    //localStorage.removeItem(key);  for removing a single item
+                    location.reload();
+                }
+            }
+        };
+    </script> -->
 </head>
 <body>
-  <app-root></app-root>
+    <app>Loading...</app>
 </body>
 </html>

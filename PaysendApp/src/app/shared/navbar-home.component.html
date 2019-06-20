@@ -1,0 +1,60 @@
+﻿<!-- Navbar för inloggade konton -->
+<nav class="navbar navbar-light bg-faded fixed-top nav-main justify-content-between" id="navbar-home">
+    <a class="navbar-brand" id="logotype" href="" [routerLink]="['/home']">paysend</a>
+
+    <div class="nav-item d-none d-lg-block">
+        <div id="searchbar">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
+                </div>
+                <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Sök efter användare eller försändelse">
+            </div>
+        </div>
+        <div *ngIf="searchText" class="dropdown-menu dropdown-menu--searchbar show py-0">
+            <!-- <div *ngFor="let item of users | filter: searchText" class="p-3">
+                <div class="mb-0" *ngIf="item === -1">
+                    <div *ngFor="let item of allConsignments | filter: searchText">
+                        <div *ngIf="item !== -1" class="link px-1" (click)="routeToConsignmentDetail(item)">{{item.Title}}</div>
+                        <div *ngIf="item === -1" class="px-1">Ingen användare eller försändelse matchar sökningen</div>
+                    </div>
+                </div>
+                <div *ngIf="item !== -1" class="link px-1" (click)="routeToUserProfile(item)"><i class="fas fa-user-circle"></i> {{item.FirstName}} {{item.LastName}}</div>
+            </div> -->
+        </div>
+    </div>
+
+    <ul class="nav flex-row">
+        <li class="nav-item noselect">
+            <a class="navbar-brand" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle"></i> {{currentUser.FirstName}} {{currentUser.LastName}} <i class="fas fa-angle-down" aria-hidden="true"></i></a>
+            <div class="dropdown-menu dropdown-menu-right width-15 py-0">
+                <a href="#" class="dropdown-item" [routerLink]="['/profile']"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i> Min profil</a>
+
+                <ng-container *ngIf="currentUser.UserRights == 10">
+                    <div class="dropdown-divider m-0"></div>
+                    <a href="#" class="dropdown-item" [routerLink]="['/admin-panel']"><i class="fas fa-database fa-fw" aria-hidden="true"></i> Administratörsverktyg</a>
+                </ng-container>
+                <div class="dropdown-divider m-0"></div>
+                <a href="#" class="dropdown-item" (click)="logOut()"  [routerLink]="['/front']" role="button"><i class="fas fa-sign-out-alt fa-fw" aria-hidden="true"></i> Logga ut</a>
+            </div>
+        </li>
+        <li class="nav-item">
+            <div data-toggle="dropdown" class="notification-bell" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="far fa-bell fa-2x" aria-hidden="true" id="bell"><span class="badge badge-pill badge-primary" *ngIf="notifications > 0">{{notifications}}</span></i>
+                <!-- <h6 *ngIf="notifications > 0" class="notification-counter">{{notifications}}</h6> -->
+            </div>
+            <div class="dropdown-menu dropdown-menu-right notification-dropdown">
+                <div class="width-25 text-center py-4" *ngIf="notifications == 0">  
+                    <span>Du har inga händelser</span>
+                    <a href="#" class="btn btn-primary mt-2" (click)=showConfirm($event)>Skicka inbjudan till en ny försändelse</a>
+                </div>
+                <div class="width-25">
+                    <div class="container-fluid">
+                        <!-- <invite-notifications *ngIf="invitationNotifications?.length > 0" [invitations]="invitations" [invitationNotifications]="invitationNotifications"></invite-notifications>
+                        <consignment-notification *ngIf="finishedConsignments?.length > 0"></consignment-notification> -->
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</nav>
