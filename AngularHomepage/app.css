@@ -182,7 +182,7 @@
 
 #searchbar {
     padding: 0;
-    width: 25rem;
+    min-width: 25rem;
 }
 
 a {
@@ -1424,9 +1424,9 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 /* Prio 1 */
-input:focus {
-    /* border: none !important;
-    box-shadow: var(--bottom-shadow-darker) !important; */
+.fa-fww {
+    width: 1.5rem;
+    text-align: center;
 }
 
 input[type="radio"]:focus {
