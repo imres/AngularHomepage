@@ -24,9 +24,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/bootstrap-css/bootstrap.css",
+              "src/assets/Content/Footer-with-social-icons.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/bootstrap-js/bootstrap.js"
+            ]
           },
           "configurations": {
             "production": {
