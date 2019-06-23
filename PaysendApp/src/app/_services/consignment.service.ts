@@ -39,20 +39,20 @@ export class ConsignmentService extends BaseService {
     }
 
     getAllConsignments() {
-        return this.http.get(this.apiRoute + 'Consignment/GetAllConsignments/');
+        return this.http.get<ActiveConsignment[]>(this.apiRoute + 'Consignment/GetAllConsignments/');
     }
 
     getArchivedConsignments(personId: string) {
-        return this.http.get(this.apiRoute + 'Consignment/GetArchivedConsignments/' + personId);
+        return this.http.get<ActiveConsignment[]>(this.apiRoute + 'Consignment/GetArchivedConsignments/' + personId);
     }
 
     getFinishedConsignments(personId: string) {
-        return this.http.get(this.apiRoute + 'Consignment/GetFinishedConsignments/' + personId);
+        return this.http.get<ActiveConsignment[]>(this.apiRoute + 'Consignment/GetFinishedConsignments/' + personId);
     }
 
     archiveConsignment(packageId: string) {
         console.log("archive service call: ", packageId);
-        return this.http.get(this.apiRoute + 'Consignment/ArchiveConsignment/' + packageId);
+        return this.http.get<ActiveConsignment[]>(this.apiRoute + 'Consignment/ArchiveConsignment/' + packageId);
     }
     /*getById(id: number) {
         return this.http.get('/api/users/' + id, this.jwt())

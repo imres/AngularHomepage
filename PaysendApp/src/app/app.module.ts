@@ -23,6 +23,14 @@ import { AdminPanel } from './home/administrator/admin-panel.component';
 import { FilterPipe } from './filter.pipe';
 import { AlertComponent } from './_directives';
 import { LoadingComponent } from './_directives/loading.component';
+import { ConsignmentHistoryComponent } from './home/consignment/consignment-history.component';
+import { ConsignmentDetailComponent } from './home/consignment/consignment-detail.component';
+import { ConsignmentNotificationComponent } from './home/consignment/consignment-notification.component';
+import { InvitationComponent } from './home/invitation/invitation.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserSettingsComponent } from './user-profile/user-settings.component';
+import { FriendsComponent } from './user-profile/friends.component';
+import { UserComponent } from './user-profile/user.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +50,15 @@ import { LoadingComponent } from './_directives/loading.component';
     AdminPanel,
     FilterPipe,
     AlertComponent,
-    LoadingComponent
+    LoadingComponent,
+    ConsignmentHistoryComponent,
+    ConsignmentDetailComponent,
+    ConsignmentNotificationComponent,
+    InvitationComponent,
+    UserProfileComponent,
+    UserSettingsComponent,
+    FriendsComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

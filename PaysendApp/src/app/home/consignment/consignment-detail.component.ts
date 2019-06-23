@@ -53,7 +53,7 @@ export class ConsignmentDetailComponent extends BasicComponent implements OnInit
 
     getAllConsignments() {
         this.consignmentService.getAllConsignments().subscribe(res => {
-            // this.allConsignments = res;
+            this.allConsignments = res;
 
             this.getSelectedConsignmentPackageId();
         });
@@ -68,7 +68,7 @@ export class ConsignmentDetailComponent extends BasicComponent implements OnInit
 
     getSelectedConsignment() {
         this.selectedConsignment = this.allConsignments.filter(x => { return x.PackageId == this.selectedConsignmentPackageId });
-        console.log(this.selectedConsignment);
+        console.log('Selected Consignment:', this.selectedConsignment);
 
         if (this.selectedConsignment) {
             var eventList = this.selectedConsignment.map(x => x.Events);

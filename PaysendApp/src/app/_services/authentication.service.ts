@@ -26,7 +26,7 @@ export class AuthenticationService extends BaseService {
             }));
     }
 
-    bankIdCollect(bankIdAuthResponse: JSON) {
+    bankIdCollect(bankIdAuthResponse) {
         return this.http.post(this.apiRoute + 'BankId/BankIdCollect',
             bankIdAuthResponse,
             { headers: this.headers })
@@ -50,7 +50,7 @@ export class AuthenticationService extends BaseService {
     login(email: string, password: string) {
         return this.http.post(this.apiRoute + 'User/Auth', {Email: email, Password: password})
             .pipe(map((user: Person) => {
-                if (user && user.Token) { //&& user.Token
+                if (user && user.Token) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
                 }

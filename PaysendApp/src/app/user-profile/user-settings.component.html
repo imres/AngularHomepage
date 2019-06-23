@@ -1,0 +1,160 @@
+﻿ <!-- Navbar -->
+<navbar-home [invitations]="invitations" [invitationNotifications]="invitationNotifications"></navbar-home>
+
+<!-- Kontoinställningar -->
+
+<section id="user-settings" class="col-12 card">
+    <div class="col-sm-12 justify-content-center">
+        <div class="section-content">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <h4 class="py-3 pl-1 mb-0">Kontoinställningar</h4>
+                    </div>
+                    <div class="list-group list-group-flush w-100">
+
+                        <div *ngIf="!editActive">
+                            <form name="form" (ngSubmit)="f.form.valid && password.value == confirmPassword.value && updateAccount()" #f="ngForm">
+                                <div class="form-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !alias.valid }">
+                                    <!--<strong class="user-settings-title">Användarnamn:</strong>-->
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon2"><i class="fas fa-user"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control col-12 col-md-6" name="alias" [(ngModel)]="currentUser.Alias" #alias="ngModel" placeholder="Användarnamn" disabled />
+                                    </div>
+                                </div>
+                                <div class="form-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+                                    <!--<strong class="user-settings-title">Mailadress:</strong>-->
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon2"><i class="fas fa-envelope"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control col-12 col-md-6" name="email" [(ngModel)]="currentUser.Email" #email="ngModel" placeholder="{{currentUser.Email}}" disabled />
+                                    </div>
+                                    <div *ngIf="f.submitted && !email.valid" class="help-block">Fyll i giltig e-post</div>
+                                </div>
+                                <div class="list-group-item">
+                                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                                        <!--<strong class="user-settings-title">Lösenord:</strong>-->
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon2"><i class="fas fa-key"></i></span>
+                                            </div>
+                                            <input type="password" class="form-control col-12 col-md-6" name="password" [(ngModel)]="currentUser.Password" #password="ngModel" disabled />
+                                        </div>
+                                        <div *ngIf="f.submitted && !password.valid" class="help-block">Fyll i lösenord</div>
+                                    </div>
+                                </div>
+                                <div class="form-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !phoneMobile.valid }">
+                                    <!--<strong class="user-settings-title">Mobilnummer:</strong>-->
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon2"><i class="fas fa-phone"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control col-12 col-md-6" name="phoneMobile" [(ngModel)]="currentUser.PhoneMobile" #phoneMobile="ngModel" placeholder="{{currentUser.PhoneMobile}}" disabled />
+                                    </div>
+                                    <div *ngIf="f.submitted && !phoneMobile.valid" class="help-block">Fyll i giltigt mobilnummer</div>
+                                </div>
+                                <div class="form-group list-group-item">
+                                    <!--<strong class="user-settings-title">Adress:</strong>-->
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon2"><i class="fas fa-home"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control col-12 col-md-6 " name="adress" value="{{currentUser.Address}}, {{currentUser.PostalCode}}" disabled />
+                                    </div>
+                                </div>
+                                <div class="row pl-1-25rem">
+                                    <div class="col-6 p-3">
+                                        <div (click)="editActive=true" class="btn btn-primary text-white" role="button">
+                                            Redigera kontouppgifter
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div *ngIf="editActive">
+                            <form name="form" (ngSubmit)="f.form.valid && password.value == confirmPassword.value && updateAccount()" #f="ngForm">
+                                <div class="form-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !alias.valid }">
+                                    <!--<strong class="user-settings-title">Användarnamn:</strong>-->
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon2"><i class="fas fa-user"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control col-12 col-md-6" name="alias" [(ngModel)]="currentUser.Alias" #alias="ngModel" placeholder="Användarnamn"/>
+                                    </div>
+                                </div>
+                                <div class="form-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+                                    <!--<strong class="user-settings-title">Mailadress:</strong>-->
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon2"><i class="fas fa-envelope"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control col-12 col-md-6" name="email" [(ngModel)]="currentUser.Email" #email="ngModel"  />
+                                    </div>
+                                    <div *ngIf="f.submitted && !email.valid" class="help-block">Fyll i giltig e-post</div>
+                                </div>
+                                <div class="list-group-item">
+                                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                                        <!--<strong class="user-settings-title">Nytt lösenord:</strong>-->
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon2"><i class="fas fa-key"></i></span>
+                                            </div>
+                                            <input type="password" class="form-control col-12 col-md-6" name="password" [(ngModel)]="currentUser.Password" #password="ngModel" placeholder="Nytt lösenord"/>
+                                        </div>
+                                        <div *ngIf="f.submitted && !password.valid" class="help-block">Fyll i lösenord</div>
+                                    </div>
+                                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && password.value !== confirmPassword.value}">
+                                        <!--<strong class="user-settings-title">Bekräfta nytt lösenord:</strong>-->
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon2"><i class="fas fa-key"></i></span>
+                                            </div>
+                                            <input type="password" class="form-control col-12 col-md-6" name="confirmPassword" [(ngModel)]="currentUser.ConfirmPassword" #confirmPassword="ngModel" placeholder="Bekräfta nytt lösenord"/>
+                                        </div>
+                                        <div *ngIf="f.submitted && password.value !== confirmPassword.value" class="help-block">Lösenorden matchar inte</div>
+                                    </div>
+                                </div>
+                                <div class="form-group list-group-item" [ngClass]="{ 'has-error': f.submitted && !phoneMobile.valid }">
+                                    <!--<strong class="user-settings-title">Mobilnummer:</strong>-->
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon2"><i class="fas fa-phone"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control col-12 col-md-6" name="phoneMobile" [(ngModel)]="currentUser.PhoneMobile" #phoneMobile="ngModel" placeholder="{{currentUser.PhoneMobile}}"/>
+                                    </div>
+                                    <div *ngIf="f.submitted && !phoneMobile.valid" class="help-block">Fyll i giltigt mobilnummer</div>
+                                </div>
+                                <div class="form-group list-group-item">
+                                    <!--<strong class="user-settings-title">Adress:</strong>-->
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon2"><i class="fas fa-home"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control col-12 col-md-6 " name="adress" value="{{currentUser.Address}}, {{currentUser.PostalCode}}" disabled />
+                                    </div>
+                                </div>
+                                <div class="row pl-1-25rem ">
+                                    <div class="col-6 p-3">
+                                        <button class="btn btn-primary text-white" role="button">
+                                            Spara ändringar
+                                        </button>
+                                    </div>
+                                    <div class="col-6 p-3 text-right">
+                                        <div *ngIf="editActive" (click)="editActive=false" class="btn btn-outline-primary" role="button">
+                                            Avbryt
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

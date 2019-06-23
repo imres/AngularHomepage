@@ -17,7 +17,7 @@ export class BaseService {
         this.http = injector.get(HttpClient);
      }
 
-     protected apiRoute = 'http://192.168.0.172:65192/api/';
+     protected apiRoute = 'http://localhost:65192/api/';
     headers = new HttpHeaders({
         'Content-Type': 'application/json'
     });

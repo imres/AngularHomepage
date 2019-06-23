@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { Person, Invitation, InvitationExtended } from '../_models/index';
+import { Person, Invitation, InvitationExtended, ActiveConsignment } from '../_models/index';
 // import 'rxjs/add/operator/map';
 import { BaseService } from './base.service';
 import { HttpStatusCode } from '../_models/enums/http-status-code.enum';
@@ -60,19 +60,19 @@ export class InvitationService extends BaseService{
     }
 
     savePackageId(invitation: InvitationExtended) {
-        return this.http.post(this.apiRoute + 'Invitation/SavePackageId',
-            JSON.stringify(invitation),
-            { headers: this.headers })
-            .pipe(map((response: Response) =>{
-                // this.ToastrCreateSuccess("Försändelse skapad");
-                return response.json();
-            }),catchError((error: Response) => {
-                if(error.status === HttpStatusCode.BAD_REQUEST){
-                    // this.ToastrCreateError(JSON.parse(error.text()));
-                }
+        return this.http.post<ActiveConsignment>(this.apiRoute + 'Invitation/SavePackageId', invitation);
+            // JSON.stringify(invitation),
+            // { headers: this.headers })
+            // .pipe(map((response: Response) =>{
+            //     // this.ToastrCreateSuccess("Försändelse skapad");
+            //     return response.json();
+            // }),catchError((error: Response) => {
+            //     if(error.status === HttpStatusCode.BAD_REQUEST){
+            //         // this.ToastrCreateError(JSON.parse(error.text()));
+            //     }
                 
-                return Observable.throw(false)
-            }));
+            //     return Observable.throw(false)
+            // }));
     }
 
     endInvite(id: number) {
@@ -85,12 +85,13 @@ export class InvitationService extends BaseService{
     }
 
     getInvitations(personId: string) {
-        return this.http.get(this.apiRoute + 'Invitation/GetInvitations/' + personId)
-            .pipe(map((response: Response) =>
-                response.json()
-            ),catchError(error => 
-                Observable.throw(false)
-            ));
+        return this.http.get<Invitation[]>(this.apiRoute + 'Invitation/GetInvitations/' + personId)
+            // .pipe(map((response: Response) =>
+            //     response.json()
+            // ),catchError(error => 
+            //     Observable.throw(false)
+            // ))
+            ;
     }
 
     getUnrespondedInvitations(personId: string) {

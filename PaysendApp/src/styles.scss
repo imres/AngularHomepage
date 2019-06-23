@@ -455,19 +455,19 @@ img {
     border-color: #3c3c3c;
     color: #ffffff;
 }*/
-select{
-    /* box-shadow: 0 1px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
-    border: none !important; */
-}
-input{
-    /* border: none !important;
-    box-shadow: var(--input-shadow); */
-}
+// select{
+//     box-shadow: 0 1px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+//     border: none !important;
+// }
+// input{
+//     border: none !important;
+//     box-shadow: var(--input-shadow);
+// }
 
-textarea{
-    /* border: none !important;
-    box-shadow: var(--bottom-shadow-darker); */
-}
+// textarea{
+//     border: none !important;
+//     box-shadow: var(--bottom-shadow-darker);
+// }
 
 input[type="radio"], input[type="checkbox"]{
     box-shadow: none !important;
@@ -477,10 +477,10 @@ input[type="radio"], input[type="checkbox"]{
     background-color: #f3f3f3 !important;
     border-color: #d2d2d2 !important;
 }
-.input-group-text{
-    /* box-shadow: 0 1px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
-    border: none; */
-}
+// .input-group-text{
+//     box-shadow: 0 1px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+//     border: none;
+// }
 .input-group-addon .fa {
     width: 18px;
     color: #8a8a8a;
@@ -507,9 +507,9 @@ svg rect{
     background: rgba(0, 0, 0, 0.13);
     padding-bottom: 10px !important;
 }
-.navbar-custom-sub .align-content-sub{
+// .navbar-custom-sub .align-content-sub{
     
-}
+// }
 #load-spinner{
     position: absolute;
     bottom: 0;
@@ -1280,10 +1280,10 @@ btn.btn-primary:active, .btn-primary:focus{
     background: #f0f0f0;
 }*/
 
-.sidebar-link[aria-expanded="true"]:hover {
-    /*background: #f0f0f0;*/
-    /* color: #000; */
-}
+// .sidebar-link[aria-expanded="true"]:hover {
+//     background: #f0f0f0;
+//     color: #000;
+// }
 
 #sidebar .active {
     border-right: 3px solid var(--primary);
@@ -1378,10 +1378,10 @@ btn.btn-primary:active, .btn-primary:focus{
     background: #f0f0f0;
 }*/
 
-.phone-sidebar-link[aria-expanded="true"]:hover {
-    /*background: #f0f0f0;*/
-    /* color: #000; */
-}
+// .phone-sidebar-link[aria-expanded="true"]:hover {
+//     background: #f0f0f0;
+//     color: #000;
+// }
 
 .phone-sidebar-link.sidebar-collapsed-link {
     padding-left: 2rem;
@@ -1494,10 +1494,10 @@ input[type="radio"]:focus {
     background: white;
 }
 
-.input-group-prepend .input-group-text {
-    /* border: none;
-    box-shadow: var(--input-shadow); */
-}
+// .input-group-prepend .input-group-text {
+//     border: none;
+//     box-shadow: var(--input-shadow);
+// }
 
 .fas.fa-search {
     background: white;

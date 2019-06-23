@@ -27,35 +27,26 @@ export class UserService extends BaseService {
     // }
 
     getAllUsers() {
-        return this.http.get(this.apiRoute + 'User/GetAllUsers')
-            .pipe(map((response: Response) =>
-                response.json()
-            ));
+        return this.http.get<Person[]>(this.apiRoute + 'User/GetAllUsers');
     }
 
     create(user: Person) {
         console.log(user);
-        return this.http.post(this.apiRoute + 'User/Register',
-            JSON.stringify(user),
-            { headers: this.headers })
-            .pipe(map((response: Response) =>
-                response.json()
-            ));
+        return this.http.post(this.apiRoute + 'User/Register', user);
     }
 
     update(user: Person) {
         console.log(user);
-        return this.http.post(this.apiRoute + 'User/Update',
-            JSON.stringify(user),
-            { headers: this.headers })
-            .pipe(map((response: Response) => {
-                let user = response.json();
-                if (user) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    return response.json();
-                }
-            }));
+        return this.http.post<Person>(this.apiRoute + 'User/Update', user);
+            // JSON.stringify(user),
+            // { headers: this.headers })
+            // .pipe(map((response: Response) => {
+            //     let user: Person;
+            //     if (user) {
+            //         // store user details and jwt token in local storage to keep user logged in between page refreshes
+            //         localStorage.setItem('currentUser', JSON.stringify(user));
+            //     }
+            // }));
     }
 
     // delete(id: number) {

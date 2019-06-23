@@ -27,7 +27,7 @@ export class BasicComponent
     users: Person[];
     user: Person[];
     currentUser: Person;
-    // loading = false;
+    loading = false;
 
     constructor(injector: Injector) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -72,21 +72,21 @@ export class BasicComponent
         return this.pagedItems;
     }
 
-    // getUsers() {
-    //     this.userService.getAllUsers().subscribe(res => {
-    //         this.users = res;
-    //     });
-    // }
+    getUsers() {
+        this.userService.getAllUsers().subscribe(res => {
+            this.users = res;
+        });
+    }
 
-    // getUserById(item: any) {
-    //     this.user = this.users.filter(x => x.PersonId == item.ReceiverPersonId && x.PersonId != this.currentUser.PersonId || x.PersonId == item.SenderPersonId && x.PersonId != this.currentUser.PersonId);
-    // }
+    getUserById(item: any) {
+        this.user = this.users.filter(x => x.PersonId == item.ReceiverPersonId && x.PersonId != this.currentUser.PersonId || x.PersonId == item.SenderPersonId && x.PersonId != this.currentUser.PersonId);
+    }
 
-    // getAllConsignments() {
-    //     this.consignmentService.getAllConsignments().subscribe(res => {
-    //         this.allConsignments = res;
-    //     });
-    // }
+    getAllConsignments() {
+        this.consignmentService.getAllConsignments().subscribe(res => {
+            this.allConsignments = res;
+        });
+    }
 
     scrollToElement($element: any): void {
         console.log($element);

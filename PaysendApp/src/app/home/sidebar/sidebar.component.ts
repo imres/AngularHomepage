@@ -36,8 +36,8 @@ export class SidebarComponent extends BasicComponent implements OnInit {
     }
 
     ngOnInit() {
-        // this.getAllConsignments();
-        // this.getUsers();
+        this.getAllConsignments();
+        this.getUsers();
 
     }
 

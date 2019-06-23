@@ -71,10 +71,10 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
         this.invitationService.invitationList.subscribe(invitations => {
             if (!invitations) return;
             this.activeInvitations = invitations.filter(x => { return x.Status > InvitationStatusEnum.Created && x.Status < InvitationStatusEnum.ConsignmentActive });
-            // this.orderBy('-StartDate', this.activeInvitations);
+            this.orderBy('-StartDate', this.activeInvitations);
         }); 
 
-        // this.getUsers();
+        this.getUsers();
         this.ConfigStripeCheckout();
     }
 
@@ -112,12 +112,12 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
 
     private getInvitations() {
         this.invitationService.getInvitations(this.currentUser.PersonId).subscribe(res => {
-            // this.invitations = res;
+            this.invitations = res;
 
             if (this.invitations != null)
                 this.activeInvitations = this.invitations.filter(x => { return x.Status > InvitationStatusEnum.Created && x.Status < InvitationStatusEnum.ConsignmentActive });
 
-            // this.orderBy('-StartDate', this.activeInvitations);
+            this.orderBy('-StartDate', this.activeInvitations);
 
             console.log(this.activeInvitations);
         });
@@ -134,7 +134,7 @@ export class ActiveInvitationComponent extends BasicComponent implements OnInit 
 
             this.invitationService.updateInvitations(this.invitations);
 
-            // this.consignmentService.updateConsignments(res);
+            this.consignmentService.updateConsignments(res);
         });
     }
 

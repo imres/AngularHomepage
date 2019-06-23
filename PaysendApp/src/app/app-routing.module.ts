@@ -5,13 +5,27 @@ import { LoginComponent, LoginSiteComponent } from './login';
 import { RegisterComponent } from './register';
 import { HomeComponent } from './home';
 import { AuthGuard } from './_guards';
+import { AdminPanel } from './home/administrator/admin-panel.component';
+import { ConsignmentHistoryComponent } from './home/consignment/consignment-history.component';
+import { ConsignmentDetailComponent } from './home/consignment/consignment-detail.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserSettingsComponent } from './user-profile/user-settings.component';
+import { UserComponent } from './user-profile/user.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard]},
   { path: 'front', component: FrontComponent },
   { path: 'login', component: LoginComponent },
   { path: 'loginsite', component: LoginSiteComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'profile', component: UserProfileComponent },
+  { path: 'admin-panel', component: AdminPanel },
+  { path: 'user-settings', component: UserSettingsComponent },
+  { path: 'history', component: ConsignmentHistoryComponent },
+  { path: 'consignment-detail/:PackageId', component: ConsignmentDetailComponent },
+  { path: 'user/:PersonId', component: UserComponent },
+
+  // otherwise redirect to home
   { path: '**', redirectTo: '' }
   
 ];
