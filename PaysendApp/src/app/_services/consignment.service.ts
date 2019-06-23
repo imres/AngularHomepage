@@ -26,48 +26,33 @@ export class ConsignmentService extends BaseService {
     }
 
     acceptInvite(invitation: Invitation) {
-        return this.http.post(this.apiRoute + 'Consignment/AddConsignment',
-            JSON.stringify(invitation),
-            { headers: this.headers })
-            .pipe(map((response: Response) =>
-                response.json()
-            ));
+        return this.http.post(this.apiRoute + 'Consignment/AddConsignment', invitation);
+            // JSON.stringify(invitation),
+            // { headers: this.headers })
+            // .pipe(map((response: Response) =>
+            //     response.json()
+            // ));
     }
 
     getConsignments(personId: string) {
-        return this.http.get(this.apiRoute + 'Consignment/GetConsignments/' + personId)
-            .pipe(map((response: Response) =>
-                response.json()
-            ));
+        return this.http.get<ActiveConsignment[]>(this.apiRoute + 'Consignment/GetConsignments/' + personId);
     }
 
     getAllConsignments() {
-        return this.http.get(this.apiRoute + 'Consignment/GetAllConsignments/')
-            .pipe(map((response: Response) =>
-                response.json()
-            ));
+        return this.http.get(this.apiRoute + 'Consignment/GetAllConsignments/');
     }
 
     getArchivedConsignments(personId: string) {
-        return this.http.get(this.apiRoute + 'Consignment/GetArchivedConsignments/' + personId)
-            .pipe(map((response: Response) =>
-                response.json()
-            ));
+        return this.http.get(this.apiRoute + 'Consignment/GetArchivedConsignments/' + personId);
     }
 
     getFinishedConsignments(personId: string) {
-        return this.http.get(this.apiRoute + 'Consignment/GetFinishedConsignments/' + personId)
-            .pipe(map((response: Response) =>
-                response.json()
-            ));
+        return this.http.get(this.apiRoute + 'Consignment/GetFinishedConsignments/' + personId);
     }
 
     archiveConsignment(packageId: string) {
         console.log("archive service call: ", packageId);
-        return this.http.get(this.apiRoute + 'Consignment/ArchiveConsignment/' + packageId)
-            .pipe(map((response: Response) => {
-                response.json();
-            }));
+        return this.http.get(this.apiRoute + 'Consignment/ArchiveConsignment/' + packageId);
     }
     /*getById(id: number) {
         return this.http.get('/api/users/' + id, this.jwt())

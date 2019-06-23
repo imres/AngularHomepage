@@ -5,6 +5,7 @@ import { map, catchError } from 'rxjs/operators';
 
 import { HttpStatusCode } from '../_models/enums/index';
 import { BaseService } from './base.service';
+import { User, Person } from '../_models';
 
 @Injectable()
 export class AuthenticationService extends BaseService {
@@ -47,25 +48,32 @@ export class AuthenticationService extends BaseService {
     }
 
     login(email: string, password: string) {
-        return this.http.post(this.apiRoute + 'User/Auth',
-            JSON.stringify({ Email: email, Password: password }),
-            { headers: this.headers })
-            .pipe(map((response: Response) => {
-                // login successful if there's a jwt token in the response
-                let user = response.json();
-                console.log('Inloggad - Test 2');
-                if (user) { //&& user.Token
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
+        return this.http.post(this.apiRoute + 'User/Auth', {Email: email, Password: password})
+            .pipe(map((user: Person) => {
+                if (user && user.Token) { //&& user.Token
+                // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
-                    console.log('Inloggad - Test 3');
                 }
-            }),catchError(err => {
-
-                if (err.status == HttpStatusCode.FORBIDDEN)
-                    return Observable.throw("Invalid login credentials");
-
-                return Observable.throw("Could not send request");
             }));
+        // return this.http.post(this.apiRoute + 'User/Auth',
+        //     JSON.stringify({ Email: email, Password: password }),
+        //     { headers: this.headers })
+        //     .pipe(map((response: Response) => {
+        //         // login successful if there's a jwt token in the response
+        //         let user = response.json();
+        //         console.log('Inloggad - Test 2');
+        //         if (user) { //&& user.Token
+        //             // store user details and jwt token in local storage to keep user logged in between page refreshes
+        //             localStorage.setItem('currentUser', JSON.stringify(user));
+        //             console.log('Inloggad - Test 3');
+        //         }
+        //     }),catchError(err => {
+
+        //         if (err.status == HttpStatusCode.FORBIDDEN)
+        //             return Observable.throw("Invalid login credentials");
+
+        //         return Observable.throw("Could not send request");
+        //     }));
     }
 
     logout() {

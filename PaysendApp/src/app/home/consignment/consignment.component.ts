@@ -31,9 +31,7 @@ export class ConsignmentComponent extends BasicComponent implements OnInit {
         injector: Injector,
         private cd: ChangeDetectorRef,
         // private dialogService: DialogService,
-        // private consignmentService: ConsignmentService,
         private toastrService: ToastrService,
-        // private pagerService: PagerService,
         private router: Router,
     ) {
         super(injector);
@@ -45,24 +43,22 @@ export class ConsignmentComponent extends BasicComponent implements OnInit {
         this.getConsignments();
 
         this.consignmentService.consignmentList.subscribe(consignments => {
-            if (!consignments || !this.consignments) return;  
+            if (!consignments || !this.consignments){
+                return;
+            }
 
             this.consignments = this.consignments.concat(consignments);
-
-            // this.orderBy('-StartDate', this.consignments);
+            this.orderBy('-StartDate', this.consignments);
         }); 
     }
 
     getConsignments() {
         this.loading = true;
         this.consignmentService.getConsignments(this.currentUser.PersonId).subscribe(res => {
-            // this.consignments = res;
-
+            this.consignments = res;
             this.loading = false;
-
             console.log("consignments:", res);
-
-            // this.orderBy('-StartDate', this.consignments);
+            this.orderBy('-StartDate', this.consignments);
         });
     }
     

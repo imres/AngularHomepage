@@ -5,7 +5,11 @@
   "projects": {
     "PaysendApp": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -25,12 +29,20 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "src/assets/bootstrap-css/bootstrap.css",
+              "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
+              "node_modules/@fortawesome/fontawesome-free/scss/solid.scss",
+              "node_modules/@fortawesome/fontawesome-free/scss/regular.scss",
+              "node_modules/@fortawesome/fontawesome-free/scss/brands.scss",
+              "node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
+              "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
+              "node_modules/bootstrap/scss/bootstrap.scss",
+              "src/styles.scss",
               "src/assets/Content/Footer-with-social-icons.css"
             ],
             "scripts": [
-              "src/assets/bootstrap-js/bootstrap.js"
+              "src/assets/bootstrap-js/bootstrap.js",
+              "node_modules/chart.js/dist/Chart.js",
+              "node_modules/hammerjs/hammer.min.js"
             ]
           },
           "configurations": {
