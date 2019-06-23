@@ -12,7 +12,7 @@
             </div>
         </div>
         <div *ngIf="searchText" class="dropdown-menu dropdown-menu--searchbar show py-0">
-            <!-- <div *ngFor="let item of users | filter: searchText" class="p-3">
+            <div *ngFor="let item of users | filter: searchText" class="p-3">
                 <div class="mb-0" *ngIf="item === -1">
                     <div *ngFor="let item of allConsignments | filter: searchText">
                         <div *ngIf="item !== -1" class="link px-1" (click)="routeToConsignmentDetail(item)">{{item.Title}}</div>
@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div *ngIf="item !== -1" class="link px-1" (click)="routeToUserProfile(item)"><i class="fas fa-user-circle"></i> {{item.FirstName}} {{item.LastName}}</div>
-            </div> -->
+            </div>
         </div>
     </div>
 
@@ -50,8 +50,8 @@
                 </div>
                 <div class="width-25">
                     <div class="container-fluid">
-                        <!-- <invite-notifications *ngIf="invitationNotifications?.length > 0" [invitations]="invitations" [invitationNotifications]="invitationNotifications"></invite-notifications>
-                        <consignment-notification *ngIf="finishedConsignments?.length > 0"></consignment-notification> -->
+                        <invite-notifications *ngIf="invitationNotifications?.length > 0" [invitations]="invitations" [invitationNotifications]="invitationNotifications"></invite-notifications>
+                        <consignment-notification *ngIf="finishedConsignments?.length > 0"></consignment-notification>
                     </div>
                 </div>
             </div>

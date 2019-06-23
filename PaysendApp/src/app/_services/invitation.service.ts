@@ -95,12 +95,12 @@ export class InvitationService extends BaseService{
     }
 
     getUnrespondedInvitations(personId: string) {
-        return this.http.get(this.apiRoute + 'Invitation/GetUnrespondedInvitations/' + personId)
-            .pipe(map((response: Response) =>
-                response.json()
-            ),catchError(error =>
-                Observable.throw(false)
-            ));
+        return this.http.get<Invitation[]>(this.apiRoute + 'Invitation/GetUnrespondedInvitations/' + personId);
+            // .pipe(map((response: Response) =>
+            //     response.json()
+            // ),catchError(error =>
+            //     Observable.throw(false)
+            // ));
     }
     /*getById(id: number) {
         return this.http.get('/api/users/' + id, this.jwt())

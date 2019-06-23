@@ -29,13 +29,13 @@ export class NavbarComponent extends BasicComponent implements OnInit{
     }
 
     ngOnInit() {
-        // this.getAllConsignments();
-        // this.getUsers();
+        this.getAllConsignments();
+        this.getUsers();
     }
 
-    // routeToConsignmentDetail(item: ActiveConsignment) {
-    //     this.router.navigate(['/consignment-detail', item.PackageId])
-    // }
+    routeToConsignmentDetail(item: ActiveConsignment) {
+        this.router.navigate(['/consignment-detail', item.PackageId])
+    }
 }
 
 

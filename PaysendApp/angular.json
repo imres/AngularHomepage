@@ -36,8 +36,8 @@
               "node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
               "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
               "node_modules/bootstrap/scss/bootstrap.scss",
-              "src/styles.scss",
-              "src/assets/Content/Footer-with-social-icons.css"
+              "src/assets/Content/Footer-with-social-icons.css",
+              "src/styles.scss"
             ],
             "scripts": [
               "src/assets/bootstrap-js/bootstrap.js",

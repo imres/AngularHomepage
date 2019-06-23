@@ -6,11 +6,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { BasicComponent } from '../shared/basic.component';
 import { Person, Invitation, ActiveConsignment } from '../_models/index';
-// import { UserService, InvitationService, ToastrService, ConsignmentService, PagerService } from '../_services/index';
+import { UserService, InvitationService, ToastrService, ConsignmentService, PagerService } from '../_services/index';
 // import { SendInvitationDialogComponent } from '../_dialog/send-invitation-dialog.component';
 // import { InvitationResponseDialogComponent } from '../_dialog/invitation-response-dialog.component';
-// import { InvitationStatusEnum } from '../_models/enums/index';
-// import { FilterPipe } from '../filter.pipe';
+import { InvitationStatusEnum } from '../_models/enums/index';
+import { FilterPipe } from '../filter.pipe';
 
 
 @Component({
@@ -31,7 +31,7 @@ export class NavbarHomeComponent extends BasicComponent implements OnInit {
     currentUser: Person;
     showDialog = false;
     isClassActive: boolean;
-    // invitationStatus = InvitationStatusEnum;
+    invitationStatus = InvitationStatusEnum;
     notifications = 0; 
     selectedUserPersonId: string;
     searchText: string;
@@ -39,8 +39,8 @@ export class NavbarHomeComponent extends BasicComponent implements OnInit {
     constructor(
         injector: Injector,
         // private userService: UserService,
-        // private invitationService: InvitationService,
-        // private cd: ChangeDetectorRef,
+        private invitationService: InvitationService,
+        private cd: ChangeDetectorRef,
         // private dialogService: DialogService,
         // private consignmentService: ConsignmentService,
         // private toastrService: ToastrService,
@@ -50,67 +50,67 @@ export class NavbarHomeComponent extends BasicComponent implements OnInit {
         )
     {
         super(injector);
-        // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.isClassActive = false;
     }
 
     ngOnInit() {
-        // this.getInvitations();
-        // this.getFinishedConsignments();
-        // this.getAllConsignments();
-        // this.getUsers();
+        this.getInvitations();
+        this.getFinishedConsignments();
+        this.getAllConsignments();
+        this.getUsers();
 
-        // this.invitationService.invitationList.subscribe(invitations => {
-        //     this.invitations = invitations;
+        this.invitationService.invitationList.subscribe(invitations => {
+            this.invitations = invitations;
 
-        //     this.updateFilteredInvitations();
-        // });
+            this.updateFilteredInvitations();
+        });
     }
 
     updateFilteredInvitations() {
-        // if (!this.invitations || !this.currentUser || !this.currentUser.PersonId) return;
+        if (!this.invitations || !this.currentUser || !this.currentUser.PersonId) return;
 
-        // this.invitationNotifications = this.invitations.filter(x => { 
-        //     return x.Status == InvitationStatusEnum.Created && x.InvitationInitiatorPersonId != this.currentUser.PersonId 
-        // });
+        this.invitationNotifications = this.invitations.filter(x => { 
+            return x.Status == InvitationStatusEnum.Created && x.InvitationInitiatorPersonId != this.currentUser.PersonId 
+        });
 
-        // this.notificationCounter();
+        this.notificationCounter();
     }
 
-    // notificationCounter(){
-    //     if (!this.invitationNotifications && this.pagedItems)
-    //         this.notifications = this.pagedItems.length;
+    notificationCounter(){
+        if (!this.invitationNotifications && this.pagedItems)
+            this.notifications = this.pagedItems.length;
 
-    //     if (!this.pagedItems && this.invitationNotifications)
-    //         this.notifications = this.invitationNotifications.length;
+        if (!this.pagedItems && this.invitationNotifications)
+            this.notifications = this.invitationNotifications.length;
 
-    //     if (this.pagedItems && this.invitationNotifications)
-    //         this.notifications = this.invitationNotifications.length + this.pagedItems.length;
-    // }
+        if (this.pagedItems && this.invitationNotifications)
+            this.notifications = this.invitationNotifications.length + this.pagedItems.length;
+    }
 
-    // getInvitations() {  
-    //     this.invitationService.getInvitations(this.currentUser.PersonId).subscribe(invitations => {
-    //         console.log("Hämtade invites från API");
+    getInvitations() {  
+        this.invitationService.getInvitations(this.currentUser.PersonId).subscribe(invitations => {
+            console.log("Hämtade invites från API");
 
-    //         if (invitations == null) return;
+            if (invitations == null) return;
 
-    //         this.invitations = invitations;
+            this.invitations = invitations;
 
-    //         //this.updateFilteredInvitations();
+            this.updateFilteredInvitations();
 
-    //         this.invitationService.updateInvitations(invitations);
+            this.invitationService.updateInvitations(invitations);
 
-    //     }, err => { console.log("Error: {0}", err) });
-    // }
+        }, err => { console.log("Error: {0}", err) });
+    }
 
-    // getFinishedConsignments() {
-    //     this.consignmentService.getFinishedConsignments(this.currentUser.PersonId).subscribe((res: any) => {
-    //         this.finishedConsignments = res;
+    getFinishedConsignments() {
+        this.consignmentService.getFinishedConsignments(this.currentUser.PersonId).subscribe((res: any) => {
+            this.finishedConsignments = res;
 
-    //         this.orderBy('-EndDate', res);
-    //         this.notificationCounter();
-    //     });
-    // }
+            this.orderBy('-EndDate', res);
+            this.notificationCounter();
+        });
+    }
 
     // showConfirm(event: any) {
     //     this.dialogService.addDialog(SendInvitationDialogComponent, {
@@ -126,23 +126,23 @@ export class NavbarHomeComponent extends BasicComponent implements OnInit {
     //         });
     // }
 
-    // routeToConsignmentDetail(item: ActiveConsignment) {
-    //     this.router.navigate(['/consignment-detail', item.PackageId]);
-    //     this.searchText = '';
-    // }
+    routeToConsignmentDetail(item: ActiveConsignment) {
+        this.router.navigate(['/consignment-detail', item.PackageId]);
+        this.searchText = '';
+    }
 
-    // routeToUserProfile(item: Person) {
-    //     if (this.currentUser.PersonId != item.PersonId)
-    //         this.router.navigate(['/user', item.PersonId])
+    routeToUserProfile(item: Person) {
+        if (this.currentUser.PersonId != item.PersonId)
+            this.router.navigate(['/user', item.PersonId])
 
-    //     if (this.currentUser.PersonId == item.PersonId)
-    //         this.router.navigate(['/profile'])
+        if (this.currentUser.PersonId == item.PersonId)
+            this.router.navigate(['/profile'])
 
-    //     this.searchText = '';
-    // }
+        this.searchText = '';
+    }
 
-    // logOut() {
-    //     localStorage.removeItem('currentUser');
-    //     this.currentUser = null;
-    // }
+    logOut() {
+        localStorage.removeItem('currentUser');
+        this.currentUser = null;
+    }
 }

@@ -19,7 +19,7 @@ export class UserGuideComponent implements OnInit {
         // private userService: UserService,
         // private invitationService: InvitationService
         ) {
-        // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.isClassActive = false;
     }
 

@@ -79,13 +79,13 @@
 }
 
 .btn-secondary:hover {
-    color: #383838cf;
-    background-color: #d6d4d4;
+    color: #383838cf !important;
+    background-color: #d6d4d4 !important;
 }
 
 .btn-secondary {
-    color: #383838cf;
-    background-color: #f1f1f1;
+    color: #383838cf !important;
+    background-color: #f1f1f1 !important;
 }
 
 .title {
@@ -97,39 +97,29 @@
 .btn {
     border: none;
     border-radius: 0;
+    text-transform: none;
     /* box-shadow: var(--bottom-shadow-darker); */
 }
 
-.btn-cover {
-    box-shadow: none;
-}
-
 .btn.btn-primary{
-    background-color: var(--primary);
+    background-color: var(--primary) !important;
 }
 
 .btn.btn-primary:hover {
-    background-color: var(--blue);
+    background-color: var(--blue) !important;
 }
 
 .btn.btn-outline-primary {
-    color: var(--primary);
+    color: var(--primary) !important;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border: none !important;
 }
 
 .btn.btn-outline-primary:hover {
-    color: white;
-    background-color: var(--primary);
-    border-color: var(--primary);
-}
-
-.card-body .btn.btn-outline-primary {
-    color: var(--primary);
-}
-
-.card-body .btn.btn-outline-primary:hover {
-    color: white;
-    background-color: var(--primary);
-    border-color: var(--primary);
+    color: white !important;
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
 }
 
 .btn.btn-outline-primary-2 {
@@ -545,7 +535,7 @@ svg rect{
    transition: all .11s;
 }
 .has-error{
-    color:red;
+    color: red !important;
 }
 input[type="text"].ng-dirty.ng-invalid{
     border: solid 1px red;
