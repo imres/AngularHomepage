@@ -1,0 +1,102 @@
+﻿<!-- Navbar -->
+<navbar-home [invitations]="invitations" [invitationNotifications]="invitationNotifications"></navbar-home>
+
+<div class="container-fluid margin-navbar-top mb-3">
+    <div class="row">
+
+        <sidebar class="col-lg-2 no-padding"></sidebar>
+
+        <div class="col-xl-6 col-lg-7 col-10 offset-1 p-2 pt-3">
+            <loading-spinner *ngIf="loading"></loading-spinner>
+
+            <!-- Om inga försändelser finns så visas den här rutan med länk till att skicka invites och guide för att förstå hur man gör -->
+            <div *ngIf="archivedConsignments == null || archivedConsignments?.length == 0" class="mt-3">
+                <h4 class="pl-0 col-12 text-center">Du har inga avslutade försändelser</h4>
+                <div class="container-fluid ">
+                    <div class="row">
+                        <div class="text-center col-md-12 card-body">
+                            <img src="img/undraw_empty_xct9.svg" alt="Accepterat" class="illustration">
+                            <p class="card-text text-muted mt-3">
+                                Just nu har du inga avslutade försändelser.<br />
+                                Gå tillbaka till startsidan för att se dina aktiva försändelser eller skicka en inbjudan nedan.
+                            </p>
+                            <div class="row">
+                                <div class="col-sm-6 text-sm-right px-1 pt-2">
+                                    <a class="btn btn-primary color-white width-200px" (click)=showConfirm($event)>Skicka inbjudan</a>
+                                </div>
+                                <div class="col-sm-6 text-sm-left px-1 pt-2">
+                                    <a [routerLink]="['/home']" class="btn btn-secondary width-200px">Gå tillbaka till startsidan</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Om arkiverade försändelser finns så visas dom här komponenterna -->
+            <div *ngIf="archivedConsignments?.length > 0" class="card-header-custom col-12 animate-enter">
+                <div class="row align-items-between">
+                    <h4 class="m-0 col-sm-7" *ngIf="archivedConsignments?.length > 1">Du har {{archivedConsignments?.length}} avslutade försändelser</h4>
+                    <h4 class="m-0 col-sm-7" *ngIf="archivedConsignments?.length == 1">Du har {{archivedConsignments?.length}} avslutad försändelse</h4>
+                </div>
+            </div>
+
+            <div *ngIf="archivedConsignments?.length > 0" id="consignments">
+                <div *ngIf="archivedConsignments?.length > 4" class="no-padding d-flex flex-row-reverse">
+                    <form #orderForm="ngForm" class="form-inline mb-3" (change)="orderBySelection($event.target.value, archivedConsignments)">
+                        <label class="mr-sm-2" for="orderBySelection">Sortera efter:</label>
+                        <select class="custom-select mb-2 mb-sm-0" name="orderBySelection">
+                            <option selected value="-EndDate">Nyast först</option>
+                            <option value="EndDate">Äldst först</option>
+                            <!--<option value="SenderPersonId">Avsändare A-Ö</option>
+                            <option value="ReceiverPersonId">Mottagare A-Ö</option>-->
+                            <option value="-DepositedAmount">Pris fallande</option>
+                            <option value="DepositedAmount">Pris stigande</option>
+                        </select>
+                    </form>
+                </div>
+                <div class="row">
+                    <div *ngFor="let item of pagedItems" class="col-lg-6">
+                        <div class="card archived-consignment--card" (click)="routeToConsignmentDetail(item)">
+                            <div class="row">
+                                <div class="col-4 text-center">
+                                    <img src="img/undraw_mail_cg1t.svg" alt="Accepterat" class="archived-consignment--card__img">
+                                </div>
+                                <div class="col-8 py-3 d-flex flex-column">
+                                    <h6>{{item.Title}}</h6>
+                                    <p class="package-description ellipsis">{{item.Description}}</p><br *ngIf="!item.Description">
+                                    <p class="package-description text-right archived-consignment--card__date">{{item.EndDate | date: 'yyyy-MM-dd hh:mm'}}</p>
+
+                                    <!--<div class="btn btn-primary btn-block mt-auto" ">Visa detaljer om försändelsen</div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12" *ngIf="archivedConsignments?.length > 4">
+                    <div class="col-12 d-flex justify-content-center">
+                        <div class="no-padding">
+                            <ul *ngIf="pager.Pages?.length" class="pagination">
+                                <li [ngClass]="{disabled:pager.CurrentPage === 1}" class="page-item text-center width-70px">
+                                    <a class="page-link" (click)="setPage(1, archivedConsignments)">Första</a>
+                                </li>
+                                <li [ngClass]="{disabled:pager.CurrentPage === 1}" class="page-item text-center width-3">
+                                    <a class="page-link" (click)="setPage(pager.CurrentPage - 1, archivedConsignments)"><i class="far fa-arrow-alt-circle-left"></i></a>
+                                </li>
+                                <li *ngFor="let Page of pager.Pages" [ngClass]="{active:pager.CurrentPage === Page}" class="page-item paginationNumber text-center">
+                                    <a class="page-link" (click)="setPage(Page, archivedConsignments)">{{Page}}</a>
+                                </li>
+                                <li [ngClass]="{disabled:pager.CurrentPage === pager.TotalPages}" class="page-item text-center width-3">
+                                    <a class="page-link" (click)="setPage(pager.CurrentPage + 1, archivedConsignments)"><i class="far fa-arrow-alt-circle-right"></i></a>
+                                </li>
+                                <li [ngClass]="{disabled:pager.CurrentPage === pager.TotalPages}" class="page-item text-center width-70px">
+                                    <a class="page-link" (click)="setPage(pager.TotalPages, archivedConsignments)">Sista</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

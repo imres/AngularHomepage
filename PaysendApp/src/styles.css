@@ -1129,7 +1129,7 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 .user-profile-img {
-    background: url(img/profilepic.jpeg);
+    background: url(/assets/img/profilepic.jpeg);
     background-size: cover;
     background-position: center;
     height: 11rem;
@@ -1144,7 +1144,7 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 .friends-img {
-    background: url(img/profilepic.jpeg);
+    background: url(/assets/img/profilepic.jpeg);
     background-size: cover;
     background-position: center;
     height: 11rem;
@@ -1179,28 +1179,28 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 .sales-ads-img {
-    background: url(img/fotbollsskor.jpg);
+    background: url(/assets/img/fotbollsskor.jpg);
     background-size: cover;
     background-position: center;
     height: 15rem;
 }
 
 .sales-ads-img-2 {
-    background: url(img/screens.jpg);
+    background: url(/assets/img/screens.jpg);
     background-size: cover;
     background-position: center;
     height: 15rem;
 }
 
 .sales-ads-img-3 {
-    background: url(img/tv.jpg);
+    background: url(/assets/img/tv.jpg);
     background-size: cover;
     background-position: center;
     height: 15rem;
 }
 
 .sales-ads-img-4 {
-    background: url(img/soffa.jpg);
+    background: url(/assets/img/soffa.jpg);
     background-size: cover;
     background-position: center;
     height: 15rem;
@@ -1397,7 +1397,7 @@ btn.btn-primary:active, .btn-primary:focus{
 }
 
 .user-settings-img {
-    background: url(img/profilbild.png);
+    background: url(/assets/img/profilbild.png);
     background-size: cover;
     background-position: center;
     height: 20rem;

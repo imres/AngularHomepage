@@ -1,0 +1,80 @@
+﻿<!-- Navbar -->
+<navbar-front></navbar-front>
+
+<!-- Inloggningsformulär -->
+<div class="primary-gradient h-100">
+    <section id="loginform" class="col-12 d-flex center-flex h-100">
+        <div class="col-sm-8 col-md-6 col-lg-4 card no-padding">
+            <ul class="nav nav-tabs justify-content-center card-header card-header-custom pb-0">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#username" role="tab">Användarnamn</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#bankid" role="tab">BankID</a>
+                </li>
+            </ul>
+            <div class="tab-content col-sm-12 margin-md-top margin-md-bottom justify-content-center">
+                <div class="tab-pane fade show active col-sm-12" id="username" role="tabpanel">
+                    <div class="section-content">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div>
+                                    <form name="form" class="px-4 py-3" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+                                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+                                            <label for="DropdownFormEmail">Användarnamn</label>
+                                            <input id="DropdownFormEmail" type="text" class="form-control" placeholder="Användarnamn" name="email" [(ngModel)]="model.Email" #email="ngModel" required />
+                                            <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
+                                        </div>
+                                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                                            <label for="DropdownFormPassword">Lösenord</label>
+                                            <input id="DropdownFormPassword" type="password" class="form-control" placeholder="Lösenord" name="password" [(ngModel)]="model.Password" #password="ngModel" required />
+                                            <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+                                        </div>
+
+                                        <!--<div class="form-check">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input">
+                                                Kom ihåg mig
+                                            </label>
+                                        </div>-->
+
+                                        <button [disabled]="loading" class="btn btn-primary btn-block" role="button">Logga in</button>
+                                        <!-- <loading-spinner *ngIf="loading"></loading-spinner> -->
+                                    </form>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="nav-link link" [routerLink]="['/register']" role="button">Har du ingen användare? Registrera dig här</a>
+                                    <a class="nav-link link" href="#">Glömt ditt lösenord?</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade show  col-sm-12" id="bankid" role="tabpanel">
+                    <div class="section-content">
+                        <div class="container">
+                            <div class="row justify-content-center align-items-center">
+                                <div class="col-12 text-center">
+                                    <img class="bankid-img" src="assets/img/undraw_confirmed_81ex.svg" alt="BankID" />
+                                </div>
+                                <form name="bankidform" class="px-4 py-3" (ngSubmit)="bankidform.form.valid && bankIdAuth()" #bankidform="ngForm" novalidate>
+                                    <div *ngIf="bankIdPending">
+                                        <!-- <loading-spinner></loading-spinner> -->
+                                        <p>Väntar på svar från Mobilt BankID</p>
+                                    </div>
+
+                                    <div *ngIf="!bankIdPending" class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+                                        <label for="FormPersonId">Personnummer</label>
+                                        <input id="FormPersonId" type="text" class="form-control" placeholder="ååååmmddxxxx" name="personid" [(ngModel)]="model.PersonId" #personid="ngModel" required />
+                                        <div *ngIf="bankidform.submitted && !personid.valid" class="help-block">Ange personnummer</div>
+                                    </div>
+
+                                    <button class="btn btn-primary btn-block" role="button">Logga in med BankID</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
