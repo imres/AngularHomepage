@@ -1,0 +1,218 @@
+﻿<!--Invites-->
+<div *ngIf="activeInvitations?.length > 0" class="mb-5" id="activeInvites" role="tablist">
+    <div class="card-header-custom col-12 animate-enter">
+        <div class="row align-items-between">
+            <h5 class="m-0 col-12" *ngIf="activeInvitations?.length > 1">Du har {{activeInvitations?.length}} accepterade försändelser</h5>
+            <h5 class="m-0 col-12" *ngIf="activeInvitations?.length == 1">Du har {{activeInvitations?.length}} accepterad försändelse</h5>
+        </div> 
+    </div>
+
+    <div id="activeInvitesGrid" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#activeInvites">
+        <div *ngIf="activeInvitations?.length > 4" class="no-padding d-flex flex-row-reverse">
+            <form #orderForm="ngForm" class="form-inline mb-3" (change)="orderBySelection($event.target.value, activeInvitations)">
+                <label class="mr-sm-2" for="orderBySelection">Sortera efter:</label>
+                <select class="custom-select mb-2 mb-sm-0" name="orderBySelection">
+                    <option selected value="-StartDate">Nyast först</option>
+                    <option value="StartDate">Äldst först</option>
+                    <option value="SenderPersonId">Avsändare A-Ö</option>
+                    <option value="ReceiverPersonId">Mottagare A-Ö</option>
+                    <option value="-RequestedDepositAmount">Begärd summa fallande</option>
+                    <option value="RequestedDepositAmount">Begärd summa stigande</option>
+                </select>
+            </form>
+        </div>
+        <div class="row">
+            <div *ngFor="let item of pagedItems" class="col-12 my-2 animate-enter">
+                <div class="card mb-3 h-100">
+                    <div class="d-none d-sm-block mx-0 h-100">
+                        <div class="row mx-0 h-100">
+
+                            <ng-container *ngFor="let user of users">
+                                <ng-container *ngIf="user.PersonId != currentUser.PersonId">
+                                    <div *ngIf="user.PersonId == item.ReceiverPersonId || user.PersonId == item.SenderPersonId" class="col-4 active-invitation-card__header" [ngClass]="{'secondary-gradient' : HasReceiverRole(item), 'primary-gradient' : !HasReceiverRole(item)}">
+                                        <div class="w-100 h-100" (click)="routeToUserProfile(user)">
+                                            <h6 *ngIf="HasReceiverRole(item)">Säljare</h6>
+                                            <h6 *ngIf="!HasReceiverRole(item)">Köpare</h6>
+
+                                            <p class="active-invitation-card__header-info card-text">
+                                                {{user.FirstName}} {{user.LastName}}
+                                            </p>
+                                            <ng-container *ngIf="!HasReceiverRole(item)">
+                                                <p class="active-invitation-card__header-info card-text">
+                                                    {{item.DeliveryAddress}}
+                                                    <br />{{item.DeliveryPostalCode}}, {{item.DeliveryCity}}
+                                                </p>
+                                                <p *ngIf="item.ReceiverPhoneNumber" class="active-invitation-card__header-info card-text">
+                                                    {{item.ReceiverPhoneNumber}}
+                                                </p>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </ng-container>
+
+                            <div class="col-8 active-invitation-card__body">
+                                <h6>{{item.Title}}</h6>
+                                <p class="package-description">{{item.Description}}</p>
+
+                                <p class="card-text invitation-status"><i class="fas fa-check-square fa-fw color-success" *ngIf="item.Status == invitationStatus.AmountDeposited"></i> {{translatePaymentStatus(item)}}</p>
+
+                                <p class="card-text invitation-status mb-3 package-description" *ngIf="HasReceiverRole(item) && item.Status == invitationStatus.AmountDeposited">Väntar på att säljaren ska skicka paketet och mata in kolli-id</p>
+                                <p class="card-text invitation-status alert alert-info mb-3" *ngIf="!HasReceiverRole(item) && item.Status == invitationStatus.AmountDeposited">Nu återstår det bara för dig att skicka paketet, tänk på att skicka paketet med PostNord samt använda ett spårbart fraktsätt</p>
+                                
+
+
+                                <div *ngIf="!HasReceiverRole(item) && matchesInvitationWithPackageId(item)" class="animate-enter">
+                                    <form name="packageIdForm" (ngSubmit)="f.form.valid && savePackageId()" #f="ngForm" novalidate>
+                                        <input type="text" class="form-control mb-2" name="packageId" placeholder="Kolli-id"
+                                               [(ngModel)]="invitationExtended.PackageId" #packageId="ngModel" pattern=".{3,}" title="3 characters minimum" required />
+
+                                        <button type="submit" role="button" class="btn btn-primary">Spara</button>
+                                        <button type="button" role="button" class="btn btn-default" (click)="cancelPackageIdForm()">Avbryt</button>
+                                    </form>
+                                </div>
+
+                                <a *ngIf="!HasReceiverRole(item) && !matchesInvitationWithPackageId(item)" href="#" class="btn btn-primary col-md-6 animate-enter"
+                                   (click)="enterPackageId(item);false" [class.disabled]="item.Status == invitationStatus.Accepted ? true : null">Ange kolli-id</a>
+
+                                <ng-container *ngIf="HasReceiverRole(item) && item.Status == invitationStatus.Accepted">
+                                    <a href="#" class="btn btn-primary col-md-6" (click)="openCheckout(item)" [ngClass]="{'disabled': (loadingPayment && item.Id == loadingPaymentId)}">
+                                        <ng-container *ngIf="!loadingPayment || loadingPayment && item.Id !== loadingPaymentId">Betala {{item.RequestedDepositAmount}}kr</ng-container>
+                                        <img *ngIf="loadingPayment && item.Id == loadingPaymentId" src="../../img/spinner.svg" />
+                                    </a>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mx-0 h-100 d-block d-sm-none">
+                        <div class="col-12 active-invitation-card__body">
+                            <p class="invitation-title text-center">{{item.Title}}</p>
+                            <p class="package-description text-center">{{item.Description}}</p>
+
+                            <div class="list-group">
+                                <ng-container *ngFor="let user of users">
+                                    <ng-container *ngIf="user.PersonId != currentUser.PersonId">
+                                        <div *ngIf="user.PersonId == item.ReceiverPersonId || user.PersonId == item.SenderPersonId" class="list-group-item list-group-item-action list-group-item-primary active-invitation-card__header" [ngClass]="{'secondary-gradient' : HasReceiverRole(item), 'primary-gradient' : !HasReceiverRole(item)}">
+                                            <div class="w-100 h-100 text-center" (click)="routeToUserProfile(user)">
+                                                <p class="invitation-title" *ngIf="HasReceiverRole(item)">Säljare</p>
+                                                <p class="invitation-title" *ngIf="!HasReceiverRole(item)">Köpare</p>
+
+                                                <p class="active-invitation-card__header-info card-text">
+                                                    {{user.FirstName}} {{user.LastName}}
+                                                </p>
+                                                <p class="active-invitation-card__header-info card-text" *ngIf="!HasReceiverRole(item)">
+                                                    {{user.Address}}
+                                                    <br />{{user.PostalCode}}
+                                                </p>
+
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </ng-container>
+
+                                <p class="card-text invitation-status pt-3 px-3 pb-0 mb-0"><i class="fas fa-check-square fa-fw color-success" *ngIf="item.Status == invitationStatus.AmountDeposited"></i> {{translatePaymentStatus(item)}}</p>
+
+                                <p class="card-text invitation-status p-3 package-description" *ngIf="HasReceiverRole(item) && item.Status == invitationStatus.AmountDeposited">Väntar på att säljaren ska skicka paketet och mata in kolli-id</p>
+                                <p class="card-text invitation-status alert alert-info p-3" *ngIf="!HasReceiverRole(item) && item.Status == invitationStatus.AmountDeposited">Nu återstår det bara för dig att skicka paketet, tänk på att skicka paketet med PostNord samt använda ett spårbart fraktsätt</p>
+                            </div>
+
+                            <div *ngIf="!HasReceiverRole(item) && matchesInvitationWithPackageId(item)" class="animate-enter">
+                                <form name="packageIdForm" (ngSubmit)="f.form.valid && savePackageId()" #f="ngForm" novalidate>
+                                    <input type="text" class="form-control mb-2" name="packageId" placeholder="Kolli-id"
+                                           [(ngModel)]="invitationExtended.PackageId" #packageId="ngModel" pattern=".{3,}" title="3 characters minimum" required />
+
+                                    <button type="submit" role="button" class="btn btn-primary">Spara</button>
+                                    <button type="button" role="button" class="btn btn-default" (click)="cancelPackageIdForm()">Avbryt</button>
+                                </form>
+                            </div>
+
+                            <a *ngIf="!HasReceiverRole(item) && !matchesInvitationWithPackageId(item)" href="#" class="btn btn-primary col-md-6 animate-enter"
+                               (click)="enterPackageId(item);false" [class.disabled]="item.Status == invitationStatus.Accepted ? true : null">Ange kolli-id</a>
+
+                            <ng-container *ngIf="HasReceiverRole(item) && item.Status == invitationStatus.Accepted">
+                                <a href="#" class="btn btn-primary col-md-6" (click)="openCheckout(item)" [ngClass]="{'disabled': loadingPayment}">
+                                    <ng-container *ngIf="!loadingPayment">Betala {{item.RequestedDepositAmount}}kr</ng-container>
+                                    <img *ngIf="loadingPayment && item.Id == loadingPaymentId" src="../../img/spinner.svg" />
+                                </a>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!--<div *ngFor="let item of pagedItems" class="col-sm-6 my-2 animate-enter">
+                <div class="card mb-3 h-100">
+                    <div class="card-body" [ngClass]="{'card-border-receiver' : HasReceiverRole(item), 'card-border-sender' : !HasReceiverRole(item)}">
+
+                        <h5 class="card-title title-border">{{item.Title}}</h5>
+                        <p class="package-description">{{item.Description}}</p>
+
+                        <div class="row mt-3 pr-3 mb-3">
+                            <div class="col-10">
+                                <p class="card-text" *ngIf="HasReceiverRole(item)"><strong class="receiver-color">Säljare:</strong> {{item.SenderPersonId}}</p>
+                                <p class="card-text" *ngIf="!HasReceiverRole(item)"><strong class="sender-color">Köpare:</strong> {{item.ReceiverPersonId}}</p>
+                            </div>
+                            <div *ngIf="!HasReceiverRole(item)" class="col-2 no-padding dropleft text-right">
+                                <a data-toggle="dropdown" class="pl-2" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-info"></i></a>
+                                <div class="dropdown-menu text-left">
+                                    <a class="dropdown-item disabled">Anton Nystedt</a>
+                                    <a class="dropdown-item disabled">Hyttlidgatan 69B</a>
+                                    <a class="dropdown-item disabled">93137, Skellefteå</a>
+                                    <div class="px-3 py-2">
+                                        <button class="btn btn-primary">Skicka uppgifterna på mail</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="card-text">{{translateInvitationStatus(item)}}</p>
+
+
+                        <div *ngIf="!HasReceiverRole(item) && matchesInvitationWithPackageId(item)" class="animate-enter">
+                            <form name="packageIdForm" (ngSubmit)="f.form.valid && savePackageId()" #f="ngForm" novalidate>
+                                <input type="text" class="form-control mb-2" name="packageId" placeholder="Kolli-id"
+                                       [(ngModel)]="invitationExtended.PackageId" #packageId="ngModel" pattern=".{3,}" title="3 characters minimum" required />
+
+                                <button type="submit" role="button" class="btn btn-primary">Spara</button>
+                                <button type="button" role="button" class="btn btn-default" (click)="cancelPackageIdForm()">Avbryt</button>
+                            </form>
+                        </div>
+
+                        <a *ngIf="!HasReceiverRole(item) && !matchesInvitationWithPackageId(item)" href="#" class="btn btn-primary col-md-9 col-lg-6 animate-enter"
+                           (click)="enterPackageId(item);false" [class.disabled]="item.Status == invitationStatus.Accepted ? true : null">Ange kolli-id</a>
+
+                        <ng-container *ngIf="HasReceiverRole(item) && item.Status == invitationStatus.Accepted">
+                            <a href="#" class="btn btn-primary col-md-9 col-lg-6" (click)="processPayment(item)">Betala</a>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+        <div *ngIf="activeInvitations?.length > 4">
+            <div class="col-12 d-flex justify-content-center">
+                <div class="no-padding">
+                    <ul *ngIf="pager.Pages?.length" class="pagination">
+                        <li [ngClass]="{disabled:pager.CurrentPage === 1}" class="page-item text-center width-70px">
+                            <a class="page-link" (click)="setPage(1, activeInvitations)">Första</a>
+                        </li>
+                        <li [ngClass]="{disabled:pager.CurrentPage === 1}" class="page-item text-center width-3">
+                            <a class="page-link" (click)="setPage(pager.CurrentPage - 1, activeInvitations)"><i class="far fa-arrow-alt-circle-left"></i></a>
+                        </li>
+                        <li *ngFor="let Page of pager.Pages" [ngClass]="{active:pager.CurrentPage === Page}" class="page-item paginationNumber text-center">
+                            <a class="page-link" (click)="setPage(Page, activeInvitations)">{{Page}}</a>
+                        </li>
+                        <li [ngClass]="{disabled:pager.CurrentPage === pager.TotalPages}" class="page-item text-center width-3">
+                            <a class="page-link" (click)="setPage(pager.CurrentPage + 1, activeInvitations)"><i class="far fa-arrow-alt-circle-right"></i></a>
+                        </li>
+                        <li [ngClass]="{disabled:pager.CurrentPage === pager.TotalPages}" class="page-item text-center width-70px">
+                            <a class="page-link" (click)="setPage(pager.TotalPages, activeInvitations)">Sista</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

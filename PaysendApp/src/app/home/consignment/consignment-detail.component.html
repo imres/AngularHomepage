@@ -1,0 +1,105 @@
+﻿<navbar-home *ngIf="currentUser" [invitations]="invitations" [invitationNotifications]="invitationNotifications"></navbar-home>
+
+<navbar-front *ngIf="!currentUser"></navbar-front>
+
+<div class="container-fluid margin-navbar-top mb-3">
+    <div class="row">
+        <sidebar *ngIf="currentUser" class="col-lg-2 no-padding"></sidebar>
+        <div *ngIf="!currentUser" class="col-lg-2 no-padding"></div>
+
+        <div class="col-xl-6 col-lg-7 col-10 offset-1 p-2 pt-3"  *ngFor="let item of selectedConsignment">
+                <loading-spinner *ngIf="loading"></loading-spinner>
+
+                <div class="row">  
+                    <div class="col-sm-8 consignment-detail__left-row">
+                        <div class="sticky">
+                            <div class="card consignment-detail-card__info mb-3">
+                                <div class="card-header bg-primary text-center color-white">
+                                    <span>Mitt paket</span>
+                                </div>
+                                <div class="card-body row">
+                                    <div class="col-4 text-center">
+                                        <img *ngIf="item.Status == 1" src="img/undraw_on_the_way_ldaq.svg" alt="Accepterat" class="consignment-detail-card__img">
+                                        <img *ngIf="item.Status == 10 || item.Status == 9" src="img/undraw_mail_cg1t.svg" alt="Accepterat" class="consignment-detail-card__img">
+                                        <p *ngIf="item.Status == 1"><strong>Paketet är på väg</strong></p>
+                                        <p *ngIf="item.Status == 10 || item.Status == 9" class="color-primary"><strong>Paketet har levererats</strong></p>
+                                    </div>
+                                    <div class="col-8 py-3">
+                                        <h6>{{item.Title}}</h6>
+                                        <p class="package-description">{{item.Description}}</p>
+    
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="card consignment-detail-card__info">
+                                <div class="card-header text-center">
+                                    <span>Försändelseinformation</span>
+                                </div>
+                                <div class="card-body row">
+                                    <div class="col-md-5 offset-md-1">
+                                        <h6 class="color-primary">Avsändare</h6>
+                                        <p class="consignment-detail-card__text">{{item.Consignor.name}}</p>
+                                        <p class="consignment-detail-card__text">{{item.Consignor.address.postCode}} {{item.Consignor.address.city}}</p>
+                                        <p class="consignment-detail-card__text">{{item.Consignor.address.country}}</p>
+                                    </div>
+                                    <div class="col-md-5 offset-md-1">
+                                        <h6 class="color-secondary">Mottagare</h6>
+                                        <p class="consignment-detail-card__text">{{item.Consignee.address.postCode}} {{item.Consignee.address.city}}</p>
+                                        <p class="consignment-detail-card__text">{{item.Consignee.address.country}}</p>
+                                    </div>
+                                    <div class="col-10 offset-md-1 shipment__info">
+                                        <p class="consignment-detail-card__text"><strong>Försändelse-ID:</strong> {{item.PackageId}}</p>
+                                        <p class="consignment-detail-card__text"><strong>Pakettyp:</strong> {{item.Service.name}}</p>
+                                        <p class="consignment-detail-card__text"><strong>Tilläggstjänst(er):</strong> SMS-Avisering</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-4 consignment-detail__right-row">
+                        <div class="card consignment-detail-card__info mb-3">
+                            <div class="card-header text-center">
+                                <span>Mått & Vikt</span>
+                            </div>
+                            <div class="card-body">
+                                    <p class="consignment-detail-card__text"><strong>Vikt:</strong> 
+                                        <ng-container *ngIf="item.Weight">{{item.Weight.value}} {{item.Weight.unit}}
+                                        </ng-container>
+                                        <ng-container *ngIf="!item.Weight">Vikt saknas</ng-container>
+                                    </p>
+                                    <p class="consignment-detail-card__text"><strong>Mått (L x B x H):</strong>
+                                        <ng-container *ngIf="item.Length && item.Width && item.Height"> {{item.Length.value}}{{item.Length.unit}} x {{item.Width.value}}{{item.Width.unit}} x {{item.Height.value}}{{item.Height.unit}}
+                                            </ng-container>
+                                        <ng-container *ngIf="!item.Length && !item.Width && !item.Height">
+                                            Mått saknas
+                                        </ng-container>
+                                    </p>
+                            </div>
+                        </div>
+
+                        <div class="card consignment-detail-card">
+                            <div class="card-header bg-primary text-center color-white">
+                                <span>Paketets resa</span>
+                            </div>
+                            <div class="list-group-item" *ngFor="let item of events | slice:0:eventsLength ; let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even, 'events-height': !showEvents}">
+                                <i *ngIf="item.status == 'DELIVERED'" class="fas fa-check-square fa-fw fa-pull-left color-success"></i>
+                                <i *ngIf="item.status !== 'DELIVERED'" class="fas fa-truck fa-fw fa-pull-left"></i>
+                                <!--<i class="fas fa-info fa-fw fa-pull-left"></i>-->
+                                <h6 *ngIf="item.location.name" class="consignment-detail-card__info__header" [ngClass]="{ 'color-success': (item.status == 'DELIVERED')}">{{item.location.name}}</h6>
+                                <br *ngIf="!item.location.name" />
+                                <p class="subheading">- {{item.eventTime | date:'yyyy-MM-dd, HH:mm'}}</p>
+                                <p class="event-description">{{item.eventDescription}}</p> 
+                            </div>
+                            <div class="list-group-item text-center events-hide-link" (click)="showAllEvents()">
+                                <a *ngIf="!showEvents" class="hide-link">Visa alla händelser <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                <a *ngIf="showEvents" class="hide-link">Visa bara de senaste händelserna <i class="fa fa-angle-up" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+        </div>
+
+    </div>
+</div>

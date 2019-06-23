@@ -1,0 +1,25 @@
+﻿<!-- <div class="py-2 px-0 text-center primary-gradient notification-header">
+    <span *ngIf="invitationNotifications?.length == 1" class="card-title text-center m-0">1 ny inbjudan</span>
+    <span *ngIf="invitationNotifications?.length > 1" class="card-title text-center m-0">{{invitationNotifications?.length}} nya inbjudningar</span>
+</div> -->
+<div *ngFor="let inv of invitationNotifications" class="row notification invitation no-padding">
+    <div class="col-sm-11 no-padding" (click)="showInviteResponseDialog(inv)" role="button">
+        <div class="text-center ml-3 py-3" *ngIf="currentUser.PersonId == inv.SenderPersonId"><strong>{{inv.ReceiverPersonId}}</strong> vill köpa <strong>{{inv.Title}}</strong> av dig!</div>
+        <div class="text-center ml-3 py-3" *ngIf="currentUser.PersonId == inv.ReceiverPersonId"><strong>{{inv.SenderPersonId}}</strong> vill skicka <strong>{{inv.Title}}</strong> till dig!</div>
+    </div>
+    <!--<button type="button" class="close close-notification col-sm-1 align-self-start" (click)="cancel(inv)" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>-->
+</div>
+
+
+
+<!--<div class="counter">
+    <button (click)="decrement()">
+        Decrement
+    </button>
+    <input type="text" [value]="addInvitationStream">
+    <button (click)="increment()">
+        Increment
+    </button>
+</div>-->

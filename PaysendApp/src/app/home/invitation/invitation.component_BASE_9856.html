@@ -1,0 +1,43 @@
+﻿<div class="container-fluid">
+    <div class="row">
+        <div class="offset-md-2 col-md-8 offset-lg-3 col-lg-6">
+            <div class="card text-center">
+                <div class="card-block">
+                    <h3 class="card-title">Inga aktiva försändelser</h3>
+                    <p class="card-text">
+                        Du har inga aktiva försändelser, läs mer hur du kommer igång på några minuter
+                        eller skicka en inbjudan
+                    </p>
+                    <a href="#" class="btn btn-primary" (click)=showConfirm()>Skicka inbjudan</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><br />
+
+<div class="container-fluid">
+    <h3 class="text-center" *ngIf="invitations?.length > 0">Du har {{invitations?.length}} nya inbjudningar</h3>
+    <div class="row"> <!--[ngClass]="(invitations.length > 2)?'row':'row justify-content-center align-items-center'"-->
+        <div *ngFor="let inv of invitations" class="offset-md-2 col-md-8 offset-lg-3 col-lg-6"><!--[ngClass]="(invitations.length > 2)?'offset-md-2 col-md-8 offset-lg-3 col-lg-6':'col-md-2'"-->
+            <div class="card">
+                <div class="card-block">
+                    <h4 class="card-title">Du har fått en inbjudan</h4>
+                    <p class="card-text" *ngIf="currentUser.PersonId == inv.SenderPersonId">{{inv.ReceiverPersonId}} vill <b>köpa</b> ett paket av dig! Vänligen ge återkoppling</p>
+                    <p class="card-text" *ngIf="currentUser.PersonId == inv.ReceiverPersonId">{{inv.SenderPersonId}} vill <b>skicka</b> ett paket till dig! Vänligen ge återkoppling</p>
+                    <a href="#" class="btn btn-primary" (click)="showInviteResponseDialog(inv)">Svara</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--<div class="counter">
+    <button (click)="decrement()">
+        Decrement
+    </button>
+    <input type="text" [value]="addInvitationStream">
+    <button (click)="increment()">
+        Increment
+    </button>
+</div>-->

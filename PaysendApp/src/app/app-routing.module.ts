@@ -1,9 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FrontComponent } from './frontpage/front.component';
+import { LoginComponent, LoginSiteComponent } from './login';
+import { RegisterComponent } from './register';
+import { HomeComponent } from './home';
+import { AuthGuard } from './_guards';
 
 const routes: Routes = [
-  { path: '', component: FrontComponent},
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'front', component: FrontComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'loginsite', component: LoginSiteComponent },
+  { path: 'register', component: RegisterComponent },
+  
 ];
 
 @NgModule({

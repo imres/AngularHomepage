@@ -5,7 +5,7 @@ import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@a
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { BasicComponent } from '../shared/basic.component';
-// import { Person, Invitation, ActiveConsignment } from '../_models/index';
+import { Person, Invitation, ActiveConsignment } from '../_models/index';
 // import { UserService, InvitationService, ToastrService, ConsignmentService, PagerService } from '../_services/index';
 // import { SendInvitationDialogComponent } from '../_dialog/send-invitation-dialog.component';
 // import { InvitationResponseDialogComponent } from '../_dialog/invitation-response-dialog.component';
@@ -20,15 +20,15 @@ import { BasicComponent } from '../shared/basic.component';
 })
 
 export class NavbarHomeComponent extends BasicComponent implements OnInit {
-    // @Input() invitations: Invitation[];
-    // @Input() invitationNotifications: Invitation[];
-    // finishedConsignments: ActiveConsignment[];
-    // archivedConsignments: ActiveConsignment[];  
-    //@Output() invitationsChanged: EventEmitter<any> = new EventEmitter<any>(); //Push change once emit is called on this object
+    @Input() invitations: Invitation[];
+    @Input() invitationNotifications: Invitation[];
+    finishedConsignments: ActiveConsignment[];
+    archivedConsignments: ActiveConsignment[];  
+    @Output() invitationsChanged: EventEmitter<any> = new EventEmitter<any>(); //Push change once emit is called on this object
 
-    //invitations: Invitation[];
-    //invitationNotifications: Invitation[];
-    // currentUser: Person;
+    // invitations: Invitation[];
+    // invitationNotifications: Invitation[];
+    currentUser: Person;
     showDialog = false;
     isClassActive: boolean;
     // invitationStatus = InvitationStatusEnum;

@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 
-// import { Person, Invitation } from '../_models/index';
+import { Person, Invitation } from '../_models/index';
 // import { UserService, InvitationService } from '../_services/index';
 
 @Component({
@@ -11,7 +11,7 @@ import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@a
 })
 
 export class UserGuideComponent implements OnInit {
-    // currentUser: Person;
+    currentUser: Person;
     showDialog = false;
     isClassActive: boolean;
 

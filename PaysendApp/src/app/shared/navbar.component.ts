@@ -3,7 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@a
 import { Router } from '@angular/router';
 
 import { BasicComponent } from '../shared/basic.component';
-// import { Person, Invitation, ActiveConsignment } from '../_models/index';
+import { Person, Invitation, ActiveConsignment } from '../_models/index';
 // import { UserService, PagerService, ConsignmentService } from '../_services/index';
 // import { Directive, HostListener } from "@angular/core";
 // import { FilterPipe } from '../filter.pipe';
