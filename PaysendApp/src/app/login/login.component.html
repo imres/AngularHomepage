@@ -68,9 +68,9 @@
                                         <p>Väntar på svar från Mobilt BankID</p>
                                     </div>
 
-                                    <div *ngIf="!bankIdPending" class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+                                    <div *ngIf="!bankIdPending" class="md-form" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+                                        <input mdbInput id="FormPersonId" type="text" class="form-control" name="personid" [(ngModel)]="model.PersonId" #personid="ngModel" required />
                                         <label for="FormPersonId">Personnummer</label>
-                                        <input id="FormPersonId" type="text" class="form-control" placeholder="ååååmmddxxxx" name="personid" [(ngModel)]="model.PersonId" #personid="ngModel" required />
                                         <div *ngIf="bankidform.submitted && !personid.valid" class="help-block">Ange personnummer</div>
                                     </div>
 
