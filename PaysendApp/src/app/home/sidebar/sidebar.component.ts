@@ -8,6 +8,8 @@ import { Person, Invitation, ActiveConsignment } from '../../_models/index';
 import { UserService, InvitationService, ToastrService, ConsignmentService, PagerService } from '../../_services/index';
 // import { SendInvitationDialogComponent } from '../../_dialog/send-invitation-dialog.component';
 import { InvitationStatusEnum } from '../../_models/enums/index';
+import { MDBModalService, MDBModalRef } from 'angular-bootstrap-md';
+import { SendInvitationDialogComponent } from 'src/app/shared/dialogs/send-invitation-dialog/send-invitation-dialog.component';
 // import { FilterPipe } from '../../filter.pipe';
 
 
@@ -18,7 +20,7 @@ import { InvitationStatusEnum } from '../../_models/enums/index';
 })
 
 export class SidebarComponent extends BasicComponent implements OnInit {
-
+    modalRef: MDBModalRef;
     currentUser: Person;
     sidebarActive = true;
 
@@ -30,7 +32,8 @@ export class SidebarComponent extends BasicComponent implements OnInit {
         // private consignmentService: ConsignmentService,
         private toastrService: ToastrService,
         // private pagerService: PagerService,
-        private router: Router) {
+        private router: Router,
+        private modalService: MDBModalService) {
         super(injector);
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
@@ -41,6 +44,10 @@ export class SidebarComponent extends BasicComponent implements OnInit {
 
     }
 
+    showConfirm(event: any) {
+        this.modalRef = this.modalService.show(SendInvitationDialogComponent);
+        this.modalRef.content.action.subscribe( (result: any) => { console.log('dialog result: ', result); });
+    }
     // showConfirm(event: any) {
     //     this.dialogService.addDialog(SendInvitationDialogComponent, {
     //         title: 'Skicka inbjudan',
