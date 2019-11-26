@@ -12,6 +12,8 @@ import { UserService, InvitationService, AlertService, ToastrService, FilterServ
 // import { SendInvitationDialogComponent } from '../../_dialog/send-invitation-dialog.component';
 // import { InvitationResponseDialogComponent } from '../../_dialog/invitation-response-dialog.component';
 import { InvitationStatusEnum } from '../../_models/enums/index';
+import { InvitationResponseDialogComponent } from 'src/app/shared/dialogs/invitation-response-dialog/invitation-response-dialog.component';
+import { MDBModalService, MDBModalRef } from 'angular-bootstrap-md';
 
 @Component({
     // moduleId: module.id,
@@ -25,6 +27,7 @@ export class InvitationComponent implements OnInit {
     @Input() invitations: Invitation[];
     @Input() invitationNotifications: Invitation[];
 
+    modalRef: MDBModalRef;
     currentUser: Person;
     confirmResult: boolean = null;
     invitationStatus = InvitationStatusEnum;
@@ -34,7 +37,8 @@ export class InvitationComponent implements OnInit {
                 private invitationService: InvitationService,
                 // private toastr: ToastsManager,
                 private toastrService: ToastrService,
-                private filterService: FilterService
+                private filterService: FilterService,
+                private modalService: MDBModalService,
                 )
     {
     }
@@ -46,7 +50,29 @@ export class InvitationComponent implements OnInit {
     updateInvitationList(invitation: Invitation) {
         this.invitationService.updateInvitations(this.invitations);
     }
-    
+
+    showInviteResponseDialog(invitation: Invitation) {
+        var modalOptions = {
+            title: "Köpare",
+            message: 'Bla bla confirm some action?',
+            data: { content: {currentInvitation: invitation} }
+        }
+        this.modalRef = this.modalService.show(InvitationResponseDialogComponent, { modalOptions });
+        this.modalRef.content.action.subscribe((isConfirmed: boolean) => {
+        //Get dialog result
+        this.confirmResult = isConfirmed;
+        
+        if (isConfirmed == null) return;
+
+        console.log('Försändelse skapad!');
+
+        this.handleDialogResult(invitation, isConfirmed);
+
+        this.updateInvitationList(invitation);
+        
+        });
+    }
+
     // showInviteResponseDialog(invitation: Invitation) {
 
     //     this.dialogService.addDialog(InvitationResponseDialogComponent, {

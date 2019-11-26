@@ -11,6 +11,8 @@ import { UserService, InvitationService, ToastrService, ConsignmentService, Page
 // import { InvitationResponseDialogComponent } from '../_dialog/invitation-response-dialog.component';
 import { InvitationStatusEnum } from '../_models/enums/index';
 import { FilterPipe } from '../filter.pipe';
+import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
+import { SendInvitationDialogComponent } from './dialogs/send-invitation-dialog/send-invitation-dialog.component';
 
 
 @Component({
@@ -28,6 +30,7 @@ export class NavbarHomeComponent extends BasicComponent implements OnInit {
 
     // invitations: Invitation[];
     // invitationNotifications: Invitation[];
+    modalRef: MDBModalRef;
     currentUser: Person;
     showDialog = false;
     isClassActive: boolean;
@@ -47,6 +50,7 @@ export class NavbarHomeComponent extends BasicComponent implements OnInit {
         // private pagerService: PagerService,
         private router: Router,
         private activatedRoute: ActivatedRoute,
+        private modalService: MDBModalService
         )
     {
         super(injector);
@@ -110,6 +114,11 @@ export class NavbarHomeComponent extends BasicComponent implements OnInit {
             this.orderBy('-EndDate', res);
             this.notificationCounter();
         });
+    }
+
+    showConfirm(event: any) {
+        this.modalRef = this.modalService.show(SendInvitationDialogComponent);
+        this.modalRef.content.action.subscribe( (result: any) => { console.log('dialog result: ', result); });
     }
 
     // showConfirm(event: any) {

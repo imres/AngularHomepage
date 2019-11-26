@@ -1,0 +1,127 @@
+<div class="modal-content">
+    <form name="form" (ngSubmit)="f.form.valid && acceptInvitation(currentInvitation)" #f="ngForm" novalidate>
+        <div class="no-padding" [ngClass]="{'primary-gradient' : (currentInvitation.ReceiverPersonId == currentUser.PersonId), 'secondary-gradient' : currentInvitation.SenderPersonId == currentUser.PersonId}">
+            <div class="modal-header pb-0">
+                <p class="mb-0">Din roll:</p>
+                <button type="button" class="close" (click)="modalRef.hide()">&times;</button>
+            </div>
+            <div class="modal-header__custom">
+                <h4 class="mb-0 pb-3">{{title || 'Confirm'}}</h4>
+            </div>
+        </div>
+        <hr class="no-padding mb-0 mt-0"/>
+        <div class="modal-body">
+            <ng-container *ngIf="!HasReceiverRole(currentInvitation)" >
+                <div class="alert alert-info alert-dismissable" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="alert-heading">Acceptera inbjudan</h4>
+                    <p>Du har fått en inbjudan, för att gå vidare till nästa steg måste du ange den summa du begär för paketet.</p>
+                    <p class="mb-0">Att acceptera denna inbjudan är inte bindande, du har valet att avbryta innan du skickar iväg paketet.</p>
+                </div>
+                <p class="text-muted mb-0">Köpare</p>
+                <h3>
+                    {{currentInvitation.ReceiverPersonId}}<span></span>
+                </h3><hr />
+
+                <p class="text-muted mb-0">Paketinnehåll:</p>
+                <h3>
+                    {{currentInvitation.Title}}
+                </h3>
+                <p *ngIf="currentInvitation.Description" class="description">{{currentInvitation.Description}}</p>
+                <hr />
+
+                <div class="form-group" [ngClass]="{ 'has-error': requestedDepositAmount.dirty && !requestedDepositAmount.valid }">
+                    <label for="requestedDepositAmount">Efterfrågad summa (kronor)</label>
+                    <input type="text" class="form-control" name="requestedDepositAmount" placeholder="Pris för paket" pattern="\d{1,10}"
+                           [(ngModel)]="currentInvitation.RequestedDepositAmount" #requestedDepositAmount="ngModel" required />
+                    <div *ngIf="requestedDepositAmount.dirty && !requestedDepositAmount.valid" class="help-block">Fyll i priset för ditt paket (endast siffror)</div>
+                </div>
+            </ng-container>
+
+            <!--Receiver Role-->
+            <ng-container *ngIf="HasReceiverRole(currentInvitation)">
+                <ng-container *ngIf="dialogStep == 1">
+                    <div class="alert alert-info alert-dismissable" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h6 class="alert-heading">Acceptera inbjudan</h6>
+                        <p>Du har fått en inbjudan, för att gå vidare till nästa steg måste du ange en av de tillgängliga betalningsmetoderna</p>
+                        <p class="mb-0">Att acceptera denna inbjudan är inte bindande, du har valet att avbryta innan du sätter in summan.</p>
+                    </div>
+                    <p class="text-muted mb-1">Säljare:</p>
+                    <h6>
+                        {{currentInvitation.SenderPersonId}}<span></span>
+                    </h6><hr />
+
+                    <p class="text-muted mb-1">Paketinnehåll:</p>
+                    <h6 class="mb-0">
+                        {{currentInvitation.Title}}
+                    </h6>
+                    <p *ngIf="currentInvitation.Description" class="package-description mt-0">{{currentInvitation.Description}}</p>
+                    <hr />
+
+                    <p class="text-muted mb-1">Pris:</p>
+                    <h6>
+                        {{currentInvitation.RequestedDepositAmount}}<span>:-</span>
+                    </h6>
+                </ng-container>
+
+                <ng-container *ngIf="dialogStep == 2">
+                    <p class="text-muted mb-0">
+                        Välj leveransadress:
+                    </p>
+                    <div class="form-check" (change)="customAddressRadio($event.target.value)">
+                        <input  class="form-check-input" type="radio" name="deliveryAddressRadios" id="defaultAddress" value="option1" checked>
+                        <label class="form-check-label" for="deliveryAddressRadios">
+                            {{currentUser.Address}}, {{currentUser.PostalCode}} {{currentUser.City}}
+                        </label>
+                    </div>
+                    <div class="form-check" (change)="customAddressRadio($event.target.value)">
+                        <input  class="form-check-input" type="radio" name="deliveryAddressRadios" id="customDeliveryAddress" value="option2">
+                        <label class="form-check-label" for="deliveryAddressRadios">
+                            Använd annan leveransadress
+                        </label>
+                    </div>
+
+                    <div *ngIf="showCustomAddress" id="customDeliveryAddressInput" class="form-group pt-2 collapse" [ngClass]="{ 'has-error': customDeliveryAddress.dirty && !customDeliveryAddress.valid, 'show': showCustomAddress}">
+                        <label for="customDeliveryAddress">Adress</label>
+                        <input type="text" class="form-control mb-2" name="customDeliveryAddress" placeholder="Adress"
+                               [(ngModel)]="currentInvitation.DeliveryAddress" #customDeliveryAddress="ngModel" required />
+                        <div *ngIf="customDeliveryAddress.dirty && !customDeliveryAddress.valid" class="help-block">Fyll i adressen eller välj att använda din folkbokförda adress!</div>
+                        <label for="customDeliveryPostalCode">Postkod</label>
+                        <input type="text" class="form-control mb-2" name="customDeliveryPostalCode" placeholder="Postkod" pattern="\d{1,10}"
+                               [(ngModel)]="currentInvitation.DeliveryPostalCode" #customDeliveryPostalCode="ngModel" required />
+                        <div *ngIf="customDeliveryPostalCode.dirty && !customDeliveryPostalCode.valid" class="help-block">Fyll i en giltig postkod eller välj att använda din folkbokförda adress!</div>
+                        <label for="customDeliveryCity">Postort</label>
+                        <input type="text" class="form-control" name="customDeliveryCity" placeholder="Postort"
+                               [(ngModel)]="currentInvitation.DeliveryCity" #customDeliveryCity="ngModel" required />
+                        <div *ngIf="customDeliveryCity.dirty && !customDeliveryCity.valid" class="help-block">Fyll i en giltig postort eller välj att använda din folkbokförda adress!</div>
+                    </div>
+                    
+                    <p class="text-muted mb-0 mt-3">
+                        Mobilnummer för SMS-avisering:
+                    </p>
+                    <div>
+                        <!-- <label for="customDeliveryAddress">Mobilnummer för SMS-avisering</label> -->
+                        <input type="text" class="form-control mb-2" name="receiverPhoneNumber" placeholder="Mobilnummer (valfritt)"
+                               [(ngModel)]="currentInvitation.ReceiverPhoneNumber" #receiverPhoneNumber="ngModel"/>
+                    </div>
+
+                </ng-container>
+            </ng-container>
+        </div>
+        <div class="modal-footer">
+            <div class="col-8 pl-2">
+                <button *ngIf="dialogStep == 1" type="button" role="button" class="btn btn-default" (click)="onNoClick()">Neka</button>
+                <button *ngIf="dialogStep != 1" type="button" class="btn btn-outline-primary" (click)="dialogStep = dialogStep - 1">Tillbaka</button>
+            </div>
+            <div class="col-4 pr-0 text-right">
+                <button *ngIf="HasReceiverRole(currentInvitation) && dialogStep == 1" type="button" class="btn btn-primary" (click)="dialogStep = dialogStep + 1" [disabled]="f.form.invalid">Nästa</button>
+                <button *ngIf="HasReceiverRole(currentInvitation) && dialogStep == 2 || !HasReceiverRole(currentInvitation) && dialogStep == 1" type="submit" role="button" class="btn btn-primary">Acceptera</button>
+            </div>
+        </div>
+    </form>
+</div>

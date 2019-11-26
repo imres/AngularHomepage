@@ -38,14 +38,7 @@ export class InvitationService extends BaseService{
     }
 
     sendInvite(invitation: Invitation) {
-        return this.http.post(this.apiRoute + 'Invitation/Invite',
-            JSON.stringify(invitation),
-            { headers: this.headers })
-            .pipe(map((response: Response) =>
-                response.json()
-            ),catchError(error => 
-                Observable.throw(false)
-            ));
+        return this.http.post(this.apiRoute + 'Invitation/Invite', invitation);
     }
 
     acceptInvite(invitation: Invitation) {

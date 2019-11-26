@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 import { BasicComponent } from '../../shared/basic.component';
 import { Person, Invitation, Consignment, ActiveConsignment, Pager} from '../../_models/index';
 import { UserService, InvitationService, ConsignmentService, ToastrService, PagerService } from '../../_services/index';
+import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
+import { SendInvitationDialogComponent } from 'src/app/shared/dialogs/send-invitation-dialog/send-invitation-dialog.component';
 // import { SendInvitationDialogComponent } from '../../_dialog/send-invitation-dialog.component';
 // import { InvitationResponseDialogComponent } from '../../_dialog/invitation-response-dialog.component';
 
@@ -20,6 +22,7 @@ import { UserService, InvitationService, ConsignmentService, ToastrService, Page
 
 
 export class ConsignmentComponent extends BasicComponent implements OnInit {
+    modalRef: MDBModalRef
     activeConsignments: ActiveConsignment[];
     consignments: ActiveConsignment[];
 
@@ -33,6 +36,7 @@ export class ConsignmentComponent extends BasicComponent implements OnInit {
         // private dialogService: DialogService,
         private toastrService: ToastrService,
         private router: Router,
+        private modalService: MDBModalService
     ) {
         super(injector);
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -64,6 +68,11 @@ export class ConsignmentComponent extends BasicComponent implements OnInit {
     
     showInvite(invite: Invitation) {
         console.log(invite);
+    }
+
+    showConfirm(event: any) {
+        this.modalRef = this.modalService.show(SendInvitationDialogComponent);
+        this.modalRef.content.action.subscribe( (result: any) => { console.log('dialog result: ', result); });
     }
 
     // showConfirm(event: any) {

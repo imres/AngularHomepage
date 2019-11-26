@@ -88,6 +88,11 @@
     background-color: #f1f1f1 !important;
 }
 
+.btn-secondary:not([disabled]):not(.disabled):active {
+    color: #383838cf !important;
+    background-color: #d6d4d4 !important;
+}
+
 .title {
     font-weight: 700;
     margin-bottom: 0.5rem;

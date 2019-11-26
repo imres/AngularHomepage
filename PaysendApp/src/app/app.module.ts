@@ -32,6 +32,7 @@ import { UserSettingsComponent } from './user-profile/user-settings.component';
 import { FriendsComponent } from './user-profile/friends.component';
 import { UserComponent } from './user-profile/user.component';
 import { SendInvitationDialogComponent } from './shared/dialogs/send-invitation-dialog/send-invitation-dialog.component';
+import { InvitationResponseDialogComponent } from './shared/dialogs/invitation-response-dialog/invitation-response-dialog.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { SendInvitationDialogComponent } from './shared/dialogs/send-invitation-
     UserSettingsComponent,
     FriendsComponent,
     UserComponent,
-    SendInvitationDialogComponent
+    SendInvitationDialogComponent,
+    InvitationResponseDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +85,8 @@ import { SendInvitationDialogComponent } from './shared/dialogs/send-invitation-
     PagerService,
   ],
   entryComponents: [
-    SendInvitationDialogComponent
+    SendInvitationDialogComponent,
+    InvitationResponseDialogComponent
   ],
   bootstrap: [AppComponent]
 })

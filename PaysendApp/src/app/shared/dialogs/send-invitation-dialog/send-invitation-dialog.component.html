@@ -3,13 +3,46 @@
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">×</span>
       </button>
-      <h4 class="modal-title w-100" id="myModalLabel">Skicka inbjudan</h4>
+      <h4 class="modal-title w-100" id="myModalLabel">Sälj paket</h4>
     </div>
     <div class="modal-body">
-      ...
+      <div class="md-form"  [ngClass]="{ 'has-error': receiverPersonId.dirty && !receiverPersonId.valid || receiverPersonId.value == currentUser.PersonId }">
+        <input mdbInput type="text" class="form-control" name="receiverPersonId"
+                [(ngModel)]="model.ReceiverPersonId" #receiverPersonId="ngModel" required />
+        <label for="receiverPersonId">Ange köpare</label>
+        <div *ngIf="receiverPersonId.dirty && !receiverPersonId.valid" class="help-block">Fyll i personnummer</div>
+        <div *ngIf="receiverPersonId.value == currentUser.PersonId" class="has-error mt-1">Du får inte ange ditt eget personnummer</div>
+      </div>
+
+      <div class="md-form" [ngClass]="{ 'has-error': !requestedDepositAmount }">
+          <input mdbInput type="text" class="form-control" name="requestedDepositAmount"
+                  [(ngModel)]="model.RequestedDepositAmount" #requestedDepositAmount="ngModel" />
+          <label for="requestedDepositAmount">Pris för paket (kronor)</label>        
+          <div *ngIf="!requestedDepositAmount" class="help-block">Fyll i begärd summa</div>
+      </div>
+
+      <div class="md-form" [ngClass]="{ 'has-error': title.dirty && !title.valid }">
+          <input mdbInput type="text" class="form-control" name="title"
+                  [(ngModel)]="model.Title" #title="ngModel" required />
+          <label for="title">Paketnamn</label>
+          <div *ngIf="title.dirty && !title.valid" class="help-block">Fyll i paketnamn</div>
+      </div>
+      <div class="md-form" [ngClass]="{ 'has-error': description.dirty && !description.valid }">   
+          <textarea mdbInput type="text" class="md-textarea form-control" name="description"
+                  [(ngModel)]="model.Description" #description="ngModel"></textarea>
+          <label for="description">Beskrivning</label>
+      </div>  
     </div>
     <div class="modal-footer">
-      <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="onNoClick()" mdbWavesEffect>Avbryt</button>
-      <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="onYesClick()" mdbWavesEffect>Spara</button>
-    </div>
+      <div class="col-8">                    
+        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="onNoClick()" mdbWavesEffect>Avbryt</button>
+      </div>
+      <div class="col-4 offset-8 pr-0 text-right">
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="sendInvite()" mdbWavesEffect>Skicka</button>
+      </div>
   </div>
+    <!-- <div class="modal-footer">
+      <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="onNoClick()" mdbWavesEffect>Avbryt</button>
+      <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="sendInvite()" mdbWavesEffect>Skicka</button>
+    </div> -->
+</div>
